@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using Terraria;
 using Terraria.ModLoader;
@@ -64,9 +65,10 @@ namespace StellarisShips.Content.WeaponUnits
                         int damage = RandomDamage;
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
                         Vector2 ShootVel = Rotation.ToRotationVector2() * 10f;
-                        TorpedoProj.Summon(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(RelativePos), ShootVel, damage, color,
+                        int protmp = TorpedoProj.Summon(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(RelativePos), ShootVel, damage, color,
                             ExplosionScale, MaxSpeed, DetectRange, target, TimeLeft, HomingFactor,
                             crit);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "Torpedo", 3, shipNPC.GetPosOnShip(RelativePos));
                     }
 

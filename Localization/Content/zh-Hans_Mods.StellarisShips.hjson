@@ -127,4 +127,9 @@ Buffs: {
 		DisplayName: 任务中失踪
 		Description: 至少有一艘我方舰船在任务中失踪，重新归队需要一定时间
 	}
+
+	BattleStatBuff: {
+		DisplayName: 战斗数据
+		Description: ""
+	}
 }

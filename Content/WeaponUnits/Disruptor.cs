@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,8 @@ namespace StellarisShips.Content.WeaponUnits
                         int damage = RandomDamage;
                         damage += (int)(damage * 0.05f * ReAttackTime);
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
-                        DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0f);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0f);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         CurrentCooldown = AttackCD * (0.8f + 0.4f * Main.rand.NextFloat());
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "Disruptor", 3, shipNPC.GetPosOnShip(RelativePos));
                         LastTarget = target;

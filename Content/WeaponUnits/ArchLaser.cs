@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using System.Collections.Generic;
 using Terraria;
@@ -52,8 +53,11 @@ namespace StellarisShips.Content.WeaponUnits
                                 break;
                         }
                         int damage = RandomDamage;
+                        //低血量增伤
+                        damage += (int)(damage * 0.4f * (1 - (float)Main.npc[target].life / Main.npc[target].lifeMax));
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
-                        DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0.5f, 0, (int)(36 * scale), (int)(36 * scale), false);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 1f, 0, (int)(36 * scale), (int)(36 * scale), false);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         CurrentCooldown = AttackCD * (0.8f + 0.4f * Main.rand.NextFloat());
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "Laser", 6, shipNPC.GetPosOnShip(RelativePos));
                         ArchLaserExplosion.Summon(ship.GetSource_FromAI(), TargetPos.Value, Color.LightPink, scale);

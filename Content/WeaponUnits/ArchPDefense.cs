@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using System.Collections.Generic;
 using Terraria;
@@ -45,7 +46,8 @@ namespace StellarisShips.Content.WeaponUnits
                         int damage = RandomDamage;
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
                         if (!Main.npc[target].IsBoss()) damage = (int)(damage * 1.3f);
-                        DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "PDefense", 4, shipNPC.GetPosOnShip(RelativePos));
                     }
                     if (CurrentCooldown < 10)

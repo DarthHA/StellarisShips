@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using System;
 using Terraria;
@@ -73,7 +74,9 @@ namespace StellarisShips.Content.WeaponUnits
                         }
                         damage += (int)(damage * 0.05f * ReAttackTime);
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
-                        DamageProj.Summon(ship.GetSource_FromAI(), Main.npc[target].Center, damage, crit, 0f);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), Main.npc[target].Center, damage, crit, 0f);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
+
                         ArcProj.Summon(ship, RelativePos, Main.npc[target].Center, color);
                         ArcProj.Summon(ship, RelativePos, Main.npc[target].Center, color);
 

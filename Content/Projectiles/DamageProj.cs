@@ -6,11 +6,10 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class DamageProj : ModProjectile
+    public class DamageProj : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
-        public bool Crit = false;
         public float DefenseEffectiveness = 1f;
 
         private bool CanHit = true;
@@ -46,10 +45,10 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
-        public static void Summon(IEntitySource entitySource, Vector2 Pos, int dmg, bool crit = false, float defenseEffectiveness = 1f, float kb = 0, int width = 1, int height = 1, bool oneHit = true)
+        public static int Summon(IEntitySource entitySource, Vector2 Pos, int dmg, bool crit = false, float defenseEffectiveness = 1f, float kb = 0, int width = 1, int height = 1, bool oneHit = true)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, Vector2.Zero, ModContent.ProjectileType<DamageProj>(), dmg, kb, Main.myPlayer);
-            if (protmp >= 0 && protmp <= 1000)
+            if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].width = width;
                 Main.projectile[protmp].height = height;
@@ -59,24 +58,15 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as DamageProj).OneHit = oneHit;
                 if (oneHit) Main.projectile[protmp].penetrate = 1;
             }
+            return protmp;
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (Crit)
-            {
-                modifiers.SetCrit();
-            }
-            else
-            {
-                modifiers.DisableCrit();
-            }
-
             modifiers.DefenseEffectiveness *= DefenseEffectiveness;
-
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void SafeOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (OneHit)
             {

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using Terraria;
 using Terraria.ModLoader;
@@ -59,7 +60,8 @@ namespace StellarisShips.Content.WeaponUnits
                         int damage = RandomDamage;
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
                         Vector2 ShootVel = Rotation.ToRotationVector2() * 30f;
-                        ArchRailgunBullet.Summon(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(RelativePos), ShootVel, damage, Color.LightSalmon, scaleSlot, crit);
+                        int protmp = ArchRailgunBullet.Summon(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(RelativePos), ShootVel, damage, Color.LightSalmon, scaleSlot, crit);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "Railgun", 3, shipNPC.GetPosOnShip(RelativePos));
                     }
                     if (CurrentCooldown <= 0)

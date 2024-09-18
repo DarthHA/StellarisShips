@@ -69,8 +69,9 @@ namespace StellarisShips.Content.WeaponUnits
                         int dir = Math.Sign(RelativePos.X);
                         if (dir == 0) ShootVel = ship.rotation.ToRotationVector2() * (Main.rand.Next(7) + 3);
                         else ShootVel = ship.rotation.ToRotationVector2() * (Main.rand.Next(7) + 3) + (ship.rotation - dir * MathHelper.Pi / 2f).ToRotationVector2() * (Main.rand.Next(7) + 3);
-                        long uuid = StrikeCraftProj.Summon(ship, shipNPC.GetPosOnShip(RelativePos), RelativePos, ShootVel, MaxDmg, MinDmg, Crit, Speed, 400, 5);
-                        if (uuid != -1) UUIDs.Add(uuid);
+                        int protmp = StrikeCraftProj.Summon(ship, shipNPC.GetPosOnShip(RelativePos), RelativePos, ShootVel, MaxDmg, MinDmg, Crit, Speed, 400, 5);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
+                        if (protmp >= 0 && protmp < 1000) UUIDs.Add((Main.projectile[protmp].ModProjectile as StrikeCraftProj).UUID);
                     }
 
                     CurrentCooldown = 60;

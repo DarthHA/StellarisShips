@@ -4,6 +4,7 @@ using ReLogic.Content;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using Terraria;
 using Terraria.ModLoader;
@@ -47,7 +48,8 @@ namespace StellarisShips.Content.WeaponUnits
                         Color color = Color.LightGreen;
                         int damage = RandomDamage;
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
-                        TitanBeamProj.Summon(ship, RelativePos, Main.npc[target].Center, color, damage, crit);
+                        int protmp = TitanBeamProj.Summon(ship, RelativePos, Main.npc[target].Center, color, damage, crit);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "TitanBeam", 1, shipNPC.GetPosOnShip(RelativePos));
                     }
 

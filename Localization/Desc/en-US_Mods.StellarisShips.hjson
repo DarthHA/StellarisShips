@@ -204,7 +204,7 @@ Desc: {
 	ArchMissile_1:
 		'''
 		article charges, once stabilized thanks to ancient technology, allow us to create swarms of tiny missiles that still carry a respectable payload, and should be able to overwhelm most point-defense systems.
-		L		Launching three missiles at a time,
+		Launching three missiles at a time,
 		Ignores enemies defense.
 		'''
 	MissileS_1:
@@ -219,15 +219,35 @@ Desc: {
 		Launching four missiles at a time,
 		Highly affected by enemy defense effects.
 		'''
-	Laser_1: Laser weapons fire focused beams of light at targets, causing damage through the generation of intense heat.
-	Laser_2: More powerful than red lasers, these blue variants emit electromagnetic radiation at a wavelength that appears blue or violet to most organics.
-	Laser_3: Ultraviolet lasers are an updated and more powerful version of their blue predecessors. Accurate and destructive, these weapons are capable of inflicting great damage.
-	Laser_4: These lasers have a shorter wavelength than UV-based laser weaponry, but are even more destructive.
-	Laser_5: The electromagnetic radiation emitted by gamma lasers is of an extremely high frequency. Their destructive potential is unmatched in the field of laser weapons.
+	Laser_1:
+		'''
+		Laser weapons fire focused beams of light at targets, causing damage through the generation of intense heat.
+		Increases damage to low health enemies.
+		'''
+	Laser_2:
+		'''
+		More powerful than red lasers, these blue variants emit electromagnetic radiation at a wavelength that appears blue or violet to most organics.
+		Increases damage to low health enemies.
+		'''
+	Laser_3:
+		'''
+		Ultraviolet lasers are an updated and more powerful version of their blue predecessors. Accurate and destructive, these weapons are capable of inflicting great damage.
+		Increases damage to low health enemies.
+		'''
+	Laser_4:
+		'''
+		These lasers have a shorter wavelength than UV-based laser weaponry, but are even more destructive.
+		Increases damage to low health enemies.
+		'''
+	Laser_5:
+		'''
+		The electromagnetic radiation emitted by gamma lasers is of an extremely high frequency. Their destructive potential is unmatched in the field of laser weapons.
+		Increases damage to low health enemies.
+		'''
 	ArchLaser_1:
 		'''
 		This high energy weapon causes brutal micro collapsing events on impact, generating tremendous heat and force inside its targets armor.
-		Less affected by enemy defense effects.
+		Increases damage to low health enemies.
 		Explodes over a small area.
 		'''
 	Disruptor_1:

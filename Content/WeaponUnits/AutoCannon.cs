@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using Terraria;
 using Terraria.ModLoader;
@@ -46,7 +47,8 @@ namespace StellarisShips.Content.WeaponUnits
                         if (distanceFactor < 1f) distanceFactor = 1;
                         damage = (int)(damage * distanceFactor);
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
-                        DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0.5f);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0.5f);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         CurrentCooldown = AttackCD * (0.8f + 0.4f * Main.rand.NextFloat());
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "AutoCannon", 3, shipNPC.GetPosOnShip(RelativePos));
                     }

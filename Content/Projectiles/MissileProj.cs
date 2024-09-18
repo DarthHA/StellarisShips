@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class MissileProj : ModProjectile
+    public class MissileProj : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
@@ -19,7 +19,6 @@ namespace StellarisShips.Content.Projectiles
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
-        public bool Crit = false;
         public Color color = Color.Orange;
 
         public float DetectRange = 600;
@@ -174,10 +173,10 @@ namespace StellarisShips.Content.Projectiles
         }
 
 
-        public static void Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float explosionScale = 1f, float maxSpeed = 10, float detectRange = 1000, int target = -1, int timeLeft = 480, float homingFactor = 0.05f, bool crit = false, float kb = 0)
+        public static int Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float explosionScale = 1f, float maxSpeed = 10, float detectRange = 1000, int target = -1, int timeLeft = 480, float homingFactor = 0.05f, bool crit = false, float kb = 0)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<MissileProj>(), dmg, kb, Main.myPlayer);
-            if (protmp >= 0 && protmp <= 1000)
+            if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].Center = Pos;
                 Main.projectile[protmp].timeLeft = timeLeft;
@@ -190,22 +189,15 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as MissileProj).LastTarget = target;
                 (Main.projectile[protmp].ModProjectile as MissileProj).ExplosionScale = explosionScale;
             }
+            return protmp;
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (Crit)
-            {
-                modifiers.SetCrit();
-            }
-            else
-            {
-                modifiers.DisableCrit();
-            }
             modifiers.DefenseEffectiveness *= 1f;
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void SafeOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.ai[0] == 0)
             {

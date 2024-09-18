@@ -120,7 +120,7 @@ namespace StellarisShips.Content.Dialogs
                     {
                         float scale = EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].Length / 70f;
                         int FTLCooldown = shipNPC.FTLCooldown;
-                        FTLLight.Summon(ship.GetSource_FromAI(), ship.Center, scale);
+                        FTLLight2.Summon(ship.GetSource_FromAI(), ship.Center, scale);
                         foreach (Projectile striker in Main.ActiveProjectiles)
                         {
                             if (striker.type == ModContent.ProjectileType<StrikeCraftProj>())

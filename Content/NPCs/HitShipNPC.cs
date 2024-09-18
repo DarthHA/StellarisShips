@@ -8,7 +8,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 namespace StellarisShips.Content.NPCs
 {
@@ -21,6 +20,26 @@ namespace StellarisShips.Content.NPCs
                 target.GetShipNPC().HurtTimer = 180;
                 if (target.life > 0)
                 {
+                    if (BattleStatSystem.BossBattleActive)
+                    {
+                        if (target.GetShipNPC().CurrentShield > 0)
+                        {
+                            if (hit.Damage <= target.GetShipNPC().CurrentShield)
+                            {
+                                BattleStatSystem.ShieldHitDamage += hit.Damage;
+                            }
+                            else
+                            {
+                                BattleStatSystem.ShieldHitDamage += target.GetShipNPC().CurrentShield;
+                                BattleStatSystem.HullHitDamage += hit.Damage - target.GetShipNPC().CurrentShield;
+                            }
+                        }
+                        else
+                        {
+                            BattleStatSystem.HullHitDamage += hit.Damage;
+                        }
+                    }
+
                     target.GetShipNPC().CurrentShield -= hit.Damage;
                     if (target.GetShipNPC().CurrentShield < 0)
                     {
@@ -46,6 +65,26 @@ namespace StellarisShips.Content.NPCs
                 npc.GetShipNPC().HurtTimer = 180;
                 if (npc.life > 0)
                 {
+                    if (BattleStatSystem.BossBattleActive)
+                    {
+                        if (npc.GetShipNPC().CurrentShield > 0)
+                        {
+                            if (damageDone <= npc.GetShipNPC().CurrentShield)
+                            {
+                                BattleStatSystem.ShieldHitDamage += damageDone;
+                            }
+                            else
+                            {
+                                BattleStatSystem.ShieldHitDamage += npc.GetShipNPC().CurrentShield;
+                                BattleStatSystem.HullHitDamage += damageDone - npc.GetShipNPC().CurrentShield;
+                            }
+                        }
+                        else
+                        {
+                            BattleStatSystem.HullHitDamage += damageDone;
+                        }
+                    }
+
                     npc.GetShipNPC().CurrentShield -= damageDone;
                     if (npc.GetShipNPC().CurrentShield < 0)
                     {
@@ -172,7 +211,7 @@ namespace StellarisShips.Content.NPCs
     {
         public override void Load()
         {
-            On_Main.DoDraw_DrawNPCsOverTiles+= DrawTrails;
+            On_Main.DoDraw_DrawNPCsOverTiles += DrawTrails;
         }
         public override void Unload()
         {

@@ -8,11 +8,10 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class PlasmaBullet : ModProjectile
+    public class PlasmaBullet : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
-        public bool Crit = false;
         public float ModifiedScale = 1f;
         public Color color = Color.White;
 
@@ -116,7 +115,7 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void SafeOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.ai[0] == 0)
             {
@@ -127,28 +126,21 @@ namespace StellarisShips.Content.Projectiles
         }
 
 
-        public static void Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float scale, bool crit = false, float kb = 0)
+        public static int Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float scale, bool crit = false, float kb = 0)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<PlasmaBullet>(), dmg, kb, Main.myPlayer);
-            if (protmp >= 0 && protmp <= 1000)
+            if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].Center = Pos;
                 (Main.projectile[protmp].ModProjectile as PlasmaBullet).color = color;
                 (Main.projectile[protmp].ModProjectile as PlasmaBullet).ModifiedScale = scale;
                 (Main.projectile[protmp].ModProjectile as PlasmaBullet).Crit = crit;
             }
+            return protmp;
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (Crit)
-            {
-                modifiers.SetCrit();
-            }
-            else
-            {
-                modifiers.DisableCrit();
-            }
             modifiers.DefenseEffectiveness *= 4;
         }
 

@@ -1,7 +1,6 @@
 ﻿
 
 using StellarisShips.Content.Items;
-using StellarisShips.Content.NPCs;
 using StellarisShips.Static;
 using StellarisShips.System.BaseType;
 using StellarisShips.UI;

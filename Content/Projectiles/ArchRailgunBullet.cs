@@ -8,11 +8,11 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class ArchRailgunBullet : ModProjectile
+    public class ArchRailgunBullet : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
-        public bool Crit = false;
+
         public float ModifiedScale = 1f;
         public Color color = Color.White;
 
@@ -119,7 +119,7 @@ namespace StellarisShips.Content.Projectiles
         public static int Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float scale, bool crit = false, float kb = 0)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<ArchRailgunBullet>(), dmg, kb, Main.myPlayer);
-            if (protmp >= 0 && protmp <= 1000)
+            if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].Center = Pos;
                 (Main.projectile[protmp].ModProjectile as ArchRailgunBullet).color = color;
@@ -129,20 +129,12 @@ namespace StellarisShips.Content.Projectiles
             return protmp;
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (Crit)
-            {
-                modifiers.SetCrit();
-            }
-            else
-            {
-                modifiers.DisableCrit();
-            }
             modifiers.DefenseEffectiveness *= 0.25f;
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void SafeOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.ai[0] < 5)
             {
@@ -152,6 +144,7 @@ namespace StellarisShips.Content.Projectiles
                 {
                     Main.projectile[protmp].ai[0] = 5;
                     Main.projectile[protmp].timeLeft = 240;
+                    (Main.projectile[protmp].ModProjectile as ArchRailgunBullet).SourceName = SourceName;
                 }
             }
             else

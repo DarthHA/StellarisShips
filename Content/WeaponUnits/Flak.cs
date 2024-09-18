@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using Terraria;
 using Terraria.ModLoader;
@@ -87,7 +88,8 @@ namespace StellarisShips.Content.WeaponUnits
                         int damage = RandomDamage;
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
                         float IgnoreDefense = Main.npc[target2].IsBoss() ? 1f : 0f;
-                        DamageProj.Summon(ship.GetSource_FromAI(), TargetPos1.Value, damage, crit, IgnoreDefense);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos1.Value, damage, crit, IgnoreDefense);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         success = true;
                     }
                     if (TargetPos2.HasValue && target2 != target1)           //不能攻击相同目标
@@ -95,7 +97,8 @@ namespace StellarisShips.Content.WeaponUnits
                         int damage = RandomDamage;
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
                         float IgnoreDefense = Main.npc[target2].IsBoss() ? 1f : 0f;
-                        DamageProj.Summon(ship.GetSource_FromAI(), TargetPos2.Value, damage, crit, IgnoreDefense);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos2.Value, damage, crit, IgnoreDefense);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         success = true;
                     }
                     if (success)

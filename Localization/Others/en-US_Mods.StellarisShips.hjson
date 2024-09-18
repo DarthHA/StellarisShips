@@ -187,6 +187,16 @@ BuffExtraDesc: {
 		At least one of our fleets have gone Missing In Action. It will take them some time to return and rejoin the ranks.
 		The remaining {0} ships must all rejoin the ranks after {1} at the latest.
 		'''
+	BattleStatDesc:
+		'''
+		[c/ffcc00:Ships in Battle:]
+		{0}
+		Shield Damage: {1}
+		Hull Damage: {2}
+
+		[c/ffcc00:Weapon damage:]
+		{3}
+		'''
 }
 
 ComputerType: {

@@ -131,4 +131,9 @@ Buffs: {
 			It will take them some time to return and rejoin the ranks.
 			'''
 	}
+
+	BattleStatBuff: {
+		DisplayName: Battle Stat
+		Description: ""
+	}
 }

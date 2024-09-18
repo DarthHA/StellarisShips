@@ -8,11 +8,10 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class MegaBullet : ModProjectile
+    public class MegaBullet : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
-        public bool Crit = false;
         public float ModifiedScale = 1f;
         public bool IsAncientBullet = false;
 
@@ -116,28 +115,21 @@ namespace StellarisShips.Content.Projectiles
         }
 
 
-        public static void Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, float scale, bool crit = false, bool isAncient = false, float kb = 0)
+        public static int Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, float scale, bool crit = false, bool isAncient = false, float kb = 0)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<MegaBullet>(), dmg, kb, Main.myPlayer);
-            if (protmp >= 0 && protmp <= 1000)
+            if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].Center = Pos;
                 (Main.projectile[protmp].ModProjectile as MegaBullet).ModifiedScale = scale;
                 (Main.projectile[protmp].ModProjectile as MegaBullet).Crit = crit;
                 (Main.projectile[protmp].ModProjectile as MegaBullet).IsAncientBullet = isAncient;
             }
+            return protmp;
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (Crit)
-            {
-                modifiers.SetCrit();
-            }
-            else
-            {
-                modifiers.DisableCrit();
-            }
             modifiers.DefenseEffectiveness *= 1;
             if (IsAncientBullet)
             {
@@ -148,7 +140,7 @@ namespace StellarisShips.Content.Projectiles
             }
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void SafeOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.ai[0] == 0)
             {

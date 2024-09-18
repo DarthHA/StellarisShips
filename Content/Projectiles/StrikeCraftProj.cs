@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class StrikeCraftProj : ModProjectile
+    public class StrikeCraftProj : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
@@ -128,7 +128,8 @@ namespace StellarisShips.Content.Projectiles
                             int damage = Main.rand.Next(MaxDmg - MinDmg + 1) + MinDmg;
                             damage = (int)(damage * DamageModifier);
                             bool crit = Main.rand.NextFloat() < Crit / 100f;
-                            DamageProj.Summon(Projectile.GetSource_FromAI(), TargetPos, damage, crit, 0f);
+                            int protmp = DamageProj.Summon(Projectile.GetSource_FromAI(), TargetPos, damage, crit, 0f);
+                            if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = SourceName;
                             AttackCooldown = (int)((Main.rand.NextFloat() * 0.4f + 0.8f) * 30f);
                             SomeUtils.PlaySoundRandom(SoundPath.Fire + "Laser", 6, Projectile.Center);
                         }
@@ -171,7 +172,7 @@ namespace StellarisShips.Content.Projectiles
         /// <param name="attackRange"></param>
         /// <param name="lvl"></param>
         /// <returns></returns>
-        public static long Summon(NPC ship, Vector2 Center, Vector2 returnCenter, Vector2 velocity, int maxDmg, int minDmg, float crit, float speed, float attackRange, int lvl)
+        public static int Summon(NPC ship, Vector2 Center, Vector2 returnCenter, Vector2 velocity, int maxDmg, int minDmg, float crit, float speed, float attackRange, int lvl)
         {
             int protmp = Projectile.NewProjectile(ship.GetSource_FromAI(), Center, velocity, ModContent.ProjectileType<StrikeCraftProj>(), 0, 0, Main.myPlayer);
             if (protmp >= 0 && protmp < 1000)
@@ -187,9 +188,8 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).AttackRelaPos = new Vector2(Main.rand.NextFloat() - 0.5f, Main.rand.NextFloat() - 0.5f) * 0.75f;
                 long uuid = Main.rand.Next(1145141919);
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).UUID = uuid;
-                return uuid;
             }
-            return -1;
+            return protmp;
         }
 
         public override bool PreDraw(ref Color lightColor)

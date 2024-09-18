@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using Terraria;
 using Terraria.ModLoader;
@@ -45,7 +46,8 @@ namespace StellarisShips.Content.WeaponUnits
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
                         float t = Main.npc[target].Distance(shipNPC.GetPosOnShip(RelativePos)) / 50f;
                         Vector2 ShootVel = Vector2.Normalize(Main.npc[target].Center + (Main.npc[target].position - Main.npc[target].oldPosition) * t - shipNPC.GetPosOnShip(RelativePos)) * 50f;
-                        MegaBullet.Summon(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(RelativePos), ShootVel, damage, scaleSlot, crit, true);
+                        int protmp = MegaBullet.Summon(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(RelativePos), ShootVel, damage, scaleSlot, crit, true);
+                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "Mega", 1, shipNPC.GetPosOnShip(RelativePos));
                     }
                     if (CurrentCooldown <= 0)

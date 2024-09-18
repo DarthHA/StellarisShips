@@ -87,9 +87,9 @@ namespace StellarisShips.System.BaseType
 
         public static BaseWeaponUnit NewWeaponUnit(string name)
         {
-            if (EverythingLibrary.WeaponUnits.ContainsKey(name))
+            if (EverythingLibrary.WeaponUnits.TryGetValue(name, out BaseWeaponUnit value))
             {
-                BaseWeaponUnit instance = (BaseWeaponUnit)Activator.CreateInstance(EverythingLibrary.WeaponUnits[name].GetType());
+                BaseWeaponUnit instance = (BaseWeaponUnit)Activator.CreateInstance(value.GetType());
                 return instance;
             }
             return null;

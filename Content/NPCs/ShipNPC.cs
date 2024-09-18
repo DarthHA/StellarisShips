@@ -530,6 +530,14 @@ namespace StellarisShips.Content.NPCs
         public override void OnKill()
         {
             FallenShip.BuildAFallenShip(NPC.GetSource_Death(), NPC.Center, NPC.rotation, ShipGraph);
+            if (BattleStatSystem.BossBattleActive)
+            {
+                string name = string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipGraph.GraphName, EverythingLibrary.Ships[ShipGraph.ShipType].GetLocalizedName());
+                if (!BattleStatSystem.LoseShip.TryAdd(name, 1))
+                {
+                    BattleStatSystem.LoseShip[name] += 1;
+                }
+            }
         }
 
         public override bool CheckDead()

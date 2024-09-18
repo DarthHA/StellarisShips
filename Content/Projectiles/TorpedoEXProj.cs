@@ -8,11 +8,10 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class TorpedoEXProj : ModProjectile
+    public class TorpedoEXProj : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
-        public bool Crit = false;
         public Color color = Color.Green;
 
         public float DetectRange = 600;
@@ -59,7 +58,9 @@ namespace StellarisShips.Content.Projectiles
                 }
                 else
                 {
-                    Target = -1;
+                    //Target = -1;
+                    Target = TargetSelectHelper.GetClosestTarget(Projectile.Center, Projectile.Center, DetectRange / 3, Target);
+                    //无重定向机会后追踪范围大幅降低
                 }
                 if (Target != -1)
                 {
@@ -164,10 +165,10 @@ namespace StellarisShips.Content.Projectiles
 
 
 
-        public static void Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float explosionScale = 1f, float maxSpeed = 10, float detectRange = 1000, int target = -1, int timeLeft = 480, float homingFactor = 0.05f, bool crit = false, float kb = 0)
+        public static int Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float explosionScale = 1f, float maxSpeed = 10, float detectRange = 1000, int target = -1, int timeLeft = 480, float homingFactor = 0.05f, bool crit = false, float kb = 0)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<TorpedoEXProj>(), dmg, kb, Main.myPlayer);
-            if (protmp >= 0 && protmp <= 1000)
+            if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].Center = Pos;
                 Main.projectile[protmp].timeLeft = timeLeft;
@@ -180,25 +181,17 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as TorpedoEXProj).LastTarget = target;
                 (Main.projectile[protmp].ModProjectile as TorpedoEXProj).Scale = explosionScale;
             }
+            return protmp;
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (Crit)
-            {
-                modifiers.SetCrit();
-            }
-            else
-            {
-                modifiers.DisableCrit();
-            }
-
             modifiers.DefenseEffectiveness *= 0.5f;
             float DamageBonus = 0.75f + 0.75f * target.life / target.lifeMax;
             modifiers.SourceDamage *= DamageBonus;
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void SafeOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.ai[0] == 0)
             {

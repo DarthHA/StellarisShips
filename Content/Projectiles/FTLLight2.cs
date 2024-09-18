@@ -78,7 +78,7 @@ namespace StellarisShips.Content.Projectiles
             Rectangle ScreenRec = new Rectangle((int)Main.screenPosition.X - 100 - Main.screenWidth / 2, (int)Main.screenPosition.Y - 100 - Main.screenHeight / 2, Main.screenWidth * 2 + 200, Main.screenHeight * 2 + 200);
             if (!ScreenRec.Contains(Pos.ToPoint())) return;
             int protmp = Projectile.NewProjectile(entitySource, Pos, Vector2.Zero, ModContent.ProjectileType<FTLLight2>(), 0, 0, Main.myPlayer);
-            if (protmp >= 0 && protmp <= 1000)
+            if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].Center = Pos;
                 (Main.projectile[protmp].ModProjectile as FTLLight2).ModifiedScale = scale;
@@ -97,7 +97,7 @@ namespace StellarisShips.Content.Projectiles
 
         public override void Kill(int timeLeft)
         {
-          
+
         }
     }
 }

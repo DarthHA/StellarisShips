@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class LanceProj : ModProjectile
+    public class LanceProj : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
         public float ModifiedScale = 1f;
@@ -20,7 +20,6 @@ namespace StellarisShips.Content.Projectiles
         public Vector2 TargetPos = Vector2.Zero;
         public int ownerID = -1;
 
-        public bool Crit = false;
 
         public List<Vector2> SegPoints = new();
 
@@ -155,7 +154,7 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
-        public static void Summon(NPC ship, Vector2 relaPos, Vector2 targetPos, Color color, int dmg, bool crit = false, float kb = 0)
+        public static int Summon(NPC ship, Vector2 relaPos, Vector2 targetPos, Color color, int dmg, bool crit = false, float kb = 0)
         {
             ShipNPC shipNPC = ship.GetShipNPC();
             int protmp = Projectile.NewProjectile(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(relaPos), Vector2.Zero, ModContent.ProjectileType<LanceProj>(), dmg, kb, Main.myPlayer);
@@ -167,6 +166,7 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as LanceProj).LanceColor = color;
                 (Main.projectile[protmp].ModProjectile as LanceProj).Crit = crit;
             }
+            return protmp;
         }
 
 
@@ -184,21 +184,12 @@ namespace StellarisShips.Content.Projectiles
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, TargetPos + ExtraStage, width, ref t);
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (Crit)
-            {
-                modifiers.SetCrit();
-            }
-            else
-            {
-                modifiers.DisableCrit();
-            }
             modifiers.DefenseEffectiveness *= 2;
-
         }
 
-        public bool InScreen(Vector2 Pos)
+        internal static bool InScreen(Vector2 Pos)
         {
             Rectangle rec = new((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
             return rec.Contains(Pos.ToPoint());

@@ -70,7 +70,7 @@ namespace StellarisShips.Content.Projectiles
         public static void Summon(IEntitySource entitySource, Vector2 Pos, Color color, float explosionScale = 1f)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, Vector2.Zero, ModContent.ProjectileType<ArchLaserExplosion>(), 0, 0, Main.myPlayer);
-            if (protmp >= 0 && protmp <= 1000)
+            if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].Center = Pos;
                 (Main.projectile[protmp].ModProjectile as ArchLaserExplosion).color = color;

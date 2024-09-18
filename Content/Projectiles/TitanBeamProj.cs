@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class TitanBeamProj : ModProjectile
+    public class TitanBeamProj : BaseDamageProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
         public float ModifiedScale = 1f;
@@ -18,9 +18,6 @@ namespace StellarisShips.Content.Projectiles
         public Vector2 RelaPos = Vector2.Zero;
         public Vector2 TargetPos = Vector2.Zero;
         public int ownerID = -1;
-
-        public bool Crit = false;
-
 
         public override void SetStaticDefaults()
         {
@@ -119,7 +116,7 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
-        public static void Summon(NPC ship, Vector2 relaPos, Vector2 targetPos, Color color, int dmg, bool crit = false, float kb = 0)
+        public static int Summon(NPC ship, Vector2 relaPos, Vector2 targetPos, Color color, int dmg, bool crit = false, float kb = 0)
         {
             ShipNPC shipNPC = ship.GetShipNPC();
             int protmp = Projectile.NewProjectile(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(relaPos), Vector2.Zero, ModContent.ProjectileType<TitanBeamProj>(), dmg, kb, Main.myPlayer);
@@ -131,6 +128,7 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as TitanBeamProj).BeamColor = color;
                 (Main.projectile[protmp].ModProjectile as TitanBeamProj).Crit = crit;
             }
+            return protmp;
         }
 
 
@@ -148,18 +146,9 @@ namespace StellarisShips.Content.Projectiles
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, TargetPos + ExtraStage, width, ref t);
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (Crit)
-            {
-                modifiers.SetCrit();
-            }
-            else
-            {
-                modifiers.DisableCrit();
-            }
             modifiers.DefenseEffectiveness *= 2;
-
         }
 
     }
