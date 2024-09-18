@@ -23,6 +23,11 @@ namespace StellarisShips.Content.NPCs
         public ShipGraph ShipGraph = new();
 
         /// <summary>
+        /// 舰船名称
+        /// </summary>
+        public string ShipName = "";
+
+        /// <summary>
         /// 最大航速，也就是攻击时的航速
         /// </summary>
         public float MaxSpeed = 10;
@@ -180,6 +185,11 @@ namespace StellarisShips.Content.NPCs
         /// 用于储存和计算增益，为整体乘算局部加算
         /// </summary>
         public Dictionary<string, float> BonusBuff = new();
+
+        /// <summary>
+        /// 可以随时修改的增益，为整体乘算局部加算
+        /// </summary>
+        public Dictionary<string, float> SpecialBuff = new();
 
         /// <summary>
         /// 携带光环种类

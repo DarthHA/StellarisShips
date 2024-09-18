@@ -14,21 +14,21 @@ namespace StellarisShips.Content.Components.Core.Computer
         public virtual float Crit => 2.5f;
         public virtual float AttackSpeed => 0.025f;
         public virtual float Evasion => 2.5f;
-        public virtual int Aggro => 400;
+        public virtual float DamageP => 0.05f;
         public override long Value => 0 * 200;
         public override void ApplyEquip(NPC ship)
         {
             ship.GetShipNPC().ComputerType = TypeName;
             ship.GetShipNPC().BonusBuff.AddBonus(BonusID.AllWeaponAttackCD, AttackSpeed);
             ship.GetShipNPC().BonusBuff.AddBonus(BonusID.AllWeaponCrit, Crit);
+            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponDamage_P, DamageP);
             ship.GetShipNPC().Evasion = (1 - (1 - ship.GetShipNPC().Evasion / 100f) * (1 - Evasion / 100f)) * 100f;
-            ship.GetShipNPC().Aggro += Aggro;
         }
 
         public override void ModifyDesc(ref string desc)
         {
             desc += "\n" + string.Format(Language.GetTextValue("Mods.StellarisShips.ExtraDesc.ComputerPicket"),
-               Math.Round(AttackSpeed * 100f, 1), Crit, Math.Round(Evasion, 1), Aggro);
+               Math.Round(AttackSpeed * 100f, 1), Crit, Math.Round(DamageP * 100f, 1), Math.Round(Evasion, 1));
         }
     }
 
@@ -38,7 +38,7 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override float Crit => 5f;
         public override float AttackSpeed => 0.05f;
         public override float Evasion => 5f;
-        public override int Aggro => 500;
+        public override float DamageP => 0.1f;
         public override long Value => 5 * 200;
         public override int Progress => 3;
     }
@@ -49,7 +49,7 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override float Crit => 10f;
         public override float AttackSpeed => 0.1f;
         public override float Evasion => 10f;
-        public override int Aggro => 600;
+        public override float DamageP => 0.15f;
         public override long Value => 10 * 200;
         public override int Progress => 5;
     }
@@ -60,7 +60,7 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override float Crit => 15f;
         public override float AttackSpeed => 0.15f;
         public override float Evasion => 15f;
-        public override int Aggro => 700;
+        public override float DamageP => 0.2f;
         public override long Value => 20 * 200;
         public override int Progress => 7;
     }

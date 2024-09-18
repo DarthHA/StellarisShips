@@ -153,9 +153,9 @@ Name: {
 	A_ReactorBooster_1: 反应堆增压器
 	A_ReactorBooster_2: 改良反应堆增压器
 	A_ReactorBooster_3: 先进反应堆增压器
-	A_TissueRepair_1: 再生舰体组织
 	A_ShieldRecharger_1: 护盾电容
-	A_NaniteRepair_1: 纳米修复系统
+	A_NaniteRepair_1: 再生舰体组织
+	A_NaniteRepair_2: 纳米修复系统
 	A_FireControl_1: 辅助火控
 	A_EEncoder_1: 神秘编码器
 	A_EDecoder_1: 神秘解码器

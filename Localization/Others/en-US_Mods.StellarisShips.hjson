@@ -145,8 +145,8 @@ ExtraDesc: {
 		'''
 		All weapon firing rate +{0}%
 		All weapon crit +{1}%
-		Evasion +{2}%
-		Aggro +{3}
+		P slot weapon damage +{2}%
+		Evasion +{3}%
 		'''
 	ComputerSwarm:
 		'''

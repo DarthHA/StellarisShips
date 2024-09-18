@@ -153,9 +153,9 @@ Name: {
 	A_ReactorBooster_1: Reactor Booster
 	A_ReactorBooster_2: Improved Reactor
 	A_ReactorBooster_3: Advanced Reactor Booster
-	A_TissueRepair_1: Regenerative Hull Tissue
 	A_ShieldRecharger_1: Shield Capacitor
-	A_NaniteRepair_1: Nanite Repair System
+	A_NaniteRepair_1: Regenerative Hull Tissue
+	A_NaniteRepair_2: Nanite Repair System
 	A_FireControl_1: Auxiliary Fire-Control
 	A_EEncoder_1: Enigmatic Encoder
 	A_EDecoder_1: Enigmatic Decoder

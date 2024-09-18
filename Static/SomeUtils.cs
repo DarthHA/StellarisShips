@@ -118,13 +118,13 @@ namespace StellarisShips.Static
             Lighting.AddLight(Pos, r * intensity, g * intensity, b * intensity);
         }
 
-        public static SlotId PlaySoundRandom(string path, int MaxNum, Vector2? Pos = null, float Vol = 1f)
+        public static SlotId PlaySoundRandom(string path, int MaxNum, Vector2? Pos = null, float Vol = 0.5f)
         {
             string no = (Main.rand.Next(MaxNum) + 1).ToString();
             return SoundEngine.PlaySound(new SoundStyle(path + no) { Volume = Vol }, Pos);
         }
 
-        public static SlotId PlaySound(string path, Vector2? Pos = null, float Vol = 1f)
+        public static SlotId PlaySound(string path, Vector2? Pos = null, float Vol = 0.5f)
         {
             return SoundEngine.PlaySound(new SoundStyle(path) { Volume = Vol }, Pos);
         }

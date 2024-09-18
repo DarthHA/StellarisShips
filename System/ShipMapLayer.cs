@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace StellarisShips.System
 {
-    public class BeeMapLayer : ModMapLayer
+    public class ShipMapLayer : ModMapLayer
     {
         public override void Draw(ref MapOverlayDrawContext context, ref string text)
         {

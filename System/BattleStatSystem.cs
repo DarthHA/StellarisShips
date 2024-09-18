@@ -23,7 +23,7 @@ namespace StellarisShips.System
         {
             if (!BossBattleActive)
             {
-                if (SomeUtils.AnyBosses())
+                if (SomeUtils.AnyBosses() && NPC.AnyNPCs(ModContent.NPCType<ShipNPC>()))
                 {
                     //在这里记录参战舰船
                     ClearStat();
@@ -44,7 +44,7 @@ namespace StellarisShips.System
             }
             else
             {
-                if (!SomeUtils.AnyBosses())
+                if (!(SomeUtils.AnyBosses() && NPC.AnyNPCs(ModContent.NPCType<ShipNPC>())))
                 {
                     //在这里输出数据
                     string f = Language.GetTextValue("Mods.StellarisShips.BuffExtraDesc.BattleStatDesc");
@@ -84,7 +84,7 @@ namespace StellarisShips.System
             LoseShip.Clear();
         }
 
-        public override void PreSaveAndQuit()
+        public override void ClearWorld()
         {
             ClearStat();
             StatText = "";
