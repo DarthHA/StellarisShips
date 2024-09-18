@@ -10,11 +10,13 @@ namespace StellarisShips.Content.Dialogs.Shroud
 
         public override List<string> ButtonNames => new()
         {
-            "Exit"
+            "EnterShroud",
+            "ExitShroud"
         };
 
         public override List<string> ButtonInternalStrs => new()
         {
+            "Enter",
             "Exit"
         };
 
@@ -32,6 +34,9 @@ namespace StellarisShips.Content.Dialogs.Shroud
         {
             switch (internalStr)
             {
+                case "Enter":
+                    ShroudUI.Start("ShroudNormal");
+                    break;
                 case "Exit":
                     ShroudUI.AllClear(true);
                     UIManager.ShroudVisible = false;

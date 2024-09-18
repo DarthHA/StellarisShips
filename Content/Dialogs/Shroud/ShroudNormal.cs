@@ -25,7 +25,6 @@ namespace StellarisShips.Content.Dialogs.Shroud
 
         public override void SetUp()
         {
-            ShroudUI.ShowInfo = false;
             int num = Main.rand.Next(19) + 1;
             ShroudUI.TalkText = GetDialogLocalize("ShroudNormal" + num.ToString());
         }
@@ -59,10 +58,11 @@ namespace StellarisShips.Content.Dialogs.Shroud
                     else
                     {
                         WeightedRandom<string> weightedRandom = new();
-                        weightedRandom.Add("ShroudNoReward", 2);
-                        weightedRandom.Add("RewardSelectRandom", 3);
+                        weightedRandom.Add("ShroudNoReward", 1);
+                        weightedRandom.Add("RewardSelectRandom", 4);
                         ShroudUI.Start(weightedRandom.Get());
                     }
+                    ProgressHelper.PsychoPower = 0;
                     break;
                 case "Exit":
                     ShroudUI.AllClear(true);

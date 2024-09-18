@@ -1,4 +1,4 @@
-
+ï»¿
 namespace StellarisShips.Static
 {
     public static class ShipIDs
@@ -12,11 +12,11 @@ namespace StellarisShips.Static
 
     public static class SectionIDs
     {
-        //»¤ÎÀ½¢
+        //æŠ¤å«èˆ°
         public const string Corvette_Interceptor_Core = "Interceptor11";
         public const string Corvette_PicketShip_Core = "PicketShip11";
         public const string Corvette_MissileBoat_Core = "MissileBoat11";
-        //ÇıÖğ½¢
+        //é©±é€èˆ°
         public const string Destroyer_Artillery_Bow = "Artillery21";
         public const string Destroyer_Gunship_Bow = "Gunship21";
         public const string Destroyer_PicketShip_Bow = "PicketShip21";
@@ -24,7 +24,7 @@ namespace StellarisShips.Static
         public const string Destroyer_Gunship_Stern = "Gunship22";
         public const string Destroyer_Interceptor_Stern = "Interceptor22";
         public const string Destroyer_PicketShip_Stern = "PicketShip22";
-        //Ñ²Ñó½¢
+        //å·¡æ´‹èˆ°
         public const string Cruiser_Artillery_Bow = "Artillery31";
         public const string Cruiser_Broadside_Bow = "Broadside31";
         public const string Cruiser_Torpedo_Bow = "Torpedo31";
@@ -36,7 +36,7 @@ namespace StellarisShips.Static
 
         public const string Cruiser_Broadside_Stern = "Broadside33";
         public const string Cruiser_Gunship_Stern = "Gunship33";
-        //Õ½ÁĞ½¢
+        //æˆ˜åˆ—èˆ°
         public const string Battleship_Artillery_Bow = "Artillery41";
         public const string Battleship_Broadside_Bow = "Broadside41";
         public const string Battleship_Hangar_Bow = "Hangar41";
@@ -50,7 +50,7 @@ namespace StellarisShips.Static
         public const string Battleship_Artillery_Stern = "Artillery43";
         public const string Battleship_Broadside_Stern = "Broadside43";
 
-        //Ì©Ì¹
+        //æ³°å¦
         public const string Titan_Bow = "Titan51";
         public const string Titan_Core = "Titan52";
         public const string Titan_Stern = "Titan53";
@@ -58,7 +58,7 @@ namespace StellarisShips.Static
 
     public static class ComponentTypes
     {
-        //ÎäÆ÷²Û
+        //æ­¦å™¨æ§½
         public const string Weapon_S = "S";
         public const string Weapon_M = "M";
         public const string Weapon_L = "L";
@@ -67,12 +67,12 @@ namespace StellarisShips.Static
         public const string Weapon_G = "G";
         public const string Weapon_H = "H";
         public const string Weapon_T = "T";
-        //Í¨ÓÃ²Û(ºóÃæ¾ÍÊÇÂÒĞ´ÁË)
+        //é€šç”¨æ§½(åé¢å°±æ˜¯ä¹±å†™äº†)
         public const string Defense_S = "B";
         public const string Defense_M = "C";
         public const string Defense_L = "D";
         public const string Accessory = "A";
-        //ºËĞÄ²Û
+        //æ ¸å¿ƒæ§½
         public const string Reactor = "E";
         public const string Thruster = "F";
         public const string Sensor = "I";
@@ -83,10 +83,10 @@ namespace StellarisShips.Static
 
     public static class BonusID
     {
-        //½¢´¬º½ËÙ
+        //èˆ°èˆ¹èˆªé€Ÿ
         public const string Speed = "Speed";
 
-        //²ÛÎ»ÎäÆ÷ÉËº¦
+        //æ§½ä½æ­¦å™¨ä¼¤å®³
         public const string WeaponDamage_S = "WeaponDamage_S";
         public const string WeaponDamage_M = "WeaponDamage_M";
         public const string WeaponDamage_L = "WeaponDamage_L";
@@ -96,7 +96,7 @@ namespace StellarisShips.Static
         public const string WeaponDamage_H = "WeaponDamage_H";
         public const string WeaponDamage_T = "WeaponDamage_T";
 
-        //²ÛÎ»ÎäÆ÷¹¥»÷¼ä¸ô
+        //æ§½ä½æ­¦å™¨æ”»å‡»é—´éš”
         public const string WeaponAttackCD_S = "WeaponAttackCD_S";
         public const string WeaponAttackCD_M = "WeaponAttackCD_M";
         public const string WeaponAttackCD_L = "WeaponAttackCD_L";
@@ -104,7 +104,7 @@ namespace StellarisShips.Static
         public const string WeaponAttackCD_G = "WeaponAttackCD_G";
         public const string WeaponAttackCD_T = "WeaponAttackCD_T";
 
-        //²ÛÎ»ÎäÆ÷±©»÷
+        //æ§½ä½æ­¦å™¨æš´å‡»
         public const string WeaponCrit_S = "WeaponCrit_S";
         public const string WeaponCrit_M = "WeaponCrit_M";
         public const string WeaponCrit_L = "WeaponCrit_L";
@@ -114,7 +114,7 @@ namespace StellarisShips.Static
         public const string WeaponCrit_H = "WeaponCrit_H";
         public const string WeaponCrit_T = "WeaponCrit_T";
 
-        //²ÛÎ»ÎäÆ÷Éä³Ì
+        //æ§½ä½æ­¦å™¨å°„ç¨‹
         public const string WeaponRange_S = "WeaponRange_S";
         public const string WeaponRange_M = "WeaponRange_M";
         public const string WeaponRange_L = "WeaponRange_L";
@@ -124,7 +124,7 @@ namespace StellarisShips.Static
         public const string WeaponRange_H = "WeaponRange_H";
         public const string WeaponRange_T = "WeaponRange_T";
 
-        //È«²¿ÎäÆ÷Êı¾İ
+        //å…¨éƒ¨æ­¦å™¨æ•°æ®
         public const string AllWeaponDamage = "AllWeaponDamage";
         public const string AllWeaponAttackCD = "AllWeaponAttackCD";
         public const string AllWeaponCrit = "AllWeaponCrit";

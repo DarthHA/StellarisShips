@@ -37,6 +37,8 @@ namespace StellarisShips.System
             ProgressHelper.CurrentProgress = tag.GetInt("CurrentProgress");
             ProgressHelper.DiscoveredMR = tag.GetInt("DiscoveredMR");
             ProgressHelper.UnlockTech = tag.Get<List<string>>("UnlockTech");
+            ProgressHelper.FirstContractShroud = tag.GetBool("FirstContractShroud");
+            ProgressHelper.PsychoPower = tag.GetInt("PsychoPower");
         }
 
 
@@ -78,6 +80,8 @@ namespace StellarisShips.System
             tag.Add("CurrentProgress", ProgressHelper.CurrentProgress);
             tag.Add("DiscoveredMR", ProgressHelper.DiscoveredMR);
             tag.Add("UnlockTech", ProgressHelper.UnlockTech);
+            tag.Add("FirstContractShroud", ProgressHelper.FirstContractShroud);
+            tag.Add("PsychoPower", ProgressHelper.PsychoPower);
         }
 
     }

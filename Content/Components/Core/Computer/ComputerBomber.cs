@@ -71,9 +71,9 @@ namespace StellarisShips.Content.Components.Core.Computer
     {
         public override int Level => 5;
         public override float DamageS => 0.25f;
-        public override float DamageG => 0.35f;
+        public override float DamageG => 0.4f;
         public override float CritS => 25f;
-        public override float CritG => 35f;
+        public override float CritG => 40f;
         public override long Value => 40 * 200;
         public override int Progress => 9;
         public override string SpecialUnLock => "PsiComputer";

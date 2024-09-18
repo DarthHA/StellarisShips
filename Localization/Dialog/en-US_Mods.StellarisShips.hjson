@@ -18,7 +18,7 @@ DialogOption: {
 	EnterShroud: Enter the Shroud
 	ExitShroud: Exit the Shroud
 	BoonASPDUp: Boon: Increased Firing Rate
-	BoonAtkUp: Boon: Increased hield Strength
+	BoonAtkUp: Boon: Increased Shield Strength
 	BoonEvasionUp: Boon: Increased Evasion
 	BoonRegenUp: Boon: Increased Hull Regen
 	BoonShieldUp: Boon: Increased Shield Strength
@@ -231,6 +231,11 @@ DialogText: {
 		'''
 		The Shroud. It's so strange, so unsettling, and yet so instantly... familiar. Anyone with psychic abilities has seen it in dreams, though they may not have known it at the time.
 		We now hover on the cliffs at the edge of the Shroud, just a stone's throw from the Shroud's gulf with ordinary space - or "Real World." To explore the depths of the Shroud, we will need a great deal of psychic effort and a huge amount of energy, and we must not take it lightly... even now, we are being watched.
+		'''
+	ShroudNoPass:
+		'''
+		We don't have enough psychic power to initiate the next link yet.
+		Using ships to kill enemies will speed up the process.
 		'''
 	ShroudNoReward1:
 		'''

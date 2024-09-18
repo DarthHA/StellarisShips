@@ -36,7 +36,7 @@ namespace StellarisShips.System
         /// <summary>
         /// 舰队光环效果
         /// </summary>
-        public static Dictionary<string,float> GlobalEffects = new();
+        public static Dictionary<string, float> GlobalEffects = new();
 
         //一排的舰船最多数
         private const int CorvetteLine = 12;

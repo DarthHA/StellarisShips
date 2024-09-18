@@ -18,6 +18,7 @@ v0.4 - Added Titan-class Ship.
 v0.5 - Minor Improvement.
 v0.5.1 - Fixed Localization Errors.
 v0.5.2 - Movement and Jump Mechanic Improvements.
+v0.6.1 - Added Shroud and related Tech, which can be obtained by defeating the Moon Lord (33%).
 
 该模组加入了来自战略游戏《群星》的舰船与武器，整体强度较高。
 模组流程：
@@ -39,3 +40,4 @@ v0.4 -更新泰坦级舰船。
 v0.5 -微量优化。
 v0.5.1 -修复本地化错误。
 v0.5.2 -移动和跃迁机制优化。
+v0.6.1 -加入了虚境和与之相关的科技，可通过击败月球领主获得(33%概率)。

@@ -64,7 +64,7 @@ namespace StellarisShips.Content.Components.Core.Computer
     {
         public override int Level => 5;
         public override int ExtraStrikers => 4;
-        public override float DamageH => 1.2f;
+        public override float DamageH => 1.25f;
         public override int Aggro => 1200;
         public override long Value => 40 * 200;
         public override int Progress => 9;

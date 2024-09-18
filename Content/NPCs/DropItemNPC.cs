@@ -16,6 +16,10 @@ namespace StellarisShips.Content.NPCs
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ConnecterItem>(), 1, 1, 1));
             }
+            if (npc.type == NPCID.MoonLordCore)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ZroCrystal>(), 3, 1, 1));
+            }
             if (npc.boss && npc.lifeMax > 60000)
             {
                 LeadingConditionRule rule =

@@ -27,12 +27,12 @@ namespace StellarisShips.Content.Dialogs.Shroud
         {
             ShroudUI.TalkText = GetDialogLocalize("RewardSelectRandom");
             List<string> rewards = new() { "ASPDUp", "AtkUp", "EvasionUp", "RegenUp", "ShieldUp", "SpeedUp" };
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 string s = rewards[Main.rand.Next(rewards.Count)];
                 ShroudUI.talkButtons[i].InternalText = "Reward" + s;
                 ShroudUI.talkButtons[i].ShowText = "Boon" + s;
-                rewards.Remove(s);   
+                rewards.Remove(s);
             }
         }
 

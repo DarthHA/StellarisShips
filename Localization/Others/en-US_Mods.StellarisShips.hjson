@@ -45,6 +45,7 @@ UI: {
 	ShipStat11: Ship Role determines its behavior when attacking and its Weapon usage tendencies.It is determined by Combat Computer.
 	ShipStat12: Cost determines the cost required to build a ship. The Cost of a Ship is equal to the sum of the cost of the Ship and the cost of all the Components it equips.
 	Shroud: The Shroud
+	PsiPower: Psionics[i:StellarisShips/Influence_Icon]: {0}%
 }
 
 WoCao: What the hell is that?

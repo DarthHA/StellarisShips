@@ -4,8 +4,8 @@ using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
-using Terraria.ModLoader;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Dialogs.Shroud
 {
@@ -38,7 +38,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
             {
                 case "Exit":
                     Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs = AuraID.ShroudShieldUp;
-                    Main.LocalPlayer.AddBuff(ModContent.BuffType<ShroudBuff>(), 60 * 60 * 15);
+                    Main.LocalPlayer.AddBuff(ModContent.BuffType<ShroudBuff>(), 60 * 60 * 10);
                     ShroudUI.AllClear(true);
                     UIManager.ShroudVisible = false;
                     break;

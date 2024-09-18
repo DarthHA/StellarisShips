@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.UI;
 using System;
 using Terraria;
@@ -40,7 +41,23 @@ namespace StellarisShips.Content.Items
                 UIManager.ShroudVisible = true;
                 UIManager.ResetClick();
                 SomeUtils.PlaySound(SoundPath.UI + "Click");
-                ShroudUI.Start("ShroudNormal");
+                if (ProgressHelper.FirstContractShroud)
+                {
+                    ProgressHelper.FirstContractShroud = false;
+                    ProgressHelper.PsychoPower = ProgressHelper.GetMaxPsychoPower();
+                    ShroudUI.Start("ShroudFirstContract");
+                }
+                else
+                {
+                    if (ProgressHelper.PsychoPower >= ProgressHelper.GetMaxPsychoPower())
+                    {
+                        ShroudUI.Start("ShroudNormal");
+                    }
+                    else
+                    {
+                        ShroudUI.Start("ShroudNoPass");
+                    }
+                }
             }
             return false;
         }

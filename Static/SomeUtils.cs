@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using ReLogic.Utilities;
 using StellarisShips.Content.NPCs;
 using Terraria;

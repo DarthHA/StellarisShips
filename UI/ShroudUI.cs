@@ -4,6 +4,7 @@ using ReLogic.Content;
 using StellarisShips.Static;
 using StellarisShips.System;
 using StellarisShips.System.BaseType;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
@@ -53,14 +54,13 @@ namespace StellarisShips.UI
             Utils.DrawBorderString(spriteBatch, Language.GetTextValue("Mods.StellarisShips.UI.Shroud"), new Vector2(StartPos.X + 80, StartPos.Y + 480), Color.White, 1.25f);
             //绘制说话
             string talk = TalkText;
-            talk = talk.Replace("[i:StellarisShips/MR_Icon]", "MR_");
             talk = SomeUtils.BreakLongString(talk, 55);
-            talk = talk.Replace("MR_", "[i:StellarisShips/MR_Icon]");
             Utils.DrawBorderString(spriteBatch, talk, new Vector2(StartPos.X + 80, StartPos.Y + 520), Color.White);
 
             if (ShowInfo)
             {
-                string info = "";
+                float value = ProgressHelper.PsychoPower / (float)ProgressHelper.GetMaxPsychoPower() * 100f;
+                string info = string.Format(Language.GetTextValue("Mods.StellarisShips.UI.PsiPower"), Math.Round(value, 1));
                 Utils.DrawBorderString(spriteBatch, info, new Vector2(StartPos.X + 80, StartPos.Y + 750), Color.White);
             }
             foreach (TalkButton talkButton in talkButtons)
@@ -101,7 +101,7 @@ namespace StellarisShips.UI
             {
                 if (talkButtons[i].Clicked())
                 {
-                    if (talkButtons[i].InternalText == "Exit")
+                    if (talkButtons[i].InternalText == "ExitShroud")
                     {
                         SomeUtils.PlaySound(SoundPath.UI + "Close");
                     }

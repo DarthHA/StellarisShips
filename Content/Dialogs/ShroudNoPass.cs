@@ -1,21 +1,16 @@
-﻿using StellarisShips.Content.Buffs;
-using StellarisShips.Static;
-using StellarisShips.System;
-using StellarisShips.System.BaseType;
+﻿using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
 
-namespace StellarisShips.Content.Dialogs.Shroud
+namespace StellarisShips.Content.Dialogs
 {
-    public class RewardASPDUp : BaseDialog
+    public class ShroudNoPass : BaseDialog
     {
-        public override string InternalName => "RewardASPDUp";
+        public override string InternalName => "ShroudNoPass";
 
         public override List<string> ButtonNames => new()
         {
-            "ExitShroud"
+            "Exit"
         };
 
         public override List<string> ButtonInternalStrs => new()
@@ -25,7 +20,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
 
         public override void SetUp()
         {
-            ShroudUI.TalkText = GetDialogLocalize("RewardASPDUp");
+            ShroudUI.TalkText = "不让你进去";
         }
 
         public override void Update()
@@ -37,8 +32,6 @@ namespace StellarisShips.Content.Dialogs.Shroud
             switch (internalStr)
             {
                 case "Exit":
-                    Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs = AuraID.ShroudASPDUp;
-                    Main.LocalPlayer.AddBuff(ModContent.BuffType<ShroudBuff>(), 60 * 60 * 10);
                     ShroudUI.AllClear(true);
                     UIManager.ShroudVisible = false;
                     break;

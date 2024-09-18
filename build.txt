@@ -1,5 +1,5 @@
 ﻿displayName = Stellaris Ships Mod (群星舰船)
 author = Volknet_Online(网络核心)
-version = 0.5.2
+version = 0.6.1
 homepage = https://space.bilibili.com/442236013
 includeSource = true

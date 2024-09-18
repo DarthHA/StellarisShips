@@ -45,6 +45,7 @@ UI: {
 	ShipStat11: 舰船职能决定其攻击时的行为以及武器使用倾向，由作战电脑决定。
 	ShipStat12: 造价决定建造舰船所需的费用，一艘舰船的造价等于船体造价及所搭载的所有零件造价之和。
 	Shroud: 虚境
+	PsiPower: 灵能[i:StellarisShips/Influence_Icon]: {0}%
 }
 
 WoCao: 卧槽这TM是什么鬼

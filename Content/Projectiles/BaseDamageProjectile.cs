@@ -1,4 +1,5 @@
 ﻿using StellarisShips.System;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -17,6 +18,11 @@ namespace StellarisShips.Content.Projectiles
                 BattleStatSystem.WeaponDamage[SourceName] += damageDone;
                 if (SourceName == "") Main.NewText("未知武器：" + Lang.GetProjectileName(Projectile.type));
             }
+
+            //威慑值
+            ProgressHelper.PsychoPower += Math.Min(damageDone, target.lifeMax);
+            if (ProgressHelper.PsychoPower > ProgressHelper.GetMaxPsychoPower()) ProgressHelper.PsychoPower = ProgressHelper.GetMaxPsychoPower();
+
             SafeOnHitNPC(target, hit, damageDone);
         }
 
