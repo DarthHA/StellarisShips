@@ -12,7 +12,7 @@ namespace StellarisShips.Content.Components.Utility.Armor
         public sealed override string TypeName => "ArchArmor";
         public sealed override string ExtraInfo => "SML";
         public int Defense => 40;
-        public int Shield => 300;
+        public int Shield => 360;
         public float ShieldRegen => 6;
         public override long Value => 35 * 400;
         public override int MRValue => 20;
@@ -36,7 +36,7 @@ namespace StellarisShips.Content.Components.Utility.Armor
         public sealed override string TypeName => "ArchArmor";
         public sealed override string ExtraInfo => "SML";
         public int Defense => 50;
-        public int Shield => 800;
+        public int Shield => 960;
         public float ShieldRegen => 15;
         public override long Value => 52 * 600;
         public override int MRValue => 40;
@@ -60,7 +60,7 @@ namespace StellarisShips.Content.Components.Utility.Armor
         public sealed override string TypeName => "ArchArmor";
         public sealed override string ExtraInfo => "SML";
         public int Defense => 60;
-        public int Shield => 1800;
+        public int Shield => 2160;
         public float ShieldRegen => 36;
         public override long Value => 69 * 800;
         public override int MRValue => 80;

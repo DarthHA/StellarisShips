@@ -8,19 +8,19 @@ UI: {
 	ShipDesign: 舰船设计器
 	ShipStat:
 		'''
-		舰船规模: {0}
-		船体: {1}
-		防御: {2}
-		护盾: {3}
-		船体修复: {4} 每秒
-		护盾充能: {5} 每秒
-		闪避: {6}%
-		航速: {7}
-		探测半径: {8}
-		仇恨值: {9}
-		理论输出: {10} 每秒
-		舰船职能: {11}
-		造价: {12}
+		[i:StellarisShips/Power_Icon]舰船规模: {0}
+		[i:StellarisShips/Hull_Icon]船体: {1}
+		[i:StellarisShips/Armor_Icon]防御: {2}
+		[i:StellarisShips/Shield_Icon]护盾: {3}
+		[i:StellarisShips/HullRegen_Icon]船体修复: {4} 每秒
+		[i:StellarisShips/ShieldRegen_Icon]护盾充能: {5} 每秒
+		[i:StellarisShips/Evasion_Icon]闪避: {6}%
+		[i:StellarisShips/Speed_Icon]航速: {7}
+		[i:StellarisShips/Detect_Icon]探测半径: {8}
+		[i:StellarisShips/Cloak_Icon]仇恨值: {9}
+		[i:StellarisShips/Damage_Icon]理论输出: {10} 每秒
+		[i:StellarisShips/Aggro_Icon]舰船职能: {11}
+		[i:StellarisShips/Cost_Icon]造价: {12}
 		'''
 	IncomingTransmission: 信号传输接入
 	ShipBuilder: 首席工程师埃德尔·弗拉之子
@@ -197,6 +197,24 @@ BuffExtraDesc: {
 		[c/ffcc00:武器伤害:]
 		{3}
 		'''
+	ShroudASPDUpName: 虚境的恩赐：武器射速提升
+	ShroudAtkUpName: 虚境的恩赐：武器伤害提升
+	ShroudEvasionUpName: 虚境的恩赐：闪避率提升
+	ShroudRegenUpName: 虚境的恩赐：船体修复提升
+	ShroudShieldUpName: 虚境的恩赐：护盾强度提升
+	ShroudSpeedUpName: 虚境的恩赐：航速提升
+	ShroudBuffDesc:
+		'''
+		神秘的虚境赐予了我们一个暂时的恩赐:
+		{0}
+		剩余时间: {1} 秒
+		'''
+	ShroudASPDUpDesc: 武器射速 +25%
+	ShroudAtkUpDesc: 武器伤害 +25%
+	ShroudEvasionUpDesc: 闪避率 +30%
+	ShroudRegenUpDesc: 船体修复 +3% 每秒
+	ShroudShieldUpDesc: 护盾存在时减伤 +25%
+	ShroudSpeedUpDesc: 航速 +25%
 }
 
 ComputerType: {
@@ -211,7 +229,8 @@ ComputerType: {
 NPCExtraDesc:
 	'''
 	{0}
-	船体: {1}/{2}
-	护盾: {3}/{4}
+	{1}
+	船体: {2}/{3}
+	护盾: {4}/{5}
 	'''
 DropRule.Rubricator: 在击败月球领主后击败足够强的Boss概率掉落

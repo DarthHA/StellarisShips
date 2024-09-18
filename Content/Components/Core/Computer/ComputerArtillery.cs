@@ -76,4 +76,18 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override long Value => 20 * 200;
         public override int Progress => 7;
     }
+
+    public class ComputerArtillery5 : ComputerArtillery1
+    {
+        public override int Level => 5;
+        public override float ShootSpeedT => 0.35f;
+        public override float ShootSpeedX => 0.35f;
+        public override float ShootSpeedL => 0.3f;
+        public override float CritT => 30f;
+        public override float CritX => 30f;
+        public override float CritL => 35f;
+        public override long Value => 40 * 200;
+        public override int Progress => 9;
+        public override string SpecialUnLock => "PsiComputer";
+    }
 }

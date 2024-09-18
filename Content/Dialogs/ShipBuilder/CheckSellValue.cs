@@ -10,7 +10,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
     public class CheckSellValue : BaseDialog
     {

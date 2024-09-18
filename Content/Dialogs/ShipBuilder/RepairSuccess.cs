@@ -2,11 +2,11 @@
 using StellarisShips.UI;
 using System.Collections.Generic;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
-    public class ModifySuccess : BaseDialog
+    public class RepairSuccess : BaseDialog
     {
-        public override string InternalName => "ModifySuccess";
+        public override string InternalName => "RepairSuccess";
 
         public override List<string> ButtonNames => new()
         {
@@ -22,7 +22,7 @@ namespace StellarisShips.Content.Dialogs
 
         public override void SetUp()
         {
-            ShipBuildUI.TalkText = GetDialogLocalize("ModifySuccess");
+            ShipBuildUI.TalkText = string.Format(GetDialogLocalize("RepairSuccess"));
         }
 
         public override void Update()

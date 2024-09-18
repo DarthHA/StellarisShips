@@ -53,5 +53,12 @@ namespace StellarisShips.Content.Components.Utility.Others
         public override long Value => 25 * 700;
         public override int Progress => 9;
     }
-
+    public class Cloak5 : BaseCloak
+    {
+        public override int Level => 5;
+        public override int Aggro => 99999999;
+        public override long Value => 30 * 800;
+        public override int Progress => 9;
+        public override string SpecialUnLock => "PsiJump";
+    }
 }

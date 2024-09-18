@@ -8,19 +8,19 @@ UI: {
 	ShipDesign: Ship Designer
 	ShipStat:
 		'''
-		Ship Size: {0}
-		Hull: {1}
-		Defense: {2}
-		Shield: {3}
-		Hull Regen: {4}/s
-		Shield Regen: {5}/s
-		Evasion: {6}%
-		Speed: {7}
-		Detection Radius: {8}
-		Aggro: {9}
-		DPS: {10}
-		Ship Role: {11}
-		Cost: {12}
+		[i:StellarisShips/Power_Icon]Ship Size: {0}
+		[i:StellarisShips/Hull_Icon]Hull: {1}
+		[i:StellarisShips/Armor_Icon]Defense: {2}
+		[i:StellarisShips/Shield_Icon]Shield: {3}
+		[i:StellarisShips/HullRegen_Icon]Hull Regen: {4}/s
+		[i:StellarisShips/ShieldRegen_Icon]Shield Regen: {5}/s
+		[i:StellarisShips/Evasion_Icon]Evasion: {6}%
+		[i:StellarisShips/Speed_Icon]Speed: {7}
+		[i:StellarisShips/Detect_Icon]Detection Radius: {8}
+		[i:StellarisShips/Cloak_Icon]Aggro: {9}
+		[i:StellarisShips/Damage_Icon]DPS: {10}
+		[i:StellarisShips/Aggro_Icon]Ship Role: {11}
+		[i:StellarisShips/Cost_Icon]Cost: {12}
 		'''
 	IncomingTransmission: Incoming Transmission
 	ShipBuilder: Son of Chief Engineer Edel Fra
@@ -197,6 +197,24 @@ BuffExtraDesc: {
 		[c/ffcc00:Weapon damage:]
 		{3}
 		'''
+	ShroudASPDUpName: Boon of the Shroud: Increased Firing Rate
+	ShroudAtkUpName: Boon of the Shroud: Increased Weapon Strength
+	ShroudEvasionUpName: Boon of the Shroud: Increased Evasion
+	ShroudRegenUpName: Boon of the Shroud: Increased Hull Regen
+	ShroudShieldUpName: Boon of the Shroud: Increased Shield Strength
+	ShroudSpeedUpName: Boon of the Shroud: Increased Speed
+	ShroudBuffDesc:
+		'''
+		The enigmatic Shroud has granted us a temporary boon:
+		{0}
+		Time left: {1} s
+		'''
+	ShroudASPDUpDesc: Firing rate +25%
+	ShroudAtkUpDesc: Weapon damage +25%
+	ShroudEvasionUpDesc: Evasion +30%
+	ShroudRegenUpDesc: Hull Regen +3%/s
+	ShroudShieldUpDesc: DR when Shield exists +25%
+	ShroudSpeedUpDesc: Speed +25%
 }
 
 ComputerType: {
@@ -211,7 +229,8 @@ ComputerType: {
 NPCExtraDesc:
 	'''
 	{0}
-	Hull: {1}/{2}
-	Shield: {3}/{4}
+	{1}
+	Hull: {2}/{3}
+	Shield: {4}/{5}
 	'''
 DropRule.Rubricator: After defeating the Moon Lord, chance to drop after defeating any strong enough boss.

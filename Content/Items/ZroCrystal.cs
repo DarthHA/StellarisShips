@@ -12,11 +12,6 @@ namespace StellarisShips.Content.Items
 {
     public class ZroCrystal : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
-
 
         int MiscTimer = 0;
 
@@ -45,8 +40,7 @@ namespace StellarisShips.Content.Items
                 UIManager.ShroudVisible = true;
                 UIManager.ResetClick();
                 SomeUtils.PlaySound(SoundPath.UI + "Click");
-                //SomeUtils.PlaySoundRandom(SoundPath.Other + "Voice", 5);
-                ShroudUI.Start("ShroudNoPass");
+                ShroudUI.Start("ShroudNormal");
             }
             return false;
         }

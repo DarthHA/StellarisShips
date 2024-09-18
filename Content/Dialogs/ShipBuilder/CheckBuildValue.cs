@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
     public class CheckBuildValue : BaseDialog
     {
@@ -82,7 +82,7 @@ MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue), EverythingLibrar
             {
                 case "Yes":
                     Vector2 GivePos = FleetSystem.TipPos + new Vector2(Main.rand.Next(2000) - 1000, -1000);
-                    ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph);
+                    ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph, SomeUtils.GetRandomName());
 
                     string name = string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipBuildUI.shipGraph.GraphName, EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].GetLocalizedName());
                     if (!BattleStatSystem.ShipInBattle.TryAdd(name, 1))

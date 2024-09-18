@@ -1,6 +1,7 @@
 ﻿using StellarisShips.Content.Items;
 using StellarisShips.Static;
 using StellarisShips.UI;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -13,6 +14,7 @@ namespace StellarisShips.System
         public static int CurrentProgress = 1;
         public static bool HasNotification = false;
         public static int DiscoveredMR = 0;
+        public static List<string> UnlockTech = new();
 
         public static int GetMaxCommandPoint()
         {
@@ -76,6 +78,7 @@ namespace StellarisShips.System
             CurrentProgress = 1;
             HasNotification = false;
             DiscoveredMR = 0;
+            UnlockTech.Clear();
         }
     }
 }

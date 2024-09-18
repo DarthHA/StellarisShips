@@ -6,7 +6,7 @@ using StellarisShips.UI;
 using System.Collections.Generic;
 using Terraria;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
     public class CheckRepairValue : BaseDialog
     {

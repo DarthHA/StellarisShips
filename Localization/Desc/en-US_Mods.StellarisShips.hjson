@@ -369,6 +369,7 @@ Desc: {
 	Shield_4: An updated shield generator that produces an even stronger energy field. Only sustained enemy fire can penetrate this barrier.
 	Shield_5: These reinforced and hardened energy shields are incredibly powerful. The protection they offer is second to none.
 	Shield_6: These deflectors utilize dark matter to deflect incoming projectiles in a way that seems to utterly defy the laws of nature.
+	Shield_7: These extremely powerful shields are generated out of pure psychic energy by a cadre of psionic specialists. Their powers are further augmented by large arrays of psi emitters.
 	ArchShield_1: Projected farther than regular shields, the suspension field technology uses ancient artifacts to slow time at the point of impact to afford the shields a longer opportunity to dispel the incoming attack's energy.
 	Armor_1: Reinforced nanocomposite hull plating can provide an extra layer of protection that could be the difference between life and death in a combat situation.
 	Armor_2: A combination of different metals and ceramics that result in a strong armor without sacrificing flexibility.
@@ -398,12 +399,14 @@ Desc: {
 	Cloak_2: Advances in the grinding technology of rare crystal lenses can greatly improve the efficiency of cloaking.
 	Cloak_3: In the past, typical cloaking technology would cause serious damage to the relatively delicate instruments on the ship, but the emergence of elite cloaking fields makes such concerns obsolete.
 	Cloak_4: The device uses dark matter to warp space-time around the ship, making it extremely difficult to detect.
+	Cloak_5: Psi-Phase Field Generators focus the psionic potential to partially phase the vessel into the Shroud. This allows the ship to remain undetected by all but the best sensor arrays.
 	//核心配件
 	FTLDrive_1: No means of fast long-distance travel.
 	FTLDrive_2: We can use the other dimensions of hyperspace, like the threads in a spider's web, to move quickly over long distances.
 	FTLDrive_3: We have determined that there are points in space where a ship can "break through" and enter hyperspace with less energy consumption. This will lead to a new generation of superdrives.
 	FTLDrive_4: The new generation of super engines are able to pass through the subspace slipstream that exists in hyperspace. This allows the engine's performance to be significantly improved.
 	FTLDrive_5: The Jump Drive tears ship-sized holes in the very fabric of reality, allowing for near-instantaneous movement between systems. The nature of the space the ship passes through on this journey is still poorly understood.
+	FTLDrive_6: The Psi Jump Drive harnesses the psionic potential to warp the local space-time continuum, eliminating the distance between the point of origin and the destination. Supposedly.
 	Thruster_1: Simple yet moderately effective chemical thrusters that rely on combustible propellant to generate thrust.
 	Thruster_2: These electric thrusters use beams of ions to generate thrust without the need for propellant.
 	Thruster_3: An advanced form of electric propulsion, plasma thrusters afford ships greater sublight speeds and maneuverability.
@@ -440,6 +443,11 @@ Desc: {
 		Artillery Tactics: The ship will stay at long range, firing its longest range weapons on the target.
 		Running sapient AIs through high-intensity combat simulations yields valuable insight into potential optimizations for risk-evaluation techniques.
 		'''
+	ComputerArtillery_5:
+		'''
+		Artillery Tactics: The ship will stay at long range, firing its longest range weapons on the target.
+		Advances in the field of Psionics suggest the possibility of creating combat computers capable of reading and analyzing the impulses of telepathic operatives before they are cognitively processed.
+		'''
 	ComputerCarrier_1:
 		'''
 		Carrier Tactics: The ship will stay at the maximum engagement range of its hangars.
@@ -459,6 +467,11 @@ Desc: {
 		'''
 		Carrier Tactics: The ship will stay at the maximum engagement range of its hangars.
 		Running sapient AIs through high-intensity combat simulations yields valuable insight into potential optimizations for risk-evaluation techniques.
+		'''
+	ComputerCarrier_5:
+		'''
+		Carrier Tactics: The ship will stay at the maximum engagement range of its hangars.
+		Advances in the field of Psionics suggest the possibility of creating combat computers capable of reading and analyzing the impulses of telepathic operatives before they are cognitively processed.
 		'''
 	ComputerLine_1:
 		'''
@@ -480,6 +493,11 @@ Desc: {
 		Line Tactics: The ship will hold advance to medium range and hold formation.
 		Running sapient AIs through high-intensity combat simulations yields valuable insight into potential optimizations for risk-evaluation techniques.
 		'''
+	ComputerLine_5:
+		'''
+		Line Tactics: The ship will hold advance to medium range and hold formation.
+		Advances in the field of Psionics suggest the possibility of creating combat computers capable of reading and analyzing the impulses of telepathic operatives before they are cognitively processed.
+		'''
 	ComputerPicket_1:
 		'''
 		Picket Tactics: The ship will advance to medium range and attempt to intercept incoming enemies.
@@ -499,6 +517,11 @@ Desc: {
 		'''
 		Picket Tactics: The ship will advance to medium range and attempt to intercept incoming enemies.
 		Running sapient AIs through high-intensity combat simulations yields valuable insight into potential optimizations for risk-evaluation techniques.
+		'''
+	ComputerPicket_5:
+		'''
+		Picket Tactics: The ship will advance to medium range and attempt to intercept incoming enemies.
+		Advances in the field of Psionics suggest the possibility of creating combat computers capable of reading and analyzing the impulses of telepathic operatives before they are cognitively processed.
 		'''
 	ComputerSwarm_1:
 		'''
@@ -520,6 +543,11 @@ Desc: {
 		Swarm Tactics: The ship will charge straight at enemies and try to deal as much damage as possible from the range of their shortest range weapon.
 		Running sapient AIs through high-intensity combat simulations yields valuable insight into potential optimizations for risk-evaluation techniques.
 		'''
+	ComputerSwarm_5:
+		'''
+		Swarm Tactics: The ship will charge straight at enemies and try to deal as much damage as possible from the range of their shortest range weapon.
+		Advances in the field of Psionics suggest the possibility of creating combat computers capable of reading and analyzing the impulses of telepathic operatives before they are cognitively processed.
+		'''
 	ComputerBomber_1:
 		'''
 		Torpedo Tactics: The ship will charge straight at enemies in strafing runs.
@@ -539,6 +567,11 @@ Desc: {
 		'''
 		Torpedo Tactics: The ship will charge straight at enemies in strafing runs.
 		Running sapient AIs through high-intensity combat simulations yields valuable insight into potential optimizations for risk-evaluation techniques.
+		'''
+	ComputerBomber_5:
+		'''
+		Torpedo Tactics: The ship will charge straight at enemies in strafing runs.
+		Advances in the field of Psionics suggest the possibility of creating combat computers capable of reading and analyzing the impulses of telepathic operatives before they are cognitively processed.
 		'''
 	NoAura_1: No field emitters equipped.
 	QuantumDestabilizer_1:

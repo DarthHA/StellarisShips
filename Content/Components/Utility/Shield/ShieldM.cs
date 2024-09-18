@@ -69,4 +69,14 @@ namespace StellarisShips.Content.Components.Utility.Shield
         public override long Value => (int)(43.5f * 600);
         public override int Progress => 9;
     }
+
+    public class ShieldM7 : ShieldM1
+    {
+        public override int Level => 7;
+        public override int Shield => 1800;
+        public override float ShieldRegen => 30.3f;
+        public override long Value => 68 * 800;
+        public override int Progress => 9;
+        public override string SpecialUnLock => "PsiShield";
+    }
 }

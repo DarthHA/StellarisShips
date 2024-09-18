@@ -1,21 +1,23 @@
-﻿
-
-using StellarisShips.Content.Items;
+﻿using StellarisShips.Content.Items;
+using StellarisShips.Static;
 using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
-    public class SelectShipBuild : BaseDialog
+    public class GetGraph : BaseDialog
     {
-        public override string InternalName => "SelectShipBuild";
+        public override string InternalName => "GetGraph";
+        const int GraphValue = 500;
 
         public override List<string> ButtonNames => new()
         {
-            "OK",
+            "BuyGraph",
             "Return",
             "Bye"
         };
@@ -29,18 +31,15 @@ namespace StellarisShips.Content.Dialogs
 
         public override void SetUp()
         {
-            ShipBuildUI.TalkText = GetDialogLocalize("SelectShipBuild");
+            ShipBuildUI.TalkText = string.Format(GetDialogLocalize("SellGraph"), MoneyHelpers.ShowCoins(GraphValue));
         }
 
         public override void Update()
         {
             bool enabled = false;
-            if (Main.LocalPlayer.HeldItem.type == ModContent.ItemType<GraphItem>())
+            if (Main.LocalPlayer.CanAfford(GraphValue))
             {
-                if ((Main.LocalPlayer.HeldItem.ModItem as GraphItem).graph.ShipType != "")
-                {
-                    enabled = true;
-                }
+                enabled = true;
             }
             ShipBuildUI.talkButtons[0].Enabled = enabled;
         }
@@ -50,10 +49,10 @@ namespace StellarisShips.Content.Dialogs
             switch (internalStr)
             {
                 case "Yes":
-                    ShipBuildUI.shipGraph = (Main.LocalPlayer.HeldItem.ModItem as GraphItem).graph.Copy();
-                    ShipBuildUI.Value = ShipBuildUI.shipGraph.Value;
-                    ShipBuildUI.MRValue = ShipBuildUI.shipGraph.MRValue;
-                    ShipBuildUI.Start("CheckBuildValue");
+                    ShipBuildUI.TalkText = string.Format(GetDialogLocalize("SellGraphSuccess"), MoneyHelpers.ShowCoins(GraphValue));
+                    SoundEngine.PlaySound(SoundID.Coins);
+                    Main.LocalPlayer.BuyItem(GraphValue);
+                    Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_GiftOrReward(), ModContent.ItemType<GraphItem>());
                     break;
                 case "No":
                     ShipBuildUI.Start("NormalStart");

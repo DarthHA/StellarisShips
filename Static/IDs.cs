@@ -133,6 +133,7 @@ namespace StellarisShips.Static
         public const string ShieldBonus = "ShieldBonus";
         public const string HullRegen = "HullRegen";
         public const string ShieldRegen = "ShieldRegen";
+        public const string ShieldDR = "ShieldDR";
     }
 
     public static class ComputerID
@@ -164,5 +165,12 @@ namespace StellarisShips.Static
         public const string AncientTargetScrambler = "AncientTargetScrambler";
         public const string NanobotCloud = "NanobotCloud";
         public const string TargetingGrid = "TargetingGrid";
+
+        public const string ShroudASPDUp = "ShroudASPDUp";
+        public const string ShroudAtkUp = "ShroudAtkUp";
+        public const string ShroudEvasionUp = "ShroudEvasionUp";
+        public const string ShroudRegenUp = "ShroudRegenUp";
+        public const string ShroudShieldUp = "ShroudShieldUp";
+        public const string ShroudSpeedUp = "ShroudSpeedUp";
     }
 }

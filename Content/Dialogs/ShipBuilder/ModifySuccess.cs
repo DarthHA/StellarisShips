@@ -1,13 +1,12 @@
-﻿using StellarisShips.Static;
-using StellarisShips.System.BaseType;
+﻿using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
-    public class SellSuccess : BaseDialog
+    public class ModifySuccess : BaseDialog
     {
-        public override string InternalName => "SellSuccess";
+        public override string InternalName => "ModifySuccess";
 
         public override List<string> ButtonNames => new()
         {
@@ -23,7 +22,7 @@ namespace StellarisShips.Content.Dialogs
 
         public override void SetUp()
         {
-            ShipBuildUI.TalkText = string.Format(GetDialogLocalize("SellSuccess"), MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue));
+            ShipBuildUI.TalkText = GetDialogLocalize("ModifySuccess");
         }
 
         public override void Update()

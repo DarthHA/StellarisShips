@@ -12,7 +12,7 @@ namespace StellarisShips.Content.NPCs
 {
     public partial class ShipNPC : ModNPC
     {
-        public static int BuildAShip(Terraria.DataStructures.IEntitySource source, Vector2 Pos, ShipGraph graph)
+        public static int BuildAShip(Terraria.DataStructures.IEntitySource source, Vector2 Pos, ShipGraph graph, string Name)
         {
             if (graph.ShipType == "") return -1;
             int npctmp = NPC.NewNPC(source, (int)Pos.X, (int)Pos.Y, ModContent.NPCType<ShipNPC>());
@@ -21,6 +21,7 @@ namespace StellarisShips.Content.NPCs
                 NPC npc = Main.npc[npctmp];
                 ShipNPC shipNPC = Main.npc[npctmp].GetShipNPC();
                 shipNPC.ShipGraph = graph.Copy();
+                shipNPC.ShipName = Name;
                 npc.lifeMax = EverythingLibrary.Ships[graph.ShipType].BaseHull;
                 shipNPC.Evasion = EverythingLibrary.Ships[graph.ShipType].BaseEvasion;
                 shipNPC.MaxSpeed = EverythingLibrary.Ships[graph.ShipType].BaseSpeed;

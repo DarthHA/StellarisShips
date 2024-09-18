@@ -3,34 +3,39 @@ using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.Shroud
 {
-    public class AddMRTech : BaseDialog
+    public class RewardPsiJump2 : BaseDialog
     {
-        public override string InternalName => "AddMRTech2";
+        public override string InternalName => "RewardPsiJump2";
 
         public override List<string> ButtonNames => new()
         {
-            "Nice",
+            "ExitShroud"
         };
 
         public override List<string> ButtonInternalStrs => new()
         {
-            "Nice",
+            "Exit"
         };
 
         public override void SetUp()
         {
-            ShipBuildUI.TalkText = GetDialogLocalize("AddMRTech2");
+            ShroudUI.TalkText = GetDialogLocalize("RewardPsiJump2");
+        }
+
+        public override void Update()
+        {
         }
 
         public override void ClickEvent(string internalStr)
         {
             switch (internalStr)
             {
-                case "Nice":
-                    ProgressHelper.DiscoveredMR++;
-                    ShipBuildUI.Start("NormalStart");
+                case "Exit":
+                    ProgressHelper.UnlockTech.Add("PsiJump");
+                    ShroudUI.AllClear(true);
+                    UIManager.ShroudVisible = false;
                     break;
             }
 

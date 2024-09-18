@@ -64,4 +64,16 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override long Value => 20 * 200;
         public override int Progress => 7;
     }
+
+    public class ComputerPicket5 : ComputerPicket1
+    {
+        public override int Level => 5;
+        public override float Crit => 20f;
+        public override float AttackSpeed => 0.2f;
+        public override float Evasion => 20f;
+        public override float DamageP => 0.25f;
+        public override long Value => 40 * 200;
+        public override int Progress => 9;
+        public override string SpecialUnLock => "PsiComputer";
+    }
 }

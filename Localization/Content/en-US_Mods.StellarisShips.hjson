@@ -82,6 +82,76 @@ Items: {
 		DisplayName: Psionic Archive
 		Tooltip: A Zro psionic crystal archive, containing the secret of the Shroud. Maybe it can be consulted with the Shroud.
 	}
+
+	Aggro_Icon: {
+		DisplayName: Aggro
+		Tooltip: Used only for icon
+	}
+
+	Armor_Icon: {
+		DisplayName: Armor
+		Tooltip: Used only for icon
+	}
+
+	Cloak_Icon: {
+		DisplayName: Cloak
+		Tooltip: Used only for icon
+	}
+
+	Cost_Icon: {
+		DisplayName: Cost
+		Tooltip: Used only for icon
+	}
+
+	Damage_Icon: {
+		DisplayName: Damage
+		Tooltip: Used only for icon
+	}
+
+	Detect_Icon: {
+		DisplayName: Detect
+		Tooltip: Used only for icon
+	}
+
+	Evasion_Icon: {
+		DisplayName: Evasion
+		Tooltip: Used only for icon
+	}
+
+	Hull_Icon: {
+		DisplayName: Hull
+		Tooltip: Used only for icon
+	}
+
+	HullRegen_Icon: {
+		DisplayName: Hull Regen
+		Tooltip: Used only for icon
+	}
+
+	Power_Icon: {
+		DisplayName: Power
+		Tooltip: Used only for icon
+	}
+
+	Shield_Icon: {
+		DisplayName: Shield
+		Tooltip: Used only for icon
+	}
+
+	ShieldRegen_Icon: {
+		DisplayName: Shield Regen
+		Tooltip: Used only for icon
+	}
+
+	Special_Icon: {
+		DisplayName: Special
+		Tooltip: Used only for icon
+	}
+
+	Speed_Icon: {
+		DisplayName: Speed
+		Tooltip: Used only for icon
+	}
 }
 
 NPCs: {
@@ -135,5 +205,10 @@ Buffs: {
 	BattleStatBuff: {
 		DisplayName: Battle Stat
 		Description: ""
+	}
+
+	ShroudBuff: {
+		DisplayName: Shroud Buff
+		Description: Mods.StellarisShips.Buffs.ShroudBuff.Description
 	}
 }

@@ -1,11 +1,9 @@
-﻿
-
-using StellarisShips.System.BaseType;
+﻿using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
 using Terraria;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
     public class NormalStart : BaseDialog
     {

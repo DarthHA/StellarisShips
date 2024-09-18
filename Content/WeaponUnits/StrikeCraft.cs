@@ -31,8 +31,9 @@ namespace StellarisShips.Content.WeaponUnits
                 if (CurrentCooldown <= 0)
                 {
                     int MaxStriker = 4 + ship.GetShipNPC().ExtraStriker;
-                    int MinDmg = (int)((EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).MinDamage * DamageBonus / 4f);
-                    int MaxDmg = (int)((EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).MaxDamage * DamageBonus / 4f);
+                    float AuraBonus = FleetSystem.GlobalEffects.ContainsKey(AuraID.ShroudAtkUp) ? 0.25f : 0f;         //Ðé¾³ÉËº¦¼Ó³É
+                    int MinDmg = (int)((EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).MinDamage * (DamageBonus + AuraBonus) / 4f);
+                    int MaxDmg = (int)((EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).MaxDamage * (DamageBonus + AuraBonus) / 4f);
                     float Speed = 15;
                     switch (Level)
                     {

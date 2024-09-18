@@ -8,8 +8,15 @@ namespace StellarisShips.System
 {
     public class ShipControlPlayer : ModPlayer
     {
+        public string CurrentShroudBuffs = "";
+
         public override void PreUpdateBuffs()
         {
+            if (!Player.HasBuff(ModContent.BuffType<ShroudBuff>()))
+            {
+                CurrentShroudBuffs = "";
+            }
+
             if (NPC.CountNPCS(ModContent.NPCType<ShipNPC>()) > 0)
             {
                 Player.AddBuff(ModContent.BuffType<FollowBuff>(), 2);

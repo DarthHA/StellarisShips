@@ -12,7 +12,7 @@ namespace StellarisShips.Content.Components.Utility.Shield
         public override int Level => 1;
         public override string TypeName => "ArchShield";
         public override string ExtraInfo => "SML";
-        public int Shield => 504;
+        public int Shield => 864;
         public float ShieldRegen => 18;
         public float ShieldDR = 0.1f;
         public override long Value => 35 * 400;
@@ -36,7 +36,7 @@ namespace StellarisShips.Content.Components.Utility.Shield
         public override int Level => 1;
         public override string TypeName => "ArchShield";
         public override string ExtraInfo => "SML";
-        public int Shield => 1260;
+        public int Shield => 2160;
         public float ShieldRegen => 27.9f;
         public float ShieldDR = 0.1f;
         public override long Value => 52 * 600;
@@ -60,7 +60,7 @@ namespace StellarisShips.Content.Components.Utility.Shield
         public override int Level => 1;
         public override string TypeName => "ArchShield";
         public override string ExtraInfo => "SML";
-        public int Shield => 3024;
+        public int Shield => 5184;
         public float ShieldRegen => 66.6f;
         public float ShieldDR = 0.1f;
         public override long Value => 68 * 800;

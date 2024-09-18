@@ -133,18 +133,21 @@ Name: {
 	B_Shield_4: Small Advanced Shields
 	B_Shield_5: Small Hyper Shields
 	B_Shield_6: Small Dark Matter Deflectors
+	B_Shield_7: Small Psionic Shields
 	C_Shield_1: Medium Deflectors
 	C_Shield_2: Medium Improved Deflectors
 	C_Shield_3: Medium Shields
 	C_Shield_4: Medium Advanced Shields
 	C_Shield_5: Medium Hyper Shields
 	C_Shield_6: Medium Dark Matter Deflectors
+	C_Shield_7: Medium Psionic Shields
 	D_Shield_1: Large Deflectors
 	D_Shield_2: Large Improved Deflectors
 	D_Shield_3: Large Shields
 	D_Shield_4: Large Advanced Shields
 	D_Shield_5: Large Hyper Shields
 	D_Shield_6: Large Dark Matter Deflectors
+	D_Shield_7: Large Psionic Shields
 	B_ArchShield_1: Small Ancient Suspension Field
 	C_ArchShield_1: Medium Ancient Suspension Field
 	D_ArchShield_1: Large Ancient Suspension Field
@@ -167,6 +170,7 @@ Name: {
 	A_Cloak_2: Advanced Cloaking Field Generator
 	A_Cloak_3: Elite Cloaking Field Generator
 	A_Cloak_4: Dark Matter Cloaking Field Generator
+	A_Cloak_5: Psi-Phase Field Generator
 	//核心配件
 	E_Reactor_1: Fission Reactor
 	E_Reactor_2: Fusion Reactor
@@ -179,6 +183,7 @@ Name: {
 	K_FTLDrive_3: Hyper Drive II
 	K_FTLDrive_4: Hyper Drive III
 	K_FTLDrive_5: Jump Drive
+	K_FTLDrive_6: Psi Jump Drive
 	I_Sensor_1: Radar System
 	I_Sensor_2: Gravitic Sensors
 	I_Sensor_3: Subspace Sensors
@@ -192,26 +197,32 @@ Name: {
 	J_ComputerSwarm_2: Specialized Computer(Swarm)
 	J_ComputerSwarm_3: Advanced Computer(Swarm)
 	J_ComputerSwarm_4: Sapient Computer(Swarm)
+	J_ComputerSwarm_5: Precognition Interface(Swarm)
 	J_ComputerBomber_1: Basic Computer(Torpedo)
 	J_ComputerBomber_2: Specialized Computer(Torpedo)
 	J_ComputerBomber_3: Advanced Computer(Torpedo)
 	J_ComputerBomber_4: Sapient Computer(Torpedo)
+	J_ComputerBomber_5: Precognition Interface(Torpedo)
 	J_ComputerPicket_1: Basic Computer(Picket)
 	J_ComputerPicket_2: Specialized Computer(Picket)
 	J_ComputerPicket_3: Advanced Computer(Picket)
 	J_ComputerPicket_4: Sapient Computer(Picket)
+	J_ComputerPicket_5: Precognition Interface(Picket)
 	J_ComputerLine_1: Basic Computer(Line)
 	J_ComputerLine_2: Specialized Computer(Line)
 	J_ComputerLine_3: Advanced Computer(Line)
 	J_ComputerLine_4: Sapient Computer(Line)
+	J_ComputerLine_5: Precognition Interface(Line)
 	J_ComputerArtillery_1: Basic Computer(Artillery)
 	J_ComputerArtillery_2: Specialized Computer(Artillery)
 	J_ComputerArtillery_3: Advanced Computer(Artillery)
 	J_ComputerArtillery_4: Sapient Computer(Artillery)
+	J_ComputerArtillery_5: Precognition Interface(Artillery)
 	J_ComputerCarrier_1: Basic Computer(Carrier)
 	J_ComputerCarrier_2: Specialized Computer(Carrier)
 	J_ComputerCarrier_3: Advanced Computer(Carrier)
 	J_ComputerCarrier_4: Sapient Computer(Carrier)
+	J_ComputerCarrier_5: Precognition Interface(Carrier)
 	O_NoAura_1: None
 	O_QuantumDestabilizer_1: Quantum Destabilizer
 	O_ShieldDampener_1: Shield Dampener

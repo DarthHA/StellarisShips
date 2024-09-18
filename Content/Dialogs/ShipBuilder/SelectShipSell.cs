@@ -1,6 +1,4 @@
-﻿
-
-using StellarisShips.Content.Items;
+﻿using StellarisShips.Content.Items;
 using StellarisShips.Static;
 using StellarisShips.System.BaseType;
 using StellarisShips.UI;
@@ -8,7 +6,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
     public class SelectShipSell : BaseDialog
     {

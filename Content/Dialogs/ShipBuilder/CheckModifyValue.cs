@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
     public class CheckModifyValue : BaseDialog
     {
@@ -131,9 +131,10 @@ namespace StellarisShips.Content.Dialogs
                                 }
                             }
                         }
-                        ship.active = false;
                         Vector2 GivePos = ship.Center + new Vector2(Main.rand.Next(2000) - 1000, -1000);
-                        int shiptmp = ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph);
+                        string name = ship.GetShipNPC().ShipName;
+                        ship.active = false;
+                        int shiptmp = ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph, name);
                         if (shiptmp >= 0 && shiptmp < 200) Main.npc[shiptmp].GetShipNPC().FTLCooldown = FTLCooldown;
                         FTLLight.Summon(ship.GetSource_FromAI(), GivePos, scale);
                         SomeUtils.PlaySound(SoundPath.Other + "FTL", GivePos);

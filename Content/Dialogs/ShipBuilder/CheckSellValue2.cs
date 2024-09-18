@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
     public class CheckSellValue2 : BaseDialog
     {

@@ -61,8 +61,18 @@ namespace StellarisShips.Content.Components.Core
     {
         public override int Level => 5;
         public override int FTLCooldown => 10 * 60;
-        public override float EscapeChance => 0.75f;
+        public override float EscapeChance => 0.7f;
         public override long Value => 20 * 400;
         public override int Progress => 8;
+    }
+
+    public class FTLDrive6 : FTLDrive1
+    {
+        public override int Level => 6;
+        public override int FTLCooldown => 5 * 60;
+        public override float EscapeChance => 0.8f;
+        public override long Value => 25 * 400;
+        public override int Progress => 9;
+        public override string SpecialUnLock => "PsiJump";
     }
 }

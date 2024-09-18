@@ -13,23 +13,18 @@ namespace StellarisShips.System
     {
         public override void LoadWorldData(TagCompound tag)
         {
-            List<Vector2> shipPos = new();
-            List<string> shipGraphs = new();
-            List<int> shipHull = new();
-            List<int> shipShield = new();
-            shipPos = tag.Get<List<Vector2>>("ShipPos");
-            shipGraphs = tag.Get<List<string>>("ShipGraphs");
-            shipHull = tag.Get<List<int>>("ShipHull");
-            shipShield = tag.Get<List<int>>("ShipShield");
-            for (int i = 0; i < shipGraphs.Count; i++)
+            List<string> shipData = new();
+            shipData = tag.Get<List<string>>("ShipData");
+            foreach (string str in shipData)
             {
-                ShipGraph graph = JsonConvert.DeserializeObject<ShipGraph>(shipGraphs[i]);
-                int npctmp = ShipNPC.BuildAShip(null, shipPos[i], graph);
+                ShipSaveUnit data = JsonConvert.DeserializeObject<ShipSaveUnit>(str);
+                ShipGraph graph = JsonConvert.DeserializeObject<ShipGraph>(data.shipGraph);
+                int npctmp = ShipNPC.BuildAShip(null, data.shipPos, graph, data.shipName);
                 if (npctmp >= 0 && npctmp < 200)
                 {
-                    Main.npc[npctmp].rotation = Main.rand.NextFloat() * MathHelper.TwoPi;
-                    Main.npc[npctmp].GetShipNPC().CurrentShield = shipShield[i];
-                    Main.npc[npctmp].life = shipHull[i] + shipShield[i];
+                    Main.npc[npctmp].rotation = data.shipRotation;
+                    Main.npc[npctmp].GetShipNPC().CurrentShield = data.shipShield;
+                    Main.npc[npctmp].life = data.shipHull + data.shipShield;
                 }
             }
 
@@ -41,39 +36,38 @@ namespace StellarisShips.System
             ProgressHelper.FirstContract = tag.GetBool("FirstContract");
             ProgressHelper.CurrentProgress = tag.GetInt("CurrentProgress");
             ProgressHelper.DiscoveredMR = tag.GetInt("DiscoveredMR");
+            ProgressHelper.UnlockTech = tag.Get<List<string>>("UnlockTech");
         }
 
 
         public override void SaveWorldData(TagCompound tag)
         {
-            List<string> shipGraphs = new();
-            List<Vector2> shipPos = new();
-            List<int> shipHull = new();
-            List<int> shipShield = new();
+            List<string> shipData = new();
             foreach (NPC npc in Main.ActiveNPCs)
             {
                 if (npc.type == ModContent.NPCType<ShipNPC>())
                 {
                     if (npc.GetShipNPC().ShipGraph != null && npc.GetShipNPC().ShipGraph.ShipType != "")
                     {
-                        shipGraphs.Add(JsonConvert.SerializeObject(npc.GetShipNPC().ShipGraph));
-                        shipShield.Add(npc.GetShipNPC().CurrentShield);
-                        shipHull.Add(npc.life - npc.GetShipNPC().CurrentShield);
+                        ShipSaveUnit data = new();
+                        data.shipGraph = JsonConvert.SerializeObject(npc.GetShipNPC().ShipGraph);
+                        data.shipShield = npc.GetShipNPC().CurrentShield;
+                        data.shipHull = npc.life - npc.GetShipNPC().CurrentShield;
+                        data.shipName = npc.GetShipNPC().ShipName;
+                        data.shipRotation = npc.rotation;
                         if (npc.GetShipNPC().shipAI == ShipAI.Missing)           //失踪
                         {
-                            shipPos.Add(new Vector2(50 + Main.rand.Next(Main.maxTilesX - 100), 50 + Main.rand.Next(Main.maxTilesY - 100)) * 16f);
+                            data.shipPos = new Vector2(50 + Main.rand.Next(Main.maxTilesX - 100), 50 + Main.rand.Next(Main.maxTilesY - 100)) * 16f;
                         }
                         else
                         {
-                            shipPos.Add(npc.Center);
+                            data.shipPos = npc.Center;
                         }
+                        shipData.Add(JsonConvert.SerializeObject(data));
                     }
                 }
             }
-            tag.Add("ShipGraphs", shipGraphs);
-            tag.Add("ShipPos", shipPos);
-            tag.Add("ShipHull", shipHull);
-            tag.Add("ShipShield", shipShield);
+            tag.Add("ShipData", shipData);
 
             tag.Add("TipPos", FleetSystem.TipPos);
             tag.Add("TipRotation", FleetSystem.TipRotation);
@@ -83,7 +77,18 @@ namespace StellarisShips.System
             tag.Add("FirstContract", ProgressHelper.FirstContract);
             tag.Add("CurrentProgress", ProgressHelper.CurrentProgress);
             tag.Add("DiscoveredMR", ProgressHelper.DiscoveredMR);
+            tag.Add("UnlockTech", ProgressHelper.UnlockTech);
         }
 
+    }
+
+    public class ShipSaveUnit
+    {
+        public Vector2 shipPos = Vector2.Zero;
+        public float shipRotation = 0;
+        public string shipGraph = "";
+        public int shipHull = 0;
+        public int shipShield = 0;
+        public string shipName = "";
     }
 }

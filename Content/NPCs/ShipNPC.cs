@@ -338,7 +338,8 @@ namespace StellarisShips.Content.NPCs
                     ShieldRegenProgress = 0;
                 }
 
-                float AuraBonus = FleetSystem.AuraType.Contains(AuraID.NanobotCloud) ? (NPC.lifeMax - MaxShield) * 0.015f : 0;
+                float AuraBonus = FleetSystem.GlobalEffects.ContainsKey(AuraID.NanobotCloud) ? (NPC.lifeMax - MaxShield) * 0.015f : 0;       //纳米云
+                AuraBonus += FleetSystem.GlobalEffects.ContainsKey(AuraID.ShroudRegenUp) ? (NPC.lifeMax - MaxShield) * 0.03f : 0;            //虚境回血
                 HullRegenProgress += HullRegen + AuraBonus;
                 if (HullRegenProgress >= 1)
                 {
@@ -390,7 +391,7 @@ namespace StellarisShips.Content.NPCs
             {
                 if (!Main.mouseText && !Main.LocalPlayer.mouseInterface)
                 {
-                    Main.instance.MouseTextHackZoom(string.Format(Language.GetTextValue("Mods.StellarisShips.NPCExtraDesc"), string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipGraph.GraphName, EverythingLibrary.Ships[ShipGraph.ShipType].GetLocalizedName()),
+                    Main.instance.MouseTextHackZoom(string.Format(Language.GetTextValue("Mods.StellarisShips.NPCExtraDesc"), ShipName, string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipGraph.GraphName, EverythingLibrary.Ships[ShipGraph.ShipType].GetLocalizedName()),
                         NPC.life - CurrentShield, NPC.lifeMax - MaxShield, CurrentShield, MaxShield), 0, Main.LocalPlayer.difficulty, null);
                     Main.mouseText = true;
                 }

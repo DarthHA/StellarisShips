@@ -54,6 +54,11 @@ namespace StellarisShips.System.BaseType
         /// </summary>
         public virtual int Progress => 1;
 
+        /// <summary>
+        /// 特殊方法解锁的Key，需要记录
+        /// </summary>
+        public virtual string SpecialUnLock => "";
+
         public virtual void ApplyEquip(NPC ship)
         {
 
@@ -91,6 +96,10 @@ namespace StellarisShips.System.BaseType
 
         public bool CanUnlock()
         {
+            if (SpecialUnLock != "")
+            {
+                return ProgressHelper.UnlockTech.Contains(SpecialUnLock);
+            }
             if (MRValue > 0)
             {
                 return ProgressHelper.DiscoveredMR >= 2;

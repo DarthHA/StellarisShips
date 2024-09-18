@@ -15,6 +15,18 @@ DialogOption: {
 	Nice: Very good
 	Try: Let's have a try
 	Exit: Exit
+	EnterShroud: Enter the Shroud
+	ExitShroud: Exit the Shroud
+	BoonASPDUp: Boon: Increased Firing Rate
+	BoonAtkUp: Boon: Increased hield Strength
+	BoonEvasionUp: Boon: Increased Evasion
+	BoonRegenUp: Boon: Increased Hull Regen
+	BoonShieldUp: Boon: Increased Shield Strength
+	BoonSpeedUp: Boon: Increased Speed
+	RewardPsiComputer: Meditate here for a moment
+	RewardPsiJump: Linger for a while
+	RewardPsiShield: Attempt to penetrate the shield
+	PlaceHolder: PlaceHolder
 }
 
 DialogText: {
@@ -187,5 +199,86 @@ DialogText: {
 		As long as there is power, the Rubricator can copy Minor Artifacts indefinitely, but the total amount it can copy is limited.
 		What do you think? Are you ready to upgrade your ship?
 		New components have been unlocked.
+		'''
+	//虚境相关
+	ShroudNormal1: The Shroud is quiet today.
+	ShroudNormal2: Something is watching us.
+	ShroudNormal3: It all looks so different on this side.
+	ShroudNormal4: They should have sent a poet...
+	ShroudNormal5: Something dark is coming.
+	ShroudNormal6: Are we still dreaming?
+	ShroudNormal7: We... we made it. We're inside!
+	ShroudNormal8: A... presence, of sorts, lingers nearby. It beckons us deeper into the Shroud...
+	ShroudNormal9: Do you hear the voices too?
+	ShroudNormal10: The Shroud pulsates with power. It feels like... home.
+	ShroudNormal11: Do you think that is air you're breathing now?
+	ShroudNormal12: We see, and yet we do not see. There is so much to learn about this place.
+	ShroudNormal13: What senses do we lack that we cannot see and cannot hear another world all around us?
+	ShroudNormal14: Take the greatest of care. Even a stray thought can be shaped into something tangible in this place... and, more often than not, turned against oneself.
+	ShroudNormal15: We were never meant to be here.
+	ShroudNormal16: So... much... power...
+	ShroudNormal17: Must... focus...
+	ShroudNormal18: Could this be where everything began?
+	ShroudNormal19: Horror... horror has a face.
+	RewardSelectRandom: We managed to establish a temporary transmission channel between our ship and the Shroud.
+	RewardASPDUp: Through the link to the Shroud, our ships can now increase the firing rate of their weapons.
+	RewardAtkUp: Through the link to the Shroud, our ships can now enhance their weapon systems.
+	RewardEvasionUp: Through the link to the Shroud, our ship computer can now directly affect the movement of the ship, giving it a higher evasion rate when facing enemies.
+	RewardRegenUp: Through the link to the Shroud, our ships can now perform limited battlefield repairs and repair hull cracks.
+	RewardShieldUp: Through the link to the Shroud, our ships can now use psionic energy to strengthen their shield systems.
+	RewardSpeedUp: Through the link to the Shroud, our ships can now enhance the strength of the thrusters, significantly increasing the ship's speed.
+	ShroudFirstContract:
+		'''
+		The Shroud. It's so strange, so unsettling, and yet so instantly... familiar. Anyone with psychic abilities has seen it in dreams, though they may not have known it at the time.
+		We now hover on the cliffs at the edge of the Shroud, just a stone's throw from the Shroud's gulf with ordinary space - or "Real World." To explore the depths of the Shroud, we will need a great deal of psychic effort and a huge amount of energy, and we must not take it lightly... even now, we are being watched.
+		'''
+	ShroudNoReward1:
+		'''
+		Slowly at first, then faster and faster, we began to lose control of the Shroud.
+		We were easily driven back to real world.
+		'''
+	ShroudNoReward2:
+		'''
+		The pathways that the Psionic Archive used to connect to the Shroud collapsed on themselves, as several energy levels of the Shroud changed without any warning.
+		We were easily driven back to real world.
+		'''
+	ShroudNoReward3:
+		'''
+		The Psionic Archive was crushed by the intense pressure during our communication with the Shroud.
+		The link can no longer be maintained.
+		'''
+	RewardPsiComputer1:
+		'''
+		As far as we know, the concept of time is completely foreign to this part of the Shroud. What seems like centuries here may equate to hours or minutes in the real world. One can even glimpse the future if one knows how to look...
+		Precognition is one of those things that has a proven ability to drive madness in a psychic, so use it with caution.
+		'''
+	RewardPsiComputer2:
+		'''
+		We can maintain a limited precognitive connection to the Shroud without going insane, but the sheer volume of probabilistic data will overwhelm us and make it difficult to use.
+		However, if we can set up a digital interface to parse the data, it could potentially be used to improve the ship's computers...
+		Acquired Technology: Precognition Interface.
+		'''
+	RewardPsiJump1:
+		'''
+		A twinkling star materializes in the Shroud. It travels at incredible speeds, sometimes manifesting as an alien ship of unknown configuration. Then it disappears in a psionic cloud, as fast as it came.
+		What could it be? What could enter the Shroud in physical form and then emerge from somewhere in real world?
+		'''
+	RewardPsiJump2:
+		'''
+		Another twinkling star suddenly appeared, but this time we were ready. It was indeed an alien ship, unlike any seen in our galaxy. As it flew by, we felt the hearts of its crew, and their secrets were ours.
+		Psi Jump Drive, a genius design.
+		Acquired Technology: Psi Jump Drive.
+		Acquired Technology: Psi-Phase Field Generator.
+		'''
+	RewardPsiShield1:
+		'''
+		In a lowland area of ​​the Shroud, we found a spirit sitting behind some powerful psychic shield.
+		"Go away."
+		'''
+	RewardPsiShield2:
+		'''
+		Our journey to this depth in the Shroud was not in vain. By channeling all the psychic energy, we were able to create a breach in the shield large enough to enter.
+		We do not know what we saw on the other side of the shield, as it immediately knocked us unconscious. But the operation was not in vain, and this shield taught us how to generate a similar position. With improved technology, we may be able to generate a shield large enough to surround the ship...
+		Acquired Technology: Psionic Shields.
 		'''
 }

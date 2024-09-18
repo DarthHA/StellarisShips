@@ -59,4 +59,15 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override long Value => 20 * 200;
         public override int Progress => 7;
     }
+
+    public class ComputerCarrier5 : ComputerCarrier1
+    {
+        public override int Level => 5;
+        public override int ExtraStrikers => 4;
+        public override float DamageH => 1.2f;
+        public override int Aggro => 1200;
+        public override long Value => 40 * 200;
+        public override int Progress => 9;
+        public override string SpecialUnLock => "PsiComputer";
+    }
 }

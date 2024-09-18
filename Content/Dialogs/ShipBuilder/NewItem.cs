@@ -3,7 +3,7 @@ using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
 
-namespace StellarisShips.Content.Dialogs
+namespace StellarisShips.Content.Dialogs.ShipBuilder
 {
     public class NewItem : BaseDialog
     {

@@ -82,6 +82,76 @@ Items: {
 		DisplayName: 灵能档案
 		Tooltip: 一份泽珞灵能水晶档案，其中包含了虚境的奥秘。或许可以使用它与虚境沟通。
 	}
+
+	Aggro_Icon: {
+		DisplayName: 仇恨
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Armor_Icon: {
+		DisplayName: 护甲
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Cloak_Icon: {
+		DisplayName: 隐形强度
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Cost_Icon: {
+		DisplayName: 造价
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Damage_Icon: {
+		DisplayName: 伤害
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Detect_Icon: {
+		DisplayName: 探测范围
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Evasion_Icon: {
+		DisplayName: 闪避
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Hull_Icon: {
+		DisplayName: 船体
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	HullRegen_Icon: {
+		DisplayName: 船体再生
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Power_Icon: {
+		DisplayName: 能源
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Shield_Icon: {
+		DisplayName: 护盾
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	ShieldRegen_Icon: {
+		DisplayName: 护盾充能
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Special_Icon: {
+		DisplayName: 特殊
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Speed_Icon: {
+		DisplayName: 航速
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
 }
 
 NPCs: {
@@ -131,5 +201,10 @@ Buffs: {
 	BattleStatBuff: {
 		DisplayName: 战斗数据
 		Description: ""
+	}
+
+	ShroudBuff: {
+		// DisplayName: Shroud Buff
+		// Description: Mods.StellarisShips.Buffs.ShroudBuff.Description
 	}
 }

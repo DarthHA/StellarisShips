@@ -133,18 +133,21 @@ Name: {
 	B_Shield_4: 小型先进护盾
 	B_Shield_5: 小型高能护盾
 	B_Shield_6: 小型暗物质偏导护盾
+	B_Shield_7: 小型灵能护盾
 	C_Shield_1: 中型偏射盾
 	C_Shield_2: 中型改良偏射盾
 	C_Shield_3: 中型护盾
 	C_Shield_4: 中型先进护盾
 	C_Shield_5: 中型高能护盾
 	C_Shield_6: 中型暗物质偏导护盾
+	C_Shield_7: 中型灵能护盾
 	D_Shield_1: 大型偏射盾
 	D_Shield_2: 大型改良偏射盾
 	D_Shield_3: 大型护盾
 	D_Shield_4: 大型先进护盾
 	D_Shield_5: 大型高能护盾
 	D_Shield_6: 大型暗物质偏导护盾
+	D_Shield_7: 大型灵能护盾
 	B_ArchShield_1: 小型远古延留力场
 	C_ArchShield_1: 中型远古延留力场
 	D_ArchShield_1: 大型远古延留力场
@@ -167,6 +170,7 @@ Name: {
 	A_Cloak_2: 先进隐形场发生器
 	A_Cloak_3: 精英隐形场发生器
 	A_Cloak_4: 暗物质隐形场发生器
+	A_Cloak_5: 灵能相位场发生器
 	//核心配件
 	E_Reactor_1: 裂变反应堆
 	E_Reactor_2: 聚变反应堆
@@ -179,6 +183,7 @@ Name: {
 	K_FTLDrive_3: 超空间引擎II
 	K_FTLDrive_4: 超空间引擎III
 	K_FTLDrive_5: 跃迁引擎
+	K_FTLDrive_6: 灵能跃迁引擎
 	I_Sensor_1: 雷达系统
 	I_Sensor_2: 重力传感器
 	I_Sensor_3: 亚空间传感器
@@ -192,26 +197,32 @@ Name: {
 	J_ComputerSwarm_2: 作战电脑(蜂拥)
 	J_ComputerSwarm_3: 先进作战电脑(蜂拥)
 	J_ComputerSwarm_4: 智慧作战电脑(蜂拥)
+	J_ComputerSwarm_5: 预知接口(蜂拥)
 	J_ComputerBomber_1: 基础作战电脑(鱼雷)
 	J_ComputerBomber_2: 作战电脑(鱼雷)
 	J_ComputerBomber_3: 先进作战电脑(鱼雷)
 	J_ComputerBomber_4: 智慧作战电脑(鱼雷)
+	J_ComputerBomber_5: 预知接口(鱼雷)
 	J_ComputerPicket_1: 基础作战电脑(哨戒)
 	J_ComputerPicket_2: 作战电脑(哨戒)
 	J_ComputerPicket_3: 先进作战电脑(哨戒)
 	J_ComputerPicket_4: 智慧作战电脑(哨戒)
+	J_ComputerPicket_5: 预知接口(哨戒)
 	J_ComputerLine_1: 基础作战电脑(线列)
 	J_ComputerLine_2: 作战电脑(线列)
 	J_ComputerLine_3: 先进作战电脑(线列)
 	J_ComputerLine_4: 智慧作战电脑(线列)
+	J_ComputerLine_5: 预知接口(线列)
 	J_ComputerArtillery_1: 基础作战电脑(炮击)
 	J_ComputerArtillery_2: 作战电脑(炮击)
 	J_ComputerArtillery_3: 先进作战电脑(炮击)
 	J_ComputerArtillery_4: 智慧作战电脑(炮击)
+	J_ComputerArtillery_5: 预知接口(炮击)
 	J_ComputerCarrier_1: 基础作战电脑(航母)
 	J_ComputerCarrier_2: 作战电脑(航母)
 	J_ComputerCarrier_3: 先进作战电脑(航母)
 	J_ComputerCarrier_4: 智慧作战电脑(航母)
+	J_ComputerCarrier_5: 预知接口(航母)
 	O_NoAura_1: 无
 	O_QuantumDestabilizer_1: 量子去稳器
 	O_ShieldDampener_1: 护盾挡板

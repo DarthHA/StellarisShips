@@ -36,7 +36,7 @@ namespace StellarisShips.System
         /// <summary>
         /// 舰队光环效果
         /// </summary>
-        public static List<string> AuraType = new();
+        public static Dictionary<string,float> GlobalEffects = new();
 
         //一排的舰船最多数
         private const int CorvetteLine = 12;
@@ -47,7 +47,13 @@ namespace StellarisShips.System
 
         public override void PreUpdateEntities()
         {
-            AuraType.Clear();
+            GlobalEffects.Clear();
+
+            if (Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs != "")
+            {
+                GlobalEffects.Add(Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs, 1);
+            }
+
             foreach (NPC ship in Main.ActiveNPCs)
             {
                 if (ship.ShipActive())
@@ -58,12 +64,12 @@ namespace StellarisShips.System
                         {
                             if (ship.GetShipNPC().shipAI == ShipAI.Attack)
                             {
-                                AuraType.Add(ship.GetShipNPC().AuraType);
+                                GlobalEffects.Add(ship.GetShipNPC().AuraType, 1);
                             }
                         }
                         else
                         {
-                            AuraType.Add(ship.GetShipNPC().AuraType);
+                            GlobalEffects.Add(ship.GetShipNPC().AuraType, 1);
                         }
                     }
                 }
