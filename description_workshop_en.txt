@@ -1,0 +1,13 @@
+﻿This mod adds ships and weapons from the strategy game "Stellaris", and it's quite op.
+Mod progress:
+After defeating the Eye of Cthulhu, a space communicator will definitely drop. After using it, you can contact the Modifiers Association and spend coins to commission them to customize ships.
+Ships are independent units with similar behaviors to summons, but they will attract enemy hatred when attacking, and also have attributes such as life.
+Ships have sections and parts. Different sections can carry different parts. Parts can improve the properties of ships and provide new weapons and features.
+Note that ships are bound to the world, which means that the same player will not be able to take ships away when switching worlds.
+The upper limit of ships is limited, and the upper limit will increase with the progress of the game.
+When a certain progress is reached, new ship types and parts will be unlocked.
+As for the rest, it is recommended to explore it yourself.
+
+Sprite and sound assets are from Stellaris.
+Multiplayer games are not supported.
+No English translation yet, and the description is machine translated.
