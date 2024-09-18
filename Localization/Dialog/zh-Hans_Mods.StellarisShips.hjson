@@ -14,6 +14,7 @@ DialogOption: {
 	Hello: 祝我们合作愉快！
 	Nice: 太好了
 	Try: 那就试试吧
+	Exit: 离开
 }
 
 DialogText: {

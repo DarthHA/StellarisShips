@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using StellarisShips.Content.NPCs;
 using StellarisShips.Static;
 using StellarisShips.System;
 using System;
@@ -22,7 +21,14 @@ internal static class TargetSelectHelper
         float r2 = (float)Math.Sqrt(npc2.width * npc2.width + npc2.height * npc2.height) / 2f;
         if (npc1.damage == 0 && npc2.damage == 0)        //无碰撞伤害时就转小圈
         {
-            r1 = r2 = 0;
+            if (!npc1.ShipActive())
+            {
+                r1 = 0;
+            }
+            if (!npc2.ShipActive())
+            {
+                r2 = 0;
+            }
         }
         float result = npc1.Distance(npc2.Center) - r1 - r2;
         if (result < 1) result = 1;
@@ -232,9 +238,9 @@ internal static class TargetSelectHelper
         }
 
         bool HasOnlyMainTarget = true;
-        foreach(int sam in sampler)
+        foreach (int sam in sampler)
         {
-            if(!SelectTargets.Contains(sam))
+            if (!SelectTargets.Contains(sam))
             {
                 HasOnlyMainTarget = false;
                 break;
@@ -250,7 +256,7 @@ internal static class TargetSelectHelper
             return sampler2;
         }
 
-        foreach(int shouldRemove in SelectTargets)            //移除主目标
+        foreach (int shouldRemove in SelectTargets)            //移除主目标
         {
             sampler.Remove(shouldRemove);
         }
@@ -278,7 +284,7 @@ internal static class TargetSelectHelper
     /// <returns></returns>
     public static int GetClosestTargetWithWidthForStriker(this NPC ship)
     {
-        Vector2 DetectCenter = ShapeSystem.Following ? Main.LocalPlayer.Center : ShapeSystem.TipPos;
+        Vector2 DetectCenter = FleetSystem.Following ? Main.LocalPlayer.Center : FleetSystem.TipPos;
         Vector2 CompareCenter = ship.Center;
 
         List<int> sampler = new();

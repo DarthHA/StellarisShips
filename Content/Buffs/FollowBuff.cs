@@ -34,7 +34,7 @@ namespace StellarisShips.Content.Buffs
                 drawParams.DrawColor = Color.Orange;
             }
 
-            if (ShapeSystem.Following)
+            if (FleetSystem.Following)
             {
                 drawParams.Texture = ModContent.Request<Texture2D>("StellarisShips/Content/Buffs/Follow1", AssetRequestMode.ImmediateLoad).Value;
             }
@@ -47,14 +47,14 @@ namespace StellarisShips.Content.Buffs
 
         public override bool RightClick(int buffIndex)
         {
-            ShapeSystem.Following = !ShapeSystem.Following;
+            FleetSystem.Following = !FleetSystem.Following;
             SomeUtils.PlaySound(SoundPath.UI + "Click");
             return false;
         }
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
         {
-            if (ShapeSystem.Following)
+            if (FleetSystem.Following)
             {
                 rare = ItemRarityID.Cyan;
                 buffName = Language.GetTextValue("Mods.StellarisShips.BuffExtraDesc.Follow1Name");

@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.Components.Weapons;
+using StellarisShips.Static;
 using System;
 using Terraria;
 
@@ -43,9 +44,24 @@ namespace StellarisShips.System.BaseType
             }
         }
 
-        public int AttackCD => (int)((EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).AttackCD / AttackCDBonus);
-
-        public float Crit => (EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).Crit + CritBonus;
+        public int AttackCD
+        {
+            get
+            {
+                float AuraBonus = FleetSystem.AuraType.Contains(AuraID.InspiringPresence) ? 0.1f : 0f;   //振奋人心，并且P槽和H槽不吃攻速
+                if (EverythingLibrary.Components[ComponentName].EquipType == ComponentTypes.Weapon_H || EverythingLibrary.Components[ComponentName].EquipType == ComponentTypes.Weapon_P)
+                    AuraBonus = 0f;
+                return (int)((EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).AttackCD / (AttackCDBonus + AuraBonus));
+            }
+        }
+        public float Crit
+        {
+            get
+            {
+                float AuraBonus = FleetSystem.AuraType.Contains(AuraID.TargetingGrid) ? 10f : 0f;      //目标网格
+                return (EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).Crit + CritBonus + AuraBonus;
+            }
+        }
 
         public float MinRange => (EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).MinRange;
 

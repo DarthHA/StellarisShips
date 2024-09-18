@@ -80,11 +80,11 @@ namespace StellarisShips.Content.WeaponUnits
                     if (CurrentCooldown <= 0)
                     {
                         CurrentCooldown = AttackCD * (0.8f + 0.4f * Main.rand.NextFloat());
-
                     }
                 }
                 else
                 {
+                    Rotation = (Main.npc[shipNPC.CurrentTarget].Center - shipNPC.GetPosOnShip(RelativePos)).ToRotation();
                     if (CurrentCooldown > 21)
                     {
                     }

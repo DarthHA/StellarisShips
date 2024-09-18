@@ -42,8 +42,11 @@ namespace StellarisShips.Content.WeaponUnits
                     if (CurrentCooldown <= 0)
                     {
                         int damage = RandomDamage;
+                        float distanceFactor = 2f - Main.npc[target].DistanceWithWidth(ship) / (MaxRange + ship.Size.Distance(Vector2.Zero) / 2f);
+                        if (distanceFactor < 1f) distanceFactor = 1;
+                        damage = (int)(damage * distanceFactor);
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
-                        DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 1f);
+                        DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0.5f);
                         CurrentCooldown = AttackCD * (0.8f + 0.4f * Main.rand.NextFloat());
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "AutoCannon", 3, shipNPC.GetPosOnShip(RelativePos));
                     }
@@ -67,6 +70,7 @@ namespace StellarisShips.Content.WeaponUnits
                 }
                 else
                 {
+                    Rotation = (Main.npc[shipNPC.CurrentTarget].Center - shipNPC.GetPosOnShip(RelativePos)).ToRotation();
                     TargetPos = null;
                 }
             }
@@ -120,7 +124,7 @@ namespace StellarisShips.Content.WeaponUnits
                     for (int i = 0; i < (int)(dist / 5f); i++)       //400,10,5,200
                     {
                         int MaxDevide = 40;
-                        int progress = i - AttackTimer + t * MaxDevide / num;
+                        int progress = i - AttackTimer * 2 + t * MaxDevide / num;
                         while (progress < 0) progress += MaxDevide;
                         while (progress >= MaxDevide) progress -= MaxDevide;
                         Vector2 DrawPos = SelfPos + UnitX * 5f * i + OffSet - screenPos;

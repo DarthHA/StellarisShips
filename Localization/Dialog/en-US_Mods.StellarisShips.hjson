@@ -1,189 +1,191 @@
 DialogOption: {
-	WantBuild: 我想要建造舰船
-	WantGraph: 我想要购买舰船图纸
-	WantModify: 我想要改装舰船
-	WantRepair: 我想要维修舰船
-	WantSell: 我想要拆解舰船
-	Bye: 再会了
-	OK: 成交！
-	ReChoose: 我想选其他的
-	Return: 我想问问其他服务...
-	BuyGraph: 成交！
-	SellShip1: 我想要拆解该图纸的舰船
-	SellShip2: 我想要拆解所有舰船
-	Hello: 祝我们合作愉快！
-	Nice: 太好了
-	Try: 那就试试吧
+	WantBuild: I want to build a ship
+	WantGraph: I want to buy Blueprints
+	WantModify: I want to modify my ship
+	WantRepair: I want to repair my ship
+	WantSell: I want to scrap my ship
+	Bye: Goodbye
+	OK: Make a deal!
+	ReChoose: I want to choose another
+	Return: About your other services...
+	BuyGraph: Make a deal!
+	SellShip1: I want to scrap the ship of this Blueprint
+	SellShip2: I want to scrap all my ship
+	Hello: Wish us a pleasant cooperation!
+	Nice: Very good
+	Try: Let's have a try
+	Exit: Exit
 }
 
 DialogText: {
 	//第一次接触
 	FirstContract0:
 		'''
-		太神奇了！这是这个频段三十年来头一次收到信号。
-		 很高兴与您相识！我谨代表改造家联合会，欢迎您联络鄙邦简陋的星际工坊。诶呀…我在哪儿都能认出龙骨上的那些东西——制作的很精致。我们有着跟踪星系中飞船设计的习惯，试着同当地风潮保持一致。不过我刚刚讲到哪儿…？
-		 啊，对了：欢迎您！请问我们要如何满足您对舰船的需求？
+		Amazing! This is the first time this frequency has received a signal in thirty years.
+		Nice to meet you! On behalf of the Modifiers Association, I welcome you to our humble Star Workshop. Ouch… I'd recognize those things on the keel anywhere - very well made. We have a habit of tracking ship designs in the galaxy, trying to keep up with local trends. But where was I…?
+		Ah, yes: welcome! How can we meet your ship needs?
 		'''
 	FirstContract1:
 		'''
-		太神奇了！这是这个频段三十年来头一次收到信号。
-		您好，您好！我谨代表改造家联合会，欢迎您莅临鄙邦的星际工坊。不论船体、引擎、蓝图还是配件：我们都有存货。我可不是开玩笑——人们在老旧飞船里扔下的东西会让你大吃一惊的。最近我刚从布洛葛入了一套完整的厨房单元，用黄金铸成的。爽到。
-		扯远了，请问我们要如何满足您对舰船的需求？
+		Amazing! This is the first time this frequency has received a signal in thirty years.
+		Hello, hello! On behalf of the Modifiers Association, I welcome you to my country's interstellar workshop. Hulls, engines, blueprints, and accessories: we have them all in stock. I'm not kidding - you'd be amazed at what people throw away in old ships. I just bought a complete kitchen unit from Blogger, made of gold. It's awesome.
+		But that's too much of a tangent. How can we meet your ship needs?
 		'''
 	FirstContract2:
 		'''
-		太神奇了！这是这个频段三十年来头一次收到信号。
-		您好，您好！我谨代表改造家联合会，欢迎您莅临鄙邦的星际工坊。大批专职工程师已经就绪，准备好维修、重建或是拆建几乎任何他们可以用工具鼓捣的东西。您会发觉我们对贸易的激情可谓永无止境。
-		请问今天我们要如何满足您对舰船的需求？
+		Amazing! This is the first time this frequency has received a signal in thirty years.
+		Hello, hello! On behalf of the Modifiers Association, I welcome you to our interstellar workshop. A large number of dedicated engineers are ready to repair, rebuild or dismantle almost anything they can tinker with. You will find that our passion for trade is endless.
+		How can we meet your ship needs today?
 		'''
 	//日常闲聊
 	NormalChat0:
 		'''
-		很高兴又见面了，我们这里可是忙的很。
-		您最近的各种事务处理的还好吗？我敢说我们现在还是一如既往的喧闹。
-		空闲的手在处理过时的舰船这方面可是很有一套。
+		Good to see you again, we're busy here.
+		How are you handling your affairs lately? I dare say we are still as noisy as ever.
+		Idle hands are very good at dealing with obsolete ships.
 		'''
 	NormalChat1:
 		'''
-		您好！我们今天又该怎样满足你们的工程需求呢？
-		呃，你们船身钢板上安装的玩意儿挺有意思，它们用起来效果如何？
+		Hello! How can we meet your engineering needs today?
+		Uh, those things you have installed on the hull plates are pretty interesting, how do they work?
 		'''
 	NormalChat2:
 		'''
-		欢迎回来！嘿，来看看这些崭新丝滑的引擎怎么样吧！我真诚希望我们能对您维护舰船的方式做一些微小的贡献；它们会为此感谢您的。
-		那么我们如何为您效劳？
+		Welcome back! Hey, come check out those shiny new engines! I sincerely hope we can make a small contribution to the way you maintain your ships; they'll thank you for it.
+		So how can we help you?
 		'''
 	NormalChat3:
 		'''
-		你好啊！别介意……只是在对这个工业级的全息发射器进行一些修修补补。这些，非常令人捉迷的装置。这可是我的拿手项目，研究这玩意究竟能够投影一个多大的全息图像。这甚至不及你将其投影到太空中的一半困难，看见没。
-		啊，我一开口能跑火车好几年呢。我该如何为你效劳？
+		Hello! Never mind... just tinkering with this industrial holographic projector. These, very fascinating devices. This is my specialty, figuring out how big a holographic image this thing can project. It's not even half as hard as projecting it into space, see.
+		Ah, I could talk for years. How can I help you?
 		'''
 	SelectShipBuild:
 		'''
-		当然了！我们的服务一向直接明了：
-		只要您手持图纸，我们就可以读取其中的信息，然后完美地制造出来。
+		Of course! Our service is always straightforward:
+		Just need to hold the Blueprint, we can read the information and manufacture it perfectly.
 		'''
 	CheckBuildValue:
 		'''
-		等一会儿...根据我们的扫描仪，
-		您的[c/ffd700:{0}]处于可选范围之内。
-		预计造价为{1},
-		需要{2}舰容。
-		只要您同意，我们就立刻开工。
-		注：剩余舰队容量不足时将无法建造。
+		Wait a moment... According to our scanner,
+		your {0} is within the available range.
+		The estimated cost is {1},
+		and it requires {2} Fleet Capacity.
+		As long as you agree, we will start construction immediately.
+		Note: It cannot be built if the remaining Fleet Capacity is insufficient.
 		'''
 	BuildSuccess:
 		'''
-		棒极了！一艘[c/ffd700:{0}]已经投送至您所在的区域。
-		您还要其他舰船吗？要知道每艘我们的舰船在出售后都享受钢铁三包!。
-		造价:{1}
-		注：剩余舰队容量不足时将无法建造。
+		Excellent! A {0} has been delivered to your area.
+		Do you want other ships? Know that every ship we sell comes with our Durasteel Guarantee!
+		Cost: {1}
+		Note: It cannot be built if the remaining Fleet Capacity is insufficient.
 		'''
 	SellGraph:
 		'''
-		当然了！我们特制的全息图纸内置的程序可以帮您省去复杂的工程调参环节，帮助您更快的上手设计,
-		只需要{0}。
-		您要买一份吗？
+		Of course! The built-in program of our specially made Blueprint can help you save the complicated engineering parameter adjustment process and help you get started with design faster.
+		It only costs {0}.
+		Do you want to buy one?
 		'''
 	SellGraphSuccess:
 		'''
-		棒极了！一份图纸马上就到。
-		您还要来一张吗？只需要{0}。
+		Great! A Blueprint is coming soon.
+		Would you like another one? It only takes {0}.
 		'''
 	SelectShipModify:
 		'''
-		当然！我们的技术人员一直在努力工作，制定雄心勃勃的新工作计划。
-		只要您手持所需图纸，我们就可以读取其中的信息，然后扫描相同设计图的船只并改装。
-		只收取两设计的差价。
+		Of course! Our technicians are working hard to develop an ambitious new work plan.
+		As long as you hold the required Blueprints, we can read the information in them, scan ships of the same design and modify it.
+		Only the difference between the two designs will be charged.
 		'''
-	NoShipModify: 很抱歉，我们的扫描仪空空如也...您现在没有可以改装的舰船。
+	NoShipModify: We're sorry, but our scanners are coming up empty... You have no ships to modify right now.
 	CheckModifyValue:
 		'''
-		等一会儿...根据我们的扫描仪，
-		您的[c/ffd700:{0}]处于可选范围之内，
-		现在有{1}艘同设计舰船可以改装。
-		预计造价为{2}。
-		只要您同意，我们就立刻开工。
+		Wait a moment... According to our scanner,
+		your {0} is within the available range,
+		and there are now {1} ships of the same design that can be modified.
+		The estimated cost is {2}.
+		As long as you agree, we will start work immediately.
 		'''
 	ModifySuccess:
 		'''
-		棒极了！所有舰船已被改装完成并投送至您所在的区域。在船坞中翻新后，我们相信这些船只肯定开的比原装出厂时还舒服。
-		您还要其他服务吗？
+		Excellent! All ships have been modified and delivered to your area. After refurbishment in the shipyard, we believe that these ships will be more comfortable to drive than when they left the factory.
+		Do you need any other services?
 		'''
 	SelectShipSell:
 		'''
-		太棒了！真的很高兴能从您的手里接下这差事。
-		您可以手持所需图纸，让我们扫描相同设计图的舰船并拆解，或者可以让我们一次性拆解所有舰船，来给新船腾空间。
-		我们将会返还每艘舰船的基础费用。
+		Great! Really glad to take this job from you.
+		You can either have us scan the ships with the same Blueprints on your hand and scrap them, or we can scrap ALL the ships at once to make room for your new ships.
+		We will refund the hull cost of each ship.
 		'''
-	NoShipSell: 很抱歉，我们的扫描仪空空如也...您现在没有可以拆解的舰船。
+	NoShipSell: We're sorry, but our scanners are coming up empty... You have no ships to scrap right now.
 	CheckSellValue:
 		'''
-		等一会儿...根据我们的扫描仪，
-		您的[c/ffd700:{0}]处于可选范围之内，
-		现在有{1}艘同设计舰船可以拆解。
-		预计可以获得{2}。
-		只要您同意，我们就立刻开工。
+		Wait a moment... According to our scanner,
+		your {0} is within the available range,
+		and there are now {1} ships of the same design that can be modified.
+		It is expected that {2} can be obtained.
+		As long as you agree, we will start work immediately.
 		'''
 	CheckSellValueAll:
 		'''
-		等一会儿...根据我们的扫描仪，你总共有{0}艘舰船可以拆解，
-		预计可以获得{1}。
-		只要您同意，我们就立刻开工。
+		Wait a moment.... According to our scanner,
+		you have a total of {0} ships that can be scrapped.
+		It is expected that {1} can be obtained.
+		As long as you agree, we will start work immediately.
 		'''
 	SellSuccess:
 		'''
-		棒极了！应拆解的舰船已经被回收，钱马上就到。
-		总共{0}。
-		您还要其他服务吗？
+		Excellent! The ship that should have been scrapped has been recovered and the money will be received soon.
+		Total {0}.
+		Do you want any other services?
 		'''
 	CheckRepairValue:
 		'''
-		不论什么样的破船进到我们这来，我们都会尽全力使其焕发活力！
-		您目前总共有{0}艘舰船，维修费为每艘舰船基础费用的百分比，
-		总共预计{1}。
-		只要您同意，我们就立刻开工。
+		No matter what kind of broken ship comes to us, we will do our best to make it revitalized!
+		You currently have a total of {0} ships, and the repair cost is a percentage of the hull cost of each ship,
+		The total estimated is {1}.
+		As long as you agree, we will start work immediately.
 		'''
-	NoShipRepair: 您的船就像刚出厂一样崭新，没有需要维修的。
+	NoShipRepair: Your ships are as good as new from the factory with no repairs required.
 	RepairSuccess:
 		'''
-		棒极了！所有舰船已经维修完毕，它们现在又焕然一新了。
-		您还要其他服务吗？
+		Excellent! All ships have been repaired and are now in great shape.
+		Do you need any other services?
 		'''
 	NewTech:
 		'''
-		再次向你致敬！我们会向最信任的客户们提供最高级的服务。简而言之，这次我们从沃尔人那里淘来了不少武器和设备的残骸，太空中的生活是残酷的，有些事情不可避免。
-		……请原谅我的遐思。毫无疑问，那是我们能提供的服务。
-		[c/ffd700:新的配件已解锁]
+		Once again, I salute you! We will provide the highest level of service to our most trusted customers. In short, this time we found a lot of wreckage of weapons and equipment from the Vols. Life in space is cruel, and some things are inevitable.
+		... Please forgive my reverie. There is no doubt that it is the service we can provide.
+		New components have been unlocked.
 		'''
 	NewShip:
 		'''
-		再次向你致敬！我们向最信任的客户们提供最高级的服务。简而言之，这次我们从戈提坎打捞来了一些更大的旧船，翻新可让我们忙活了好一阵子。
-		我们会向您开放第一手的设计权限。
-		所以，听上去怎么样？这样的服务还合您的意吗？
-		[c/ffd700:新的舰船已解锁]
-		[c/ffd700:新的配件已解锁]
+		Once again, we offer the highest level of service to our most trusted customers. In short, we salvaged some larger old ships from Gotikan this time, and the renovations will keep us busy for a while.
+		We will give you first-hand design access.
+		So, how does it sound? Is this service still suitable for you?
+		New ships have been unlocked.
+		New components have been unlocked.
 		'''
 	NewCP:
 		'''
-		再次向你致敬！我们向最信任的客户们提供最高级的服务。简而言之，在洛克工会同行的帮助下，我们扩张了工坊的空间，现在我们能够维护更多的舰船。
-		我们将非常乐意和您分享一些空间，毕竟我们的生意可是受您照顾有加。
-		[c/ffd700:舰队容量已扩张]
-		[c/ffd700:新的配件已解锁]
+		Once again, we offer the highest level of service to our most trusted customers. In short, with the help of our colleagues in the Locke Guild, we have expanded the space of the workshop and are now able to maintain more ships.
+		We will be happy to share some space with you, after all, our business is well taken care of by you.
+		Fleet Capacity has been expanded.
+		New components have been unlocked.
 		'''
 	AddMRTech1:
 		'''
-		再次向你致敬！……星辰在上，那是誊录仪？！
-		我听策展人说过，这个遗珍能够复制至今无法逆向工程的稀有文物，
-		如果您能把它借给我们，或许可以复现一些仅存在于博物馆中的武器和配件。
-		我们会用研究得到的任何材料和工程知识来补偿您。
-		[c/ffd700:失去誊录仪]
+		Once again, I salute you! …By the stars, that's the Rubricator?!
+		I heard from the Curator that this relic can reproduce Minor Artifacts that have not been reverse engineered to this day.
+		If you can lend it to us, we may be able to reproduce some weapons and components that only exist in museums.
+		We will compensate you with any materials and engineering knowledge we can obtain from our research.
+		Lost Rubricator
 		'''
 	AddMRTech2:
 		'''
-		太神奇了！在策展人的帮助下，我们弄清楚了誊录仪的工作机制。
-		只要有能源，誊录仪能够无限制的复制稀有文物，可惜它能复制出的总量是有限的。
-		你有什么想法？准备好升级您的舰船了吗？
-		[c/ffd700:新的配件已解锁]
+		Amazing! With the help of the Curator, we figured out how the Rubricator works.
+		As long as there is power, the Rubricator can copy Minor Artifacts indefinitely, but the total amount it can copy is limited.
+		What do you think? Are you ready to upgrade your ship?
+		New components have been unlocked.
 		'''
 }

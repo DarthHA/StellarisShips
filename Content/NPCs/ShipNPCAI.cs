@@ -58,9 +58,9 @@ namespace StellarisShips.Content.NPCs
             if (shipAI == ShipAI.Default)
             {
                 NPC.velocity *= 0.8f;
-                NPC.rotation = SmoothRotation(NPC.rotation, ShapeSystem.TipRotation, BaseSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, FleetSystem.TipRotation, BaseSpeed / 100f);
 
-                if (CurrentTarget != -1 && !ShapeSystem.Passive)
+                if (CurrentTarget != -1 && !FleetSystem.Passive)
                 {
                     shipAI = ShipAI.Attack;
                 }
@@ -87,7 +87,7 @@ namespace StellarisShips.Content.NPCs
                     NPC.velocity *= 0.8f;
                 }
 
-                if (CurrentTarget != -1 && !ShapeSystem.Passive)
+                if (CurrentTarget != -1 && !FleetSystem.Passive)
                 {
                     shipAI = ShipAI.Attack;
                 }
@@ -105,7 +105,7 @@ namespace StellarisShips.Content.NPCs
             }
             else if (shipAI == ShipAI.Attack)
             {
-                if (ShapeSystem.Passive && SomeUtils.AnyBosses())//紧急脱离
+                if (FleetSystem.Passive && SomeUtils.AnyBosses())//紧急脱离
                 {
                     shipAI = ShipAI.Missing;
                     MissingTimer = CalcMissingTime();
@@ -152,7 +152,7 @@ namespace StellarisShips.Content.NPCs
             else if (shipAI == ShipAI.MoveInShape)       //列队行进
             {
                 float MoveVec = (ShapePos - NPC.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, ShapeSystem.LowestSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, FleetSystem.LowestSpeed / 100f);
                 if (ShapePos.Distance(NPC.Center) > 4000 && FTLLevel > 1)
                 {
                     float dist = 750 + (5 - FTLLevel) * 400;
@@ -161,21 +161,21 @@ namespace StellarisShips.Content.NPCs
 
                 if (CalcDifference(NPC.rotation, MoveVec) < MathHelper.Pi / 32f)
                 {
-                    NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + ShapeSystem.LowestSpeed / 120f, 0, ShapeSystem.LowestSpeed);
+                    NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + FleetSystem.LowestSpeed / 120f, 0, FleetSystem.LowestSpeed);
                 }
                 else
                 {
                     NPC.velocity *= 0.8f;
                 }
-                if (CurrentTarget != -1 && !ShapeSystem.Passive)
+                if (CurrentTarget != -1 && !FleetSystem.Passive)
                 {
                     shipAI = ShipAI.Attack;
                 }
-                else if (NPC.Distance(ShapePos) <= ShapeSystem.LowestSpeed)
+                else if (NPC.Distance(ShapePos) <= FleetSystem.LowestSpeed)
                 {
-                    if (NPC.velocity.Length() > ShapeSystem.LowestSpeed / 3)
+                    if (NPC.velocity.Length() > FleetSystem.LowestSpeed / 3)
                     {
-                        NPC.velocity = Vector2.Normalize(NPC.velocity) * ShapeSystem.LowestSpeed / 3;
+                        NPC.velocity = Vector2.Normalize(NPC.velocity) * FleetSystem.LowestSpeed / 3;
                     }
                     if (NPC.Distance(ShapePos) <= 10)
                     {
@@ -413,12 +413,12 @@ namespace StellarisShips.Content.NPCs
 
         public void SelectTarget()
         {
-            if (ShapeSystem.Passive || shipAI == ShipAI.Missing)
+            if (FleetSystem.Passive || shipAI == ShipAI.Missing)
             {
                 CurrentTarget = -1;
                 return;
             }
-            Vector2 Center = ShapeSystem.Following ? Main.LocalPlayer.Center : ShapeSystem.TipPos;
+            Vector2 Center = FleetSystem.Following ? Main.LocalPlayer.Center : FleetSystem.TipPos;
             if (Main.LocalPlayer.MinionAttackTargetNPC >= 0 && Main.LocalPlayer.MinionAttackTargetNPC < 200)
             {
                 CurrentTarget = Main.LocalPlayer.MinionAttackTargetNPC;

@@ -1,15 +1,13 @@
 ﻿using StellarisShips.Content.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StellarisShips.System;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using StellarisShips.System;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace StellarisShips.Content.NPCs
 {
@@ -32,7 +30,7 @@ namespace StellarisShips.Content.NPCs
 
         public class DropRubricator : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) 
+            public bool CanDrop(DropAttemptInfo info)
             {
                 return !info.IsInSimulation && ProgressHelper.DiscoveredMR == 0 && NPC.downedMoonlord;
             }

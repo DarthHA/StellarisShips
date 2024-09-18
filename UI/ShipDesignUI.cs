@@ -104,7 +104,7 @@ namespace StellarisShips.UI
             {
                 if (EverythingLibrary.Ships[ship].CanUnlock())
                 {
-                    itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 60 + index * 60), EverythingLibrary.Ships[ship].GetIcon(), ship, EverythingLibrary.Ships[ship].GetLocalizedName(), EverythingLibrary.Ships[ship].GetLocalizedDescription()));
+                    itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 45 + index * 60), EverythingLibrary.Ships[ship].GetIcon(), ship, EverythingLibrary.Ships[ship].GetLocalizedName(), EverythingLibrary.Ships[ship].GetLocalizedDescription()));
                     index++;
                 }
             }
@@ -152,6 +152,10 @@ namespace StellarisShips.UI
             coreComponentButtons.Add(new ItemSlotButton(TopLeft2 + new Vector2(0, 120), ComponentTypes.Thruster, graph.CoreComponent[2]));
             coreComponentButtons.Add(new ItemSlotButton(TopLeft2 + new Vector2(0, 180), ComponentTypes.Sensor, graph.CoreComponent[3]));
             coreComponentButtons.Add(new ItemSlotButton(TopLeft2 + new Vector2(0, 240), ComponentTypes.Computer, graph.CoreComponent[4]));
+            if (EverythingLibrary.Ships[graph.ShipType].HasAura)
+            {
+                coreComponentButtons.Add(new ItemSlotButton(TopLeft2 + new Vector2(0, 300), ComponentTypes.Aura, graph.CoreComponent[5]));
+            }
 
             StatString = CalcShipStat();
         }
@@ -205,7 +209,10 @@ namespace StellarisShips.UI
                 coreComponentButtons.Add(new ItemSlotButton(TopLeft2 + new Vector2(0, 120), ComponentTypes.Thruster, LibraryHelpers.FindMaxLevelComponent("", ComponentTypes.Thruster, true)));
                 coreComponentButtons.Add(new ItemSlotButton(TopLeft2 + new Vector2(0, 180), ComponentTypes.Sensor, LibraryHelpers.FindMaxLevelComponent("", ComponentTypes.Sensor, true)));
                 coreComponentButtons.Add(new ItemSlotButton(TopLeft2 + new Vector2(0, 240), ComponentTypes.Computer, LibraryHelpers.FindMaxLevelComponent(EverythingLibrary.Ships[shipType].InitialComputer, ComponentTypes.Computer, true)));
-
+                if (EverythingLibrary.Ships[shipType].HasAura)
+                {
+                    coreComponentButtons.Add(new ItemSlotButton(TopLeft2 + new Vector2(0, 300), ComponentTypes.Aura, "O_NoAura_1"));
+                }
                 StatString = CalcShipStat();
             }
         }
@@ -284,16 +291,15 @@ namespace StellarisShips.UI
                         {
                             if ((Click1 as ItemSlotButton).EquipType != ComponentTypes.Computer)
                             {
-                                itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 60) + new Vector2(0, index * 60), component.GetIcon(), component.InternalName, component.GetLocalizedName(), component.GetLocalizedDescription()));
+                                itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 45) + new Vector2(0, index * 60), component.GetIcon(), component.InternalName, component.GetLocalizedName(), component.GetLocalizedDescription()));
                                 itemSelectButtons[index].AppendText = component.ExtraInfo;
                                 index++;
                             }
                             else if (EverythingLibrary.Ships[shipType].CanUseComputer.Contains(component.TypeName))
                             {
-                                itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 60) + new Vector2(0, index * 60), component.GetIcon(), component.InternalName, component.GetLocalizedName(), component.GetLocalizedDescription()));
+                                itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 45) + new Vector2(0, index * 60), component.GetIcon(), component.InternalName, component.GetLocalizedName(), component.GetLocalizedDescription()));
                                 itemSelectButtons[index].AppendText = component.ExtraInfo;
                                 index++;
-
                             }
                         }
                     }
@@ -316,7 +322,7 @@ namespace StellarisShips.UI
                     {
                         if (EverythingLibrary.Ships[shipType].CanUseSections[SectionIndex].Contains(section.InternalName))
                         {
-                            itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 60) + new Vector2(0, index * 60), section.GetIcon(), section.InternalName, section.GetLocalizedName(), ""));
+                            itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 45) + new Vector2(0, index * 60), section.GetIcon(), section.InternalName, section.GetLocalizedName(), ""));
                             itemSelectButtons[index].AppendText = section.ExtraInfo;
                             index++;
                         }
@@ -409,7 +415,7 @@ namespace StellarisShips.UI
                         int index = 0;
                         foreach (BaseComponent component in groups)
                         {
-                            itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 60) + new Vector2(0, index * 60), component.GetIcon(), component.InternalName, component.GetLocalizedName(), component.GetLocalizedDescription()));
+                            itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 45) + new Vector2(0, index * 60), component.GetIcon(), component.InternalName, component.GetLocalizedName(), component.GetLocalizedDescription()));
                             itemSelectButtons[index].AppendText = component.ExtraInfo;
                             index++;
                         }
@@ -534,7 +540,7 @@ namespace StellarisShips.UI
                     }
                 }
             }
-            HoverString = SomeUtils.BreakLongString(ShowStr, 35);
+            HoverString = SomeUtils.BreakLongString(ShowStr, 40);
             HoverString = HoverString.Replace("MR_", "[i:StellarisShips/MR_Icon]");
         }
 
@@ -618,8 +624,9 @@ namespace StellarisShips.UI
                 {
                     sectionList.Add(sectionSelectButton.InternalText);
                 }
+                int GlobalOffset = shipType == ShipIDs.Titan ? 40 : 0;            //给泰坦加一个修正
                 int TailOffset = EverythingLibrary.Sections[sectionSelectButtons[sectionSelectButtons.Count - 1].InternalText].TailDrawOffSet;
-                TailOffset -= 100;
+                TailOffset += GlobalOffset - 100;
                 Texture2D shipTex = LibraryHelpers.GetShipTexture(sectionList);
                 EasyDraw.AnotherDraw(BlendState.NonPremultiplied);
                 spriteBatch.Draw(shipTex, StartPos + new Vector2(900, 400) + new Vector2(TailOffset, 0), null, Color.White, 0, new Vector2(shipTex.Width, shipTex.Height / 2), 0.75f, SpriteEffects.None, 0);
@@ -637,6 +644,7 @@ namespace StellarisShips.UI
                             {
                                 Vector2 weaponPos = EverythingLibrary.Sections[sectionSelectButtons[i].InternalText].WeaponPos[j];
                                 weaponPos = new Vector2(-weaponPos.Y, weaponPos.X) + (StartPos + new Vector2(900, 400) + new Vector2(-100, 0));
+                                weaponPos.X += GlobalOffset;
                                 float scale = EverythingLibrary.Ships[shipType].WeaponScale;
                                 spriteBatch.Draw(texCannon, weaponPos, null, Color.White, 0, texCannon.Size() / 2f, scale, SpriteEffects.None, 0);
                             }
@@ -685,6 +693,7 @@ namespace StellarisShips.UI
                 {
                     Texture2D texPos = ModContent.Request<Texture2D>("StellarisShips/Images/UI/WeaponPos", AssetRequestMode.ImmediateLoad).Value;
                     Vector2 weaponPos = new Vector2(-Pos.Value.Y, Pos.Value.X) + (StartPos + new Vector2(900, 400) + new Vector2(-100, 0));
+                    weaponPos.X += GlobalOffset;
                     spriteBatch.Draw(texPos, weaponPos, null, Color.White, 0, texPos.Size() / 2f, 2.5f, SpriteEffects.None, 0);
                 }
             }
@@ -700,16 +709,17 @@ namespace StellarisShips.UI
                     if (HoverString[i] == '\n') line++;
                 }
                 Texture2D texDesc = ModContent.Request<Texture2D>("StellarisShips/Images/UI/DescPanel", AssetRequestMode.ImmediateLoad).Value;
+                int TextWidth = TextHelper.GetTextWidth(HoverString) + 40;
                 int XOffset = 0, YOffset = 0;
-                if (Main.mouseX + 20 + 390 > Main.screenWidth)
+                if (Main.mouseX + 20 + TextWidth > Main.screenWidth)
                 {
-                    XOffset = Main.mouseX + 20 + 390 - Main.screenWidth;
+                    XOffset = Main.mouseX + 20 + TextWidth - Main.screenWidth;
                 }
                 if (Main.mouseY + 20 + 30 * line + 20 > Main.screenHeight)
                 {
                     YOffset = Main.mouseY + 20 + 30 * line + 20 - Main.screenHeight;
                 }
-                spriteBatch.Draw(texDesc, new Rectangle(Main.mouseX + 20 - XOffset, Main.mouseY + 20 - YOffset, 390, 30 * line + 20), Color.White);
+                spriteBatch.Draw(texDesc, new Rectangle(Main.mouseX + 20 - XOffset, Main.mouseY + 20 - YOffset, TextWidth, 30 * line + 20), Color.White);
                 Utils.DrawBorderString(spriteBatch, HoverString, new Vector2(Main.mouseX + 40 - XOffset, Main.mouseY + 40 - YOffset), Color.White);
                 Main.mouseText = true;
             }
@@ -775,6 +785,7 @@ namespace StellarisShips.UI
                     if (itemSlotButton.ItemType == "")
                     {
                         FullCore = false;
+                        break;
                     }
                 }
 
@@ -946,7 +957,7 @@ namespace StellarisShips.UI
             dummyShip.GetShipNPC().MaxSpeed *= dummyShip.GetShipNPC().BonusBuff.ApplyBonus(BonusID.Speed);
 
             int CP = EverythingLibrary.Ships[shipType].CP;
-            int Hull = EverythingLibrary.Ships[shipType].BaseHull;
+            int Hull = dummyShip.lifeMax;
             int Defense = dummyShip.defense;
             int Shield = dummyShip.GetShipNPC().MaxShield;
             float ShieldRegen = (float)Math.Round(dummyShip.GetShipNPC().ShieldRegen);

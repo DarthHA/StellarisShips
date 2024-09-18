@@ -61,7 +61,11 @@ Items: {
 
 	GraphItem: {
 		DisplayName: 舰船图纸
-		Tooltip: 左键使用打开舰船设计界面
+		Tooltip:
+			'''
+			左键使用打开舰船设计界面
+			当太空联络器在背包中时右键使用打开联络界面
+			'''
 	}
 
 	Rubricator: {
@@ -72,6 +76,11 @@ Items: {
 			它可以将这些文物无限复制。未知事物从没有如此触手可及过。
 			或许改造家联合会能够更好的利用它。
 			'''
+	}
+
+	ZroCrystal: {
+		DisplayName: 灵能档案
+		Tooltip: 一份泽珞灵能水晶档案，其中包含了虚境的奥秘。或许可以使用它与虚境沟通。
 	}
 }
 
@@ -99,6 +108,7 @@ Projectiles: {
 	ArchLaserExplosion.DisplayName: 远古穴蚀坍缩器
 	ArchMissileProj.DisplayName: 远古纳米导弹云
 	ArchRailgunBullet.DisplayName: 远古动能炮弹
+	TitanBeamProj.DisplayName: 泰坦射线
 }
 
 Buffs: {

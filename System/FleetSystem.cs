@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.System
 {
-    public class ShapeSystem : ModSystem
+    public class FleetSystem : ModSystem
     {
         /// <summary>
         /// 队首的坐标
@@ -33,11 +33,43 @@ namespace StellarisShips.System
         /// </summary>
         public static bool Passive = false;
 
+        /// <summary>
+        /// 舰队光环效果
+        /// </summary>
+        public static List<string> AuraType = new();
+
         //一排的舰船最多数
         private const int CorvetteLine = 12;
         private const int DestroyerLine = 10;
         private const int CruiserLine = 6;
         private const int BattleshipLine = 4;
+        private const int TitanLine = 4;
+
+        public override void PreUpdateEntities()
+        {
+            AuraType.Clear();
+            foreach (NPC ship in Main.ActiveNPCs)
+            {
+                if (ship.ShipActive())
+                {
+                    if (ship.GetShipNPC().AuraType != "")
+                    {
+                        if (ship.GetShipNPC().AuraType == AuraID.SubspaceSnare)        //亚空间陷阱只会在进战时生效
+                        {
+                            if (ship.GetShipNPC().shipAI == ShipAI.Attack)
+                            {
+                                AuraType.Add(ship.GetShipNPC().AuraType);
+                            }
+                        }
+                        else
+                        {
+                            AuraType.Add(ship.GetShipNPC().AuraType);
+                        }
+                    }
+                }
+            }
+        }
+
 
         public override void PostUpdatePlayers()
         {
@@ -53,27 +85,32 @@ namespace StellarisShips.System
             int DestroyerCount = 0;
             int CruiserCount = 0;
             int BattleshipCount = 0;
+            int TitanCount = 0;
             List<Vector2> CorvettePos = new();
             List<Vector2> DestroyerPos = new();
             List<Vector2> CruiserPos = new();
             List<Vector2> BattleshipPos = new();
+            List<Vector2> TitanPos = new();
             foreach (NPC npc in Main.ActiveNPCs)
             {
                 if (npc.ShipActive())
                 {
                     switch (npc.GetShipNPC().ShipGraph.ShipType)
                     {
-                        case "Corvette":
+                        case ShipIDs.Corvette:
                             CorvetteCount++;
                             break;
-                        case "Destroyer":
+                        case ShipIDs.Destroyer:
                             DestroyerCount++;
                             break;
-                        case "Cruiser":
+                        case ShipIDs.Cruiser:
                             CruiserCount++;
                             break;
-                        case "Battleship":
+                        case ShipIDs.Battleship:
                             BattleshipCount++;
+                            break;
+                        case ShipIDs.Titan:
+                            TitanCount++;
                             break;
                         default:
                             break;
@@ -85,26 +122,32 @@ namespace StellarisShips.System
             float CurrentLength = 0;
             for (int i = 1; i <= CorvetteCount; i++)
             {
-                CorvettePos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, CorvetteLine, CorvetteCount, EverythingLibrary.Ships["Corvette"].Length + 30, EverythingLibrary.Ships["Corvette"].Width + 30));
+                CorvettePos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, CorvetteLine, CorvetteCount, EverythingLibrary.Ships[ShipIDs.Corvette].Length + 30, EverythingLibrary.Ships[ShipIDs.Corvette].Width + 30));
             }
 
-            if (CorvetteCount > 0) CurrentLength += (EverythingLibrary.Ships["Corvette"].Length + 30) * ((CorvetteCount / CorvetteLine) + 0.5f - (CorvetteCount % CorvetteLine == 0 ? 1 : 0));
-            if (DestroyerCount > 0) CurrentLength += EverythingLibrary.Ships["Destroyer"].Length * 0.5f;
+            if (CorvetteCount > 0) CurrentLength += (EverythingLibrary.Ships[ShipIDs.Corvette].Length + 30) * ((CorvetteCount / CorvetteLine) + 0.5f - (CorvetteCount % CorvetteLine == 0 ? 1 : 0));
+            if (DestroyerCount > 0) CurrentLength += EverythingLibrary.Ships[ShipIDs.Destroyer].Length * 0.5f;
             for (int i = 1; i <= DestroyerCount; i++)
             {
-                DestroyerPos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, DestroyerLine, DestroyerCount, EverythingLibrary.Ships["Destroyer"].Length + 30, EverythingLibrary.Ships["Destroyer"].Width + 30));
+                DestroyerPos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, DestroyerLine, DestroyerCount, EverythingLibrary.Ships[ShipIDs.Destroyer].Length + 30, EverythingLibrary.Ships[ShipIDs.Destroyer].Width + 30));
             }
-            if (DestroyerCount > 0) CurrentLength += (EverythingLibrary.Ships["Destroyer"].Length + 30) * ((DestroyerCount / DestroyerLine) + 0.5f - (DestroyerCount % DestroyerLine == 0 ? 1 : 0));
-            if (CruiserCount > 0) CurrentLength += EverythingLibrary.Ships["Cruiser"].Length * 0.5f;
+            if (DestroyerCount > 0) CurrentLength += (EverythingLibrary.Ships[ShipIDs.Destroyer].Length + 30) * ((DestroyerCount / DestroyerLine) + 0.5f - (DestroyerCount % DestroyerLine == 0 ? 1 : 0));
+            if (CruiserCount > 0) CurrentLength += EverythingLibrary.Ships[ShipIDs.Cruiser].Length * 0.5f;
             for (int i = 1; i <= CruiserCount; i++)
             {
-                CruiserPos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, CruiserLine, CruiserCount, EverythingLibrary.Ships["Cruiser"].Length + 30, EverythingLibrary.Ships["Cruiser"].Width + 30));
+                CruiserPos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, CruiserLine, CruiserCount, EverythingLibrary.Ships[ShipIDs.Cruiser].Length + 30, EverythingLibrary.Ships[ShipIDs.Cruiser].Width + 30));
             }
-            if (CruiserCount > 0) CurrentLength += (EverythingLibrary.Ships["Cruiser"].Length + 30) * ((CruiserCount / CruiserLine) + 0.5f - (CruiserCount % CruiserLine == 0 ? 1 : 0));
-            if (BattleshipCount > 0) CurrentLength += EverythingLibrary.Ships["Battleship"].Length * 0.5f;
+            if (CruiserCount > 0) CurrentLength += (EverythingLibrary.Ships[ShipIDs.Cruiser].Length + 30) * ((CruiserCount / CruiserLine) + 0.5f - (CruiserCount % CruiserLine == 0 ? 1 : 0));
+            if (BattleshipCount > 0) CurrentLength += EverythingLibrary.Ships[ShipIDs.Battleship].Length * 0.5f;
             for (int i = 1; i <= BattleshipCount; i++)
             {
-                BattleshipPos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, BattleshipLine, BattleshipCount, EverythingLibrary.Ships["Battleship"].Length + 30, EverythingLibrary.Ships["Battleship"].Width + 30));
+                BattleshipPos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, BattleshipLine, BattleshipCount, EverythingLibrary.Ships[ShipIDs.Battleship].Length + 30, EverythingLibrary.Ships[ShipIDs.Battleship].Width + 30));
+            }
+            if (BattleshipCount > 0) CurrentLength += (EverythingLibrary.Ships[ShipIDs.Battleship].Length + 30) * ((BattleshipCount / BattleshipLine) + 0.5f - (BattleshipCount % BattleshipLine == 0 ? 1 : 0));
+            if (TitanCount > 0) CurrentLength += EverythingLibrary.Ships[ShipIDs.Titan].Length * 0.5f;
+            for (int i = 1; i <= TitanCount; i++)
+            {
+                TitanPos.Add(GetPos(TipPos + UnitX * CurrentLength, UnitX, UnitY, i, TitanLine, TitanCount, EverythingLibrary.Ships[ShipIDs.Titan].Length + 30, EverythingLibrary.Ships[ShipIDs.Titan].Width + 30));
             }
 
             foreach (NPC npc in Main.ActiveNPCs)
@@ -113,21 +156,25 @@ namespace StellarisShips.System
                 {
                     switch (npc.GetShipNPC().ShipGraph.ShipType)
                     {
-                        case "Corvette":
+                        case ShipIDs.Corvette:
                             npc.GetShipNPC().ShapePos = CorvettePos[0];
                             CorvettePos.RemoveAt(0);
                             break;
-                        case "Destroyer":
+                        case ShipIDs.Destroyer:
                             npc.GetShipNPC().ShapePos = DestroyerPos[0];
                             DestroyerPos.RemoveAt(0);
                             break;
-                        case "Cruiser":
+                        case ShipIDs.Cruiser:
                             npc.GetShipNPC().ShapePos = CruiserPos[0];
                             CruiserPos.RemoveAt(0);
                             break;
-                        case "Battleship":
+                        case ShipIDs.Battleship:
                             npc.GetShipNPC().ShapePos = BattleshipPos[0];
                             BattleshipPos.RemoveAt(0);
+                            break;
+                        case ShipIDs.Titan:
+                            npc.GetShipNPC().ShapePos = TitanPos[0];
+                            TitanPos.RemoveAt(0);
                             break;
                         default:
                             break;
@@ -152,7 +199,7 @@ namespace StellarisShips.System
 
         }
 
-        private Vector2 GetPos(Vector2 TipPos, Vector2 UnitX, Vector2 UnitY, int num, int Line, int maxNum, float xLen, float yLen)
+        private static Vector2 GetPos(Vector2 TipPos, Vector2 UnitX, Vector2 UnitY, int num, int Line, int maxNum, float xLen, float yLen)
         {
             Vector2 X, Y;
             int x, y, xM, yM;

@@ -41,6 +41,16 @@ namespace StellarisShips.System.BaseType
         /// </summary>
         public virtual int Progress => 1;
 
+        /// <summary>
+        /// 是否有光环槽
+        /// </summary>
+        public virtual bool HasAura => false;
+
+        /// <summary>
+        /// 最大限造数
+        /// </summary>
+        public virtual int MaxCount => 99;
+
         public virtual void DrawTrail(SpriteBatch spriteBatch, Vector2 screenPos, NPC ship)
         {
 
@@ -53,7 +63,7 @@ namespace StellarisShips.System.BaseType
 
         public string GetLocalizedDescription()
         {
-            return GetLocalizedName() + "\n" + Language.GetOrRegister("Mods.StellarisShips.Desc." + InternalName).Value
+            return string.Format("[c/ffd700:{0}]", GetLocalizedName()) + "\n" + Language.GetOrRegister("Mods.StellarisShips.Desc." + InternalName).Value
                 + "\n" + string.Format(Language.GetTextValue("Mods.StellarisShips.ExtraDesc.Value"), MoneyHelpers.ShowCoins(Value));
         }
 

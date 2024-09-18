@@ -32,7 +32,7 @@ namespace StellarisShips.UI
 
         public static string HoverString = "";
 
-        public static int Opinion => ProgressHelper.GetOpinion();
+        public static int Opinion => ProgressHelper.GetBuilderOpinion();
 
         public static bool ShowInfo = true;
 
@@ -58,7 +58,7 @@ namespace StellarisShips.UI
             Texture2D texPortrait = ModContent.Request<Texture2D>("StellarisShips/Images/UI/Portrait", AssetRequestMode.ImmediateLoad).Value;
             spriteBatch.Draw(texPortrait, new Rectangle((int)StartPos.X + 60, (int)StartPos.Y + 80, 1080, 380), Color.White);
 
-            Utils.DrawBorderString(spriteBatch, Language.GetTextValue("Mods.StellarisShips.UI.ShipBuildTitle"), new Vector2(StartPos.X + 40, StartPos.Y + 20), Color.White, 1.25f);
+            Utils.DrawBorderString(spriteBatch, Language.GetTextValue("Mods.StellarisShips.UI.IncomingTransmission"), new Vector2(StartPos.X + 40, StartPos.Y + 20), Color.White, 1.25f);
             Texture2D texBlackPanel = ModContent.Request<Texture2D>("StellarisShips/Images/UI/BlackPanel", AssetRequestMode.ImmediateLoad).Value;
             spriteBatch.Draw(texBlackPanel, new Rectangle((int)StartPos.X + 60, (int)StartPos.Y + 80, 300, 120), Color.White * 0.4f);
             Utils.DrawBorderString(spriteBatch, Language.GetTextValue("Mods.StellarisShips.UI.ShipBuilder"), new Vector2(StartPos.X + 70, StartPos.Y + 110), Color.White);
@@ -151,8 +151,19 @@ namespace StellarisShips.UI
                     if (HoverString[i] == '\n') line++;
                 }
                 Texture2D texDesc = ModContent.Request<Texture2D>("StellarisShips/Images/UI/DescPanel", AssetRequestMode.ImmediateLoad).Value;
-                spriteBatch.Draw(texDesc, new Rectangle(Main.mouseX + 20, Main.mouseY + 20, 330, 32 * line + 20), Color.White);
-                Utils.DrawBorderString(spriteBatch, HoverString, new Vector2(Main.mouseX, Main.mouseY) + new Vector2(40, 40), Color.White);
+                int TextWidth = TextHelper.GetTextWidth(HoverString) + 40;
+                int XOffset = 0, YOffset = 0;
+                if (Main.mouseX + 20 + TextWidth > Main.screenWidth)
+                {
+                    XOffset = Main.mouseX + 20 + TextWidth - Main.screenWidth;
+                }
+                if (Main.mouseY + 20 + 30 * line + 20 > Main.screenHeight)
+                {
+                    YOffset = Main.mouseY + 20 + 30 * line + 20 - Main.screenHeight;
+                }
+                spriteBatch.Draw(texDesc, new Rectangle(Main.mouseX + 20 - XOffset, Main.mouseY + 20 - YOffset, TextWidth, 30 * line + 20), Color.White);
+                Utils.DrawBorderString(spriteBatch, HoverString, new Vector2(Main.mouseX + 40 - XOffset, Main.mouseY + 40 - YOffset), Color.White);
+                Main.mouseText = true;
             }
         }
 

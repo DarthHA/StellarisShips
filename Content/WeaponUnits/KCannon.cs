@@ -67,6 +67,7 @@ namespace StellarisShips.Content.WeaponUnits
                 }
                 else
                 {
+                    Rotation = (Main.npc[shipNPC.CurrentTarget].Center - shipNPC.GetPosOnShip(RelativePos)).ToRotation();
                     if (CurrentCooldown > 21)
                     {
                     }

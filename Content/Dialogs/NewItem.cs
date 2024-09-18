@@ -21,7 +21,7 @@ namespace StellarisShips.Content.Dialogs
 
         public override void SetUp()
         {
-            if (ProgressHelper.GetCurrentProgress() == 2 || ProgressHelper.GetCurrentProgress() == 5 || ProgressHelper.GetCurrentProgress() == 8)
+            if (ProgressHelper.GetCurrentProgress() == 2 || ProgressHelper.GetCurrentProgress() == 5 || ProgressHelper.GetCurrentProgress() == 8 || ProgressHelper.GetCurrentProgress() == 9)
             {
                 ShipBuildUI.TalkText = GetDialogLocalize("NewShip");
             }

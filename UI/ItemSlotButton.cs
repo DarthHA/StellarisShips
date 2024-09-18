@@ -96,6 +96,7 @@ namespace StellarisShips.UI
                 case ComponentTypes.Weapon_M:
                 case ComponentTypes.Weapon_L:
                 case ComponentTypes.Weapon_X:
+                case ComponentTypes.Weapon_T:
                 case ComponentTypes.Weapon_P:
                 case ComponentTypes.Weapon_G:
                 case ComponentTypes.Weapon_H:

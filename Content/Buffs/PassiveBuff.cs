@@ -34,7 +34,7 @@ namespace StellarisShips.Content.Buffs
                 drawParams.DrawColor = Color.Orange;
             }
 
-            if (!ShapeSystem.Passive)
+            if (!FleetSystem.Passive)
             {
                 drawParams.Texture = ModContent.Request<Texture2D>("StellarisShips/Content/Buffs/Passive1", AssetRequestMode.ImmediateLoad).Value;
             }
@@ -47,14 +47,14 @@ namespace StellarisShips.Content.Buffs
 
         public override bool RightClick(int buffIndex)
         {
-            ShapeSystem.Passive = !ShapeSystem.Passive;
+            FleetSystem.Passive = !FleetSystem.Passive;
             SomeUtils.PlaySound(SoundPath.UI + "Click");
             return false;
         }
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
         {
-            if (!ShapeSystem.Passive)
+            if (!FleetSystem.Passive)
             {
                 rare = ItemRarityID.Red;
                 buffName = Language.GetTextValue("Mods.StellarisShips.BuffExtraDesc.Passive1Name");

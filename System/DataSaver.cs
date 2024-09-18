@@ -33,10 +33,10 @@ namespace StellarisShips.System
                 }
             }
 
-            ShapeSystem.TipPos = tag.Get<Vector2>("TipPos");
-            ShapeSystem.TipRotation = tag.GetFloat("TipRotation");
-            ShapeSystem.Following = tag.GetBool("Following");
-            ShapeSystem.Passive = tag.GetBool("Passive");
+            FleetSystem.TipPos = tag.Get<Vector2>("TipPos");
+            FleetSystem.TipRotation = tag.GetFloat("TipRotation");
+            FleetSystem.Following = tag.GetBool("Following");
+            FleetSystem.Passive = tag.GetBool("Passive");
 
             ProgressHelper.FirstContract = tag.GetBool("FirstContract");
             ProgressHelper.CurrentProgress = tag.GetInt("CurrentProgress");
@@ -75,10 +75,10 @@ namespace StellarisShips.System
             tag.Add("ShipHull", shipHull);
             tag.Add("ShipShield", shipShield);
 
-            tag.Add("TipPos", ShapeSystem.TipPos);
-            tag.Add("TipRotation", ShapeSystem.TipRotation);
-            tag.Add("Following", ShapeSystem.Following);
-            tag.Add("Passive", ShapeSystem.Passive);
+            tag.Add("TipPos", FleetSystem.TipPos);
+            tag.Add("TipRotation", FleetSystem.TipRotation);
+            tag.Add("Following", FleetSystem.Following);
+            tag.Add("Passive", FleetSystem.Passive);
 
             tag.Add("FirstContract", ProgressHelper.FirstContract);
             tag.Add("CurrentProgress", ProgressHelper.CurrentProgress);

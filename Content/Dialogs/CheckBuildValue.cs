@@ -8,6 +8,7 @@ using StellarisShips.UI;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Dialogs
 {
@@ -53,6 +54,25 @@ MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue), EverythingLibrar
             {
                 enabled = false;
             }
+            int count = 0;
+            foreach (NPC npc in Main.ActiveNPCs)
+            {
+                if (npc.type == ModContent.NPCType<ShipNPC>())
+                {
+                    if (npc.GetShipNPC().ShipGraph.ShipType == ShipBuildUI.shipGraph.ShipType)
+                    {
+                        count++;
+                    }
+                }
+            }
+            if (count >= EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].MaxCount)
+            {
+                enabled = false;
+            }
+            if (ShipBuildUI.shipGraph.MRValue > ProgressHelper.GetMaxMinorArtifact() - MoneyHelpers.GetCurrentMR())
+            {
+                enabled = false;
+            }
             ShipBuildUI.talkButtons[0].Enabled = enabled;
         }
 
@@ -61,7 +81,7 @@ MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue), EverythingLibrar
             switch (internalStr)
             {
                 case "Yes":
-                    Vector2 GivePos = ShapeSystem.TipPos + new Vector2(Main.rand.Next(2000) - 1000, -1000);
+                    Vector2 GivePos = FleetSystem.TipPos + new Vector2(Main.rand.Next(2000) - 1000, -1000);
                     ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph);
                     float scale = EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].Length / 70f;
                     FTLLight.Summon(Main.LocalPlayer.GetSource_ReleaseEntity(), GivePos, scale);

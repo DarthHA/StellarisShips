@@ -10,7 +10,9 @@ As for the rest, it is recommended to explore it yourself.
 
 Sprite and sound assets are from Stellaris.
 Multiplayer games are not supported.
-No English translation yet, and the description is machine translated.
 
 Changelog:
 v0.2 - Added the Ancient Weapons, which can be obtained by defeating a strong enough boss after defeating the Moon Lord.
+v0.3 - Added EN localization.
+v0.4 - Added Titan-class Ship.
+v0.5 - Minor Improvement.

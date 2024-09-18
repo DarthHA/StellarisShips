@@ -40,7 +40,7 @@ namespace StellarisShips.System
             return 1;
         }
 
-        public static int GetOpinion()
+        public static int GetBuilderOpinion()
         {
             return GetCurrentProgress() * 10;
         }
@@ -56,7 +56,7 @@ namespace StellarisShips.System
                         SomeUtils.PlaySound(SoundPath.UI + "Notification");
                         HasNotification = true;
 
-                        if (GetCurrentProgress() == 2 || GetCurrentProgress() == 5 || GetCurrentProgress() == 8)
+                        if (GetCurrentProgress() == 2 || GetCurrentProgress() == 5 || GetCurrentProgress() == 8 || GetCurrentProgress() == 9)
                         {
                             InGameNotificationsTracker.AddNotification(new NewShipNotification());
                         }

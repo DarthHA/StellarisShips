@@ -97,6 +97,8 @@ Name: {
 	X_Mega_1: 兆级加农炮
 	X_Mega_2: 千兆级加农炮
 	X_ArchMega_1: 远古饱和剂发射炮
+	T_TitanBeam_1: 炼狱射线
+	T_ArchTitanBeam_1: 远古湮灭眩光
 	//通用配件
 	B_Armor_1: 小型纳米装甲
 	B_Armor_2: 小型金瓷装甲
@@ -119,6 +121,12 @@ Name: {
 	B_ArchArmor_1: 小型远古脉冲装甲
 	C_ArchArmor_1: 中型远古脉冲装甲
 	D_ArchArmor_1: 大型远古脉冲装甲
+	B_CrystalArmor_1: 小型水晶复合镀层
+	B_CrystalArmor_2: 小型水晶锻造镀层
+	C_CrystalArmor_1: 中型水晶复合镀层
+	C_CrystalArmor_2: 中型水晶锻造镀层
+	D_CrystalArmor_1: 大型水晶复合镀层
+	D_CrystalArmor_2: 大型水晶锻造镀层
 	B_Shield_1: 小型偏射盾
 	B_Shield_2: 小型改良偏射盾
 	B_Shield_3: 小型护盾
@@ -204,6 +212,14 @@ Name: {
 	J_ComputerCarrier_2: 作战电脑(航母)
 	J_ComputerCarrier_3: 先进作战电脑(航母)
 	J_ComputerCarrier_4: 智慧作战电脑(航母)
+	O_NoAura_1: 无
+	O_QuantumDestabilizer_1: 量子去稳器
+	O_ShieldDampener_1: 护盾挡板
+	O_SubspaceSnare_1: 亚空间陷阱
+	O_InspiringPresence_1: 振奋人心
+	O_AncientTargetScrambler_1: 远古索敌扰频器
+	O_NanobotCloud_1: 纳米机器云
+	O_TargetingGrid_1: 目标网格
 	//舰船以及区段
 	Corvette: 护卫舰
 	Interceptor11: 拦截者核心
@@ -237,4 +253,8 @@ Name: {
 	Hangar41: 格纳库舰艏
 	Hangar42: 格纳库核心
 	SpinalMount41: 脊峰舰艏
+	Titan: 泰坦
+	Titan51: 泰坦舰艏
+	Titan52: 泰坦核心
+	Titan53: 泰坦舰艉
 }

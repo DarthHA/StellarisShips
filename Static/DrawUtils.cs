@@ -26,6 +26,13 @@ namespace StellarisShips.Static
                 spriteBatch.End();
                 spriteBatch.Begin(SpriteSortMode.Immediate, blendState, SamplerState.AnisotropicClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
                 RasterizerState originalState = Main.graphics.GraphicsDevice.RasterizerState;
+
+                /*
+                RasterizerState rasterizerState = new();
+                rasterizerState.CullMode = CullMode.None;
+                rasterizerState.FillMode = FillMode.WireFrame;
+                Main.graphics.GraphicsDevice.RasterizerState = rasterizerState;
+                */
                 Vector2 vector = Main.screenPosition + new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
                 Vector2 screenSize = new Vector2(Main.screenWidth, Main.screenHeight) / Main.GameViewMatrix.Zoom;
                 Matrix projection = Matrix.CreateOrthographicOffCenter(0f, screenSize.X, screenSize.Y, 0f, 0f, 1f);
@@ -92,7 +99,7 @@ namespace StellarisShips.Static
         }
 
 
-        public static void DrawLoopTrail(Texture2D tex, List<CustomVertexInfo> bars, SpriteBatch spriteBatch, Color color, BlendState blendState,float LaserLength ,float ImageLength,float Progress)
+        public static void DrawLoopTrail(Texture2D tex, List<CustomVertexInfo> bars, SpriteBatch spriteBatch, Color color, BlendState blendState, float LaserLength, float ImageLength, float Progress)
         {
             List<CustomVertexInfo> triangleList = new List<CustomVertexInfo>();
             if (bars.Count > 2)

@@ -63,7 +63,7 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
-        public static void Summon(NPC ship, Vector2 Pos, float radius, float rot, string upgrade = "")
+        public static void Summon(NPC ship, Vector2 Pos, float radius, float hitRadius, float rot, string upgrade = "")
         {
             int protmp = Projectile.NewProjectile(ship.GetSource_FromAI(), Pos, Vector2.Zero, ModContent.ProjectileType<ShieldHitEffect>(), 0, 0, Main.myPlayer);
             if (protmp >= 0 && protmp < 1000)
@@ -71,7 +71,7 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as ShieldHitEffect).ownerID = ship.whoAmI;
                 (Main.projectile[protmp].ModProjectile as ShieldHitEffect).ShieldRadius = radius;
                 (Main.projectile[protmp].ModProjectile as ShieldHitEffect).Rot = rot;
-                (Main.projectile[protmp].ModProjectile as ShieldHitEffect).Radius2 = 0.8f + 0.2f * Main.rand.NextFloat();
+                (Main.projectile[protmp].ModProjectile as ShieldHitEffect).Radius2 = hitRadius / radius + 0.2f * Main.rand.NextFloat() - 0.1f;
                 (Main.projectile[protmp].ModProjectile as ShieldHitEffect).Upgrade = upgrade;
             }
         }
@@ -82,9 +82,9 @@ namespace StellarisShips.Content.Projectiles
 
             float realRadius = ShieldRadius / 0.6f;
             float k = realRadius / 600f;
-            float r1 = 0.2f * k * Projectile.ai[0] / 20f;
+            float r1 = 0.025f / k * Projectile.ai[0] / 20f;
             Vector2 hitpos = Rot.ToRotationVector2() * Radius2;
-            DrawAll(Projectile.Center, hitpos, r1, 0.1f * k, Color.White * alpha);
+            DrawAll(Projectile.Center, hitpos, r1, 0.025f / k * 0.75f, Color.White * alpha);
             return false;
         }
 
@@ -96,7 +96,7 @@ namespace StellarisShips.Content.Projectiles
             Texture2D tex = ModContent.Request<Texture2D>("StellarisShips/Images/Effects/ShieldEffect" + Upgrade, AssetRequestMode.ImmediateLoad).Value;
             EasyDraw.AnotherDraw(SpriteSortMode.Immediate, BlendState.Additive);
             StellarisShips.HitEffect.Parameters["color"].SetValue(color.ToVector4());
-            StellarisShips.HitEffect.Parameters["center"].SetValue(new Vector2(0.5f, 0.5f) + HitPos * k * 0.5f);
+            StellarisShips.HitEffect.Parameters["center"].SetValue(new Vector2(0.5f, 0.5f) + HitPos * 0.5f * 0.5f);
             StellarisShips.HitEffect.Parameters["r1"].SetValue(r1);
             StellarisShips.HitEffect.Parameters["r2"].SetValue(r2);
             StellarisShips.HitEffect.CurrentTechnique.Passes[0].Apply();

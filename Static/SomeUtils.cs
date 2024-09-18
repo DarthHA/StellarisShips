@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using ReLogic.Utilities;
 using StellarisShips.Content.NPCs;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;

@@ -28,6 +28,9 @@ namespace StellarisShips.Content.Components.Core
                 case ShipIDs.Battleship:
                     RealEvasion = Evasion * 0.4f;
                     break;
+                case ShipIDs.Titan:
+                    RealEvasion = Evasion * 0.2f;
+                    break;
             }
             if (RealEvasion < 1) RealEvasion = 1;
             ship.GetShipNPC().Evasion += RealEvasion;

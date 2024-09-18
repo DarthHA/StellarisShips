@@ -1,5 +1,4 @@
 ﻿using StellarisShips.Content.Items;
-using StellarisShips.Content.NPCs;
 using StellarisShips.Static;
 using StellarisShips.System.BaseType;
 using StellarisShips.UI;
@@ -39,7 +38,7 @@ namespace StellarisShips.Content.Dialogs
             {
                 if ((Main.LocalPlayer.HeldItem.ModItem as GraphItem).graph.ShipType != "")
                 {
-                    foreach(NPC ship in Main.ActiveNPCs)
+                    foreach (NPC ship in Main.ActiveNPCs)
                     {
                         if (ship.ShipActive())
                         {

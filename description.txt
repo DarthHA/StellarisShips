@@ -1,4 +1,24 @@
-﻿该模组加入了来自战略游戏《群星》的舰船与武器，整体强度较高。
+﻿This mod adds ships and weapons from the strategy game "Stellaris", and it's quite op.
+Mod progress:
+After defeating the Eye of Cthulhu, a space communicator will definitely drop. After using it, you can contact the Modifiers Association and spend coins to commission them to customize ships.
+Ships are independent units with similar behaviors to summons, but they will attract enemy hatred when attacking, and also have attributes such as life.
+Ships have sections and parts. Different sections can carry different parts. Parts can improve the properties of ships and provide new weapons and features.
+Note that ships are bound to the world, which means that the same player will not be able to take ships away when switching worlds.
+The upper limit of ships is limited, and the upper limit will increase with the progress of the game.
+When a certain progress is reached, new ship types and parts will be unlocked.
+As for the rest, it is recommended to explore it yourself.
+
+Sprite and sound assets are from Stellaris.
+Multiplayer games are not supported.
+
+Changelog:
+v0.2 - Added the Ancient Weapons, which can be obtained by defeating a strong enough boss after defeating the Moon Lord.
+v0.3 - Added EN localization.
+v0.4 - Added Titan-class Ship.
+v0.5 - Minor Improvement.
+
+
+该模组加入了来自战略游戏《群星》的舰船与武器，整体强度较高。
 模组流程：
 击败克苏鲁之眼后必定会掉落太空联络器，使用后可以与改造家联合会联系，花费钱币委托其定制舰船。
 舰船为独立单位，拥有和召唤物类似的行为，但是在攻击时会吸引敌人仇恨，也有生命等属性。
@@ -10,7 +30,9 @@
 
 贴图和音效资源来自《群星》。
 不支持多人游戏。
-暂时没有英文翻译。
 
 更新日志:
 v0.2 -加入了远古系列武器，在击败月球领主后击败足够强的Boss概率获得。
+v0.3 -更新英文本地化。
+v0.4 -更新泰坦级舰船。
+v0.5 -微量优化。

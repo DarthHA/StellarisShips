@@ -13,9 +13,9 @@ namespace StellarisShips.Content.Components.Weapons.Ancient
         public override string ExtraInfo => "SML";
 
         public override int AttackCD => 80;
-        public override float Crit => 20;
-        public override int MaxDamage => 192;
-        public override int MinDamage => 64;
+        public override float Crit => 40;
+        public override int MaxDamage => 211;
+        public override int MinDamage => 70;
         public override float MaxRange => 200;
 
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_S };
@@ -39,9 +39,9 @@ namespace StellarisShips.Content.Components.Weapons.Ancient
         public override string ExtraInfo => "SML";
 
         public override int AttackCD => 80;
-        public override float Crit => 10;
-        public override int MaxDamage => 460;
-        public override int MinDamage => 154;
+        public override float Crit => 30;
+        public override int MaxDamage => 552;
+        public override int MinDamage => 182;
         public override float MaxRange => 300;
 
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_M };
@@ -65,9 +65,9 @@ namespace StellarisShips.Content.Components.Weapons.Ancient
         public override string ExtraInfo => "SML";
 
         public override int AttackCD => 80;
-        public override float Crit => 0;
-        public override int MaxDamage => 1152;
-        public override int MinDamage => 384;
+        public override float Crit => 20;
+        public override int MaxDamage => 1256;
+        public override int MinDamage => 422;
         public override float MaxRange => 400;
 
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_L };

@@ -204,7 +204,7 @@ namespace StellarisShips.Content.Projectiles
                 modifiers.DisableCrit();
             }
 
-            float DamageBonus = 0.5f + 1f * target.life / target.lifeMax;
+            float DamageBonus = 0.5f + 1.5f * target.life / target.lifeMax;
             modifiers.SourceDamage *= DamageBonus;
         }
 

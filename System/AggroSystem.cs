@@ -17,7 +17,7 @@ namespace StellarisShips.System
         public override bool PreAI(NPC npc)
         {
             if (npc.friendly || npc.townNPC || npc.type == ModContent.NPCType<ShipNPC>()) return true;
-            if (ShapeSystem.Passive) return true;        //被动状态不吸引仇恨
+            if (FleetSystem.Passive) return true;        //被动状态不吸引仇恨
             float SavedDist = 114514;
             int RealTarget = -1;
             foreach (NPC target in Main.ActiveNPCs)
@@ -85,7 +85,7 @@ namespace StellarisShips.System
         public override bool PreAI(Projectile projectile)
         {
             if (!projectile.hostile) return true;
-            if (ShapeSystem.Passive) return true;        //被动状态不吸引仇恨
+            if (FleetSystem.Passive) return true;        //被动状态不吸引仇恨
             float SavedDist = 114514;
             int RealTarget = -1;
             foreach (NPC target in Main.ActiveNPCs)

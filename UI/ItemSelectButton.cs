@@ -76,7 +76,12 @@ namespace StellarisShips.UI
             IconText = IconText.Replace("J", "");
             IconText = IconText.Replace("K", "");
 
-            Utils.DrawBorderString(spriteBatch, ShowText, new Vector2(Pos.X + 70, Pos.Y + Size.Y / 2), Color.White, 1, 0, 0.5f);
+            float width = TextHelper.GetTextWidth(ShowText);
+            float scale = 1f;
+            if (width > Size.X - 80) scale = (Size.X - 80) / width;
+
+            Utils.DrawBorderString(spriteBatch, ShowText, new Vector2(Pos.X + 70, Pos.Y + Size.Y / 2), Color.White, scale, 0, 0.5f);
+
             Utils.DrawBorderString(spriteBatch, IconText, new Vector2(Pos.X + 290 - Offset, Pos.Y + Size.Y / 2), Color.White, 1, 0, 0.5f);
         }
 

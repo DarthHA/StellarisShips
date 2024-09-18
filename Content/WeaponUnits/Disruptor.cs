@@ -43,7 +43,7 @@ namespace StellarisShips.Content.WeaponUnits
                     {
                         if (LastTarget == target)   //连续攻击同一敌人伤害提高
                         {
-                            if (ReAttackTime < 6) ReAttackTime++;
+                            if (ReAttackTime < 12) ReAttackTime++;
                         }
                         else
                         {
@@ -75,6 +75,7 @@ namespace StellarisShips.Content.WeaponUnits
                 }
                 else
                 {
+                    Rotation = (Main.npc[shipNPC.CurrentTarget].Center - shipNPC.GetPosOnShip(RelativePos)).ToRotation();
                     LastTarget = -1;
                     ReAttackTime = 0;
                     TargetPos = null;

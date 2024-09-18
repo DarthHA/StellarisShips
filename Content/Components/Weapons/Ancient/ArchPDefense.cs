@@ -14,7 +14,7 @@ namespace StellarisShips.Content.Components.Weapons.Ancient
 
         public override int AttackCD => 15;          //10以上
         public override float Crit => 20;
-        public override int MaxDamage => 40;
+        public override int MaxDamage => 36;
         public override int MinDamage => 26;
         public override float MaxRange => 250;
 

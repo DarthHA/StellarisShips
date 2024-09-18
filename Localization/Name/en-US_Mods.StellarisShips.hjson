@@ -1,240 +1,260 @@
 Name: {
 	//武器配件
-	S_Laser_1: 小型红激光
-	S_Laser_2: 小型蓝激光
-	S_Laser_3: 小型紫外激光
-	S_Laser_4: 小型X射线激光
-	S_Laser_5: 小型伽马激光
-	M_Laser_1: 中型红激光
-	M_Laser_2: 中型蓝激光
-	M_Laser_3: 中型紫外激光
-	M_Laser_4: 中型X射线激光
-	M_Laser_5: 中型伽马激光
-	L_Laser_1: 大型红激光
-	L_Laser_2: 大型蓝激光
-	L_Laser_3: 大型紫外激光
-	L_Laser_4: 大型X射线激光
-	L_Laser_5: 大型伽马激光
-	S_ArchLaser_1: 小型远古穴蚀坍缩器
-	M_ArchLaser_1: 中型远古穴蚀坍缩器
-	L_ArchLaser_1: 大型远古穴蚀坍缩器
-	S_Plasma_1: 小型等离子发射器
-	S_Plasma_2: 小型等离子加速器
-	S_Plasma_3: 小型等离子加农炮
-	M_Plasma_1: 中型等离子发射器
-	M_Plasma_2: 中型等离子加速器
-	M_Plasma_3: 中型等离子加农炮
-	L_Plasma_1: 大型等离子发射器
-	L_Plasma_2: 大型等离子加速器
-	L_Plasma_3: 大型等离子加农炮
-	S_Disruptor_1: 小型裂解炮
-	S_Disruptor_2: 小型离子裂解炮
-	S_Disruptor_3: 小型相位裂解炮
-	M_Disruptor_1: 中型裂解炮
-	M_Disruptor_2: 中型离子裂解炮
-	M_Disruptor_3: 中型相位裂解炮
-	S_Railgun_1: 小型物质加速炮
-	S_Railgun_2: 小型线圈炮
-	S_Railgun_3: 小型磁轨炮
-	S_Railgun_4: 小型先进型磁轨炮
-	S_Railgun_5: 小型高斯炮
-	M_Railgun_1: 中型物质加速炮
-	M_Railgun_2: 中型线圈炮
-	M_Railgun_3: 中型磁轨炮
-	M_Railgun_4: 中型先进型磁轨炮
-	M_Railgun_5: 中型高斯炮
-	L_Railgun_1: 大型物质加速炮
-	L_Railgun_2: 大型线圈炮
-	L_Railgun_3: 大型磁轨炮
-	L_Railgun_4: 大型先进型磁轨炮
-	L_Railgun_5: 大型高斯炮
-	S_ArchRailgun_1: 小型远古巨炮组
-	M_ArchRailgun_1: 中型远古巨炮组
-	L_ArchRailgun_1: 大型远古巨炮组
-	S_AutoCannon_1: 小型机关炮
-	S_AutoCannon_2: 小型撕裂者机关炮
-	S_AutoCannon_3: 小型火风暴机关炮
-	S_AutoCannon_4: 小型纳米机关炮
-	M_AutoCannon_1: 中型机关炮
-	M_AutoCannon_2: 中型撕裂者机关炮
-	M_AutoCannon_3: 中型火风暴机关炮
-	M_AutoCannon_4: 中型纳米机关炮
-	L_AutoCannon_1: 大型机关炮
-	L_AutoCannon_2: 大型撕裂者机关炮
-	L_AutoCannon_3: 大型火风暴机关炮
-	L_AutoCannon_4: 大型纳米机关炮
-	L_KCannon_1: 动能火炮
-	L_KCannon_2: 先进动能火炮
-	S_Missile_1: 核导弹
-	S_Missile_2: 聚变核导弹
-	S_Missile_3: 反物质导弹
-	S_Missile_4: 量子导弹
-	S_Missile_5: 掠夺者导弹
-	S_ArchMissile_1: 远古纳米导弹云发射器
-	M_MissileS_1: 蜂群导弹
-	M_MissileS_2: 旋风导弹
-	G_Torpedo_1: 太空鱼雷
-	G_Torpedo_2: 装甲鱼雷
-	G_Torpedo_3: 毁灭者鱼雷
-	G_Torpedo2_1: 质子发射器
-	G_Torpedo2_2: 中子发射器
-	P_Flak_1: 高射炮
-	P_Flak_2: 高射加农炮
-	P_Flak_3: 重型高射炮
-	P_Flak_4: 纳米高射炮
-	P_PDefense_1: 哨兵点防御
-	P_PDefense_2: 屏障点防御
-	P_PDefense_3: 守护者点防御
-	P_ArchPDefense_1: 远古防御投网机
-	H_StrikeCraft_1: 基础舰载机
-	H_StrikeCraft_2: 改良型舰载机
-	H_StrikeCraft_3: 先进型舰载机
-	H_ArchStrikeCraft_1: 远古钻孔机无人机
-	X_Arc_1: 电弧发射器
-	X_Arc_2: 聚能电弧发射器
-	X_Lance_1: 粒子光矛
-	X_Lance_2: 快子光矛
-	X_Mega_1: 兆级加农炮
-	X_Mega_2: 千兆级加农炮
-	X_ArchMega_1: 远古饱和剂发射炮
+	S_Laser_1: Small Red Laser
+	S_Laser_2: Small Blue Laser
+	S_Laser_3: Small UV Laser
+	S_Laser_4: Small X-Ray Laser
+	S_Laser_5: Small Gamma Laser
+	M_Laser_1: Medium Red Laser
+	M_Laser_2: Medium Blue Laser
+	M_Laser_3: Medium UV Laser
+	M_Laser_4: Medium X-Ray Laser
+	M_Laser_5: Medium Gamma Laser
+	L_Laser_1: Large Red Laser
+	L_Laser_2: Large Blue Laser
+	L_Laser_3: Large UV Laser
+	L_Laser_4: Large X-Ray Laser
+	L_Laser_5: Large Gamma Laser
+	S_ArchLaser_1: Small Ancient Cavitation Collapser
+	M_ArchLaser_1: Medium Ancient Cavitation Collapser
+	L_ArchLaser_1: Large Ancient Cavitation Collapser
+	S_Plasma_1: Small Plasma Thrower
+	S_Plasma_2: Small Plasma Accelerator
+	S_Plasma_3: Small Plasma Cannon
+	M_Plasma_1: Medium Plasma Thrower
+	M_Plasma_2: Medium Plasma Accelerator
+	M_Plasma_3: Medium Plasma Cannon
+	L_Plasma_1: Large Plasma Thrower
+	L_Plasma_2: Large Plasma Accelerator
+	L_Plasma_3: Large Plasma Cannon
+	S_Disruptor_1: Small Disruptor
+	S_Disruptor_2: Small Ion Disruptor
+	S_Disruptor_3: Small Phased Disruptor
+	M_Disruptor_1: Medium Disruptor
+	M_Disruptor_2: Medium Ion Disruptor
+	M_Disruptor_3: Medium Phased Disruptor
+	S_Railgun_1: Small Mass Driver
+	S_Railgun_2: Small Coilgun
+	S_Railgun_3: Small Railgun
+	S_Railgun_4: Small Advanced Railgun
+	S_Railgun_5: Small Gauss Cannon
+	M_Railgun_1: Medium Mass Driver
+	M_Railgun_2: Medium Coilgun
+	M_Railgun_3: Medium Railgun
+	M_Railgun_4: Medium Advanced Railgun
+	M_Railgun_5: Medium Gauss Cannon
+	L_Railgun_1: Large Mass Driver
+	L_Railgun_2: Large Coilgun
+	L_Railgun_3: Large Railgun
+	L_Railgun_4: Large Advanced Railgun
+	L_Railgun_5: Large Gauss Cannon
+	S_ArchRailgun_1: Small Ancient Macro Batteries
+	M_ArchRailgun_1: Medium Ancient Macro Batteries
+	L_ArchRailgun_1: Large Ancient Macro Batteries
+	S_AutoCannon_1: Small Autocannon
+	S_AutoCannon_2: Small Ripper Autocannon
+	S_AutoCannon_3: Small Stormfire Autocannon
+	S_AutoCannon_4: Small Nanite Autocannon
+	M_AutoCannon_1: Medium Autocannon
+	M_AutoCannon_2: Medium Ripper Autocannon
+	M_AutoCannon_3: Medium Stormfire Autocannon
+	M_AutoCannon_4: Medium Nanite Autocannon
+	L_AutoCannon_1: Large Autocannon
+	L_AutoCannon_2: Large Ripper Autocannon
+	L_AutoCannon_3: Large Stormfire Autocannon
+	L_AutoCannon_4: Large Nanite Autocannon
+	L_KCannon_1: Kinetic Battery
+	L_KCannon_2: Kinetic Artillery
+	S_Missile_1: Nuclear Missiles
+	S_Missile_2: Fusion Missiles
+	S_Missile_3: Antimatter Missiles
+	S_Missile_4: Quantum Missiles
+	S_Missile_5: Marauder Missiles
+	S_ArchMissile_1: Ancient Nano-Missile Cloud Launcher
+	M_MissileS_1: Swarmer Missiles
+	M_MissileS_2: Whirlwind Missiles
+	G_Torpedo_1: Space Torpedoes
+	G_Torpedo_2: Armored Torpedoes
+	G_Torpedo_3: Devastator Torpedoes
+	G_Torpedo2_1: Proton Launchers
+	G_Torpedo2_2: Neutron Launchers
+	P_Flak_1: Flak Battery
+	P_Flak_2: Flak Cannons
+	P_Flak_3: Flak Artillery
+	P_Flak_4: Nanite Flak Battery
+	P_PDefense_1: Sentinel Point-Defense
+	P_PDefense_2: Barrier Point-Defense
+	P_PDefense_3: Guardian Point-Defense
+	P_ArchPDefense_1: Ancient Defensive Web Slinger
+	H_StrikeCraft_1: Basic Strike Craft
+	H_StrikeCraft_2: Improved Strike Craft
+	H_StrikeCraft_3: Advanced Strike Craft
+	H_ArchStrikeCraft_1: Ancient Driller Drones
+	X_Arc_1: Arc Emitter
+	X_Arc_2: Focused Arc Emitter
+	X_Lance_1: Particle Lance
+	X_Lance_2: Tachyon Lance
+	X_Mega_1: Mega Cannon
+	X_Mega_2: Giga Cannon
+	X_ArchMega_1: Ancient Saturator Artillery
+	T_TitanBeam_1: Perdition Beam
+	T_ArchTitanBeam_1: Ancient Ruination Glare
 	//通用配件
-	B_Armor_1: 小型纳米装甲
-	B_Armor_2: 小型金瓷装甲
-	B_Armor_3: 小型塑钢装甲
-	B_Armor_4: 小型耐钢装甲
-	B_Armor_5: 小型零素装甲
-	B_Armor_6: 小型龙鳞装甲
-	C_Armor_1: 中型纳米装甲
-	C_Armor_2: 中型金瓷装甲
-	C_Armor_3: 中型塑钢装甲
-	C_Armor_4: 中型耐钢装甲
-	C_Armor_5: 中型零素装甲
-	C_Armor_6: 中型龙鳞装甲
-	D_Armor_1: 大型纳米装甲
-	D_Armor_2: 大型金瓷装甲
-	D_Armor_3: 大型塑钢装甲
-	D_Armor_4: 大型耐钢装甲
-	D_Armor_5: 大型零素装甲
-	D_Armor_6: 大型龙鳞装甲
-	B_ArchArmor_1: 小型远古脉冲装甲
-	C_ArchArmor_1: 中型远古脉冲装甲
-	D_ArchArmor_1: 大型远古脉冲装甲
-	B_Shield_1: 小型偏射盾
-	B_Shield_2: 小型改良偏射盾
-	B_Shield_3: 小型护盾
-	B_Shield_4: 小型先进护盾
-	B_Shield_5: 小型高能护盾
-	B_Shield_6: 小型暗物质偏导护盾
-	C_Shield_1: 中型偏射盾
-	C_Shield_2: 中型改良偏射盾
-	C_Shield_3: 中型护盾
-	C_Shield_4: 中型先进护盾
-	C_Shield_5: 中型高能护盾
-	C_Shield_6: 中型暗物质偏导护盾
-	D_Shield_1: 大型偏射盾
-	D_Shield_2: 大型改良偏射盾
-	D_Shield_3: 大型护盾
-	D_Shield_4: 大型先进护盾
-	D_Shield_5: 大型高能护盾
-	D_Shield_6: 大型暗物质偏导护盾
-	B_ArchShield_1: 小型远古延留力场
-	C_ArchShield_1: 中型远古延留力场
-	D_ArchShield_1: 大型远古延留力场
-	A_Afterburners_1: 加力燃烧室
-	A_Afterburners_2: 先进加力燃烧室
-	A_ReactorBooster_1: 反应堆增压器
-	A_ReactorBooster_2: 改良反应堆增压器
-	A_ReactorBooster_3: 先进反应堆增压器
-	A_TissueRepair_1: 再生舰体组织
-	A_ShieldRecharger_1: 护盾电容
-	A_NaniteRepair_1: 纳米修复系统
-	A_FireControl_1: 辅助火控
-	A_EEncoder_1: 神秘编码器
-	A_EDecoder_1: 神秘解码器
-	A_ArmorHardener_1: 反应装甲
-	A_ArmorHardener_2: 活性反应装甲
-	A_ShieldHardener_1: 护盾硬化器
-	A_ShieldHardener_2: 先进护盾硬化器
-	A_Cloak_1: 基础隐形场发生器
-	A_Cloak_2: 先进隐形场发生器
-	A_Cloak_3: 精英隐形场发生器
-	A_Cloak_4: 暗物质隐形场发生器
+	B_Armor_1: Small Nanocomposite Armor
+	B_Armor_2: Small Ceramo-Metal Armor
+	B_Armor_3: Small Plasteel Armor
+	B_Armor_4: Small Durasteel Armor
+	B_Armor_5: Small Neutronium Armor
+	B_Armor_6: Small Dragonscale Armor
+	C_Armor_1: Medium Nanocomposite Armor
+	C_Armor_2: Medium Ceramo-Metal Armor
+	C_Armor_3: Medium Plasteel Armor
+	C_Armor_4: Medium Durasteel Armor
+	C_Armor_5: Medium Neutronium Armor
+	C_Armor_6: Medium Dragonscale Armor
+	D_Armor_1: Large Nanocomposite Armor
+	D_Armor_2: Large Ceramo-Metal Armor
+	D_Armor_3: Large Plasteel Armor
+	D_Armor_4: Large Durasteel Armor
+	D_Armor_5: Large Neutronium Armor
+	D_Armor_6: Large Dragonscale Armor
+	B_ArchArmor_1: Small Ancient Pulse Armor
+	C_ArchArmor_1: Medium Ancient Pulse Armor
+	D_ArchArmor_1: Large Ancient Pulse Armor
+	B_CrystalArmor_1: Small Crystal-Infused Plating
+	B_CrystalArmor_2: Small Crystal-Forged Plating
+	C_CrystalArmor_1: Medium Crystal-Infused Plating
+	C_CrystalArmor_2: Medium Crystal-Forged Plating
+	D_CrystalArmor_1: Large Crystal-Infused Plating
+	D_CrystalArmor_2: Large Crystal-Forged Plating
+	B_Shield_1: Small Deflectors
+	B_Shield_2: Small Improved Deflectors
+	B_Shield_3: Small Shields
+	B_Shield_4: Small Advanced Shields
+	B_Shield_5: Small Hyper Shields
+	B_Shield_6: Small Dark Matter Deflectors
+	C_Shield_1: Medium Deflectors
+	C_Shield_2: Medium Improved Deflectors
+	C_Shield_3: Medium Shields
+	C_Shield_4: Medium Advanced Shields
+	C_Shield_5: Medium Hyper Shields
+	C_Shield_6: Medium Dark Matter Deflectors
+	D_Shield_1: Large Deflectors
+	D_Shield_2: Large Improved Deflectors
+	D_Shield_3: Large Shields
+	D_Shield_4: Large Advanced Shields
+	D_Shield_5: Large Hyper Shields
+	D_Shield_6: Large Dark Matter Deflectors
+	B_ArchShield_1: Small Ancient Suspension Field
+	C_ArchShield_1: Medium Ancient Suspension Field
+	D_ArchShield_1: Large Ancient Suspension Field
+	A_Afterburners_1: Afterburners
+	A_Afterburners_2: Advanced Afterburners
+	A_ReactorBooster_1: Reactor Booster
+	A_ReactorBooster_2: Improved Reactor
+	A_ReactorBooster_3: Advanced Reactor Booster
+	A_TissueRepair_1: Regenerative Hull Tissue
+	A_ShieldRecharger_1: Shield Capacitor
+	A_NaniteRepair_1: Nanite Repair System
+	A_FireControl_1: Auxiliary Fire-Control
+	A_EEncoder_1: Enigmatic Encoder
+	A_EDecoder_1: Enigmatic Decoder
+	A_ArmorHardener_1: Reactive Armor
+	A_ArmorHardener_2: Living Reactive Armor
+	A_ShieldHardener_1: Shield Hardener
+	A_ShieldHardener_2: Advanced Shield Hardener
+	A_Cloak_1: Basic Cloaking Field Generator
+	A_Cloak_2: Advanced Cloaking Field Generator
+	A_Cloak_3: Elite Cloaking Field Generator
+	A_Cloak_4: Dark Matter Cloaking Field Generator
 	//核心配件
-	E_Reactor_1: 裂变反应堆
-	E_Reactor_2: 聚变反应堆
-	E_Reactor_3: 冷核聚变反应堆
-	E_Reactor_4: 反物质反应堆
-	E_Reactor_5: 零点反应堆
-	E_Reactor_6: 暗物质反应堆
-	K_FTLDrive_1: 无
-	K_FTLDrive_2: 超空间引擎I
-	K_FTLDrive_3: 超空间引擎II
-	K_FTLDrive_4: 超空间引擎III
-	K_FTLDrive_5: 跃迁引擎
-	I_Sensor_1: 雷达系统
-	I_Sensor_2: 重力传感器
-	I_Sensor_3: 亚空间传感器
-	I_Sensor_4: 快子传感器
-	F_Thruster_1: 化学推进器
-	F_Thruster_2: 离子推进器
-	F_Thruster_3: 等离子推进器
-	F_Thruster_4: 脉冲推进器
-	F_Thruster_5: 暗物质推进器
-	J_ComputerSwarm_1: 基础作战电脑(蜂拥)
-	J_ComputerSwarm_2: 作战电脑(蜂拥)
-	J_ComputerSwarm_3: 先进作战电脑(蜂拥)
-	J_ComputerSwarm_4: 智慧作战电脑(蜂拥)
-	J_ComputerBomber_1: 基础作战电脑(鱼雷)
-	J_ComputerBomber_2: 作战电脑(鱼雷)
-	J_ComputerBomber_3: 先进作战电脑(鱼雷)
-	J_ComputerBomber_4: 智慧作战电脑(鱼雷)
-	J_ComputerPicket_1: 基础作战电脑(哨戒)
-	J_ComputerPicket_2: 作战电脑(哨戒)
-	J_ComputerPicket_3: 先进作战电脑(哨戒)
-	J_ComputerPicket_4: 智慧作战电脑(哨戒)
-	J_ComputerLine_1: 基础作战电脑(线列)
-	J_ComputerLine_2: 作战电脑(线列)
-	J_ComputerLine_3: 先进作战电脑(线列)
-	J_ComputerLine_4: 智慧作战电脑(线列)
-	J_ComputerArtillery_1: 基础作战电脑(炮击)
-	J_ComputerArtillery_2: 作战电脑(炮击)
-	J_ComputerArtillery_3: 先进作战电脑(炮击)
-	J_ComputerArtillery_4: 智慧作战电脑(炮击)
-	J_ComputerCarrier_1: 基础作战电脑(航母)
-	J_ComputerCarrier_2: 作战电脑(航母)
-	J_ComputerCarrier_3: 先进作战电脑(航母)
-	J_ComputerCarrier_4: 智慧作战电脑(航母)
+	E_Reactor_1: Fission Reactor
+	E_Reactor_2: Fusion Reactor
+	E_Reactor_3: Cold Fusion Reactor
+	E_Reactor_4: Antimatter Reactor
+	E_Reactor_5: Zero-Point Reactor
+	E_Reactor_6: Dark Matter Reactor
+	K_FTLDrive_1: None
+	K_FTLDrive_2: Hyper Drive I
+	K_FTLDrive_3: Hyper Drive II
+	K_FTLDrive_4: Hyper Drive III
+	K_FTLDrive_5: Jump Drive
+	I_Sensor_1: Radar System
+	I_Sensor_2: Gravitic Sensors
+	I_Sensor_3: Subspace Sensors
+	I_Sensor_4: Tachyon Sensors
+	F_Thruster_1: Chemical Thrusters
+	F_Thruster_2: Ion Thrusters
+	F_Thruster_3: Plasma Thrusters
+	F_Thruster_4: Impulse Thrusters
+	F_Thruster_5: Dark Matter Thrusters
+	J_ComputerSwarm_1: Basic Computer(Swarm)
+	J_ComputerSwarm_2: Specialized Computer(Swarm)
+	J_ComputerSwarm_3: Advanced Computer(Swarm)
+	J_ComputerSwarm_4: Sapient Computer(Swarm)
+	J_ComputerBomber_1: Basic Computer(Torpedo)
+	J_ComputerBomber_2: Specialized Computer(Torpedo)
+	J_ComputerBomber_3: Advanced Computer(Torpedo)
+	J_ComputerBomber_4: Sapient Computer(Torpedo)
+	J_ComputerPicket_1: Basic Computer(Picket)
+	J_ComputerPicket_2: Specialized Computer(Picket)
+	J_ComputerPicket_3: Advanced Computer(Picket)
+	J_ComputerPicket_4: Sapient Computer(Picket)
+	J_ComputerLine_1: Basic Computer(Line)
+	J_ComputerLine_2: Specialized Computer(Line)
+	J_ComputerLine_3: Advanced Computer(Line)
+	J_ComputerLine_4: Sapient Computer(Line)
+	J_ComputerArtillery_1: Basic Computer(Artillery)
+	J_ComputerArtillery_2: Specialized Computer(Artillery)
+	J_ComputerArtillery_3: Advanced Computer(Artillery)
+	J_ComputerArtillery_4: Sapient Computer(Artillery)
+	J_ComputerCarrier_1: Basic Computer(Carrier)
+	J_ComputerCarrier_2: Specialized Computer(Carrier)
+	J_ComputerCarrier_3: Advanced Computer(Carrier)
+	J_ComputerCarrier_4: Sapient Computer(Carrier)
+	O_NoAura_1: None
+	O_QuantumDestabilizer_1: Quantum Destabilizer
+	O_ShieldDampener_1: Shield Dampener
+	O_SubspaceSnare_1: Subspace Snare
+	O_InspiringPresence_1: Inspiring Presence
+	O_AncientTargetScrambler_1: Ancient Target Scrambler
+	O_NanobotCloud_1: Nanobot Cloud
+	O_TargetingGrid_1: Targeting Grid
 	//舰船以及区段
-	Corvette: 护卫舰
-	Interceptor11: 拦截者核心
-	MissileBoat11: 雷击核心
-	PicketShip11: 哨戒核心
-	Destroyer: 驱逐舰
-	Artillery21: 巨炮舰艏
-	Gunship21: 炮艇舰艏
-	Gunship22: 炮艇舰艉
-	Interceptor22: 拦截者舰艉
-	PicketShip21: 哨戒舰艏
-	PicketShip22: 哨戒舰艉
-	Cruiser: 巡洋舰
-	Broadside33: 齐射舰艉
-	Broadside32: 齐射核心
-	Broadside31: 齐射舰艏
-	Artillery32: 巨炮核心
-	Artillery31: 巨炮舰艏
-	Gunship33: 炮艇舰艉
-	Hangar32: 格纳库核心
-	Torpedo31: 飞弹舰艏
-	Torpedo32: 飞弹核心
-	Battleship: 战列舰
-	Artillery41: 巨炮舰艏
-	Artillery42: 巨炮核心
-	Artillery43: 巨炮舰艉
-	Broadside41: 齐射舰艏
-	Broadside42: 齐射核心
-	Broadside43: 齐射舰艉
-	Carrier42: 航母核心
-	Hangar41: 格纳库舰艏
-	Hangar42: 格纳库核心
-	SpinalMount41: 脊峰舰艏
+	Corvette: Corvette
+	Interceptor11: Interceptor Core
+	MissileBoat11: Missile Boat Core
+	PicketShip11: Picket Ship Core
+	Destroyer: Destroyer
+	Artillery21: Artillery Bow
+	Gunship21: Gunship Bow
+	Gunship22: Gunship Stern
+	Interceptor22: Interceptor Stern
+	PicketShip21: Picket Ship Bow
+	PicketShip22: Picket Ship Stern
+	Cruiser: Cruiser
+	Broadside33: Broadside Stern
+	Broadside32: Broadside Core
+	Broadside31: Broadside Bow
+	Artillery32: Artillery Core
+	Artillery31: Artillery Bow
+	Gunship33: Gunship Stern
+	Hangar32: Hangar Core
+	Torpedo31: Torpedo Bow
+	Torpedo32: Torpedo Core
+	Battleship: Battleship
+	Artillery41: Artillery Bow
+	Artillery42: Artillery Core
+	Artillery43: Artillery Stern
+	Broadside41: Broadside Bow
+	Broadside42: Broadside Core
+	Broadside43: Broadside Stern
+	Carrier42: Carrier Core
+	Hangar41: Hangar Bow
+	Hangar42: Hangar Core
+	SpinalMount41: Spinal Mount Bow
+	Titan: Titan
+	Titan51: Titan Bow
+	Titan52: Titan Core
+	Titan53: Titan Stern
 }

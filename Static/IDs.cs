@@ -1,3 +1,4 @@
+
 namespace StellarisShips.Static
 {
     public static class ShipIDs
@@ -6,6 +7,7 @@ namespace StellarisShips.Static
         public const string Destroyer = "Destroyer";
         public const string Cruiser = "Cruiser";
         public const string Battleship = "Battleship";
+        public const string Titan = "Titan";
     }
 
     public static class SectionIDs
@@ -48,6 +50,10 @@ namespace StellarisShips.Static
         public const string Battleship_Artillery_Stern = "Artillery43";
         public const string Battleship_Broadside_Stern = "Broadside43";
 
+        //̩̹
+        public const string Titan_Bow = "Titan51";
+        public const string Titan_Core = "Titan52";
+        public const string Titan_Stern = "Titan53";
     }
 
     public static class ComponentTypes
@@ -72,6 +78,7 @@ namespace StellarisShips.Static
         public const string Sensor = "I";
         public const string Computer = "J";
         public const string FTLDrive = "K";
+        public const string Aura = "O";
     }
 
     public static class BonusID
@@ -146,5 +153,16 @@ namespace StellarisShips.Static
         public const string Shield = "StellarisShips/Sounds/Shield/";
         public const string UI = "StellarisShips/Sounds/UI/";
         public const string Other = "StellarisShips/Sounds/Other/";
+    }
+
+    public static class AuraID
+    {
+        public const string QuantumDestabilizer = "QuantumDestabilizer";
+        public const string ShieldDampener = "ShieldDampener";
+        public const string SubspaceSnare = "SubspaceSnare";
+        public const string InspiringPresence = "InspiringPresence";
+        public const string AncientTargetScrambler = "AncientTargetScrambler";
+        public const string NanobotCloud = "NanobotCloud";
+        public const string TargetingGrid = "TargetingGrid";
     }
 }

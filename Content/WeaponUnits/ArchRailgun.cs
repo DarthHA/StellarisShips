@@ -69,6 +69,7 @@ namespace StellarisShips.Content.WeaponUnits
                 }
                 else
                 {
+                    Rotation = (Main.npc[shipNPC.CurrentTarget].Center - shipNPC.GetPosOnShip(RelativePos)).ToRotation();
                     if (CurrentCooldown > 21)
                     {
                     }
@@ -103,7 +104,7 @@ namespace StellarisShips.Content.WeaponUnits
                         scaleSlot = 1.5f;
                         break;
                 }
-                
+
                 Vector2 SelfPos = shipNPC.GetPosOnShip(RelativePos) + Rotation.ToRotationVector2() * 8 * scaleSlot;
 
                 float t1 = MathHelper.Lerp(0.1f, 1f, MathHelper.Clamp((20f - CurrentCooldown) / 5f, 0f, 1f));

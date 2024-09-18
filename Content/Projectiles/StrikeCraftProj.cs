@@ -30,9 +30,11 @@ namespace StellarisShips.Content.Projectiles
         public float MaxSpeed = 20;
         public int AttackCooldown = 10;
         public float AttackRange = 300;
-        public int Level = 1;                //五级为文物小飞机
+        public int Level = 1;                //五级为文物小飞机，六级为虫群舰载机
         public Vector2 ReturnCenter = Vector2.Zero;
         public bool Destroyed = false;
+
+        public Vector2 AttackRelaPos = Vector2.Zero;
 
         private const float DamageModifier = 1.2f;
 
@@ -182,6 +184,7 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).AttackRange = attackRange;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).Level = lvl;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).ReturnCenter = returnCenter;
+                (Main.projectile[protmp].ModProjectile as StrikeCraftProj).AttackRelaPos = new Vector2(Main.rand.NextFloat() - 0.5f, Main.rand.NextFloat() - 0.5f) * 0.75f;
                 long uuid = Main.rand.Next(1145141919);
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).UUID = uuid;
                 return uuid;
@@ -238,7 +241,7 @@ namespace StellarisShips.Content.Projectiles
                         }
 
                         EasyDraw.AnotherDraw(BlendState.Additive);
-                        Utils.DrawLine(spriteBatch, target.Center, Projectile.Center, LaserColor, LaserColor, 1);
+                        Utils.DrawLine(spriteBatch, target.Center + AttackRelaPos * target.Size, Projectile.Center, LaserColor, LaserColor, 1);
                         EasyDraw.AnotherDraw(BlendState.AlphaBlend);
                     }
                 }

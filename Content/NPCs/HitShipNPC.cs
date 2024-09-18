@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using StellarisShips.Content.Items;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
 using StellarisShips.System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -58,13 +56,15 @@ namespace StellarisShips.Content.NPCs
                 {
                     float rot = (projectile.Center - npc.Center).ToRotation();
                     float r = new Vector2(npc.GetShipNPC().ShipWidth, npc.GetShipNPC().ShipLength).Distance(Vector2.Zero) / 2f + 40f;
+                    float hitr = projectile.Distance(npc.Center);
+                    if (projectile.Distance(npc.Center) > r * 0.9f) hitr = r * 0.9f;
                     if (npc.GetShipNPC().ShieldDRLevel > 0)
                     {
-                        ShieldHitEffect.Summon(npc, npc.Center, r, rot, npc.GetShipNPC().ShieldDRLevel.ToString());
+                        ShieldHitEffect.Summon(npc, npc.Center, r, hitr, rot, npc.GetShipNPC().ShieldDRLevel.ToString());
                     }
                     else
                     {
-                        ShieldHitEffect.Summon(npc, npc.Center, r, rot);
+                        ShieldHitEffect.Summon(npc, npc.Center, r, hitr, rot);
                     }
                     SomeUtils.PlaySoundRandom(SoundPath.Shield, 6, npc.Center + rot.ToRotationVector2() * r);
                 }
@@ -112,7 +112,16 @@ namespace StellarisShips.Content.NPCs
                 {
                     modifiers.FinalDamage *= 1 - npc.GetShipNPC().ShieldDR;
                 }
+                if (FleetSystem.AuraType.Contains(AuraID.QuantumDestabilizer))    //量子去稳器
+                {
+                    modifiers.FinalDamage *= 1f - 0.15f;
+                }
+
                 float evasionRate = npc.GetShipNPC().Evasion / 100f;
+                if (FleetSystem.AuraType.Contains(AuraID.AncientTargetScrambler))    //远古索敌扰频器
+                {
+                    evasionRate = 1 - (1 - evasionRate) * (1 - 0.3f);
+                }
                 modifiers.ModifyHitInfo += (ref NPC.HitInfo info) =>
                 {
                     if (Main.rand.NextFloat() < evasionRate)
@@ -122,9 +131,29 @@ namespace StellarisShips.Content.NPCs
                     info.HideCombatText = true;
                 };
             }
+            else
+            {
+                if (!npc.friendly)                //护盾挡板
+                {
+                    if (FleetSystem.AuraType.Contains(AuraID.ShieldDampener))
+                    {
+                        modifiers.FinalDamage *= 1f + 0.1f;
+                    }
+                }
+            }
         }
 
 
+        public override void FindFrame(NPC npc, int frameHeight)
+        {
+            if (npc.type != ModContent.NPCType<ShipNPC>() && !npc.friendly)
+            {
+                if (FleetSystem.AuraType.Contains(AuraID.SubspaceSnare))                //亚空间陷阱
+                {
+                    npc.position -= npc.velocity * 0.3f;
+                }
+            }
+        }
     }
 
 

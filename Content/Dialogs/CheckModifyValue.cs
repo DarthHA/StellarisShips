@@ -131,7 +131,7 @@ namespace StellarisShips.Content.Dialogs
                             }
                         }
                         ship.active = false;
-                        Vector2 GivePos = ShapeSystem.TipPos + new Vector2(Main.rand.Next(2000) - 1000, -1000);
+                        Vector2 GivePos = FleetSystem.TipPos + new Vector2(Main.rand.Next(2000) - 1000, -1000);
                         ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph);
 
                         FTLLight.Summon(ship.GetSource_FromAI(), GivePos, scale);

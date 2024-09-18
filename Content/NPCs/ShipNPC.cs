@@ -157,6 +157,11 @@ namespace StellarisShips.Content.NPCs
         /// </summary>
         public Dictionary<string, float> BonusBuff = new();
 
+        /// <summary>
+        /// 携带光环种类
+        /// </summary>
+        public string AuraType = "";
+
         #region 以下参数用于绘制，可以减少调用量
         public Texture2D ShipTexture;
         public float shipScale;
@@ -175,7 +180,7 @@ namespace StellarisShips.Content.NPCs
             NPCID.Sets.CantTakeLunchMoney[Type] = true;
             NPCID.Sets.ImmuneToAllBuffs[Type] = true;
 
-            NPCID.Sets.TrailCacheLength[NPC.type] = 80;
+            NPCID.Sets.TrailCacheLength[NPC.type] = 100;
             NPCID.Sets.TrailingMode[NPC.type] = 3;
 
             NPCID.Sets.MustAlwaysDraw[NPC.type] = true;
@@ -299,7 +304,8 @@ namespace StellarisShips.Content.NPCs
                     ShieldRegenProgress = 0;
                 }
 
-                HullRegenProgress += HullRegen;
+                float AuraBonus = FleetSystem.AuraType.Contains(AuraID.NanobotCloud) ? (NPC.lifeMax - MaxShield) * 0.015f : 0;
+                HullRegenProgress += HullRegen + AuraBonus;
                 if (HullRegenProgress >= 1)
                 {
                     int HullRegenAmount = (int)HullRegenProgress;
@@ -348,7 +354,7 @@ namespace StellarisShips.Content.NPCs
             }
             if (colliding)
             {
-                if (!Main.mouseText)
+                if (!Main.mouseText && !Main.LocalPlayer.mouseInterface)
                 {
                     Main.instance.MouseTextHackZoom(string.Format(Language.GetTextValue("Mods.StellarisShips.NPCExtraDesc"), string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipGraph.GraphName, EverythingLibrary.Ships[ShipGraph.ShipType].GetLocalizedName()),
                         NPC.life - CurrentShield, NPC.lifeMax - MaxShield, CurrentShield, MaxShield), 0, Main.LocalPlayer.difficulty, null);
@@ -501,5 +507,7 @@ namespace StellarisShips.Content.NPCs
         {
             FallenShip.BuildAFallenShip(NPC.GetSource_Death(), NPC.Center, NPC.rotation, ShipGraph);
         }
+
+
     }
 }

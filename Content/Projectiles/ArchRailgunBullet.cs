@@ -147,7 +147,7 @@ namespace StellarisShips.Content.Projectiles
             if (Projectile.ai[0] < 5)
             {
                 Projectile.ai[0]++;
-                int protmp = Summon(Projectile.GetSource_OnHit(target), Projectile.Center, Vector2.Zero, Projectile.damage / 4, color, ModifiedScale,Crit);         //一个取巧生成爆炸的方法
+                int protmp = Summon(Projectile.GetSource_OnHit(target), Projectile.Center, Vector2.Zero, Projectile.damage / 4, color, ModifiedScale, Crit);         //一个取巧生成爆炸的方法
                 if (protmp >= 0 && protmp <= 1000)
                 {
                     Main.projectile[protmp].ai[0] = 5;

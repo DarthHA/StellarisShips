@@ -65,7 +65,7 @@ namespace StellarisShips.Content.WeaponUnits
                         int damage = RandomDamage;
                         if (LastTarget == target)   //连续攻击同一敌人伤害提高
                         {
-                            if (ReAttackTime < 3) ReAttackTime++;
+                            if (ReAttackTime < 6) ReAttackTime++;
                         }
                         else
                         {

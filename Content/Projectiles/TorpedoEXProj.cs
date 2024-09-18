@@ -194,7 +194,7 @@ namespace StellarisShips.Content.Projectiles
             }
 
             modifiers.DefenseEffectiveness *= 0.5f;
-            float DamageBonus = 0.75f + 0.5f * target.life / target.lifeMax;
+            float DamageBonus = 0.75f + 0.75f * target.life / target.lifeMax;
             modifiers.SourceDamage *= DamageBonus;
         }
 
