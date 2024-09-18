@@ -1,4 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using StellarisShips.Content.NPCs;
+using StellarisShips.Static;
+using StellarisShips.System;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -126,7 +129,7 @@ internal static class TargetSelectHelper
         {
             if (npc.CanBeChasedBy() || NPCID.Sets.ProjectileNPC[npc.type])
             {
-                if (npc.DistanceWithWidth(ship) <= maxRange && npc.DistanceWithWidth(ship) >= minRange)
+                if (npc.DistanceWithWidth(ship) <= maxRange && npc.DistanceWithWidth(ship) >= minRange && (Collision.CanHitLine(ship.position, ship.width, ship.height, npc.position, npc.width, npc.height) || ship.GetShipNPC().CanSeeThroughTiles))
                 {
                     sampler.Add(npc.whoAmI);
                 }
@@ -199,6 +202,111 @@ internal static class TargetSelectHelper
                         target = npc.whoAmI;
                     }
                 }
+            }
+        }
+
+        return target;
+    }
+
+    /// <summary>
+    /// 点防御的计算体积的更精确索敌（大嘘x5,用于点防御AI
+    /// </summary>
+    /// <param name="ship"></param>
+    /// <param name="maxRange"></param>
+    /// <param name="minRange"></param>
+    /// <param name="SelectedTarget1"></param>
+    /// <returns></returns>
+    public static int GetClosestTargetWithWidthForPointDefense(this NPC ship, float maxRange, float minRange = 0, List<int> SelectTargets = null)
+    {
+        List<int> sampler = new();
+
+        foreach (NPC npc in Main.ActiveNPCs)
+        {
+            if (npc.CanBeChasedBy() || NPCID.Sets.ProjectileNPC[npc.type])
+            {
+                if (npc.DistanceWithWidth(ship) <= maxRange && npc.DistanceWithWidth(ship) >= minRange && (Collision.CanHitLine(ship.position, ship.width, ship.height, npc.position, npc.width, npc.height) || ship.GetShipNPC().CanSeeThroughTiles))
+                {
+                    sampler.Add(npc.whoAmI);
+                }
+            }
+        }
+
+        bool HasOnlyMainTarget = true;
+        foreach(int sam in sampler)
+        {
+            if(!SelectTargets.Contains(sam))
+            {
+                HasOnlyMainTarget = false;
+                break;
+            }
+        }
+        if (HasOnlyMainTarget)          //有且仅有主要目标时选取主要目标，优先级越往后越大
+        {
+            int sampler2 = -1;
+            foreach (int mainTarget in SelectTargets)
+            {
+                if (sampler.Contains(mainTarget)) sampler2 = mainTarget;
+            }
+            return sampler2;
+        }
+
+        foreach(int shouldRemove in SelectTargets)            //移除主目标
+        {
+            sampler.Remove(shouldRemove);
+        }
+
+        int target = -1;
+        foreach (int wmi in sampler)
+        {
+            if (target == -1 || Main.npc[wmi].DistanceWithWidth(ship) < Main.npc[target].DistanceWithWidth(ship))
+            {
+                target = wmi;
+            }
+        }
+
+        return target;
+    }
+
+
+    /// <summary>
+    /// 拦截机的计算体积的更精确索敌（大嘘x3,用于点防御AI
+    /// </summary>
+    /// <param name="ship"></param>
+    /// <param name="maxRange"></param>
+    /// <param name="minRange"></param>
+    /// <param name="SelectedTarget"></param>
+    /// <returns></returns>
+    public static int GetClosestTargetWithWidthForStriker(this NPC ship)
+    {
+        Vector2 DetectCenter = ShapeSystem.Following ? Main.LocalPlayer.Center : ShapeSystem.TipPos;
+        Vector2 CompareCenter = ship.Center;
+
+        List<int> sampler = new();
+
+        foreach (NPC npc in Main.ActiveNPCs)
+        {
+            if (npc.CanBeChasedBy() || NPCID.Sets.ProjectileNPC[npc.type])
+            {
+                if (npc.Distance(DetectCenter) <= ship.GetShipNPC().DetectRange && (ship.GetShipNPC().CanSeeThroughTiles || Collision.CanHitLine(DetectCenter, 1, 1, npc.position, npc.width, npc.height)))
+                {
+                    sampler.Add(npc.whoAmI);
+                }
+            }
+        }
+
+        if (sampler.Contains(ship.GetShipNPC().CurrentTarget) && sampler.Count == 1)          //有且仅有主要目标时选取主要目标，优先级2>1
+        {
+            return ship.GetShipNPC().CurrentTarget;
+        }
+
+        sampler.Remove(ship.GetShipNPC().CurrentTarget);
+
+        int target = -1;
+        foreach (int wmi in sampler)
+        {
+            if (target == -1 || Main.npc[wmi].Distance(CompareCenter) < Main.npc[target].Distance(CompareCenter))
+            {
+                target = wmi;
             }
         }
 

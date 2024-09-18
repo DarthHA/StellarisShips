@@ -1,29 +1,42 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Reflection;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace StellarisShips
 {
     public class StellarisShips : Mod
     {
-        public static Effect NormalVSEffect;
+        public static Effect NormalTrailEffect;
+        public static Effect LoopTrailEffect;
         public static Effect OffgasEffect;
         public static Effect SpherePerspective;
         public static Effect HitEffect;
         public override void Load()
         {
-            NormalVSEffect = ModContent.Request<Effect>("StellarisShips/Effects/NormalTrailEffect", AssetRequestMode.ImmediateLoad).Value;
-            OffgasEffect = ModContent.Request<Effect>("StellarisShips/Effects/OffgasEffect", AssetRequestMode.ImmediateLoad).Value;
-            SpherePerspective = ModContent.Request<Effect>("StellarisShips/Effects/SpherePerspective", AssetRequestMode.ImmediateLoad).Value;
-            HitEffect = ModContent.Request<Effect>("StellarisShips/Effects/HitEffect", AssetRequestMode.ImmediateLoad).Value;
+            FieldInfo[] f = typeof(StellarisShips).GetFields(BindingFlags.Static | BindingFlags.Public);
+            foreach (FieldInfo info in f)
+            {
+                if (info.FieldType == typeof(Effect))
+                {
+                    info.SetValue(this, ModContent.Request<Effect>("StellarisShips/Effects/" + info.Name, AssetRequestMode.ImmediateLoad).Value);
+                }
+            }
         }
 
         public override void Unload()
         {
-            OffgasEffect = null;
-            NormalVSEffect = null;
-            SpherePerspective = null;
-            HitEffect = null;
+            FieldInfo[] f = typeof(StellarisShips).GetFields(BindingFlags.Static | BindingFlags.Public);
+            foreach (FieldInfo info in f)
+            {
+                if (info.FieldType == typeof(Effect))
+                {
+                    info.SetValue(this, null);
+                }
+            }
         }
     }
+
 }

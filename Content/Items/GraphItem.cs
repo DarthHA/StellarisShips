@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using StellarisShips.Static;
 using StellarisShips.System;
@@ -106,7 +105,7 @@ namespace StellarisShips.Content.Items
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            SomeUtils.AddLight(Item.Center, Color.Cyan);
+            SomeUtils.AddLight(Item.Center, Color.Cyan, 2);
         }
     }
 }

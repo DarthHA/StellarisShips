@@ -17,6 +17,7 @@ namespace StellarisShips.Content.Components.Weapons.KCannon
         public override int MaxDamage => 900;
         public override int MinDamage => 700;
         public override float MaxRange => 600;
+        public override float MinRange => 225;
 
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_L };
         public override List<string> AttackCDTag => new() { BonusID.AllWeaponAttackCD, BonusID.WeaponAttackCD_L };

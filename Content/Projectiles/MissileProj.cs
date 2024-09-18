@@ -19,7 +19,6 @@ namespace StellarisShips.Content.Projectiles
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
-
         public bool Crit = false;
         public Color color = Color.Orange;
 
@@ -46,7 +45,7 @@ namespace StellarisShips.Content.Projectiles
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 100;
+            Projectile.localNPCHitCooldown = 999;
             Projectile.penetrate = -1;
             Projectile.npcProj = true;
             Projectile.Opacity = 0;

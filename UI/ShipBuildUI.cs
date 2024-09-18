@@ -26,6 +26,8 @@ namespace StellarisShips.UI
 
         public static long Value = 0;
 
+        public static int MRValue = 0;
+
         public static string Currentdialog = "";
 
         public static string HoverString = "";
@@ -65,11 +67,20 @@ namespace StellarisShips.UI
             spriteBatch.Draw(texOpinion, StartPos + new Vector2(70, 150), Color.White);
             Utils.DrawBorderString(spriteBatch, Opinion.ToString(), new Vector2(StartPos.X + 100, StartPos.Y + 150), Color.Green, 1.1f);
             //绘制说话
-            Utils.DrawBorderString(spriteBatch, SomeUtils.BreakLongString(TalkText, 55), new Vector2(StartPos.X + 80, StartPos.Y + 520), Color.White);
+            string talk = TalkText;
+            talk = talk.Replace("[i:StellarisShips/MR_Icon]", "MR_");
+            talk = SomeUtils.BreakLongString(talk, 55);
+            talk = talk.Replace("MR_", "[i:StellarisShips/MR_Icon]");
+            Utils.DrawBorderString(spriteBatch, talk, new Vector2(StartPos.X + 80, StartPos.Y + 520), Color.White);
             //显示总资金和舰容
             if (ShowInfo)
             {
-                Utils.DrawBorderString(spriteBatch, string.Format(Language.GetTextValue("Mods.StellarisShips.UI.TotalMoney"), HasMoney(Main.LocalPlayer), MoneyHelpers.GetCurrentCommandPoint(), ProgressHelper.GetMaxCommandPoint()), new Vector2(StartPos.X + 80, StartPos.Y + 750), Color.White);
+                string info = string.Format(Language.GetTextValue("Mods.StellarisShips.UI.TotalMoney"), HasMoney(Main.LocalPlayer), MoneyHelpers.GetCurrentCommandPoint(), ProgressHelper.GetMaxCommandPoint());
+                if (ProgressHelper.DiscoveredMR >= 2)
+                {
+                    info += string.Format(Language.GetTextValue("Mods.StellarisShips.UI.TotalMoneyExtra"), ProgressHelper.GetMaxMinorArtifact() - MoneyHelpers.GetCurrentMR(), ProgressHelper.GetMaxMinorArtifact());
+                }
+                Utils.DrawBorderString(spriteBatch, info, new Vector2(StartPos.X + 80, StartPos.Y + 750), Color.White);
             }
             foreach (TalkButton talkButton in talkButtons)
             {
@@ -169,6 +180,7 @@ namespace StellarisShips.UI
             if (All)
             {
                 Value = 0;
+                MRValue = 0;
                 shipGraph = new();
             }
         }

@@ -33,7 +33,7 @@ namespace StellarisShips.Static
             List<BaseComponent> result = new();
             foreach (BaseComponent component1 in EverythingLibrary.Components.Values)
             {
-                if (!removeByProgress || ProgressHelper.CurrentProgress >= component1.Progress)
+                if (!removeByProgress || component1.CanUnlock())
                 {
                     if (result.Count == 0)
                     {
@@ -78,7 +78,7 @@ namespace StellarisShips.Static
             BaseComponent result = null;
             foreach (BaseComponent component1 in EverythingLibrary.Components.Values)
             {
-                if (!RemoveByProgress || ProgressHelper.CurrentProgress >= component1.Progress)
+                if (!RemoveByProgress || component1.CanUnlock())
                 {
                     if ((component1.TypeName == typeName || typeName == "") && (component1.EquipType == EquipType || EquipType == ""))
                     {
@@ -106,7 +106,7 @@ namespace StellarisShips.Static
             List<BaseComponent> groups = new();
             foreach (BaseComponent c in EverythingLibrary.Components.Values)
             {
-                if (!RemoveByProgress || ProgressHelper.CurrentProgress >= c.Progress)
+                if (!RemoveByProgress || c.CanUnlock())
                 {
                     if (c.TypeName == TypeName && c.EquipType == EType)
                     {

@@ -69,7 +69,7 @@ namespace StellarisShips.Content.WeaponUnits
                         int dir = Math.Sign(RelativePos.X);
                         if (dir == 0) ShootVel = ship.rotation.ToRotationVector2() * (Main.rand.Next(7) + 3);
                         else ShootVel = ship.rotation.ToRotationVector2() * (Main.rand.Next(7) + 3) + (ship.rotation - dir * MathHelper.Pi / 2f).ToRotationVector2() * (Main.rand.Next(7) + 3);
-                        long uuid = StrikeCraftProj.Summon(ship, shipNPC.GetPosOnShip(RelativePos), RelativePos, ShootVel, MaxDmg, MinDmg, Crit, Speed, Level);
+                        long uuid = StrikeCraftProj.Summon(ship, shipNPC.GetPosOnShip(RelativePos), RelativePos, ShootVel, MaxDmg, MinDmg, Crit, Speed, 300, Level);
                         if (uuid != -1) UUIDs.Add(uuid);
                     }
 

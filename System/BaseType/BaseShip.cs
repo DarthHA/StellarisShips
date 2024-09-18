@@ -62,6 +62,9 @@ namespace StellarisShips.System.BaseType
             return ModContent.Request<Texture2D>("StellarisShips/Images/OtherIcons/Ship_" + InternalName, AssetRequestMode.ImmediateLoad).Value;
         }
 
-
+        public bool CanUnlock()
+        {
+            return ProgressHelper.CurrentProgress >= Progress;
+        }
     }
 }

@@ -34,4 +34,8 @@ namespace StellarisShips.Content.Items
     public class Slot_X : Slot_A
     {
     }
+    public class MR_Icon : Slot_A
+    {
+
+    }
 }

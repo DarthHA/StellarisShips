@@ -1,0 +1,119 @@
+Items: {
+	ConnecterItem: {
+		DisplayName: 太空联络器
+		Tooltip:
+			'''
+			不仅装有全息屏幕，还有一个小型物质传送装置的联络器
+			用于联络改造家联合会，可以委托其制造与改装舰船
+			在Boss战时无法使用
+			'''
+	}
+
+	Slot_A: {
+		DisplayName: 辅助部件槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Slot_G: {
+		DisplayName: 鱼雷槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Slot_H: {
+		DisplayName: 舰载机槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Slot_L: {
+		DisplayName: 大型槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Slot_M: {
+		DisplayName: 中型槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Slot_P: {
+		DisplayName: 点防御槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Slot_S: {
+		DisplayName: 小型槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Slot_T: {
+		DisplayName: 泰坦级槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	Slot_X: {
+		DisplayName: 特大型槽
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	MR_Icon: {
+		DisplayName: 稀有文物
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
+
+	GraphItem: {
+		DisplayName: 舰船图纸
+		Tooltip: 左键使用打开舰船设计界面
+	}
+
+	Rubricator: {
+		DisplayName: 誊录仪
+		Tooltip:
+			'''
+			这个小巧的方块包含着宇宙初诞至今无数外星文物的扫描数据。
+			它可以将这些文物无限复制。未知事物从没有如此触手可及过。
+			或许改造家联合会能够更好的利用它。
+			'''
+	}
+}
+
+NPCs: {
+	ShipNPC.DisplayName: 舰船
+	FallenShip.DisplayName: What can I say? Manba out
+}
+
+Projectiles: {
+	DamageProj.DisplayName: 伤害
+	PlasmaBullet.DisplayName: 等离子体
+	RailgunBullet.DisplayName: 动能炮弹
+	KCannonBullet.DisplayName: 动能炮弹
+	MissileProj.DisplayName: 导弹
+	TorpedoProj.DisplayName: 鱼雷
+	TorpedoEXProj.DisplayName: 能量鱼雷
+	StrikeCraftProj.DisplayName: 舰载机
+	ArcProj.DisplayName: 电弧
+	LanceProj.DisplayName: 光矛
+	MegaBullet.DisplayName: 兆级动能炮弹
+	FTLLight.DisplayName: 跃迁引擎
+	ShieldHitEffect.DisplayName: 护盾特效
+	ShipExplosion.DisplayName: 爆炸
+	HealEffect.DisplayName: 自我修复
+	ArchLaserExplosion.DisplayName: 远古穴蚀坍缩器
+	ArchMissileProj.DisplayName: 远古纳米导弹云
+	ArchRailgunBullet.DisplayName: 远古动能炮弹
+}
+
+Buffs: {
+	FollowBuff: {
+		DisplayName: 是否跟随
+		Description: 对吗
+	}
+
+	PassiveBuff: {
+		DisplayName: 是否主动攻击
+		Description: 不对
+	}
+
+	MissingBuff: {
+		DisplayName: 任务中失踪
+		Description: 至少有一艘我方舰船在任务中失踪，重新归队需要一定时间
+	}
+}

@@ -30,11 +30,11 @@ namespace StellarisShips.Content.Projectiles
         public float MaxSpeed = 20;
         public int AttackCooldown = 10;
         public float AttackRange = 300;
-        public int Level = 1;
+        public int Level = 1;                //五级为文物小飞机
         public Vector2 ReturnCenter = Vector2.Zero;
         public bool Destroyed = false;
 
-        private float DamageModifier = 1.2f;
+        private const float DamageModifier = 1.2f;
 
         public override void SetStaticDefaults()
         {
@@ -68,8 +68,6 @@ namespace StellarisShips.Content.Projectiles
                 return;
             }
 
-
-
             NPC owner = Main.npc[ownerID];
             ShipNPC shipNPC = owner.GetShipNPC();
             if (!owner.ShipActive() || Projectile.Distance(owner.Center) > 5000)                //失踪或者距离过远
@@ -99,24 +97,28 @@ namespace StellarisShips.Content.Projectiles
             else              //临战状态
             {
                 if (AttackCooldown > 0) AttackCooldown--;
-                NPC target = Main.npc[shipNPC.CurrentTarget];
-                Vector2 TargetPos = target.Center;
-                Vector2 TargetVel = Vector2.Normalize(TargetPos - Projectile.Center) * MaxSpeed;
-                if (TargetPos.Distance(Projectile.Center) > 300)
+                int targetID = TargetSelectHelper.GetClosestTargetWithWidthForStriker(owner);
+                if (Level == 5) targetID = shipNPC.CurrentTarget;               //钻孔无人机优先攻击主目标
+                if (targetID != -1)
                 {
-                    Projectile.velocity = Projectile.velocity * 0.95f + TargetVel * 0.05f;
-                }
-                else
-                {
-                    if (Projectile.velocity.Length() < MaxSpeed * 0.7f) Projectile.velocity *= 1.1f;
-                }
+                    NPC target = Main.npc[targetID];
 
-                if (Projectile.velocity.Length() > MaxSpeed) Projectile.velocity = Vector2.Normalize(Projectile.velocity) * MaxSpeed;
-                Projectile.rotation = Projectile.velocity.ToRotation();
+                    Vector2 TargetPos = target.Center;
+                    Vector2 TargetVel = Vector2.Normalize(TargetPos - Projectile.Center) * MaxSpeed;
+                    if (TargetPos.Distance(Projectile.Center) > 300)
+                    {
+                        Projectile.velocity = Projectile.velocity * 0.95f + TargetVel * 0.05f;
+                    }
+                    else
+                    {
+                        if (Projectile.velocity.Length() < MaxSpeed * 0.7f) Projectile.velocity *= 1.1f;
+                    }
 
-                //攻击
-                if (target.CanBeChasedBy())
-                {
+                    if (Projectile.velocity.Length() > MaxSpeed) Projectile.velocity = Vector2.Normalize(Projectile.velocity) * MaxSpeed;
+                    Projectile.rotation = Projectile.velocity.ToRotation();
+
+                    //攻击
+
                     if (target.Distance(Projectile.Center) <= AttackRange)
                     {
                         if (AttackCooldown <= 0)
@@ -141,6 +143,9 @@ namespace StellarisShips.Content.Projectiles
                             case 3:
                                 LaserColor = Color.LightGreen;
                                 break;
+                            case 5:
+                                LaserColor = Color.LightGreen;
+                                break;
                         }
 
                         SomeUtils.AddLightLine(Projectile.Center, TargetPos, LaserColor);
@@ -150,7 +155,21 @@ namespace StellarisShips.Content.Projectiles
             SomeUtils.AddLight(Projectile.Center, Color.White);
         }
 
-        public static long Summon(NPC ship, Vector2 Center, Vector2 returnCenter, Vector2 velocity, int maxDmg, int minDmg, float crit, float speed, int lvl)
+        /// <summary>
+        /// 注意：五级为远古小飞机
+        /// </summary>
+        /// <param name="ship"></param>
+        /// <param name="Center"></param>
+        /// <param name="returnCenter"></param>
+        /// <param name="velocity"></param>
+        /// <param name="maxDmg"></param>
+        /// <param name="minDmg"></param>
+        /// <param name="crit"></param>
+        /// <param name="speed"></param>
+        /// <param name="attackRange"></param>
+        /// <param name="lvl"></param>
+        /// <returns></returns>
+        public static long Summon(NPC ship, Vector2 Center, Vector2 returnCenter, Vector2 velocity, int maxDmg, int minDmg, float crit, float speed, float attackRange, int lvl)
         {
             int protmp = Projectile.NewProjectile(ship.GetSource_FromAI(), Center, velocity, ModContent.ProjectileType<StrikeCraftProj>(), 0, 0, Main.myPlayer);
             if (protmp >= 0 && protmp < 1000)
@@ -160,6 +179,7 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).MinDmg = minDmg;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).Crit = crit;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).MaxSpeed = speed;
+                (Main.projectile[protmp].ModProjectile as StrikeCraftProj).AttackRange = attackRange;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).Level = lvl;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).ReturnCenter = returnCenter;
                 long uuid = Main.rand.Next(1145141919);
@@ -191,29 +211,38 @@ namespace StellarisShips.Content.Projectiles
             ShipNPC shipNPC = Main.npc[ownerID].GetShipNPC();
             if (shipNPC.CurrentTarget != -1)
             {
-                NPC target = Main.npc[shipNPC.CurrentTarget];
-                if (target.CanBeChasedBy() && target.Distance(Projectile.Center) < AttackRange)
-                {
-                    Color LaserColor = Color.White;
-                    switch (Level)
-                    {
-                        case 1:
-                            LaserColor = Color.SkyBlue;
-                            break;
-                        case 2:
-                            LaserColor = Color.MediumPurple;
-                            break;
-                        case 3:
-                            LaserColor = Color.LightGreen;
-                            break;
-                    }
+                int targetID = TargetSelectHelper.GetClosestTargetWithWidthForStriker(shipNPC.NPC);
+                if (Level == 5) targetID = shipNPC.CurrentTarget;               //钻孔无人机优先攻击主目标
 
-                    EasyDraw.AnotherDraw(BlendState.Additive);
-                    Utils.DrawLine(spriteBatch, target.Center, Projectile.Center, LaserColor, LaserColor, 1);
-                    EasyDraw.AnotherDraw(BlendState.AlphaBlend);
+                if (targetID != -1)
+                {
+                    NPC target = Main.npc[targetID];
+
+                    if (target.Distance(Projectile.Center) < AttackRange)
+                    {
+                        Color LaserColor = Color.White;
+                        switch (Level)
+                        {
+                            case 1:
+                                LaserColor = Color.SkyBlue;
+                                break;
+                            case 2:
+                                LaserColor = Color.MediumPurple;
+                                break;
+                            case 3:
+                                LaserColor = Color.LightGreen;
+                                break;
+                            case 5:
+                                LaserColor = Color.LightGreen;
+                                break;
+                        }
+
+                        EasyDraw.AnotherDraw(BlendState.Additive);
+                        Utils.DrawLine(spriteBatch, target.Center, Projectile.Center, LaserColor, LaserColor, 1);
+                        EasyDraw.AnotherDraw(BlendState.AlphaBlend);
+                    }
                 }
             }
-
         }
 
         public void DrawTrail(SpriteBatch spriteBatch)
@@ -269,6 +298,12 @@ namespace StellarisShips.Content.Projectiles
                     Main.dust[d].velocity *= 2f;
                 }
             }
+        }
+
+        public void Boom()
+        {
+            Destroyed = true;
+            Projectile.Kill();
         }
     }
 }

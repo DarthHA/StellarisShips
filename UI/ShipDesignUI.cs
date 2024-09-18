@@ -102,7 +102,7 @@ namespace StellarisShips.UI
             int index = 0;
             foreach (string ship in EverythingLibrary.Ships.Keys)
             {
-                if (ProgressHelper.CurrentProgress >= EverythingLibrary.Ships[ship].Progress)
+                if (EverythingLibrary.Ships[ship].CanUnlock())
                 {
                     itemSelectButtons.Add(new ItemSelectButton(StartPos + new Vector2(20, 60 + index * 60), EverythingLibrary.Ships[ship].GetIcon(), ship, EverythingLibrary.Ships[ship].GetLocalizedName(), EverythingLibrary.Ships[ship].GetLocalizedDescription()));
                     index++;
@@ -266,7 +266,7 @@ namespace StellarisShips.UI
                             Samples.Clear();
                             foreach (BaseComponent component in EverythingLibrary.Components.Values)
                             {
-                                if (ProgressHelper.CurrentProgress >= component.Progress)
+                                if (component.CanUnlock())
                                 {
                                     Samples.Add(component);
                                 }
@@ -522,7 +522,7 @@ namespace StellarisShips.UI
                 if (StatString != "")
                 {
                     Vector2 WordSize = Terraria.GameContent.FontAssets.MouseText.Value.MeasureString(StatString);
-                    Rectangle WordRec = new((int)StartPos.X + 1050, (int)StartPos.Y + 150, (int)WordSize.X, (int)WordSize.Y);
+                    Rectangle WordRec = new((int)StartPos.X + 1050, (int)StartPos.Y + 150, 200, (int)WordSize.Y);
                     if (WordRec.Contains(new Point(Main.mouseX, Main.mouseY)))
                     {
                         Vector2 RelaPos = new Vector2(Main.mouseX, Main.mouseY) - (StartPos + new Vector2(1050, 150));
@@ -534,8 +534,8 @@ namespace StellarisShips.UI
                     }
                 }
             }
-
             HoverString = SomeUtils.BreakLongString(ShowStr, 35);
+            HoverString = HoverString.Replace("MR_", "[i:StellarisShips/MR_Icon]");
         }
 
 
@@ -700,8 +700,17 @@ namespace StellarisShips.UI
                     if (HoverString[i] == '\n') line++;
                 }
                 Texture2D texDesc = ModContent.Request<Texture2D>("StellarisShips/Images/UI/DescPanel", AssetRequestMode.ImmediateLoad).Value;
-                spriteBatch.Draw(texDesc, new Rectangle(Main.mouseX + 20, Main.mouseY + 20, 390, 30 * line + 20), Color.White);
-                Utils.DrawBorderString(spriteBatch, HoverString, new Vector2(Main.mouseX, Main.mouseY) + new Vector2(40, 40), Color.White);
+                int XOffset = 0, YOffset = 0;
+                if (Main.mouseX + 20 + 390 > Main.screenWidth)
+                {
+                    XOffset = Main.mouseX + 20 + 390 - Main.screenWidth;
+                }
+                if (Main.mouseY + 20 + 30 * line + 20 > Main.screenHeight)
+                {
+                    YOffset = Main.mouseY + 20 + 30 * line + 20 - Main.screenHeight;
+                }
+                spriteBatch.Draw(texDesc, new Rectangle(Main.mouseX + 20 - XOffset, Main.mouseY + 20 - YOffset, 390, 30 * line + 20), Color.White);
+                Utils.DrawBorderString(spriteBatch, HoverString, new Vector2(Main.mouseX + 40 - XOffset, Main.mouseY + 40 - YOffset), Color.White);
                 Main.mouseText = true;
             }
         }
@@ -794,6 +803,7 @@ namespace StellarisShips.UI
                     if (itemSlotButton.ItemType != "")
                     {
                         graph.Value += EverythingLibrary.Components[itemSlotButton.ItemType].Value;
+                        graph.MRValue += EverythingLibrary.Components[itemSlotButton.ItemType].MRValue;
                     }
                 }
                 for (int i = 0; i < componentButtons.Count; i++)
@@ -814,6 +824,7 @@ namespace StellarisShips.UI
                         if (button.ItemType != "")
                         {
                             graph.Value += EverythingLibrary.Components[button.ItemType].Value;
+                            graph.MRValue += EverythingLibrary.Components[button.ItemType].MRValue;
                         }
                     }
                 }
@@ -890,12 +901,14 @@ namespace StellarisShips.UI
             dummyShip.GetShipNPC().ShipGraph.ShipType = shipType;
             float TotalDPS = 0;
             long Value = EverythingLibrary.Ships[shipType].Value;
+            int ValueMR = 0;
             foreach (ItemSlotButton button in coreComponentButtons)           //计算核心部件舰船加成
             {
                 if (button.ItemType != "")
                 {
                     EverythingLibrary.Components[button.ItemType].ApplyEquip(dummyShip);
                     Value += EverythingLibrary.Components[button.ItemType].Value;
+                    ValueMR += EverythingLibrary.Components[button.ItemType].MRValue;
                 }
             }
             foreach (List<ItemSlotButton> itemSlotButtons in componentButtons)    //计算常规部件舰船加成
@@ -906,6 +919,7 @@ namespace StellarisShips.UI
                     {
                         EverythingLibrary.Components[button.ItemType].ApplyEquip(dummyShip);
                         Value += EverythingLibrary.Components[button.ItemType].Value;
+                        ValueMR += EverythingLibrary.Components[button.ItemType].MRValue;
                     }
                 }
             }
@@ -943,7 +957,7 @@ namespace StellarisShips.UI
             float Aggro = dummyShip.GetShipNPC().Aggro;
             TotalDPS = (float)Math.Round(TotalDPS, 1);
             string profession = Language.GetTextValue("Mods.StellarisShips.ComputerType." + dummyShip.GetShipNPC().ComputerType);
-            result = string.Format(Language.GetTextValue("Mods.StellarisShips.UI.ShipStat"), CP, Hull, Defense, Shield, HullRegen, ShieldRegen, Evasion, MaxSpeed, DetectRange, Aggro, TotalDPS, profession, MoneyHelpers.ShowCoins(Value));
+            result = string.Format(Language.GetTextValue("Mods.StellarisShips.UI.ShipStat"), CP, Hull, Defense, Shield, HullRegen, ShieldRegen, Evasion, MaxSpeed, DetectRange, Aggro, TotalDPS, profession, MoneyHelpers.ShowCoins(Value, ValueMR));
             return result;
         }
 

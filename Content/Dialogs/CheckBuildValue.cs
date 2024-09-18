@@ -35,7 +35,7 @@ namespace StellarisShips.Content.Dialogs
         {
             ShipBuildUI.TalkText = string.Format(GetDialogLocalize("CheckBuildValue"),
                 string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipBuildUI.shipGraph.GraphName, EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].GetLocalizedName()),
-MoneyHelpers.ShowCoins(ShipBuildUI.Value), EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].CP);
+MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue), EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].CP);
         }
 
         public override void Update()
@@ -46,6 +46,10 @@ MoneyHelpers.ShowCoins(ShipBuildUI.Value), EverythingLibrary.Ships[ShipBuildUI.s
                 enabled = true;
             }
             if (EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].CP > ProgressHelper.GetMaxCommandPoint() - MoneyHelpers.GetCurrentCommandPoint())
+            {
+                enabled = false;
+            }
+            if (ShipBuildUI.shipGraph.MRValue > ProgressHelper.GetMaxMinorArtifact() - MoneyHelpers.GetCurrentMR())
             {
                 enabled = false;
             }
@@ -66,7 +70,7 @@ MoneyHelpers.ShowCoins(ShipBuildUI.Value), EverythingLibrary.Ships[ShipBuildUI.s
                     Main.LocalPlayer.BuyItem(ShipBuildUI.Value);
                     ShipBuildUI.TalkText = string.Format(GetDialogLocalize("BuildSuccess"),
                         string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipBuildUI.shipGraph.GraphName, EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].GetLocalizedName()),
-MoneyHelpers.ShowCoins(ShipBuildUI.Value));
+MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue));
                     SomeUtils.PlaySound(SoundPath.UI + "BuildShip");
                     break;
                 case "Restart":

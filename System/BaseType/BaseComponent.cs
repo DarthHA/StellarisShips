@@ -39,7 +39,15 @@ namespace StellarisShips.System.BaseType
         /// </summary>
         public virtual bool IsExplosive => false;
 
+        /// <summary>
+        /// 钱币造价
+        /// </summary>
         public virtual long Value => Item.buyPrice(0, 1, 0, 0);
+
+        /// <summary>
+        /// 稀有文物造价
+        /// </summary>
+        public virtual int MRValue => 0;
 
         /// <summary>
         /// 解锁时期
@@ -75,10 +83,19 @@ namespace StellarisShips.System.BaseType
         {
             string result = string.Format("[c/ffd700:{0}]", GetLocalizedName());
             ModifyDesc(ref result);
-            result += "\n" + string.Format(Language.GetTextValue("Mods.StellarisShips.ExtraDesc.Value"), MoneyHelpers.ShowCoins(Value));
+            result += "\n" + string.Format(Language.GetTextValue("Mods.StellarisShips.ExtraDesc.Value"), MoneyHelpers.ShowCoins(Value, MRValue));
+            result = result.Replace("[i:StellarisShips/MR_Icon]", "MR_");
             result += "\n" + Language.GetOrRegister("Mods.StellarisShips.Desc." + TypeName + "_" + Level.ToString()).Value;
             return result;
         }
 
+        public bool CanUnlock()
+        {
+            if (MRValue > 0)
+            {
+                return ProgressHelper.DiscoveredMR >= 2;
+            }
+            return ProgressHelper.CurrentProgress >= Progress;
+        }
     }
 }

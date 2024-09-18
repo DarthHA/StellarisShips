@@ -22,10 +22,14 @@ namespace StellarisShips.System
         public List<SectionForSave> Parts = new();
 
         /// <summary>
-        /// 造价
+        /// 常规造价
         /// </summary>
         public long Value = 0;
 
+        /// <summary>
+        /// 稀有文物造价
+        /// </summary>
+        public int MRValue = 0;
 
         public ShipGraph Copy()
         {
@@ -33,6 +37,7 @@ namespace StellarisShips.System
             other.GraphName = GraphName;
             other.ShipType = ShipType;
             other.Value = Value;
+            other.MRValue = MRValue;
             foreach (string component in CoreComponent)
             {
                 other.CoreComponent.Add(component);

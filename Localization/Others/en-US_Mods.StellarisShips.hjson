@@ -1,0 +1,201 @@
+UI: {
+	YesButton: 保存设计
+	NoButton: 关闭界面
+	ClearButton: 清除设计
+	RandomButton: 修改名称
+	GraphName: "{0}级{1}图纸"
+	GraphNameUI: "{0}级{1}"
+	ShipDesign: 舰船设计器
+	ShipStat:
+		'''
+		舰船规模: {0}
+		船体: {1}
+		防御: {2}
+		护盾: {3}
+		船体再生: {4} 每秒
+		护盾再生: {5} 每秒
+		闪避: {6}%
+		航速: {7}
+		探测半径: {8}
+		仇恨值: {9}
+		理论输出: {10} 每秒
+		舰船职能: {11}
+		造价: {12}
+		'''
+	ShipBuildTitle: 信号传输接入
+	ShipBuilder: 首席工程师埃德尔·弗拉之子
+	ShipBuilderTitle: 改造家联合会
+	TotalMoney: 总资金: {0}      当前舰队容量: {1}/{2}
+	TotalMoneyExtra: "      稀有文物[i:StellarisShips/MR_Icon]: {0}/{1}"
+	NoSignal: 看起来Boss干扰了联络器的信号...
+	NewTechNotification: 改造家联合会开放了新科技
+	CPExpandNotification: 改造家联合会开放了更多的舰队容量
+	NewShipNotification: 改造家联合会开放了新舰船的建造权限
+	ShipStat0: 舰船规模代表了该舰船的维护成本，所有舰船规模之和无法超过舰队容量。
+	ShipStat1: 船体值代表舰船在被完全摧毁前可承受多少伤害。
+	ShipStat2: 防御值代表了舰船受到伤害的减免效果，与玩家防御算法一致，可以通过装甲提升。
+	ShipStat3: 护盾是保护舰体的第一道防线，可以在攻击对舰体造成伤害之前吸收掉一部分。
+	ShipStat4: 船体再生决定舰船自我恢复船体值的速度。
+	ShipStat5: 护盾再生决定非战斗状态下舰船自我恢复护盾值的速度，可以通过护盾等部件提升。
+	ShipStat6: 所有舰船都可以闪避攻击，减少所受伤害。闪避几率可以通过推进器等部件提升，但越大的船效果越不明显。
+	ShipStat7: 航速是舰船战斗时的最高移动速度，可通过推进器等部件增加。当舰队航行时，速度最低的舰船将限制全舰队的最大速度。
+	ShipStat8: 探测半径决定舰船攻击在玩家/集结点一定范围内敌怪的半径大小，可以通过探测器提升。
+	ShipStat9: 仇恨值越高，敌怪越容易攻击该舰船，并忽视其他舰船和玩家。
+	ShipStat10: 理论输出是舰船所有装备的武器部件的伤害数值总和。每个武器在战斗中依旧会独立攻击。不应以理论输出片面评价舰船输出能力。
+	ShipStat11: 舰船职能决定其攻击时的行为以及武器使用倾向，由作战电脑决定。
+	ShipStat12: 造价决定建造舰船所需的费用，一艘舰船的造价等于船体造价及所搭载的所有零件造价之和。
+}
+
+WoCao: 卧槽这TM是什么鬼
+
+ExtraDesc: {
+	Free: "[c/dcdcdc:免费]"
+	DefensePlus: 防御 +{0}
+	DefensePlus2:
+		'''
+		防御 +{0}
+		护盾 +{1}
+		护盾再生 +{2} 每秒
+		'''
+	ShieldPlus:
+		'''
+		护盾 +{0}
+		护盾再生 +{1} 每秒
+		'''
+	ShieldPlus2:
+		'''
+		护盾 +{0}
+		护盾再生 +{1} 每秒
+		护盾存在时减伤 +{2}%
+		'''
+	WeaponStat:
+		'''
+		伤害: {0}-{1}
+		暴击率: {2}%
+		攻击冷却: {3}
+		射程: {4}-{5}
+		输出: {6} 每秒
+		'''
+	WeaponStatStriker:
+		'''
+		伤害: {0}-{1}
+		暴击率: {2}%
+		攻击冷却: {3}
+		射程: 最大
+		输出: {4} 每秒
+		'''
+	Thruster:
+		'''
+		航速 +{0}%
+		闪避 +{1}%
+		'''
+	Sensor1: 索敌范围 +{0}
+	Sensor2: 暴击率 +{0}%
+	Sensor3: 可以无视物块索敌
+	ShieldRecharger: 护盾承受值 +{0}%
+	TissueRepair: 船体再生 +{0}% 每秒
+	EEncoder: 闪避 +{0}%
+	Cloak: 仇恨值 -{0}
+	Value: 造价: {0}
+	FTL:
+		'''
+		距离过远时可以发动超空间航行
+		失踪返回时间 -{0} 秒
+		'''
+	Reactor:
+		'''
+		武器伤害 +{0}%
+		航速 +{0}%
+		'''
+	ArmorHardener: 受击获得的无敌帧 +{0}
+	ShieldHardener: 护盾存在时减伤 +{0}%
+	//作战电脑系列
+	ComputerArtillery:
+		'''
+		L槽武器暴击率 +{0}%
+		L槽武器开火速率 +{1}%
+		X槽武器暴击率 +{2}%
+		X槽武器开火速率 +{3}%
+		'''
+	ComputerBomber:
+		'''
+		S槽武器伤害 +{0}%
+		S槽武器暴击率 +{1}%
+		G槽武器伤害 +{2}%
+		G槽武器暴击率 +{3}%
+		'''
+	ComputerCarrier:
+		'''
+		H槽舰载机个数 +{0}
+		H槽舰载机伤害 +{1}%
+		仇恨值 -{2}
+		'''
+	ComputerLine:
+		'''
+		武器开火速率 +{0}%
+		武器暴击率 +{1}%
+		'''
+	ComputerPicket:
+		'''
+		武器开火速率 +{0}%
+		武器暴击率 +{1}%
+		闪避率 +{2}%
+		仇恨值 +{3}
+		'''
+	ComputerSwarm:
+		'''
+		武器开火速率 +{0}%
+		闪避率 +{1}%
+		航速 +{2}%
+		'''
+}
+
+BuffExtraDesc: {
+	Follow1Name: 已设置舰船跟随
+	Follow2Name: 已设置舰船停驻
+	Follow1Desc:
+		'''
+		舰船将跟随玩家，攻击玩家附近的敌人
+		右键以切换状态
+		'''
+	Follow2Desc:
+		'''
+		舰船将停在原处，攻击接近的敌人
+		右键以切换状态
+		'''
+	Passive1Name: 已设置主动姿态
+	Passive2Name: 已设置被动姿态
+	Passive1Desc:
+		'''
+		舰船将主动攻击敌人
+		右键以切换状态
+		Boss战斗中切换被动将使舰船失踪
+		'''
+	Passive2Desc:
+		'''
+		舰船将不会主动攻击敌人
+		右键以切换状态
+		'''
+	MissingDesc:
+		'''
+		至少有一艘我方舰船在任务中失踪，重新归队需要一定时间
+		剩余{0}艘舰船最晚在{1}后全部归队
+		'''
+}
+
+ComputerType: {
+	ComputerSwarm: 蜂拥
+	ComputerPicket: 哨戒
+	ComputerLine: 线列
+	ComputerArtillery: 炮击
+	ComputerCarrier: 航母
+	ComputerBomber: 鱼雷
+}
+
+NPCExtraDesc:
+	'''
+	{0}
+	船体: {1}/{2}
+	护盾: {3}/{4}
+	'''
+DropRule.Rubricator: 在击败月球领主后击败足够强的Boss概率掉落

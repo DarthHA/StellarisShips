@@ -31,11 +31,11 @@ namespace StellarisShips.Static
                 Matrix projection = Matrix.CreateOrthographicOffCenter(0f, screenSize.X, screenSize.Y, 0f, 0f, 1f);
                 Vector2 screenPos = vector - screenSize / 2f;
                 Matrix model = Matrix.CreateTranslation(new Vector3(-screenPos.X, -screenPos.Y, 0f));
-                StellarisShips.NormalVSEffect.Parameters["uTransform"].SetValue(model * projection);
-                StellarisShips.NormalVSEffect.Parameters["color"].SetValue(color.ToVector4());
+                StellarisShips.NormalTrailEffect.Parameters["uTransform"].SetValue(model * projection);
+                StellarisShips.NormalTrailEffect.Parameters["color"].SetValue(color.ToVector4());
                 Main.graphics.GraphicsDevice.Textures[0] = tex;
                 Main.graphics.GraphicsDevice.SamplerStates[0] = SamplerState.PointWrap;
-                StellarisShips.NormalVSEffect.CurrentTechnique.Passes[0].Apply();
+                StellarisShips.NormalTrailEffect.CurrentTechnique.Passes[0].Apply();
                 Main.graphics.GraphicsDevice.DrawUserPrimitives(0, triangleList.ToArray(), 0, triangleList.Count / 3);
                 Main.graphics.GraphicsDevice.RasterizerState = originalState;
                 spriteBatch.End();
@@ -92,5 +92,41 @@ namespace StellarisShips.Static
         }
 
 
+        public static void DrawLoopTrail(Texture2D tex, List<CustomVertexInfo> bars, SpriteBatch spriteBatch, Color color, BlendState blendState,float LaserLength ,float ImageLength,float Progress)
+        {
+            List<CustomVertexInfo> triangleList = new List<CustomVertexInfo>();
+            if (bars.Count > 2)
+            {
+                for (int k = 0; k < bars.Count - 2; k += 2)
+                {
+                    triangleList.Add(bars[k]);
+                    triangleList.Add(bars[k + 2]);
+                    triangleList.Add(bars[k + 1]);
+                    triangleList.Add(bars[k + 1]);
+                    triangleList.Add(bars[k + 2]);
+                    triangleList.Add(bars[k + 3]);
+                }
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Immediate, blendState, SamplerState.AnisotropicClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+                RasterizerState originalState = Main.graphics.GraphicsDevice.RasterizerState;
+                Vector2 vector = Main.screenPosition + new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
+                Vector2 screenSize = new Vector2(Main.screenWidth, Main.screenHeight) / Main.GameViewMatrix.Zoom;
+                Matrix projection = Matrix.CreateOrthographicOffCenter(0f, screenSize.X, screenSize.Y, 0f, 0f, 1f);
+                Vector2 screenPos = vector - screenSize / 2f;
+                Matrix model = Matrix.CreateTranslation(new Vector3(-screenPos.X, -screenPos.Y, 0f));
+                StellarisShips.LoopTrailEffect.Parameters["progress"].SetValue(Progress);
+                StellarisShips.LoopTrailEffect.Parameters["laserLength"].SetValue(LaserLength);
+                StellarisShips.LoopTrailEffect.Parameters["imageLength"].SetValue(ImageLength);
+                StellarisShips.LoopTrailEffect.Parameters["uTransform"].SetValue(model * projection);
+                StellarisShips.LoopTrailEffect.Parameters["color"].SetValue(color.ToVector4());
+                Main.graphics.GraphicsDevice.Textures[0] = tex;
+                Main.graphics.GraphicsDevice.SamplerStates[0] = SamplerState.PointWrap;
+                StellarisShips.LoopTrailEffect.CurrentTechnique.Passes[0].Apply();
+                Main.graphics.GraphicsDevice.DrawUserPrimitives(0, triangleList.ToArray(), 0, triangleList.Count / 3);
+                Main.graphics.GraphicsDevice.RasterizerState = originalState;
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+            }
+        }
     }
 }

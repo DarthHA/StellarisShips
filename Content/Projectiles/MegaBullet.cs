@@ -14,6 +14,7 @@ namespace StellarisShips.Content.Projectiles
 
         public bool Crit = false;
         public float ModifiedScale = 1f;
+        public bool IsAncientBullet = false;
 
         public override void SetStaticDefaults()
         {
@@ -29,7 +30,7 @@ namespace StellarisShips.Content.Projectiles
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 100;
+            Projectile.localNPCHitCooldown = 999;
             Projectile.penetrate = -1;
             Projectile.npcProj = true;
             Projectile.Opacity = 0;
@@ -115,7 +116,7 @@ namespace StellarisShips.Content.Projectiles
         }
 
 
-        public static void Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, float scale, bool crit = false, float kb = 0)
+        public static void Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, float scale, bool crit = false, bool isAncient = false, float kb = 0)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<MegaBullet>(), dmg, kb, Main.myPlayer);
             if (protmp >= 0 && protmp <= 1000)
@@ -123,6 +124,7 @@ namespace StellarisShips.Content.Projectiles
                 Main.projectile[protmp].Center = Pos;
                 (Main.projectile[protmp].ModProjectile as MegaBullet).ModifiedScale = scale;
                 (Main.projectile[protmp].ModProjectile as MegaBullet).Crit = crit;
+                (Main.projectile[protmp].ModProjectile as MegaBullet).IsAncientBullet = isAncient;
             }
         }
 
@@ -137,6 +139,13 @@ namespace StellarisShips.Content.Projectiles
                 modifiers.DisableCrit();
             }
             modifiers.DefenseEffectiveness *= 1;
+            if (IsAncientBullet)
+            {
+                if (modifiers.DefenseEffectiveness.Value > 0)
+                {
+                    modifiers.DefenseEffectiveness *= -100;
+                }
+            }
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

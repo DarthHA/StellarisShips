@@ -18,7 +18,17 @@ float4 PixelShaderFunction(float2 texCoords : TEXCOORD0) : COLOR
     float distance = length(delta);
     float a;
     if (distance < r1)
-        a = 1;
+    {
+        if (distance > r1 - r2)
+        {
+            a = (distance - r1 + r2) / r2;
+        }
+        else
+        {
+            a = 0;
+        }
+    }
+
     if (distance > r1 + r2)
         return 0;
     if (distance > r1 && distance < r1 + r2)

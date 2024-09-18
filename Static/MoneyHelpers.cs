@@ -203,7 +203,32 @@ namespace StellarisShips.Static
             if (MoneyHelpers.GetPlatinum(value) > 0) result += MoneyHelpers.GetPlatinum(value) + "[i:74]";
             if (MoneyHelpers.GetGold(value) > 0) result += MoneyHelpers.GetGold(value) + "[i:73]";
             if (MoneyHelpers.GetSilver(value) > 0) result += MoneyHelpers.GetSilver(value) + "[i:72]";
-            if (MoneyHelpers.GetCopper(value) > 0 || result == "") result += MoneyHelpers.GetCopper(value) + "[i:71]";
+            if (MoneyHelpers.GetCopper(value) > 0) result += MoneyHelpers.GetCopper(value) + "[i:71]";
+            return result;
+        }
+
+        public static int GetCurrentMR()
+        {
+            int result = 0;
+            foreach (NPC ship in Main.ActiveNPCs)
+            {
+                if (ship.type == ModContent.NPCType<ShipNPC>())
+                {
+                    result += ship.GetShipNPC().ShipGraph.MRValue;
+                }
+            }
+            return result;
+        }
+
+        public static string ShowCoins(long value, int MRValue)
+        {
+            if (value == 0 && MRValue == 0) return Language.GetTextValue("Mods.StellarisShips.ExtraDesc.Free");
+            string result = "";
+            if (MoneyHelpers.GetPlatinum(value) > 0) result += MoneyHelpers.GetPlatinum(value) + "[i:74]";
+            if (MoneyHelpers.GetGold(value) > 0) result += MoneyHelpers.GetGold(value) + "[i:73]";
+            if (MoneyHelpers.GetSilver(value) > 0) result += MoneyHelpers.GetSilver(value) + "[i:72]";
+            if (MoneyHelpers.GetCopper(value) > 0) result += MoneyHelpers.GetCopper(value) + "[i:71]";
+            if (MRValue > 0) result += MRValue + "[i:StellarisShips/MR_Icon]";
             return result;
         }
     }

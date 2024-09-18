@@ -8,6 +8,7 @@ using StellarisShips.UI;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Dialogs
 {
@@ -39,6 +40,7 @@ namespace StellarisShips.Content.Dialogs
         public override void Update()
         {
             long values = 0;
+            int valuesMR = 0;
             int count = 0;
             foreach (NPC ship in Main.ActiveNPCs)
             {
@@ -51,14 +53,23 @@ namespace StellarisShips.Content.Dialogs
                         long realValue = (long)(ship.life / (float)ship.lifeMax * shipNPC.ShipGraph.Value);
                         if (ShipBuildUI.shipGraph.Value - realValue > 0)
                             values += ShipBuildUI.shipGraph.Value - realValue;
+                        if (ShipBuildUI.shipGraph.MRValue - ship.GetShipNPC().ShipGraph.MRValue > 0)
+                        {
+                            valuesMR += ShipBuildUI.shipGraph.MRValue - ship.GetShipNPC().ShipGraph.MRValue;
+                        }
                     }
                 }
             }
             ShipBuildUI.Value = values;
+            ShipBuildUI.MRValue = valuesMR;
             bool enabled = false;
             if (count > 0 && Main.LocalPlayer.CanAfford(ShipBuildUI.Value))
             {
                 enabled = true;
+            }
+            if (ShipBuildUI.MRValue > ProgressHelper.GetMaxMinorArtifact() - MoneyHelpers.GetCurrentMR())
+            {
+                enabled = false;
             }
             ShipBuildUI.talkButtons[0].Enabled = enabled;
 
@@ -70,7 +81,7 @@ namespace StellarisShips.Content.Dialogs
             {
                 ShipBuildUI.TalkText = string.Format(GetDialogLocalize("CheckModifyValue"),
                     string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipBuildUI.shipGraph.GraphName, EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].GetLocalizedName()),
-                    count, MoneyHelpers.ShowCoins(ShipBuildUI.Value));
+                    count, MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue));
             }
         }
 
@@ -109,6 +120,16 @@ namespace StellarisShips.Content.Dialogs
                     {
                         float scale = EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].Length / 70f;
                         FTLLight.Summon(ship.GetSource_FromAI(), ship.Center, scale);
+                        foreach (Projectile striker in Main.ActiveProjectiles)
+                        {
+                            if (striker.type == ModContent.ProjectileType<StrikeCraftProj>())
+                            {
+                                if ((striker.ModProjectile as StrikeCraftProj).ownerID == ship.whoAmI)
+                                {
+                                    (striker.ModProjectile as StrikeCraftProj).Boom();
+                                }
+                            }
+                        }
                         ship.active = false;
                         Vector2 GivePos = ShapeSystem.TipPos + new Vector2(Main.rand.Next(2000) - 1000, -1000);
                         ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph);

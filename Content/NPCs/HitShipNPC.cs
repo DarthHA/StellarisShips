@@ -2,6 +2,7 @@
 using StellarisShips.Content.Items;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
+using StellarisShips.System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
@@ -123,12 +124,8 @@ namespace StellarisShips.Content.NPCs
             }
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
-            if (npc.type == NPCID.EyeofCthulhu)
-            {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ConnecterItem>(), 1, 1, 1));
-            }
-        }
+
     }
+
+
 }

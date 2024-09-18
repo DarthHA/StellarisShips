@@ -52,6 +52,7 @@ namespace StellarisShips.Content.Dialogs
                 case "Yes":
                     ShipBuildUI.shipGraph = (Main.LocalPlayer.HeldItem.ModItem as GraphItem).graph.Copy();
                     ShipBuildUI.Value = ShipBuildUI.shipGraph.Value;
+                    ShipBuildUI.MRValue = ShipBuildUI.shipGraph.MRValue;
                     ShipBuildUI.Start("CheckBuildValue");
                     break;
                 case "No":

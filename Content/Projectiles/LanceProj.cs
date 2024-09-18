@@ -44,7 +44,7 @@ namespace StellarisShips.Content.Projectiles
             Projectile.netImportant = true;
             Projectile.friendly = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 100;
+            Projectile.localNPCHitCooldown = 999;
         }
 
         public override void AI()

@@ -1,5 +1,4 @@
-﻿using StellarisShips.Static;
-using StellarisShips.System.BaseType;
+﻿using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
 
@@ -23,7 +22,7 @@ namespace StellarisShips.Content.Dialogs
 
         public override void SetUp()
         {
-            ShipBuildUI.TalkText = string.Format(GetDialogLocalize("RepairSuccess"), MoneyHelpers.ShowCoins(ShipBuildUI.Value));
+            ShipBuildUI.TalkText = string.Format(GetDialogLocalize("RepairSuccess"));
         }
 
         public override void Update()

@@ -15,6 +15,8 @@ namespace StellarisShips.Content.Projectiles
 
         private bool CanHit = true;
 
+        public bool OneHit = true;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.CanDistortWater[Projectile.type] = true;
@@ -31,7 +33,7 @@ namespace StellarisShips.Content.Projectiles
             Projectile.friendly = true;
             Projectile.npcProj = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 10;
+            Projectile.localNPCHitCooldown = 99999;
         }
 
         public override bool ShouldUpdatePosition()
@@ -44,7 +46,7 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
-        public static void Summon(IEntitySource entitySource, Vector2 Pos, int dmg, bool crit = false, float defenseEffectiveness = 1f, float kb = 0, int width = 1, int height = 1)
+        public static void Summon(IEntitySource entitySource, Vector2 Pos, int dmg, bool crit = false, float defenseEffectiveness = 1f, float kb = 0, int width = 1, int height = 1, bool oneHit = true)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, Vector2.Zero, ModContent.ProjectileType<DamageProj>(), dmg, kb, Main.myPlayer);
             if (protmp >= 0 && protmp <= 1000)
@@ -54,6 +56,8 @@ namespace StellarisShips.Content.Projectiles
                 Main.projectile[protmp].Center = Pos;
                 (Main.projectile[protmp].ModProjectile as DamageProj).Crit = crit;
                 (Main.projectile[protmp].ModProjectile as DamageProj).DefenseEffectiveness = defenseEffectiveness;
+                (Main.projectile[protmp].ModProjectile as DamageProj).OneHit = oneHit;
+                if (oneHit) Main.projectile[protmp].penetrate = 1;
             }
         }
 
@@ -74,7 +78,10 @@ namespace StellarisShips.Content.Projectiles
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            CanHit = false;
+            if (OneHit)
+            {
+                CanHit = false;
+            }
         }
 
         public override bool? CanDamage()

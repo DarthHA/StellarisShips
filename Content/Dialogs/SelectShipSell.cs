@@ -1,6 +1,7 @@
 ﻿
 
 using StellarisShips.Content.Items;
+using StellarisShips.Content.NPCs;
 using StellarisShips.Static;
 using StellarisShips.System.BaseType;
 using StellarisShips.UI;
@@ -42,7 +43,17 @@ namespace StellarisShips.Content.Dialogs
             {
                 if ((Main.LocalPlayer.HeldItem.ModItem as GraphItem).graph.ShipType != "")
                 {
-                    enabled1 = true;
+                    foreach (NPC ship in Main.ActiveNPCs)
+                    {
+                        if (ship.ShipActive())
+                        {
+                            if (ship.GetShipNPC().ShipGraph.GraphName == (Main.LocalPlayer.HeldItem.ModItem as GraphItem).graph.GraphName)
+                            {
+                                enabled1 = true;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             bool AnyShip = false;
@@ -71,6 +82,7 @@ namespace StellarisShips.Content.Dialogs
                 case "Yes":
                     ShipBuildUI.shipGraph = (Main.LocalPlayer.HeldItem.ModItem as GraphItem).graph.Copy();
                     ShipBuildUI.Value = ShipBuildUI.shipGraph.Value;
+                    ShipBuildUI.MRValue = ShipBuildUI.shipGraph.MRValue;
                     ShipBuildUI.Start("CheckSellValue");
                     break;
                 case "All":

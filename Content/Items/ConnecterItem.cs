@@ -56,6 +56,14 @@ namespace StellarisShips.Content.Items
                         ProgressHelper.HasNotification = false;
                         ShipBuildUI.Start("NewItem");
                     }
+                    else if (player.HasItem(ModContent.ItemType<Rubricator>()) && ProgressHelper.DiscoveredMR == 0)
+                    {
+                        ShipBuildUI.Start("AddMRTech1");
+                    }
+                    else if (ProgressHelper.DiscoveredMR == 1)
+                    {
+                        ShipBuildUI.Start("AddMRTech2");
+                    }
                     else
                     {
                         ShipBuildUI.Start("NormalStart");

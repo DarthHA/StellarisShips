@@ -23,7 +23,7 @@ namespace StellarisShips.Content.Dialogs
 
         public override void SetUp()
         {
-            ShipBuildUI.TalkText = string.Format(GetDialogLocalize("SellSuccess"), MoneyHelpers.ShowCoins(ShipBuildUI.Value));
+            ShipBuildUI.TalkText = string.Format(GetDialogLocalize("SellSuccess"), MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue));
         }
 
         public override void Update()

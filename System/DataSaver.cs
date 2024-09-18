@@ -40,6 +40,7 @@ namespace StellarisShips.System
 
             ProgressHelper.FirstContract = tag.GetBool("FirstContract");
             ProgressHelper.CurrentProgress = tag.GetInt("CurrentProgress");
+            ProgressHelper.DiscoveredMR = tag.GetInt("DiscoveredMR");
         }
 
 
@@ -81,6 +82,7 @@ namespace StellarisShips.System
 
             tag.Add("FirstContract", ProgressHelper.FirstContract);
             tag.Add("CurrentProgress", ProgressHelper.CurrentProgress);
+            tag.Add("DiscoveredMR", ProgressHelper.DiscoveredMR);
         }
 
     }

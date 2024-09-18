@@ -27,11 +27,11 @@ namespace StellarisShips.Content.Projectiles
             Projectile.height = 10;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
-            Projectile.timeLeft = 240;
+            Projectile.timeLeft = 100;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 100;
+            Projectile.localNPCHitCooldown = 999;
             Projectile.npcProj = true;
             Projectile.penetrate = -1;
             Projectile.Opacity = 0;

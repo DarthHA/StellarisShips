@@ -4,6 +4,7 @@ using StellarisShips.Content.NPCs;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
@@ -87,59 +88,9 @@ namespace StellarisShips.Static
 
         public static string BreakLongString(string inputStr, int textWidth)
         {
-            if (Language.ActiveCulture.LegacyId == (int)GameCulture.CultureName.Chinese)
-            {
-                return BreakLongStringForCN(inputStr, textWidth);
-            }
-
-            List<string> tempList = new List<string>();//临时存放拼接字符串的列表
-            List<string> lastList = new List<string>();//最终的数据
-            int strLength = inputStr.Length;//获取要换行字符串的长度
-            if (strLength > textWidth)
-            {
-                string[] listArray = inputStr.Split(' ');//先把字符串分割成一个个单词，后面再重新连接
-                string joinStr = "";
-                string theDeleteStr = "";//用来存放因为增加了它才超过固定长度的那个单词。
-                for (int j = 0; j < listArray.Length; j++)
-                {
-                    tempList.Add(listArray[j]);//把分割好的单词 一个个的往list里面添加
-                    joinStr = string.Join(" ", tempList.ToArray());//然后转化成字符串
-                                                                   //每添加一个都跟固定长度比较一下，当小的时候，继续添加；如果大于的时候进入判断
-                    if (joinStr.Length > textWidth)
-                    {
-                        //因为大于了固定长度，所以把最后一个单词删掉，删掉后的字符串为一条完整的记录，
-                        int lastSpaceIndex = joinStr.LastIndexOf(" ");
-                        lastList.Add((theDeleteStr + " " + joinStr.Substring(0, lastSpaceIndex)).Trim());
-                        theDeleteStr = listArray[j];
-                        //刚好是最后一个的时候
-                        if (j == listArray.Length - 1)
-                            lastList.Add(theDeleteStr);
-
-                        tempList.Clear();//清空临时list
-                    }
-                    else if (j == listArray.Length - 1)//当遍历到结尾，剩下的当做最后一行
-                    {
-                        lastList.Add((theDeleteStr + " " + joinStr).Trim());
-                        tempList.Clear();
-                    }
-                }
-            }
-
-            string result = "";
-            foreach (string str in lastList)
-            {
-                result += str + "\n";
-            }
-            return result;
-
-
-
+            return FontAssets.MouseText.Value.CreateWrappedText(inputStr, textWidth * 10);
         }
 
-        private static string BreakLongStringForCN(string inputStr, int textWidth)
-        {
-            return Terraria.GameContent.FontAssets.MouseText.Value.CreateWrappedText(inputStr, textWidth * 10);
-        }
 
         public static void AddLightLine(Vector2 Begin, Vector2 End, Color color, float intensity = 1)
         {

@@ -40,6 +40,7 @@ namespace StellarisShips.Content.Dialogs
         public override void Update()
         {
             long values = 0;
+            int valuesMR = 0;
             int count = 0;
             foreach (NPC ship in Main.ActiveNPCs)
             {
@@ -50,10 +51,12 @@ namespace StellarisShips.Content.Dialogs
                     {
                         count++;
                         values += EverythingLibrary.Ships[shipNPC.ShipGraph.ShipType].Value;
+                        valuesMR += shipNPC.ShipGraph.MRValue;
                     }
                 }
             }
             ShipBuildUI.Value = values;
+            ShipBuildUI.MRValue = valuesMR;
             bool enabled = false;
             if (count > 0)
             {
@@ -69,7 +72,7 @@ namespace StellarisShips.Content.Dialogs
             {
                 ShipBuildUI.TalkText = string.Format(GetDialogLocalize("CheckSellValue"),
                     string.Format(Language.GetTextValue("Mods.StellarisShips.UI.GraphNameUI"), ShipBuildUI.shipGraph.GraphName, EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].GetLocalizedName())
-                    , count, MoneyHelpers.ShowCoins(ShipBuildUI.Value));
+                    , count, MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue));
             }
         }
 

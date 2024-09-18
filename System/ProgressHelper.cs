@@ -12,12 +12,19 @@ namespace StellarisShips.System
         public static bool FirstContract = true;
         public static int CurrentProgress = 1;
         public static bool HasNotification = false;
+        public static int DiscoveredMR = 0;
 
         public static int GetMaxCommandPoint()
         {
             if (CurrentProgress >= 7) return 80;
             if (CurrentProgress >= 4) return 40;
             return 20;
+        }
+
+        public static int GetMaxMinorArtifact()
+        {
+            if (CurrentProgress < 9) return 0;
+            return 3000;
         }
 
         public static int GetCurrentProgress()
@@ -68,7 +75,7 @@ namespace StellarisShips.System
             FirstContract = true;
             CurrentProgress = 1;
             HasNotification = false;
-
+            DiscoveredMR = 0;
         }
     }
 }
