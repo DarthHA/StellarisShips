@@ -30,7 +30,11 @@ namespace StellarisShips.Content.NPCs
         /// <summary>
         /// 失踪状态
         /// </summary>
-        Missing
+        Missing,
+        /// <summary>
+        /// FTL行进
+        /// </summary>
+        FTLMove
     }
     public partial class ShipNPC : ModNPC
     {
@@ -51,6 +55,7 @@ namespace StellarisShips.Content.NPCs
 
             if (HurtTimer > 0) HurtTimer--;
             if (ImmuneTime > 0 && NPC.immune[Main.myPlayer] == 0 && NPC.immune[255] == 0) ImmuneTime--;
+            if (shipAI != ShipAI.FTLMove && shipAI != ShipAI.Missing) if (FTLCooldown > 0) FTLCooldown--;
 
             UpdateHullAndShieldRegen();
             ModifyScaleForShield();
@@ -58,7 +63,7 @@ namespace StellarisShips.Content.NPCs
             if (shipAI == ShipAI.Default)
             {
                 NPC.velocity *= 0.8f;
-                NPC.rotation = SmoothRotation(NPC.rotation, FleetSystem.TipRotation, BaseSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, FleetSystem.TipRotation, MaxSpeed / 200f);
 
                 if (CurrentTarget != -1 && !FleetSystem.Passive)
                 {
@@ -72,15 +77,15 @@ namespace StellarisShips.Content.NPCs
             else if (shipAI == ShipAI.MoveFree)
             {
                 float MoveVec = (ShapePos - NPC.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, BaseSpeed / 100f);
-                if (ShapePos.Distance(NPC.Center) > 4000 && FTLLevel > 1)
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
+                if (ShapePos.Distance(NPC.Center) > 4000 && FTLLevel > 1 && FTLCooldown <= 0)
                 {
-                    float dist = 400 + Main.rand.Next(700) + (5 - FTLLevel) * 400;
+                    float dist = 400 + Main.rand.Next(700);// + (5 - FTLLevel) * 400;
                     FTLMove(ShapePos + Vector2.Normalize(NPC.Center - ShapePos) * dist);
                 }
                 if (CalcDifference(NPC.rotation, MoveVec) < MathHelper.Pi / 32f)
                 {
-                    NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + BaseSpeed / 120f, 0, BaseSpeed);
+                    NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
                 }
                 else
                 {
@@ -91,11 +96,11 @@ namespace StellarisShips.Content.NPCs
                 {
                     shipAI = ShipAI.Attack;
                 }
-                else if (NPC.Distance(ShapePos) <= BaseSpeed)
+                else if (NPC.Distance(ShapePos) <= MaxSpeed)
                 {
-                    if (NPC.velocity.Length() > BaseSpeed)
+                    if (NPC.velocity.Length() > MaxSpeed)
                     {
-                        NPC.velocity = Vector2.Normalize(NPC.velocity) * BaseSpeed;
+                        NPC.velocity = Vector2.Normalize(NPC.velocity) * MaxSpeed;
                     }
                     if (NPC.Distance(ShapePos) <= 10)
                     {
@@ -103,59 +108,13 @@ namespace StellarisShips.Content.NPCs
                     }
                 }
             }
-            else if (shipAI == ShipAI.Attack)
-            {
-                if (FleetSystem.Passive && SomeUtils.AnyBosses())//紧急脱离
-                {
-                    shipAI = ShipAI.Missing;
-                    MissingTimer = CalcMissingTime();
-                    NPC.dontTakeDamage = true;
-                    NPC.dontTakeDamageFromHostiles = true;
-                    float scale = ShipLength / 70f;
-                    FTLLight.Summon(NPC.GetSource_FromAI(), NPC.Center, scale);
-                    return;
-                }
-                else if (CurrentTarget == -1)
-                {
-                    shipAI = ShipAI.MoveFree;
-                }
-                else
-                {
-                    if (Main.npc[CurrentTarget].Distance(NPC.Center) > 4000 && FTLLevel > 1)
-                    {
-                        float dist = 400 + Main.rand.Next(700) + (5 - FTLLevel) * 400;
-                        FTLMove(Main.npc[CurrentTarget].Center + Vector2.Normalize(NPC.Center - Main.npc[CurrentTarget].Center) * dist);
-                    }
-                    switch (ComputerType)
-                    {
-                        case ComputerID.Swarm:
-                            SwarmAI();
-                            break;
-                        case ComputerID.Picket:
-                            PicketAI();
-                            break;
-                        case ComputerID.Line:
-                            LineAI();
-                            break;
-                        case ComputerID.Artillery:
-                            ArtilleryAI();
-                            break;
-                        case ComputerID.Carrier:
-                            CarrierAI();
-                            break;
-                        case ComputerID.Bomber:
-                            BomberAI();
-                            break;
-                    }
-                }
-            }
             else if (shipAI == ShipAI.MoveInShape)       //列队行进
             {
                 float MoveVec = (ShapePos - NPC.Center).ToRotation();
                 NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, FleetSystem.LowestSpeed / 100f);
-                if (ShapePos.Distance(NPC.Center) > 4000 && FTLLevel > 1)
+                if (ShapePos.Distance(NPC.Center) > 4000 && FTLLevel > 1 && FTLCooldown <= 0)
                 {
-                    float dist = 750 + (5 - FTLLevel) * 400;
+                    float dist = 750;// + (5 - FTLLevel) * 400;
                     FTLMove(ShapePos + Vector2.Normalize(NPC.Center - ShapePos) * dist);
                 }
 
@@ -183,6 +142,76 @@ namespace StellarisShips.Content.NPCs
                     }
                 }
             }
+            else if (shipAI == ShipAI.FTLMove)
+            {
+                NPC.velocity *= 0.95f;
+                float MoveVec = (FTLTargetPos - NPC.Center).ToRotation();
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
+                FTLTimer--;
+                if (FTLTimer == 15)
+                {
+                    SomeUtils.PlaySound(SoundPath.Other + "FTL", FTLTargetPos);
+                }
+                if (FTLTimer <= 0)
+                {
+                    NPC.Center = FTLTargetPos;
+                    for (int i = 0; i < NPC.oldPos.Length; i++)
+                    {
+                        NPC.oldPos[i] = NPC.position;
+                        NPC.oldRot[i] = NPC.rotation;
+                    }
+
+                    FTLCooldown = FTLMaxCooldown;
+                    FTLTimer = 0;
+                    shipAI = ShipAI.MoveFree;
+                }
+            }
+            else if (shipAI == ShipAI.Attack)
+            {
+                if (FleetSystem.Passive && SomeUtils.AnyBosses())//紧急脱离
+                {
+                    shipAI = ShipAI.Missing;
+                    MissingTimer = CalcMissingTime();
+                    NPC.dontTakeDamage = true;
+                    NPC.dontTakeDamageFromHostiles = true;
+                    float scale = ShipLength / 70f;
+                    FTLLight2.Summon(NPC.GetSource_FromAI(), NPC.Center, scale);
+                    return;
+                }
+                else if (CurrentTarget == -1)
+                {
+                    shipAI = ShipAI.MoveFree;
+                }
+                else
+                {
+                    if (Main.npc[CurrentTarget].Distance(NPC.Center) > 4000 && FTLLevel > 1 && FTLCooldown <= 0)
+                    {
+                        float dist = 400 + Main.rand.Next(700);// + (5 - FTLLevel) * 400;
+                        FTLMove(Main.npc[CurrentTarget].Center + Vector2.Normalize(NPC.Center - Main.npc[CurrentTarget].Center) * dist);
+                    }
+                    switch (ComputerType)
+                    {
+                        case ComputerID.Swarm:
+                            SwarmAI();
+                            break;
+                        case ComputerID.Picket:
+                            PicketAI();
+                            break;
+                        case ComputerID.Line:
+                            LineAI();
+                            break;
+                        case ComputerID.Artillery:
+                            ArtilleryAI();
+                            break;
+                        case ComputerID.Carrier:
+                            CarrierAI();
+                            break;
+                        case ComputerID.Bomber:
+                            BomberAI();
+                            break;
+                    }
+                }
+            }
             else if (shipAI == ShipAI.Missing)
             {
                 NPC.velocity = Vector2.Zero;
@@ -196,11 +225,14 @@ namespace StellarisShips.Content.NPCs
                     shipAI = ShipAI.Default;
                     NPC.rotation = Main.rand.NextFloat() * MathHelper.TwoPi;
                     NPC.Center = new Vector2(50 + Main.rand.Next(Main.maxTilesX - 100), 50 + Main.rand.Next(Main.maxTilesY - 100)) * 16f;
+                    for (int i = 0; i < NPC.oldPos.Length; i++)
+                    {
+                        NPC.oldPos[i] = NPC.position;
+                        NPC.oldRot[i] = NPC.rotation;
+                    }
                     HurtTimer = 180;
                 }
             }
-
-
 
             foreach (BaseWeaponUnit weapon in weapons)
             {
@@ -214,16 +246,21 @@ namespace StellarisShips.Content.NPCs
             if (target.DistanceWithWidth(NPC) > MinRange * 0.9f)//当目标距离大于最小距离，冲锋至最小距离
             {
                 float MoveVec = (target.Center - NPC.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
 
                 NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
             }
             else            //当目标距离小于最小距离，盘旋
             {
-                float MoveVec = (target.Center - NPC.Center).ToRotation() + MathHelper.Pi / 2f;
+                float r1 = (target.Center - NPC.Center).ToRotation();
+                float r2 = NPC.rotation;
+                float r3 = r1 - r2;
+                while (r3 >= MathHelper.Pi) r3 -= MathHelper.TwoPi;
+                while (r3 <= -MathHelper.Pi) r3 += MathHelper.TwoPi;
+                float MoveVec = (target.Center - NPC.Center).ToRotation() - Math.Sign(r3) * MathHelper.Pi / 2;
                 NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
 
-                NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 480f, 0, MaxSpeed);
+                NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 360f, 0, MaxSpeed);
 
             }
         }
@@ -234,14 +271,14 @@ namespace StellarisShips.Content.NPCs
             if (target.DistanceWithWidth(NPC) > MinRange * 0.9f)//当目标距离大于最小距离，冲锋至最小距离
             {
                 float MoveVec = (target.Center - NPC.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
 
                 NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
             }
             else if (target.DistanceWithWidth(NPC) < MinRange / 2)            //当目标距离小于最小距离的一半，保持最小距离
             {
                 float MoveVec = (NPC.Center - target.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
                 if (CalcDifference(MoveVec, NPC.rotation) < MathHelper.Pi / 32f)
                 {
                     NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
@@ -254,7 +291,7 @@ namespace StellarisShips.Content.NPCs
             else
             {
                 NPC.velocity *= 0.8f;
-                NPC.rotation = SmoothRotation(NPC.rotation, (target.Center - NPC.Center).ToRotation(), MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, (target.Center - NPC.Center).ToRotation(), MaxSpeed / 200f);
             }
         }
 
@@ -264,8 +301,8 @@ namespace StellarisShips.Content.NPCs
             if (target.DistanceWithWidth(NPC) > MidRange * 2) //当目标距离大于中距离的两倍，冲锋至中距离
             {
                 float MoveVec = (target.Center - NPC.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
-                NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
+                NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 90f, 0, MaxSpeed);
             }
             else if (target.DistanceWithWidth(NPC) > MidRange * 0.9f) //当目标距离大于中距离，冲锋至中距离并盘旋
             {
@@ -275,11 +312,11 @@ namespace StellarisShips.Content.NPCs
                 while (r3 >= MathHelper.Pi) r3 -= MathHelper.TwoPi;
                 while (r3 <= -MathHelper.Pi) r3 += MathHelper.TwoPi;
                 float MoveVec = (target.Center - NPC.Center).ToRotation() - Math.Sign(r3) * MathHelper.Pi / 3;
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
 
-                NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
+                NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 90f, 0, MaxSpeed);
             }
-            else if (target.DistanceWithWidth(NPC) < 10)               //当目标距离小于10，盘旋保持10
+            else if (target.DistanceWithWidth(NPC) < 60)               //当目标距离小于60，盘旋保持60
             {
                 float r1 = (NPC.Center - target.Center).ToRotation();
                 float r2 = NPC.rotation;
@@ -287,10 +324,10 @@ namespace StellarisShips.Content.NPCs
                 while (r3 >= MathHelper.Pi) r3 -= MathHelper.TwoPi;
                 while (r3 <= -MathHelper.Pi) r3 += MathHelper.TwoPi;
                 float MoveVec = (NPC.Center - target.Center).ToRotation() - Math.Sign(r3) * MathHelper.Pi / 3;
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
                 if (CalcDifference(MoveVec, NPC.rotation) < MathHelper.Pi / 32f)
                 {
-                    NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
+                    NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 90f, 0, MaxSpeed);
                 }
                 else
                 {
@@ -299,7 +336,7 @@ namespace StellarisShips.Content.NPCs
             }
             else
             {
-                NPC.velocity *= 0.8f;
+                NPC.velocity *= 0.97f;
             }
         }
 
@@ -309,17 +346,17 @@ namespace StellarisShips.Content.NPCs
             if (target.DistanceWithWidth(NPC) > MidRange) //当目标距离大于中距离，冲锋至中距离
             {
                 float MoveVec = (target.Center - NPC.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
 
-                NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
+                NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 90f, 0, MaxSpeed);
             }
             else if (target.DistanceWithWidth(NPC) < MidRange / 2)             //当目标距离小于中距离的一半，保持中距离
             {
                 float MoveVec = (NPC.Center - target.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
                 if (CalcDifference(MoveVec, NPC.rotation) < MathHelper.Pi / 32f)
                 {
-                    NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
+                    NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 90f, 0, MaxSpeed);
                 }
                 else
                 {
@@ -328,8 +365,8 @@ namespace StellarisShips.Content.NPCs
             }
             else
             {
-                NPC.velocity *= 0.8f;
-                NPC.rotation = SmoothRotation(NPC.rotation, (target.Center - NPC.Center).ToRotation(), MaxSpeed / 100f);
+                NPC.velocity *= 0.97f;
+                NPC.rotation = SmoothRotation(NPC.rotation, (target.Center - NPC.Center).ToRotation(), MaxSpeed / 200f);
             }
         }
 
@@ -339,14 +376,14 @@ namespace StellarisShips.Content.NPCs
             if (target.DistanceWithWidth(NPC) > MaxRange) //当目标距离大于远距离，冲锋至远距离
             {
                 float MoveVec = (target.Center - NPC.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
 
                 NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
             }
             else if (target.DistanceWithWidth(NPC) < MidRange * 0.9f)             //当目标距离小于中距离，保持中距离
             {
                 float MoveVec = (NPC.Center - target.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
                 if (CalcDifference(MoveVec, NPC.rotation) < MathHelper.Pi / 32f)
                 {
                     NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
@@ -358,8 +395,8 @@ namespace StellarisShips.Content.NPCs
             }
             else
             {
-                NPC.velocity *= 0.8f;
-                NPC.rotation = SmoothRotation(NPC.rotation, (target.Center - NPC.Center).ToRotation(), MaxSpeed / 100f);
+                NPC.velocity *= 0.97f;
+                NPC.rotation = SmoothRotation(NPC.rotation, (target.Center - NPC.Center).ToRotation(), MaxSpeed / 200f);
             }
         }
 
@@ -370,7 +407,7 @@ namespace StellarisShips.Content.NPCs
             if (target.DistanceWithWidth(NPC) > range * 1.5f) //当目标距离大于远距离1.5倍，冲锋至远距离1.5倍
             {
                 float MoveVec = (target.Center - NPC.Center).ToRotation();
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
 
                 NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
             }
@@ -382,7 +419,7 @@ namespace StellarisShips.Content.NPCs
                 while (r3 >= MathHelper.Pi) r3 -= MathHelper.TwoPi;
                 while (r3 <= -MathHelper.Pi) r3 += MathHelper.TwoPi;
                 float MoveVec = (target.Center - NPC.Center).ToRotation() - Math.Sign(r3) * MathHelper.Pi / 3;
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
 
                 NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
             }
@@ -394,20 +431,20 @@ namespace StellarisShips.Content.NPCs
                 while (r3 >= MathHelper.Pi) r3 -= MathHelper.TwoPi;
                 while (r3 <= -MathHelper.Pi) r3 += MathHelper.TwoPi;
                 float MoveVec = (NPC.Center - target.Center).ToRotation() - Math.Sign(r3) * MathHelper.Pi / 3;
-                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 100f);
+                NPC.rotation = SmoothRotation(NPC.rotation, MoveVec, MaxSpeed / 200f);
                 if (CalcDifference(MoveVec, NPC.rotation) < MathHelper.Pi / 32f)
                 {
                     NPC.velocity = NPC.rotation.ToRotationVector2() * MathHelper.Clamp(NPC.velocity.Length() + MaxSpeed / 120f, 0, MaxSpeed);
                 }
                 else
                 {
-                    NPC.velocity *= 0.8f;
+                    NPC.velocity *= 0.97f;
                 }
             }
             else
             {
-                NPC.velocity *= 0.8f;
-                //NPC.rotation = SmoothRotation(NPC.rotation, (target.Center - NPC.Center).ToRotation(), MaxSpeed / 100f);
+                NPC.velocity *= 0.97f;
+                //NPC.rotation = SmoothRotation(NPC.rotation, (target.Center - NPC.Center).ToRotation(), MaxSpeed / 200f);
             }
         }
 
@@ -470,21 +507,15 @@ namespace StellarisShips.Content.NPCs
         private void FTLMove(Vector2 TargetPos)
         {
             float scale = ShipLength / 70f;
-            FTLLight.Summon(NPC.GetSource_FromAI(), NPC.Center, scale);
-            NPC.Center = TargetPos;
-            for (int i = 0; i < NPC.oldPos.Length; i++)
-            {
-                NPC.oldPos[i] = NPC.position;
-                NPC.oldRot[i] = NPC.rotation;
-            }
-            FTLLight.Summon(NPC.GetSource_FromAI(), NPC.Center, scale);
-            SomeUtils.PlaySound(SoundPath.Other + "FTL", NPC.Center);
+            shipAI = ShipAI.FTLMove;
+            FTLTimer = 25;
+            FTLTargetPos = TargetPos;
+            FTLLight2.Summon(NPC.GetSource_FromAI(), TargetPos, scale);
+            FTLLight2.Summon(NPC.GetSource_FromAI(), NPC.Center, scale);
         }
 
         private void AddLight()
         {
-            ShipNPC shipNPC = NPC.GetShipNPC();
-
             //舰体发光
             int width = ShipWidth;
             int length = ShipLength;

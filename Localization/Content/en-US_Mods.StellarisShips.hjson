@@ -1,4 +1,4 @@
-﻿Items: {
+Items: {
 	ConnecterItem: {
 		DisplayName: Space Communicator
 		Tooltip:
@@ -102,6 +102,7 @@ Projectiles: {
 	LanceProj.DisplayName: Energy Lance
 	MegaBullet.DisplayName: Mega Kinetic Bullet
 	FTLLight.DisplayName: Jump Drive
+	FTLLight2.DisplayName: Jump Drive
 	ShieldHitEffect.DisplayName: Shield Hiteffect
 	ShipExplosion.DisplayName: Explosion
 	HealEffect.DisplayName: Self Regen

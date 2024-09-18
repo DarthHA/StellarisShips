@@ -189,9 +189,9 @@ namespace StellarisShips.System
                 {
                     if (npc.GetShipNPC().ShipGraph.ShipType != "")
                     {
-                        if (LowestSpeed == -1 || LowestSpeed > npc.GetShipNPC().BaseSpeed)
+                        if (LowestSpeed == -1 || LowestSpeed > npc.GetShipNPC().MaxSpeed)
                         {
-                            LowestSpeed = npc.GetShipNPC().BaseSpeed;
+                            LowestSpeed = npc.GetShipNPC().MaxSpeed;
                         }
                     }
                 }

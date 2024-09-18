@@ -119,6 +119,7 @@ namespace StellarisShips.Content.Dialogs
                     if (shipNPC.ShipGraph.GraphName == ShipBuildUI.shipGraph.GraphName && shipNPC.ShipGraph.ShipType == ShipBuildUI.shipGraph.ShipType)
                     {
                         float scale = EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].Length / 70f;
+                        int FTLCooldown = shipNPC.FTLCooldown;
                         FTLLight.Summon(ship.GetSource_FromAI(), ship.Center, scale);
                         foreach (Projectile striker in Main.ActiveProjectiles)
                         {
@@ -131,9 +132,9 @@ namespace StellarisShips.Content.Dialogs
                             }
                         }
                         ship.active = false;
-                        Vector2 GivePos = FleetSystem.TipPos + new Vector2(Main.rand.Next(2000) - 1000, -1000);
-                        ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph);
-
+                        Vector2 GivePos = ship.Center + new Vector2(Main.rand.Next(2000) - 1000, -1000);
+                        int shiptmp = ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph);
+                        if (shiptmp >= 0 && shiptmp < 200) Main.npc[shiptmp].GetShipNPC().FTLCooldown = FTLCooldown;
                         FTLLight.Summon(ship.GetSource_FromAI(), GivePos, scale);
                         SomeUtils.PlaySound(SoundPath.Other + "FTL", GivePos);
                     }

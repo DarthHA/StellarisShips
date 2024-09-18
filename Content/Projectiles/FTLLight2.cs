@@ -8,9 +8,9 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class FTLLight : ModProjectile
+    public class FTLLight2 : ModProjectile
     {
-        public override string Texture => "StellarisShips/Images/PlaceHolder";
+        public override string Texture => "StellarisShips/Images/PlaceHolder";         //25帧
 
         public float ModifiedScale = 1f;
 
@@ -26,13 +26,18 @@ namespace StellarisShips.Content.Projectiles
             Projectile.hide = true;
         }
 
-
         public override void AI()
         {
             Projectile.ai[0]++;
             if (Projectile.ai[0] == 1)
             {
                 Projectile.rotation = Main.rand.NextFloat() * MathHelper.TwoPi;
+            }
+            Projectile.rotation += MathHelper.Pi / 36f;
+            Projectile.scale = 3f - 2.5f * Projectile.ai[0] / 30f;
+            if (Projectile.ai[0] == 25)
+            {
+                FTLLight.Summon(Projectile.GetSource_Death(), Projectile.Center, ModifiedScale);
             }
             if (Projectile.ai[0] > 30)
             {
@@ -42,41 +47,41 @@ namespace StellarisShips.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            float t = 1f - Projectile.ai[0] / 30f;
-            Color color = Color.Cyan;
-            Texture2D Tex1 = ModContent.Request<Texture2D>("StellarisShips/Images/Effects/BloomFlare").Value;
-            Texture2D Tex2 = ModContent.Request<Texture2D>("StellarisShips/Images/Effects/LifeStar").Value;
+            float t = 0.25f + Projectile.ai[0] / 30f * 0.75f;
+            Color color = Color.Cyan * 0.8f;
+            Texture2D Tex1 = ModContent.Request<Texture2D>("StellarisShips/Images/Effects/SpinnyNoise").Value;
 
             EasyDraw.AnotherDraw(BlendState.Additive);
+
             for (float k = 0.5f; k <= 1.5f; k += 0.05f)
             {
                 float scale = 0.3f * k * ModifiedScale;
                 Main.spriteBatch.Draw(Tex1, Projectile.Center - Main.screenPosition, null, color * (1f - k) * t, Projectile.rotation, Tex1.Size() / 2f, Projectile.scale * scale, SpriteEffects.FlipHorizontally, 0);
             }
-
-            Main.spriteBatch.Draw(Tex1, Projectile.Center - Main.screenPosition, null, Color.White * t, Projectile.rotation, Tex1.Size() / 2f, Projectile.scale * 0.1f * ModifiedScale, SpriteEffects.FlipHorizontally, 0);
+            Main.spriteBatch.Draw(Tex1, Projectile.Center - Main.screenPosition, null, Color.White * 0.4f * t, Projectile.rotation, Tex1.Size() / 2f, Projectile.scale * 0.1f * ModifiedScale, SpriteEffects.FlipHorizontally, 0);
 
             for (float k = 0.5f; k <= 1.5f; k += 0.05f)
             {
-                float scale = 3f * k * ModifiedScale;
-                Main.spriteBatch.Draw(Tex2, Projectile.Center - Main.screenPosition, null, color * (1f - k) * t, 0, Tex2.Size() / 2f, Projectile.scale * scale, SpriteEffects.FlipHorizontally, 0);
+                float scale = 0.3f * k * ModifiedScale;
+                Main.spriteBatch.Draw(Tex1, Projectile.Center - Main.screenPosition, null, color * (1f - k) * t, -Projectile.rotation, Tex1.Size() / 2f, Projectile.scale * scale, SpriteEffects.FlipHorizontally, 0);
             }
+            Main.spriteBatch.Draw(Tex1, Projectile.Center - Main.screenPosition, null, Color.White * 0.4f * t, -Projectile.rotation, Tex1.Size() / 2f, Projectile.scale * 0.1f * ModifiedScale, SpriteEffects.FlipHorizontally, 0);
+
 
             EasyDraw.AnotherDraw(BlendState.AlphaBlend);
             return false;
         }
 
 
-
         public static void Summon(IEntitySource entitySource, Vector2 Pos, float scale)
         {
             Rectangle ScreenRec = new Rectangle((int)Main.screenPosition.X - 100 - Main.screenWidth / 2, (int)Main.screenPosition.Y - 100 - Main.screenHeight / 2, Main.screenWidth * 2 + 200, Main.screenHeight * 2 + 200);
             if (!ScreenRec.Contains(Pos.ToPoint())) return;
-            int protmp = Projectile.NewProjectile(entitySource, Pos, Vector2.Zero, ModContent.ProjectileType<FTLLight>(), 0, 0, Main.myPlayer);
+            int protmp = Projectile.NewProjectile(entitySource, Pos, Vector2.Zero, ModContent.ProjectileType<FTLLight2>(), 0, 0, Main.myPlayer);
             if (protmp >= 0 && protmp <= 1000)
             {
                 Main.projectile[protmp].Center = Pos;
-                (Main.projectile[protmp].ModProjectile as FTLLight).ModifiedScale = scale;
+                (Main.projectile[protmp].ModProjectile as FTLLight2).ModifiedScale = scale;
             }
         }
 
@@ -90,5 +95,9 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
+        public override void Kill(int timeLeft)
+        {
+          
+        }
     }
 }

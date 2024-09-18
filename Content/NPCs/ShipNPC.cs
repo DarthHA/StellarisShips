@@ -120,6 +120,30 @@ namespace StellarisShips.Content.NPCs
         /// </summary>
         public int FTLLevel = 0;
 
+        /// <summary>
+        /// FTL冷却
+        /// </summary>
+        public int FTLCooldown = 0;
+
+        /// <summary>
+        /// FTL最大冷却
+        /// </summary>
+        public int FTLMaxCooldown = 60 * 60;
+
+        /// <summary>
+        /// 发动FTL的准备时间
+        /// </summary>
+        public int FTLTimer = 0;
+
+        /// <summary>
+        /// FTL目标坐标
+        /// </summary>
+        public Vector2 FTLTargetPos = Vector2.Zero;
+
+        /// <summary>
+        /// 紧急超光速脱离概率
+        /// </summary>
+        public float EscapeChance = 0;
 
         /// <summary>
         /// 仇恨
@@ -219,7 +243,7 @@ namespace StellarisShips.Content.NPCs
                 return false;
             }
             //绘制尾迹
-            EverythingLibrary.Ships[ShipGraph.ShipType].DrawTrail(spriteBatch, screenPos, NPC);
+            //EverythingLibrary.Ships[ShipGraph.ShipType].DrawTrail(spriteBatch, screenPos, NPC);
             //绘制船
             List<string> sectionList = new();
             foreach (SectionForSave str in ShipGraph.Parts)
@@ -508,6 +532,22 @@ namespace StellarisShips.Content.NPCs
             FallenShip.BuildAFallenShip(NPC.GetSource_Death(), NPC.Center, NPC.rotation, ShipGraph);
         }
 
-
+        public override bool CheckDead()
+        {
+            if (Main.rand.NextFloat() <= EscapeChance)          //紧急脱离
+            {
+                NPC.life = 1;
+                CurrentShield = 0;
+                shipAI = ShipAI.Missing;
+                MissingTimer = CalcMissingTime();
+                NPC.dontTakeDamage = true;
+                NPC.dontTakeDamageFromHostiles = true;
+                float scale = ShipLength / 70f;
+                FTLLight2.Summon(NPC.GetSource_FromAI(), NPC.Center, scale);
+                SomeUtils.PlaySound(SoundPath.Other + "FTL", FTLTargetPos);
+                return false;
+            }
+            return true;
+        }
     }
 }

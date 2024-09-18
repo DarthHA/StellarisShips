@@ -1,11 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
 using StellarisShips.System;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
 
 namespace StellarisShips.Content.NPCs
 {
@@ -29,7 +32,10 @@ namespace StellarisShips.Content.NPCs
                 {
                     target.GetShipNPC().CurrentShield = 0;
                 }
-                SoundEngine.PlaySound(SoundID.NPCHit4, target.Center);
+                if (hit.Damage > 1)      //闪避时不生效
+                {
+                    SoundEngine.PlaySound(SoundID.NPCHit4, target.Center);
+                }
             }
         }
 
@@ -52,6 +58,8 @@ namespace StellarisShips.Content.NPCs
                     npc.GetShipNPC().CurrentShield = 0;
                 }
 
+                if (projectile.penetrate > 0 || projectile.tileCollide) projectile.penetrate = 0;
+
                 if (npc.GetShipNPC().CurrentShield > 0)
                 {
                     float rot = (projectile.Center - npc.Center).ToRotation();
@@ -67,12 +75,15 @@ namespace StellarisShips.Content.NPCs
                         ShieldHitEffect.Summon(npc, npc.Center, r, hitr, rot);
                     }
                     SomeUtils.PlaySoundRandom(SoundPath.Shield, 6, npc.Center + rot.ToRotationVector2() * r);
+
                 }
                 else
                 {
-                    SoundEngine.PlaySound(SoundID.NPCHit4, npc.Center);
+                    if (hit.Damage > 1)      //闪避时不生效
+                    {
+                        SoundEngine.PlaySound(SoundID.NPCHit4, npc.Center);
+                    }
                 }
-                if (projectile.penetrate > 0) projectile.penetrate = 0;
             }
         }
 
@@ -127,6 +138,7 @@ namespace StellarisShips.Content.NPCs
                     if (Main.rand.NextFloat() < evasionRate)
                     {
                         info.Damage = 1;
+                        info.Crit = false;
                     };
                     info.HideCombatText = true;
                 };
@@ -146,7 +158,7 @@ namespace StellarisShips.Content.NPCs
 
         public override void FindFrame(NPC npc, int frameHeight)
         {
-            if (npc.type != ModContent.NPCType<ShipNPC>() && !npc.friendly)
+            if (npc.type != ModContent.NPCType<ShipNPC>() && npc.type != ModContent.NPCType<FallenShip>() && !npc.friendly)
             {
                 if (FleetSystem.AuraType.Contains(AuraID.SubspaceSnare))                //亚空间陷阱
                 {
@@ -156,5 +168,37 @@ namespace StellarisShips.Content.NPCs
         }
     }
 
+    public class DrawTrailSystem : ModSystem
+    {
+        public override void Load()
+        {
+            On_Main.DoDraw_DrawNPCsOverTiles+= DrawTrails;
+        }
+        public override void Unload()
+        {
+            On_Main.DoDraw_DrawNPCsOverTiles -= DrawTrails;
+        }
+
+        private void DrawTrails(On_Main.orig_DoDraw_DrawNPCsOverTiles orig, Main self)
+        {
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            try
+            {
+                foreach (NPC ship in Main.ActiveNPCs)
+                {
+                    if (ship.ShipActive() && !ship.IsABestiaryIconDummy)
+                    {
+                        EverythingLibrary.Ships[ship.GetShipNPC().ShipGraph.ShipType].DrawTrail(Main.spriteBatch, Main.screenPosition, ship);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                TimeLogger.DrawException(e);
+            }
+            Main.spriteBatch.End();
+            orig.Invoke(self);
+        }
+    }
 
 }

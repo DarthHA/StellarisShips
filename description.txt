@@ -16,7 +16,8 @@ v0.2 - Added the Ancient Weapons, which can be obtained by defeating a strong en
 v0.3 - Added EN localization.
 v0.4 - Added Titan-class Ship.
 v0.5 - Minor Improvement.
-
+v0.5.1 - Fixed Localization Errors.
+v0.5.2 - Movement and Jump Mechanic Improvements.
 
 该模组加入了来自战略游戏《群星》的舰船与武器，整体强度较高。
 模组流程：
@@ -36,3 +37,5 @@ v0.2 -加入了远古系列武器，在击败月球领主后击败足够强的Bo
 v0.3 -更新英文本地化。
 v0.4 -更新泰坦级舰船。
 v0.5 -微量优化。
+v0.5.1 -修复本地化错误。
+v0.5.2 -移动和跃迁机制优化。

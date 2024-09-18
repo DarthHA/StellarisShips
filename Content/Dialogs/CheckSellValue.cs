@@ -108,7 +108,7 @@ namespace StellarisShips.Content.Dialogs
                     if (shipNPC.ShipGraph.GraphName == ShipBuildUI.shipGraph.GraphName && shipNPC.ShipGraph.ShipType == ShipBuildUI.shipGraph.ShipType)
                     {
                         float scale = EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].Length / 70f;
-                        FTLLight.Summon(ship.GetSource_FromAI(), ship.Center, scale);
+                        FTLLight2.Summon(ship.GetSource_FromAI(), ship.Center, scale);
                         SomeUtils.PlaySound(SoundPath.Other + "FTL", ship.Center);
 
                         ship.active = false;

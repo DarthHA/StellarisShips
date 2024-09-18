@@ -100,7 +100,7 @@ namespace StellarisShips.Content.Dialogs
                 {
                     ShipNPC shipNPC = ship.GetShipNPC();
                     float scale = EverythingLibrary.Ships[shipNPC.ShipGraph.ShipType].Length / 70f;
-                    FTLLight.Summon(ship.GetSource_FromAI(), ship.Center, scale);
+                    FTLLight2.Summon(ship.GetSource_FromAI(), ship.Center, scale);
                     SomeUtils.PlaySound(SoundPath.Other + "FTL", ship.Center);
 
                     ship.active = false;

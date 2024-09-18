@@ -963,7 +963,7 @@ namespace StellarisShips.UI
             float ShieldRegen = (float)Math.Round(dummyShip.GetShipNPC().ShieldRegen);
             float HullRegen = (float)Math.Round(dummyShip.GetShipNPC().HullRegen);
             float Evasion = (float)Math.Round(dummyShip.GetShipNPC().Evasion, 1);
-            float MaxSpeed = (float)Math.Round(dummyShip.GetShipNPC().MaxSpeed * 10);
+            float MaxSpeed = (float)Math.Round(dummyShip.GetShipNPC().MaxSpeed * 20);
             int DetectRange = dummyShip.GetShipNPC().DetectRange;
             float Aggro = dummyShip.GetShipNPC().Aggro;
             TotalDPS = (float)Math.Round(TotalDPS, 1);

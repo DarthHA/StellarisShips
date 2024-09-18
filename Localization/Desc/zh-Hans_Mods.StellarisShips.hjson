@@ -357,8 +357,8 @@ Desc: {
 	Armor_5: 中子装甲密度大、质地坚，相比常规合金装甲，中子装甲能抵抗更强大火力。
 	Armor_6: 以太龙麟由多层独特矿物质纳米结构构成，具自我修复能力。采用非常规制造手段能够让我们精确仿制出这些能够自我修复的结构。
 	ArchArmor_1: 利用磁能脉冲和场投射原理，这种离子化的装甲板可以负载反应装药，缓解碰撞的能量。
-	// CrystalArmor_1: An alloy of elements harvested from the ultra-hard Crystalline Entities lines the inner layers of this plating, improving hull integrity.
-	// CrystalArmor_2: Modifications to the process of forging the crystalline alloy further improves its durability.
+	CrystalArmor_1: 从超硬结晶实体中提取元素制成的合金在镀层内形成衬层，提高了船体的完整性。
+	CrystalArmor_2: 晶态合金的锻造方式经改良后，变得更加耐用。
 	Afterburners_1: 加力燃烧室可提升舰船的战斗速度。
 	Afterburners_2: 改进过的加力燃烧室可大幅提升舰船的战斗速度。
 	EDecoder_1: 虽然神秘解码器在标准测试中表现平平，但目标的飞行路径越不规则，该解码器预测算法的准确度似乎就越高。
@@ -543,7 +543,7 @@ Desc: {
 		'''
 	AncientTargetScrambler_1:
 		'''
-		全体舰船闪避 +20%
+		全体舰船闪避 +30%
 		具有正确波长的回显中继器和光扩散器可以产生破坏性干涉，有效地扰乱敌方索敌系统。
 		'''
 	NanobotCloud_1:

@@ -101,7 +101,9 @@ ExtraDesc: {
 	FTL:
 		'''
 		When the distance is too far, this ship can activate hyperspace travel
-		MIA Return Time -{0}s
+		Charge Time: {0}s
+		Emergency Escape Chance: {1}%
+		MIA Return Time -{2}s
 		'''
 	Reactor:
 		'''

@@ -29,7 +29,7 @@ namespace StellarisShips.Content.Ships
         public override float ShipScale => 0.7f;
 
         public override int BaseHull => 18000;
-        public override int BaseSpeed => 10;
+        public override int BaseSpeed => 5;
         public override int BaseEvasion => 5;
 
         public override long Value => 240 * 1200;

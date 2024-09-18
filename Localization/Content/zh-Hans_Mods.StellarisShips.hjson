@@ -102,6 +102,7 @@ Projectiles: {
 	LanceProj.DisplayName: 光矛
 	MegaBullet.DisplayName: 兆级动能炮弹
 	FTLLight.DisplayName: 跃迁引擎
+	FTLLight2.DisplayName: 跃迁引擎
 	ShieldHitEffect.DisplayName: 护盾特效
 	ShipExplosion.DisplayName: 爆炸
 	HealEffect.DisplayName: 自我修复

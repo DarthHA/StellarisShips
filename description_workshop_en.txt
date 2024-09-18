@@ -16,3 +16,5 @@ v0.2 - Added the Ancient Weapons, which can be obtained by defeating a strong en
 v0.3 - Added EN localization.
 v0.4 - Added Titan-class Ship.
 v0.5 - Minor Improvement.
+v0.5.1 - Fixed Localization Errors.
+v0.5.2 - Movement and Jump Mechanic Improvements.
