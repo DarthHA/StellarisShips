@@ -3,9 +3,6 @@ using StellarisShips.System;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using StellarisShips.System;
 using Terraria.Localization;
 using Terraria.ModLoader;
 

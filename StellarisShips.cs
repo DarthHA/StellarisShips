@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Reflection;
-using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace StellarisShips
@@ -38,5 +36,4 @@ namespace StellarisShips
             }
         }
     }
-
 }
