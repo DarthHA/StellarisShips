@@ -5,7 +5,6 @@ using StellarisShips.UI;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
-using Terraria.Utilities;
 
 namespace StellarisShips.Content.Dialogs.Shroud
 {

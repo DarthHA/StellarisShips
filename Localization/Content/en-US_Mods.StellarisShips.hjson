@@ -1,4 +1,4 @@
-﻿Items: {
+Items: {
 	ConnecterItem: {
 		DisplayName: Space Communicator
 		Tooltip:
@@ -88,7 +88,7 @@
 	}
 
 	Aggro_Icon: {
-		DisplayName: Aggro(Actually Private Supression)
+		DisplayName: Aggro(Actually Pirate Supression)
 		Tooltip: Used only for icon
 	}
 
@@ -162,79 +162,9 @@
 		Tooltip: Used only for icon
 	}
 
-	Aggro_Icon: {
-		DisplayName: Aggro
-		Tooltip: Used only for icon
-	}
-
-	Armor_Icon: {
-		DisplayName: Armor
-		Tooltip: Used only for icon
-	}
-
-	Cloak_Icon: {
-		DisplayName: Cloak
-		Tooltip: Used only for icon
-	}
-
-	Cost_Icon: {
-		DisplayName: Cost
-		Tooltip: Used only for icon
-	}
-
-	Damage_Icon: {
-		DisplayName: Damage
-		Tooltip: Used only for icon
-	}
-
-	Detect_Icon: {
-		DisplayName: Detect
-		Tooltip: Used only for icon
-	}
-
-	Evasion_Icon: {
-		DisplayName: Evasion
-		Tooltip: Used only for icon
-	}
-
-	Hull_Icon: {
-		DisplayName: Hull
-		Tooltip: Used only for icon
-	}
-
-	HullRegen_Icon: {
-		DisplayName: Hull Regen
-		Tooltip: Used only for icon
-	}
-
-	Power_Icon: {
-		DisplayName: Power
-		Tooltip: Used only for icon
-	}
-
-	Shield_Icon: {
-		DisplayName: Shield
-		Tooltip: Used only for icon
-	}
-
-	ShieldRegen_Icon: {
-		DisplayName: Shield Regen
-		Tooltip: Used only for icon
-	}
-
-	Special_Icon: {
-		DisplayName: Special
-		Tooltip: Used only for icon
-	}
-
-	Speed_Icon: {
-		DisplayName: Speed
-		Tooltip: Used only for icon
-	}
-
-	Influence_Icon: {
-		DisplayName: Psionics(Actually Influence)
-		Tooltip: Used only for icon
+	ProjTest: {
+		DisplayName: Proj Test
+		Tooltip: ""
 	}
 }
 
@@ -264,6 +194,7 @@ Projectiles: {
 	ArchMissileProj.DisplayName: Ancient Nano-Missile Cloud
 	ArchRailgunBullet.DisplayName: Ancient Kinetic Bullet
 	TitanBeamProj.DisplayName: Titan Beam
+	ScourgeMissileProj.DisplayName: Large Scourge Missile
 }
 
 Buffs: {
@@ -292,7 +223,7 @@ Buffs: {
 	}
 
 	ShroudBuff: {
-		DisplayName: Shroud Buff
-		Description: Mods.StellarisShips.Buffs.ShroudBuff.Description
+		DisplayName: Boon of the Shroud
+		Description: Yes
 	}
 }

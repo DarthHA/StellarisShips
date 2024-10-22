@@ -12,9 +12,9 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.WeaponUnits
 {
-    public class NullVoidUnit : BaseWeaponUnit
+    public class ExDimensionalUnit : BaseWeaponUnit
     {
-        public override string InternalName => "NullVoid";
+        public override string InternalName => "ExDimensional";
 
         public Vector2? TargetPos = null;
 
@@ -41,32 +41,16 @@ namespace StellarisShips.Content.WeaponUnits
                     if (CurrentCooldown <= 0)
                     {
                         float scale = 1;
-                        float DefenseEffectivess = -1;
-                        switch (EquipType)
-                        {
-                            case ComponentTypes.Weapon_S:
-                                scale = 1;
-                                DefenseEffectivess = -2f;
-                                break;
-                            case ComponentTypes.Weapon_M:
-                                scale = 1.5f;
-                                DefenseEffectivess = -4.8f;
-                                break;
-                            case ComponentTypes.Weapon_L:
-                                scale = 2f;
-                                DefenseEffectivess = -11f;
-                                break;
-                        }
                         int damage = RandomDamage;
+                        damage = (int)(damage * (0.8f + 0.4f * ((float)Main.npc[target].life / Main.npc[target].lifeMax)));        //80%-120%
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
-                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, DefenseEffectivess);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 4 * LibraryHelpers.GetDefModifier(EquipType), 0, (int)(18 * scale), (int)(18 * scale), false);
                         if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
-                        if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as DamageProj).IgnoreSuperArmor = true;
                         CurrentCooldown = AttackCD * (0.8f + 0.4f * Main.rand.NextFloat());
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "Disruptor", 3, shipNPC.GetPosOnShip(RelativePos));
                     }
 
-                    Color LaserColor = Color.MediumPurple;
+                    Color LaserColor = Color.LightGreen;
 
                     SomeUtils.AddLightLine(shipNPC.GetPosOnShip(RelativePos), TargetPos.Value, LaserColor);
                 }
@@ -84,7 +68,7 @@ namespace StellarisShips.Content.WeaponUnits
             if (TargetPos.HasValue)
             {
                 Vector2 SelfPos = shipNPC.GetPosOnShip(RelativePos);
-                Color LaserColor = Color.MediumPurple;
+                Color LaserColor = Color.LightGreen;
                 int width = 1;
                 switch (EquipType)
                 {

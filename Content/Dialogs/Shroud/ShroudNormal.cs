@@ -39,11 +39,11 @@ namespace StellarisShips.Content.Dialogs.Shroud
             switch (internalStr)
             {
                 case "Enter":
-                    if (AnyTechUnlock() && Main.rand.NextBool(5))           //20%几率出科技
+                    if (AnyTechUnlock() && Main.rand.NextBool(4))           //20%几率出科技
                     {
                         WeightedRandom<string> weightedRandom = new();
                         List<string> targetList = LibraryHelpers.GetLockedTech();
-                        foreach(string tech in targetList)
+                        foreach (string tech in targetList)
                         {
                             switch (tech)
                             {

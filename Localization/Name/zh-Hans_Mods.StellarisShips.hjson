@@ -103,6 +103,10 @@ Name: {
 	S_NullVoid_1: 小型太虚光束
 	M_NullVoid_1: 中型太虚光束
 	L_NullVoid_1: 大型太虚光束
+	S_ExDimensional_1: 小型物质分解器
+	M_ExDimensional_1: 中型物质分解器
+	L_ExDimensional_1: 大型物质分解器
+	G_ScourgeMissile_1: 大型虫灾导弹
 	//通用配件
 	B_Armor_1: 小型纳米装甲
 	B_Armor_2: 小型金瓷装甲

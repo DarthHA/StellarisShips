@@ -37,6 +37,7 @@ namespace StellarisShips.System
                         }
                     }
                 }
+                Components = Components.OrderByDescending(p => p.Value.TypeName).ToDictionary(p => p.Key, o => o.Value);
                 if (type.IsClass && !type.IsAbstract && typeof(BaseSection).IsAssignableFrom(type))
                 {
                     BaseSection instance = (BaseSection)Activator.CreateInstance(type);

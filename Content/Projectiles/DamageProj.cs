@@ -16,6 +16,10 @@ namespace StellarisShips.Content.Projectiles
 
         public bool OneHit = true;
 
+        public bool IgnoreSuperArmor = false;
+
+        public int OriginalSourceDamage = 0;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.CanDistortWater[Projectile.type] = true;
@@ -74,7 +78,21 @@ namespace StellarisShips.Content.Projectiles
                     modifiers.DefenseEffectiveness *= DefenseEffectiveness;
                 }
             }
+
+            if (IgnoreSuperArmor && modifiers.SuperArmor)
+            {
+                modifiers.ModifyHitInfo += KillSuperArmor;
+            }
+
+            void KillSuperArmor(ref NPC.HitInfo info)
+            {
+                int dmg = info.SourceDamage - (int)(9999f / 2f * DefenseEffectiveness);
+                if (dmg < 1) dmg = 1;
+                info.Damage = info.Crit ? dmg * 2 : dmg;
+            }
         }
+
+
 
         public override void SafeOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {

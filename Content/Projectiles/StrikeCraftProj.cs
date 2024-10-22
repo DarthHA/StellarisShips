@@ -26,7 +26,7 @@ namespace StellarisShips.Content.Projectiles
 
         public int MaxDmg = 10;
         public int MinDmg = 1;
-        public new float Crit = 50;
+        public float WeaponCrit = 50;
         public float MaxSpeed = 20;
         public int AttackCooldown = 10;
         public float AttackRange = 300;
@@ -127,7 +127,7 @@ namespace StellarisShips.Content.Projectiles
                         {
                             int damage = Main.rand.Next(MaxDmg - MinDmg + 1) + MinDmg;
                             damage = (int)(damage * DamageModifier);
-                            bool crit = Main.rand.NextFloat() < Crit / 100f;
+                            bool crit = Main.rand.NextFloat() < WeaponCrit / 100f;
                             int protmp = DamageProj.Summon(Projectile.GetSource_FromAI(), TargetPos, damage, crit, 0f);
                             if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = SourceName;
                             AttackCooldown = (int)((Main.rand.NextFloat() * 0.4f + 0.8f) * 30f);
@@ -183,7 +183,7 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).ownerID = ship.whoAmI;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).MaxDmg = maxDmg;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).MinDmg = minDmg;
-                (Main.projectile[protmp].ModProjectile as StrikeCraftProj).Crit = crit;
+                (Main.projectile[protmp].ModProjectile as StrikeCraftProj).WeaponCrit = crit;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).MaxSpeed = speed;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).AttackRange = attackRange;
                 (Main.projectile[protmp].ModProjectile as StrikeCraftProj).Level = lvl;

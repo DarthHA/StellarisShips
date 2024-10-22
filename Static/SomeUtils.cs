@@ -20,9 +20,16 @@ namespace StellarisShips.Static
 
         public static bool IsBoss(this NPC npc)
         {
-            if (npc.boss || NPCID.Sets.ShouldBeCountedAsBoss[npc.type])
+            if (npc.realLife != -1)
             {
-                return true;
+                if (Main.npc[npc.realLife].active)
+                {
+                    return Main.npc[npc.realLife].boss || NPCID.Sets.ShouldBeCountedAsBoss[Main.npc[npc.realLife].type];
+                }
+            }
+            else
+            {
+                return npc.boss || NPCID.Sets.ShouldBeCountedAsBoss[npc.type];
             }
             return false;
         }

@@ -103,6 +103,10 @@ Name: {
 	S_NullVoid_1: Small Null Void Beam
 	M_NullVoid_1: Medium Null Void Beam
 	L_NullVoid_1: Large Null Void Beam
+	S_ExDimensional_1: Small Matter Disintegrator
+	M_ExDimensional_1: Middle Matter Disintegrator
+	L_ExDimensional_1: Large Matter Disintegrator
+	G_ScourgeMissile_1: Large Scourge Missile
 	//通用配件
 	B_Armor_1: Small Nanocomposite Armor
 	B_Armor_2: Small Ceramo-Metal Armor

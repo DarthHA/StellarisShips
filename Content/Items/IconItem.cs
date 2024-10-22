@@ -22,7 +22,20 @@ namespace StellarisShips.Content.Items
     public class Slot_X : Slot_A { }
 
     public class MR_Icon : Slot_A { }
-    public class Aggro_Icon : Slot_A { }
+    public class Aggro_Icon : Slot_A 
+    {
+        public override void UpdateInventory(Player player)
+        {
+            foreach(NPC npc in Main.ActiveNPCs)
+            {
+                if (npc.type == NPCID.TargetDummy)
+                {
+                    npc.lifeMax = npc.life = 114514444;
+                    npc.immortal = false;
+                }
+            }
+        }
+    }
     public class Armor_Icon : Slot_A { }
     public class Cloak_Icon : Slot_A { }
     public class Cost_Icon : Slot_A { }
@@ -36,7 +49,7 @@ namespace StellarisShips.Content.Items
     public class ShieldRegen_Icon : Slot_A { }
     public class Special_Icon : Slot_A { }
     public class Speed_Icon : Slot_A { }
-    public class Influence_Icon : Slot_A 
+    public class Influence_Icon : Slot_A
     {
         public override void UpdateInventory(Player player)
         {

@@ -22,6 +22,7 @@ namespace StellarisShips.Content.NPCs
                 ShipNPC shipNPC = Main.npc[npctmp].GetShipNPC();
                 shipNPC.ShipGraph = graph.Copy();
                 shipNPC.ShipName = Name;
+                npc.GivenName = Name;
                 npc.lifeMax = EverythingLibrary.Ships[graph.ShipType].BaseHull;
                 shipNPC.Evasion = EverythingLibrary.Ships[graph.ShipType].BaseEvasion;
                 shipNPC.MaxSpeed = EverythingLibrary.Ships[graph.ShipType].BaseSpeed;

@@ -370,6 +370,21 @@ Desc: {
 		By harnessing the entropic nature of the Null Void, this beam can actually destroy energy.
 		Reverses enemy defense effects.
 		'''
+	ExDimensional_1:
+		'''
+		Hailing from another dimension, the core technologies of the Matter Disintegrator bends several physical laws for destructive results.
+		Highly affected by enemy defense effects.
+		Damage is proportional to the enemy's health.
+		Explodes over a small area.
+		'''
+	ScourgeMissile_1:
+		'''
+		The Scourge Missile payloads are made up of many of the biochemical compounds used by the Swarm in interstellar combat, having proven unexpectedly effective against even the hardiest of military vessels.
+		Have some tracking ability.
+		Explode when hitting the target.
+		Damage is proportional to the enemy's health.
+		Deal more damage when attacking Boss units.
+		'''
 	//通用配件
 	Shield_1: Energy deflector screens can stop a limited amount of incoming enemy fire before overloading.
 	Shield_2: These updated deflector screens are capable of soaking up even more punishment before they overload.

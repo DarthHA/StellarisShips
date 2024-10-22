@@ -1,6 +1,7 @@
-Ôªøusing Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Static;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -8,17 +9,24 @@ using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
 {
-    public class TorpedoProj : BaseDamageProjectile
+    public class ScourgeMissileProj : BaseDamageProjectile
     {
+        public class ParticleUnit(Vector2 pos, float timeLeft)
+        {
+            public Vector2 Pos = pos;
+            public float TimeLeft = timeLeft;
+        }
+
+
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.CanDistortWater[Projectile.type] = true;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
+        public List<ParticleUnit> particles = new();
 
         public Color color = Color.Orange;
 
@@ -30,9 +38,9 @@ namespace StellarisShips.Content.Projectiles
         public float ExplosionScale = 1f;
 
         /// <summary>
-        /// ÈáçÂÆöÂêëÊ¨°Êï∞
+        /// ÷ÿ∂®œÚ¥Œ ˝
         /// </summary>
-        public int RedirectChance = 1;
+        public int RedirectChance = 3;
 
         public override void SetDefaults()
         {
@@ -52,11 +60,6 @@ namespace StellarisShips.Content.Projectiles
 
         public override void AI()
         {
-            if (++Projectile.frameCounter > 4)
-            {
-                Projectile.frame = (Projectile.frame + 1) % 3;
-                Projectile.frameCounter = 0;
-            }
             if (Projectile.ai[0] == 0)
             {
                 if (RedirectChance > 0)
@@ -85,18 +88,24 @@ namespace StellarisShips.Content.Projectiles
                     if (Projectile.timeLeft > 0) Projectile.timeLeft -= 1;
                 }
 
+
+                Vector2 Pos = Projectile.Center;
+                particles.Add(new ParticleUnit(Pos + (Main.rand.NextFloat() * MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat() * 2, 15));
+                particles.Add(new ParticleUnit(Pos + (Main.rand.NextFloat() * MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat() * 2 + Projectile.velocity * 0.5f, 15));
+
+
+                for (int i = particles.Count - 1; i >= 0; i--)
+                {
+                    particles[i].TimeLeft--;
+                    if (particles[i].TimeLeft <= 0)
+                    {
+                        particles.RemoveAt(i);
+                    }
+                }
+
                 Projectile.rotation = Projectile.velocity.ToRotation();
                 Projectile.Opacity = MathHelper.Clamp(Projectile.Opacity + 0.3f, 0f, 1f);
 
-                if (Main.rand.NextBool(2))
-                {
-                    Vector2 vel = Projectile.rotation.ToRotationVector2() * (Main.rand.NextFloat() * 1f + 0.5f);
-                    int num110 = Dust.NewDust(Projectile.Center, 0, 0, 303, 0f, 0f, 0, color, 1f);    //73?
-                    Main.dust[num110].scale = 1f + Main.rand.NextFloat() * 0.6f;
-                    Main.dust[num110].position = Projectile.Center;
-                    Main.dust[num110].velocity = vel;
-                    Main.dust[num110].noGravity = true;
-                }
                 if (Projectile.timeLeft <= 2)
                 {
                     Projectile.ai[0] = 1;
@@ -126,8 +135,9 @@ namespace StellarisShips.Content.Projectiles
                     for (int i = 0; i < (int)(24 * ExplosionScale * ExplosionScale); i++)
                     {
                         Vector2 vel = (Main.rand.NextFloat() * MathHelper.TwoPi).ToRotationVector2() * (Main.rand.NextFloat() * 4f + 2f) * ExplosionScale;
-                        int num110 = Dust.NewDust(Projectile.Center, 0, 0, 303, 0f, 0f, 0, default, 1f);    //73?
-                        Main.dust[num110].scale = 1f + Main.rand.NextFloat() * 0.8f;
+                        int num110 = Dust.NewDust(Projectile.Center, 30, 30, 15, 0f, 0f, 0, Color.LightSeaGreen, 1f);    //31
+
+                        Main.dust[num110].scale = 1f + Main.rand.NextFloat() * 0.4f;
                         Main.dust[num110].position = Projectile.Center;
                         Main.dust[num110].velocity = vel;
                         Main.dust[num110].noGravity = true;
@@ -146,14 +156,24 @@ namespace StellarisShips.Content.Projectiles
         {
             if (Projectile.ai[0] == 0)
             {
-                Texture2D Tex1 = ModContent.Request<Texture2D>("StellarisShips/Images/Common/Torpedo").Value;
-                Texture2D Tex2 = ModContent.Request<Texture2D>("StellarisShips/Images/Common/Torpedo_1").Value;
-                Rectangle rect = new Rectangle(0, Tex1.Height / Main.projFrames[Projectile.type] * Projectile.frame, Tex1.Width, Tex1.Height / Main.projFrames[Projectile.type]);
-
-
-                Main.spriteBatch.Draw(Tex1, Projectile.Center - Main.screenPosition, rect, Color.White * Projectile.Opacity, Projectile.rotation + MathHelper.Pi / 2f, rect.Size() / 2f, Projectile.scale * 1.25f, SpriteEffects.None, 0);
+                Texture2D Tex1 = ModContent.Request<Texture2D>("StellarisShips/Images/Effects/CrispCircle").Value;
                 EasyDraw.AnotherDraw(BlendState.Additive);
-                Main.spriteBatch.Draw(Tex2, Projectile.Center - Main.screenPosition, rect, color * Projectile.Opacity, Projectile.rotation + MathHelper.Pi / 2f, rect.Size() / 2f, Projectile.scale * 1.25f, SpriteEffects.None, 0);
+                Vector2 OffSet = new(Tex1.Width * 0.75f, Tex1.Height / 2f);
+                for (float k = 0.5f; k <= 1.5f; k += 0.05f)
+                {
+                    Vector2 scale = new Vector2(1.5f, 0.75f) * 0.12f * k;
+                    Main.spriteBatch.Draw(Tex1, Projectile.Center - Main.screenPosition, null, color * (1f - k) * Projectile.Opacity, Projectile.rotation, OffSet, Projectile.scale * scale, SpriteEffects.FlipHorizontally, 0);
+                }
+
+                Main.spriteBatch.Draw(Tex1, Projectile.Center - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation, OffSet, Projectile.scale * new Vector2(1.5f, 0.75f) * 0.04f, SpriteEffects.FlipHorizontally, 0);
+
+                foreach (ParticleUnit particle in particles)
+                {
+                    float scale = 0.045f * particle.TimeLeft / 15f;
+                    Main.spriteBatch.Draw(Tex1, particle.Pos - Main.screenPosition, null, color, 0, Tex1.Size() / 2f, Projectile.scale * scale, SpriteEffects.None, 0);
+                    Main.spriteBatch.Draw(Tex1, particle.Pos - Main.screenPosition, null, Color.White, 0, Tex1.Size() / 2f, Projectile.scale * scale * 0.8f, SpriteEffects.None, 0);
+                }
+
                 EasyDraw.AnotherDraw(BlendState.AlphaBlend);
             }
             else
@@ -176,19 +196,19 @@ namespace StellarisShips.Content.Projectiles
 
         public static int Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float explosionScale = 1f, float maxSpeed = 10, float detectRange = 1000, int target = -1, int timeLeft = 480, float homingFactor = 0.05f, bool crit = false, float kb = 0)
         {
-            int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<TorpedoProj>(), dmg, kb, Main.myPlayer);
+            int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<ScourgeMissileProj>(), dmg, kb, Main.myPlayer);
             if (protmp >= 0 && protmp < 1000)
             {
                 Main.projectile[protmp].Center = Pos;
                 Main.projectile[protmp].timeLeft = timeLeft;
-                (Main.projectile[protmp].ModProjectile as TorpedoProj).color = color;
-                (Main.projectile[protmp].ModProjectile as TorpedoProj).Crit = crit;
-                (Main.projectile[protmp].ModProjectile as TorpedoProj).DetectRange = detectRange;
-                (Main.projectile[protmp].ModProjectile as TorpedoProj).HomingFactor = homingFactor;
-                (Main.projectile[protmp].ModProjectile as TorpedoProj).MaxSpeed = maxSpeed;
-                (Main.projectile[protmp].ModProjectile as TorpedoProj).Target = target;
-                (Main.projectile[protmp].ModProjectile as TorpedoProj).LastTarget = target;
-                (Main.projectile[protmp].ModProjectile as TorpedoProj).ExplosionScale = explosionScale;
+                (Main.projectile[protmp].ModProjectile as ScourgeMissileProj).color = color;
+                (Main.projectile[protmp].ModProjectile as ScourgeMissileProj).Crit = crit;
+                (Main.projectile[protmp].ModProjectile as ScourgeMissileProj).DetectRange = detectRange;
+                (Main.projectile[protmp].ModProjectile as ScourgeMissileProj).HomingFactor = homingFactor;
+                (Main.projectile[protmp].ModProjectile as ScourgeMissileProj).MaxSpeed = maxSpeed;
+                (Main.projectile[protmp].ModProjectile as ScourgeMissileProj).Target = target;
+                (Main.projectile[protmp].ModProjectile as ScourgeMissileProj).LastTarget = target;
+                (Main.projectile[protmp].ModProjectile as ScourgeMissileProj).ExplosionScale = explosionScale;
             }
             return protmp;
         }
@@ -196,6 +216,10 @@ namespace StellarisShips.Content.Projectiles
         public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             float DamageBonus = 0.5f + 1.5f * target.life / target.lifeMax;
+            if (target.IsBoss())
+            {
+                DamageBonus *= 1.2f;
+            }
             modifiers.SourceDamage *= DamageBonus;
         }
 
@@ -203,7 +227,7 @@ namespace StellarisShips.Content.Projectiles
         {
             if (Projectile.ai[0] == 0)
             {
-                SomeUtils.PlaySoundRandom(SoundPath.Hit + "Torpedo", 1, Projectile.Center);
+                SomeUtils.PlaySoundRandom(SoundPath.Hit + "Scourge", 1, Projectile.Center);
                 Projectile.rotation = Main.rand.NextFloat() * MathHelper.TwoPi;
                 Projectile.ai[0] = 1;
                 Projectile.timeLeft = 480;
