@@ -29,6 +29,7 @@ namespace StellarisShips.Content.Components.Weapons.Missile
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_S };
         public override List<string> AttackCDTag => new() { BonusID.AllWeaponAttackCD, BonusID.WeaponAttackCD_S };
         public override List<string> CritTag => new() { BonusID.AllWeaponCrit, BonusID.WeaponCrit_S };
+        public override List<string> RangeTag => new() { BonusID.AllWeaponRange, BonusID.WeaponRange_S };
 
         public override long Value => 10 * 200;
         public override void ModifyWeaponUnit(BaseWeaponUnit weapon, NPC ship)

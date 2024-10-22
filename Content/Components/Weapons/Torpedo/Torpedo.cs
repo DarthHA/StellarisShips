@@ -29,6 +29,7 @@ namespace StellarisShips.Content.Components.Weapons.Torpedo
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_G };
         public override List<string> AttackCDTag => new() { BonusID.AllWeaponAttackCD, BonusID.WeaponAttackCD_G };
         public override List<string> CritTag => new() { BonusID.AllWeaponCrit, BonusID.WeaponCrit_G };
+        public override List<string> RangeTag => new() { BonusID.AllWeaponRange, BonusID.WeaponRange_G };
 
         public override long Value => 34 * 300;
         public override int Progress => 2;

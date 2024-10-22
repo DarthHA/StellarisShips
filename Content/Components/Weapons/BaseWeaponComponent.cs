@@ -19,6 +19,7 @@ namespace StellarisShips.Content.Components.Weapons
         public virtual List<string> DamageTag => new();
         public virtual List<string> AttackCDTag => new();
         public virtual List<string> CritTag => new();
+        public virtual List<string> RangeTag => new();
 
         public float GetDamageBonus(Dictionary<string, float> bonusBuff)
         {
@@ -56,7 +57,7 @@ namespace StellarisShips.Content.Components.Weapons
             return bonus;
         }
 
-        public float GetCritCDBonus(Dictionary<string, float> bonusBuff)
+        public float GetCritBonus(Dictionary<string, float> bonusBuff)
         {
             float bonus = 0;
             foreach (string tag1 in bonusBuff.Keys)
@@ -74,11 +75,29 @@ namespace StellarisShips.Content.Components.Weapons
             return bonus;
         }
 
+        public float GetRangeBonus(Dictionary<string, float> bonusBuff)
+        {
+            float bonus = 1;
+            foreach (string tag1 in bonusBuff.Keys)
+            {
+                foreach (string tag2 in RangeTag)
+                {
+                    if (tag1 == tag2)
+                    {
+                        bonus += bonusBuff[tag1];
+                        break;
+                    }
+                }
+
+            }
+            return bonus;
+        }
+
         public float DPS(Dictionary<string, float> bonusBuff)
         {
             float damageBonus = GetDamageBonus(bonusBuff);
             float attackCDBonus = GetAttackCDBonus(bonusBuff);
-            float critBonus = GetCritCDBonus(bonusBuff);
+            float critBonus = GetCritBonus(bonusBuff);
 
 
             float BaseDmg = (MaxDamage + MinDamage) / 2f * damageBonus;

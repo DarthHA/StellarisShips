@@ -8,6 +8,7 @@ using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
@@ -597,13 +598,14 @@ namespace StellarisShips.Content.NPCs
             //复杂的船体与护盾增幅计算
             float hullPercent = Math.Max(0, (float)(NPC.life - CurrentShield) / (NPC.lifeMax - MaxShield));
             float shieldPercent = MaxShield == 0 ? 0 : (float)CurrentShield / MaxShield;
-            int maxHull = GetShip().BaseHull + (int)BonusBuff.GetBonus(BonusID.ExtraHull);
+            int maxHull = (int)((GetShip().BaseHull + BonusBuff.GetBonus(BonusID.ExtraHull)) * BonusBuff.GetBonus(BonusID.HullMult, true));
             MaxShield = (int)((GetShip().BaseShield + BonusBuff.GetBonus(BonusID.Shield)) * BonusBuff.GetBonus(BonusID.ShieldMult, true));
             NPC.lifeMax = maxHull + MaxShield;
             if (!NoChangeHullAndShield)
             {
                 CurrentShield = (int)(shieldPercent * MaxShield);
                 NPC.life = CurrentShield + (int)(hullPercent * maxHull);
+                if (NPC.life == CurrentShield) NPC.life++;
             }
 
             NPC.defDefense = NPC.defense = GetShip().BaseDefense + (int)BonusBuff.GetBonus(BonusID.Defense);
@@ -614,6 +616,7 @@ namespace StellarisShips.Content.NPCs
             float evasion1 = GetShip().BaseEvasion + BonusBuff.GetBonus(BonusID.BaseEvasion);
             float evasion2 = BonusBuff.GetBonus(BonusID.Evasion);
             Evasion = (1 - (1 - evasion1 / 100f) * (1 - evasion2 / 100f)) * 100f;
+            if (Evasion < 0) Evasion = 0;
 
             EscapeChance = BonusBuff.GetBonus(BonusID.EscapeChance);
             FTLMaxCooldown = (int)BonusBuff.GetBonus(BonusID.FTLMaxCooldown);
@@ -626,11 +629,40 @@ namespace StellarisShips.Content.NPCs
             ShieldDRLevel = BonusBuff.GetBonus(BonusID.ShieldDRLevel);
 
             //武器加成计算
+            List<float> weaponRanges = new();
             foreach (BaseWeaponUnit weapon in weapons)
             {
                 weapon.DamageBonus = (EverythingLibrary.Components[weapon.ComponentName] as BaseWeaponComponent).GetDamageBonus(BonusBuff);
                 weapon.AttackCDBonus = (EverythingLibrary.Components[weapon.ComponentName] as BaseWeaponComponent).GetAttackCDBonus(BonusBuff);
-                weapon.CritBonus = (EverythingLibrary.Components[weapon.ComponentName] as BaseWeaponComponent).GetCritCDBonus(BonusBuff);
+                weapon.CritBonus = (EverythingLibrary.Components[weapon.ComponentName] as BaseWeaponComponent).GetCritBonus(BonusBuff);
+                weapon.RangeBonus = (EverythingLibrary.Components[weapon.ComponentName] as BaseWeaponComponent).GetRangeBonus(BonusBuff);
+                if (EverythingLibrary.Components[weapon.ComponentName].EquipType != ComponentTypes.Weapon_H)  //不算H槽
+                {
+                    weaponRanges.Add(weapon.MaxRange);
+                }
+            }
+
+            //计算武器射程
+            if (weaponRanges.Count > 0)
+            {
+                weaponRanges.Sort((a, b) => { return a.CompareTo(b); });  //从小到大排序
+                if ((int)(weaponRanges.Count / 2f) * 2 == weaponRanges.Count)        //偶数
+                {
+                    int mid1 = (int)(weaponRanges.Count / 2f);
+                    MidRange = (int)((weaponRanges[mid1 - 1] + weaponRanges[mid1]) / 2f);
+                }
+                else
+                {
+                    int mid = (int)(weaponRanges.Count / 2f);
+                    MidRange = (int)weaponRanges[mid];
+                }
+                MinRange = (int)weaponRanges.Min();
+                MaxRange = (int)weaponRanges.Max();
+            }
+            else
+            {
+                MaxRange = 600;
+                MinRange = 0;
             }
         }
 
@@ -638,6 +670,11 @@ namespace StellarisShips.Content.NPCs
         internal BaseShip GetShip()
         {
             return EverythingLibrary.Ships[ShipGraph.ShipType];
+        }
+
+        public void HealHull(int value)
+        {
+            HullRegenProgress += value;
         }
     }
 }

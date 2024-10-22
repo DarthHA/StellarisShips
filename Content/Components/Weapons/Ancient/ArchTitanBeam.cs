@@ -22,6 +22,7 @@ namespace StellarisShips.Content.Components.Weapons.Ancient
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_T };
         public override List<string> AttackCDTag => new() { BonusID.AllWeaponAttackCD, BonusID.WeaponAttackCD_T };
         public override List<string> CritTag => new() { BonusID.AllWeaponCrit, BonusID.WeaponCrit_T };
+        public override List<string> RangeTag => new() { BonusID.AllWeaponRange, BonusID.WeaponRange_T };
 
         public override long Value => 456 * 1500;
         public override int MRValue => 480;

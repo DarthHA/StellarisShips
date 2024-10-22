@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.Buffs;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Static;
+using StellarisShips.System;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Localization;
@@ -135,24 +137,38 @@ namespace StellarisShips.UI
                 if (Main.npc[NPCWhoAmI].CountAsTownNPC())
                 {
                     string result = "";
-                    result += "[c/ffd700:" + Main.npc[NPCWhoAmI].FullName + "]\n";
+                    result += "[c/ffd700:" + Main.npc[NPCWhoAmI].FullName + "]";
                     if (LeaderNPC.GetShip(Main.npc[NPCWhoAmI]) != -1)
                     {
                         NPC ship = Main.npc[LeaderNPC.GetShip(Main.npc[NPCWhoAmI])];
-                        result += string.Format(Language.GetTextValue("Mods.StellarisShips.UI.LeaderBusy"), ship.GetShipNPC().ShipName) + "\n";
+                        result += "\n" + string.Format(Language.GetTextValue("Mods.StellarisShips.UI.LeaderBusy"), "[c/87ceeb:" + ship.GetShipNPC().ShipName + "]");
                         if (!ship.ShipActive())
                         {
-                            result += string.Format(Language.GetTextValue("Mods.StellarisShips.UI.LeaderMissing"), MissingBuff.GenTimeSpanFromSeconds(ship.GetShipNPC().MissingTimer / 60)) + "\n";
+                            result += "\n" + string.Format(Language.GetTextValue("Mods.StellarisShips.UI.LeaderMissing"), MissingBuff.GenTimeSpanFromSeconds(ship.GetShipNPC().MissingTimer / 60));
                         }
-                        else
+                        List<string> traits = Main.npc[NPCWhoAmI].GetGlobalNPC<TraitSystem>().Traits;
+                        foreach(string t in traits)
                         {
-                            result += string.Format(Language.GetTextValue("Mods.StellarisShips.UI.LeaderCanResign"));
+                            string color = EverythingLibrary.Modifiers[t].Negative ?"[c/ff1111:" : "[c/adff2f:";
+                            result += "\n" + color + EverythingLibrary.Modifiers[t].GetLocalizedName() + "]";
+                            result += "\n" + EverythingLibrary.Modifiers[t].GetLocalizedDesc();
+                        }
+                        if(ship.ShipActive())
+                        {
+                            result += "\n" + string.Format(Language.GetTextValue("Mods.StellarisShips.UI.LeaderCanResign"));
                         }
                     }
                     else
                     {
-                        result += Language.GetTextValue("Mods.StellarisShips.UI.LeaderSpare") + "\n";
-                        result += string.Format(Language.GetTextValue("Mods.StellarisShips.UI.LeaderCanAssign"));
+                        result += "\n" + Language.GetTextValue("Mods.StellarisShips.UI.LeaderSpare");
+                        List<string> traits = Main.npc[NPCWhoAmI].GetGlobalNPC<TraitSystem>().Traits;
+                        foreach (string t in traits)
+                        {
+                            string color = EverythingLibrary.Modifiers[t].Negative ? "[c/ff1111:" : "[c/adff2f:";
+                            result += "\n" + color + EverythingLibrary.Modifiers[t].GetLocalizedName() + "]";
+                            result += "\n" + EverythingLibrary.Modifiers[t].GetLocalizedDesc();
+                        }
+                        result += "\n" + string.Format(Language.GetTextValue("Mods.StellarisShips.UI.LeaderCanAssign"));
                     }
                     return result;
                 }

@@ -8,13 +8,14 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.UI.ModBrowser;
 using Terraria.UI;
 
 namespace StellarisShips.UI
 {
     public class LeaderUI : UIState
     {
-        public static Vector2 StartPos => new(650, 60);
+        public static Vector2 StartPos = new(650, 60);
         public const int PanelWidth = 420;
         public const int PanelHeight = 260;
 
@@ -24,6 +25,10 @@ namespace StellarisShips.UI
         public static CancelButton cancelButton = new();
 
         public static string HoverString = "";
+
+        public static Vector2? DraggedPos = null;
+
+        private static bool HoveredFrame = false;
 
         public override void OnActivate()
         {
@@ -54,13 +59,11 @@ namespace StellarisShips.UI
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
-
             //绘制舰船NPC框
             foreach (NPCIconButton button in ShipList)
             {
                 button.Draw(spriteBatch);
             }
-
 
             Texture2D TexPanel = ModContent.Request<Texture2D>("StellarisShips/Images/UI/LeaderUI").Value;
             spriteBatch.Draw(TexPanel, new Rectangle((int)StartPos.X, (int)StartPos.Y, PanelWidth, PanelHeight), Color.White);
@@ -73,17 +76,28 @@ namespace StellarisShips.UI
             }
             cancelButton.Draw(spriteBatch);
 
+            //绘制拖动预览
+            if (DraggedPos.HasValue)
+            {
+                Vector2 TopLeft = DraggedPos.Value + new Vector2(Main.mouseX, Main.mouseY);
+                Texture2D TexFrame = ModContent.Request<Texture2D>("StellarisShips/Images/UI/LeaderUI_Frame").Value;
+                spriteBatch.Draw(TexFrame, new Rectangle((int)TopLeft.X, (int)TopLeft.Y, PanelWidth, PanelHeight), Color.White);
+            }
+
+
             DrawHoverDescs(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            HoveredFrame = false;
             Rectangle rectangle = new Rectangle((int)StartPos.X, (int)StartPos.Y, PanelWidth, PanelHeight);
             if (rectangle.Contains(new Point(Main.mouseX, Main.mouseY)))
             {
                 Main.LocalPlayer.mouseInterface = true;
                 Main.mouseText = true;
+                HoveredFrame = true;
             }
 
             UpdateIconButton();
@@ -91,6 +105,11 @@ namespace StellarisShips.UI
             UpdateHover();
 
             UpdateClicked();
+
+            if (UIManager.LeaderUIVisible)
+            {
+                DragLogic();
+            }
         }
 
 
@@ -104,6 +123,7 @@ namespace StellarisShips.UI
             NPCList.Clear();
             ShipList.Clear();
             HoverString = "";
+            DraggedPos = null;
         }
 
 
@@ -211,7 +231,7 @@ namespace StellarisShips.UI
                     }
                 }
             }
-            //重排
+            //重排和更新Enabled
             int XSlot = 0, YSlot = 0;
             foreach (NPCIconButton button in NPCList)
             {
@@ -233,28 +253,11 @@ namespace StellarisShips.UI
                     XSlot = 0;
                 }
             }
-
-            //更新光标状态
-            foreach (NPCIconButton iconButton in NPCList)
+            if (cancelButton != null)
             {
-                if (iconButton.Hovered())
-                {
-                    Main.LocalPlayer.mouseInterface = true;
-                    Main.mouseText = true;
-                    break;
-                }
-            }
-            foreach (NPCIconButton iconButton in ShipList)
-            {
-                if (iconButton.Hovered())
-                {
-                    Main.LocalPlayer.mouseInterface = true;
-                    Main.mouseText = true;
-                    break;
-                }
+                cancelButton.Center = StartPos + new Vector2(PanelWidth - 25, 25);
             }
         }
-
 
         private static void UpdateClicked()
         {
@@ -319,11 +322,10 @@ namespace StellarisShips.UI
             }
 
 
-
             //左键选择
             for (int i = 0; i < ShipList.Count; i++)
             {
-                if (ShipList[i].LeftClicked())
+                if (ShipList[i].LeftClicked() && !HoveredFrame)
                 {
                     SomeUtils.PlaySound(SoundPath.UI + "Click");
                     ShipList[i].Selected = !ShipList[i].Selected;
@@ -337,7 +339,7 @@ namespace StellarisShips.UI
             //右键取消
             for (int i = 0; i < ShipList.Count; i++)
             {
-                if (ShipList[i].RightClicked())
+                if (ShipList[i].RightClicked() && !HoveredFrame)
                 {
                     SomeUtils.PlaySound(SoundPath.UI + "Close");
                     ShipList[i].Selected = false;
@@ -359,7 +361,7 @@ namespace StellarisShips.UI
             }
             foreach (NPCIconButton button in ShipList)
             {
-                if (button.Hovered())
+                if (button.Hovered() && !HoveredFrame)
                 {
                     HoverString = button.GetDesc();
                     return;
@@ -391,6 +393,72 @@ namespace StellarisShips.UI
                 spriteBatch.Draw(texDesc, new Rectangle(Main.mouseX + 20 - XOffset, Main.mouseY + 20 - YOffset, TextWidth, 30 * line + 20), Color.White);
                 Utils.DrawBorderString(spriteBatch, HoverString, new Vector2(Main.mouseX + 40 - XOffset, Main.mouseY + 40 - YOffset), Color.White);
                 Main.mouseText = true;
+            }
+        }
+
+        private static void DragLogic()
+        {
+            bool HoveredButtons = false;
+            //更新光标状态
+            foreach (NPCIconButton iconButton in NPCList)
+            {
+                if (iconButton.Hovered())
+                {
+                    HoveredButtons = true;
+                    Main.LocalPlayer.mouseInterface = true;
+                    Main.mouseText = true;
+                    break;
+                }
+            }
+            foreach (NPCIconButton iconButton in ShipList)
+            {
+                if (iconButton.Hovered())
+                {
+                    if (!HoveredFrame) HoveredButtons = true;
+                    Main.LocalPlayer.mouseInterface = true;
+                    Main.mouseText = true;
+                    break;
+                }
+            }
+
+            if (cancelButton.Hovered())
+            {
+                HoveredButtons = true;
+                Main.LocalPlayer.mouseInterface = true;
+                Main.mouseText = true;
+            }
+
+            bool Moved = false;
+            if(UIManager.LeftClicked && HoveredFrame && !HoveredButtons && !DraggedPos.HasValue)
+            {
+                DraggedPos = StartPos - new Vector2(Main.mouseX, Main.mouseY);
+            }
+            else if(!Main.mouseLeft && DraggedPos.HasValue)
+            {
+                Moved = true;
+                StartPos = DraggedPos.Value + new Vector2(Main.mouseX, Main.mouseY);
+                DraggedPos = null;
+            }
+
+            if (Moved)
+            {
+                //重排
+                int XSlot = 0, YSlot = 0;
+                foreach (NPCIconButton button in NPCList)
+                {
+                    Vector2 Pos = StartPos + new Vector2(30 + XSlot * 40, 70 + YSlot * 40);
+                    button.Center = Pos;
+                    XSlot++;
+                    if (XSlot >= 10)
+                    {
+                        YSlot++;
+                        XSlot = 0;
+                    }
+                }
+                if (cancelButton != null)
+                {
+                    cancelButton.Center = StartPos + new Vector2(PanelWidth - 25, 25);
+                }
             }
         }
     }

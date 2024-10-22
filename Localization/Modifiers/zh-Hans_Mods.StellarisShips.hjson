@@ -1,0 +1,220 @@
+Name: {
+	//全局
+	QuantumDestabilizer: 量子去稳器
+	ShieldDampener: 护盾挡板
+	SubspaceSnare: 亚空间陷阱
+	InspiringPresence: 振奋人心
+	AncientTargetScrambler: 远古索敌扰频器
+	NanobotCloud: 纳米机器云
+	TargetingGrid: 目标网格
+	ShroudASPDUp: 虚境的恩赐：武器射速提升
+	ShroudAtkUp: 虚境的恩赐：武器伤害提升
+	ShroudEvasionUp: 虚境的恩赐：闪避率提升
+	ShroudRegenUp: 虚境的恩赐：船体修复提升
+	ShroudShieldUp: 虚境的恩赐：护盾强度提升
+	ShroudSpeedUp: 虚境的恩赐：航速提升
+	//领袖
+	Aggressiveness: 火力全开 I
+	Aggressiveness2: 火力全开 II
+	Prudence: 谨慎 I
+	Prudence2: 谨慎 II
+	Engineer: 工程师 I
+	Engineer2: 工程师 II
+	Trickster: 诡术师 I
+	Trickster2: 诡术师 II
+	Unyielding: 坚强不屈 I
+	Unyielding2: 坚强不屈 II
+	GaleSpeed: 其疾如风
+	GaleSpeed2: 其疾如风 II
+	Negligence: 粗心大意 I
+	Negligence2: 粗心大意 II
+	Reckless: 鲁莽 I
+	Reckless2: 鲁莽 II
+	Anxiety: 焦躁不安 I
+	Anxiety2: 焦躁不安 II
+	Lethargic: 懒散怠惰 I
+	Lethargic2: 懒散怠惰 II
+	Disgusting: 令人厌恶 I
+	Disgusting2: 令人厌恶 II
+	Artillerist: 大炮兵主义者 I
+	Artillerist2: 大炮兵主义者 II
+	JuryRigger: 残舰拆解 I
+	JuryRigger2: 残舰拆解 II
+	Wrecker: 破船者 I
+	Wrecker2: 破船者 II
+	Demolisher: 入侵专家 I
+	Demolisher2: 入侵专家 II
+	GunshipFocus: 炮艇专精 I
+	ArtilleryFocus: 炮击专精 I
+	CarrierFocus: 航母专精 I
+	GuidanceSystemFocus: 鱼雷专精 I
+	GunshipFocus2: 炮艇专精 II
+	ArtilleryFocus2: 炮击专精 II
+	CarrierFocus2: 航母专精 II
+	GuidanceSystemFocus2: 鱼雷专精 II
+	GuideInsight: 向导的洞见
+	DisgustingAngler: 令人厌恶
+	EvilCleaner: 邪恶净化者
+	TavernKeeperInsight: 酒保的洞见
+	SkeletronCurse: 骷髅王的诅咒(曾经)
+	HellHeart: 地狱雄心
+	Cyborg: 合成人
+	GreatPrincess: 公主
+	Slimy: 黏糊糊的
+	Cute: 灰常可爱
+	MagicShield: 魔力护盾
+	MushroomMind: 真菌集体思维
+}
+
+Desc: {
+	//全局
+	QuantumDestabilizer: 敌方造成的伤害 -15%
+	ShieldDampener: 敌方受到的伤害 +10%
+	SubspaceSnare: 敌方移动速度 -30%
+	InspiringPresence: 全体舰船开火速率 +15%
+	AncientTargetScrambler: 全体舰船闪避 +40%
+	NanobotCloud: 全体舰船船体修复 +2% 每秒
+	TargetingGrid: 全体舰船暴击率 +15%
+	ShroudASPDUp: 开火速率 +25%
+	ShroudAtkUp: 武器伤害 +25%
+	ShroudEvasionUp: 闪避率 +30%
+	ShroudRegenUp: 船体修复 +3% 每秒
+	ShroudShieldUp: 护盾承受值 +40%
+	ShroudSpeedUp: 航速 +25%
+	//领袖
+	Aggressiveness: +10% 开火速率
+	Aggressiveness2:
+		'''
+		+10% 开火速率
+		+10% 武器伤害
+		'''
+	Prudence: +20% 武器射程
+	Prudence2:
+		'''
+		+40% 武器射程
+		+10% 紧急脱离概率
+		'''
+	Engineer: +1% 每秒船体修复
+	Engineer2: +2% 每秒船体修复
+	Trickster: -400 仇恨值
+	Trickster2:
+		'''
+		-800 仇恨值
+		+20% 紧急脱离概率
+		'''
+	Unyielding:
+		'''
+		+20% 船体值
+		-20% 紧急脱离概率
+		'''
+	Unyielding2:
+		'''
+		+30% 船体值
+		-40% 紧急脱离概率
+		'''
+	GaleSpeed:
+		'''
+		+10% 航速
+		+5% 闪避
+		'''
+	GaleSpeed2:
+		'''
+		+20% 航速
+		+10% 闪避
+		'''
+	Negligence:
+		'''
+		-10% 船体值
+		-10% 护盾承受值
+		'''
+	Negligence2:
+		'''
+		-20% 船体值
+		-20% 护盾承受值
+		'''
+	Reckless: -30% 紧急脱离概率
+	Reckless2: -60% 紧急脱离概率
+	Anxiety: -10% 开火速率
+	Anxiety2: -20% 开火速率
+	Lethargic:
+		'''
+		-10% 航速
+		-5% 闪避
+		'''
+	Lethargic2:
+		'''
+		-20% 航速
+		-10% 闪避
+		'''
+	Disgusting: +400 仇恨值
+	Disgusting2: +800 仇恨值
+	Artillerist: +10% 武器伤害
+	Artillerist2:
+		'''
+		+10% 武器伤害
+		+10% 暴击率
+		'''
+	JuryRigger: 击败一名敌人恢复 10% 船体值
+	JuryRigger2: 击败一名敌人恢复 20% 船体值
+	Wrecker: +12% 武器伤害
+	Wrecker2: +24% 武器伤害
+	Demolisher: +20% 对非Boss敌人伤害
+	Demolisher2: +40% 对非Boss敌人伤害
+	GunshipFocus:
+		'''
+		+10% S,P槽武器伤害
+		+10% S,P槽开火速率
+		+7.5% M槽武器伤害
+		+7.5% M槽开火速率
+		'''
+	GunshipFocus2:
+		'''
+		+20% S,P槽武器伤害
+		+20% S,P槽开火速率
+		+15% M槽武器伤害
+		+15% M槽开火速率
+		'''
+	ArtilleryFocus: +20% L,X,T槽武器伤害
+	ArtilleryFocus2: +35% L,X,T槽武器伤害
+	CarrierFocus: +30% H槽武器伤害
+	CarrierFocus2: +60% H槽武器伤害
+	GuidanceSystemFocus:
+		'''
+		+15% G槽武器伤害
+		+15% G槽开火速率
+		'''
+	GuidanceSystemFocus2:
+		'''
+		+30% G槽武器伤害
+		+30% G槽开火速率
+		'''
+	GuideInsight: +1 可用特质点数
+	DisgustingAngler: +9999 仇恨
+	EvilCleaner:
+		'''
+		+15% 对Boss敌人伤害
+		-1 可用特质点数
+		'''
+	TavernKeeperInsight: +20% 对旧日军团敌人伤害
+	SkeletronCurse: +5% 开火速率
+	HellHeart:
+		'''
+		+10% 航速
+		+5% 闪避
+		-5% 船体值
+		'''
+	Cyborg: +5% 暴击率
+	GreatPrincess:
+		'''
+		+3 可用特质点数
+		不会获得负面特质
+		'''
+	Slimy:
+		'''
+		+3% 每秒船体修复
+		-1 可用特质点数
+		'''
+	Cute: 它很可爱，这就够了
+	MagicShield: +5% 护盾存在时减伤
+	MushroomMind: +10% 伤害,当玩家处于地表蘑菇群系时
+}

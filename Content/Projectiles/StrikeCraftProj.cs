@@ -128,7 +128,7 @@ namespace StellarisShips.Content.Projectiles
                             int damage = Main.rand.Next(MaxDmg - MinDmg + 1) + MinDmg;
                             damage = (int)(damage * DamageModifier);
                             bool crit = Main.rand.NextFloat() < WeaponCrit / 100f;
-                            int protmp = DamageProj.Summon(Projectile.GetSource_FromAI(), TargetPos, damage, crit, 0f);
+                            int protmp = DamageProj.Summon(Projectile.GetSource_FromThis(), TargetPos, damage, crit, 0f);
                             if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = SourceName;
                             AttackCooldown = (int)((Main.rand.NextFloat() * 0.4f + 0.8f) * 30f);
                             SomeUtils.PlaySoundRandom(SoundPath.Fire + "Laser", 6, Projectile.Center);

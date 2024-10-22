@@ -22,6 +22,7 @@ namespace StellarisShips.Content.Components.Weapons.X
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_X };
         public override List<string> AttackCDTag => new() { BonusID.AllWeaponAttackCD, BonusID.WeaponAttackCD_X };
         public override List<string> CritTag => new() { BonusID.AllWeaponCrit, BonusID.WeaponCrit_X };
+        public override List<string> RangeTag => new() { BonusID.AllWeaponRange, BonusID.WeaponRange_X };
 
         public override long Value => 200 * 1000;
         public override int Progress => 8;

@@ -21,6 +21,7 @@ namespace StellarisShips.Content.Components.Weapons.Disruptor
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_L };
         public override List<string> AttackCDTag => new() { BonusID.AllWeaponAttackCD, BonusID.WeaponAttackCD_L };
         public override List<string> CritTag => new() { BonusID.AllWeaponCrit, BonusID.WeaponCrit_L };
+        public override List<string> RangeTag => new() { BonusID.AllWeaponRange, BonusID.WeaponRange_L };
 
         public override long Value => 98 * 900;
         public override int Progress => 7;

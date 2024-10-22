@@ -21,3 +21,4 @@ v0.5.2 - Movement and Jump Mechanic Improvements.
 v0.6.1 - Added Shroud and related Tech, which can be obtained by defeating the Moon Lord (33%).
 v0.6.2 - Added more Shroud-related components, and move some to the Shroud to acquire.
 v0.6.3 - Bug fixed.
+v0.7 - Added Leader, you can assign Town NPCs to command the ships. 

@@ -96,7 +96,7 @@ namespace StellarisShips.System
                 }
             }
 
-            foreach (NPC ship in Main.ActiveNPCs)
+            foreach (NPC ship in Main.ActiveNPCs)          //清空修正
             {
                 if (ship.ShipActive(true))
                 {
@@ -104,7 +104,7 @@ namespace StellarisShips.System
                 }
             }
 
-            foreach (NPC ship in Main.ActiveNPCs)
+            foreach (NPC ship in Main.ActiveNPCs)         //全局效果
             {
                 if (ship.ShipActive(true))
                 {
@@ -114,6 +114,23 @@ namespace StellarisShips.System
                     }
                 }
             }
+
+            foreach (NPC ship in Main.ActiveNPCs)        //领袖特质
+            {
+                if (ship.ShipActive(true))
+                {
+                    if (ship.GetShipNPC().GetLeader() != -1)
+                    {
+                        List<string> traits = Main.npc[ship.GetShipNPC().GetLeader()].GetGlobalNPC<TraitSystem>().Traits;
+                        foreach(string t in traits)
+                        {
+                            EverythingLibrary.Modifiers[t].ApplyBonus(ship.GetShipNPC().SpecialBuff);
+                        }
+                    }
+                }
+            }
+
+
 
         }
 

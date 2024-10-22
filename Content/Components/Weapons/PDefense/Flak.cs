@@ -20,6 +20,7 @@ namespace StellarisShips.Content.Components.Weapons.PDefense
 
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_P };
         public override List<string> CritTag => new() { BonusID.AllWeaponCrit, BonusID.WeaponCrit_P };
+        public override List<string> RangeTag => new() { BonusID.AllWeaponRange, BonusID.WeaponRange_P };
 
         public override long Value => 8 * 200;
         public override void ModifyWeaponUnit(BaseWeaponUnit weapon, NPC ship)

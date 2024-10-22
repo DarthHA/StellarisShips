@@ -21,6 +21,7 @@ namespace StellarisShips.Content.Components.Weapons.Laser
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_M };
         public override List<string> AttackCDTag => new() { BonusID.AllWeaponAttackCD, BonusID.WeaponAttackCD_M };
         public override List<string> CritTag => new() { BonusID.AllWeaponCrit, BonusID.WeaponCrit_M };
+        public override List<string> RangeTag => new() { BonusID.AllWeaponRange, BonusID.WeaponRange_M };
 
         public override long Value => 20 * 200;
         public override void ModifyWeaponUnit(BaseWeaponUnit weapon, NPC ship)

@@ -1,7 +1,9 @@
 ﻿using StellarisShips.Content.Items;
+using StellarisShips.Static;
 using StellarisShips.System;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +13,27 @@ namespace StellarisShips.Content.Projectiles
     {
         public string SourceName = "";
         public bool Crit = false;
+        public string SourceShipName = "";
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (source is EntitySource_Parent)
+            {
+                EntitySource_Parent parentSource = source as EntitySource_Parent;
+                if (parentSource.Entity is NPC && (parentSource.Entity as NPC).ShipActive(true))
+                {
+                    SourceShipName = (parentSource.Entity as NPC).GetShipNPC().ShipName;
+                }
+                else if (parentSource.Entity is Projectile)
+                {
+                    Projectile proj = parentSource.Entity as Projectile;
+                    if (proj.ModProjectile != null && proj.ModProjectile is BaseDamageProjectile)
+                    {
+                        SourceShipName = (proj.ModProjectile as BaseDamageProjectile).SourceShipName;
+                    }
+                }
+
+            }
+        }
 
         public sealed override void SetDefaults()
         {
@@ -34,6 +57,24 @@ namespace StellarisShips.Content.Projectiles
                 }
             }
 
+            if (target.life <= damageDone)
+            {
+                foreach (NPC npc in Main.ActiveNPCs)
+                {
+                    if (npc.ShipActive(true))
+                    {
+                        if (npc.GetShipNPC().ShipName == SourceShipName)
+                        {
+                            float vampireHeal = npc.GetShipNPC().BonusBuff.GetBonus(BonusID.VampireHeal) * (npc.lifeMax - npc.GetShipNPC().MaxShield);
+                            if (vampireHeal > 0)
+                            {
+                                npc.GetShipNPC().HealHull((int)vampireHeal);
+                            }
+                        }
+                    }
+                }
+            }
+
             //威慑值
             if (!ProgressHelper.FirstContractShroud)
             {
@@ -54,6 +95,35 @@ namespace StellarisShips.Content.Projectiles
                 modifiers.DisableCrit();
             }
             SafeModifyHitNPC(target, ref modifiers);
+
+            foreach (NPC npc in Main.ActiveNPCs)
+            {
+                if (npc.ShipActive(true))
+                {
+                    if (npc.GetShipNPC().ShipName == SourceShipName)
+                    {
+                        float m = 1f;
+                        if (target.IsBoss())
+                        {
+                            m += npc.GetShipNPC().BonusBuff.GetBonus(BonusID.DamageToBoss);
+                        }
+                        else
+                        {
+                            m += npc.GetShipNPC().BonusBuff.GetBonus(BonusID.DamageToNonBoss);
+                        }
+                        if (NPCID.Sets.BelongsToInvasionOldOnesArmy[target.type])
+                        {
+                            m += npc.GetShipNPC().BonusBuff.GetBonus(BonusID.DamageToOldOnes);
+                        }
+                        if(Main.LocalPlayer.ZoneGlowshroom && Main.LocalPlayer.ZoneOverworldHeight)
+                        {
+                            m+= npc.GetShipNPC().BonusBuff.GetBonus(BonusID.DamageInMushroom);
+                        }
+                        modifiers.FinalDamage *= m;
+                    }
+                }
+            }
+
             modifiers.ModifyHitInfo += (ref NPC.HitInfo info) =>
             {
                 if (Main.LocalPlayer.HasItem(ModContent.ItemType<ShipEmblem>()))

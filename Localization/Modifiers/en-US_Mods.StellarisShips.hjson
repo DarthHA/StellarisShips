@@ -1,0 +1,220 @@
+Name: {
+	//全局
+	QuantumDestabilizer: Quantum Destabilizer
+	ShieldDampener: Shield Dampener
+	SubspaceSnare: Subspace Snare
+	InspiringPresence: Inspiring Presence
+	AncientTargetScrambler: Ancient Target Scrambler
+	NanobotCloud: Nanobot Cloud
+	TargetingGrid: Targeting Grid
+	ShroudASPDUp: Boon of the Shroud: Increased Firing Rate
+	ShroudAtkUp: Boon of the Shroud: Increased Weapon Strength
+	ShroudEvasionUp: Boon of the Shroud: Increased Evasion
+	ShroudRegenUp: Boon of the Shroud: Increased Hull Regen
+	ShroudShieldUp: Boon of the Shroud: Increased Shield Strength
+	ShroudSpeedUp: Boon of the Shroud: Increased Speed
+	//领袖
+	Aggressiveness: Aggressiveness I
+	Aggressiveness2: Aggressiveness II
+	Prudence: Prudence I
+	Prudence2: Prudence II
+	Engineer: Engineer I
+	Engineer2: Engineer II
+	Trickster: Trickster I
+	Trickster2: Trickster II
+	Unyielding: Unyielding I
+	Unyielding2: Unyielding II
+	GaleSpeed: Gale-Speed I
+	GaleSpeed2: Gale-Speed II
+	Negligence: Negligence I
+	Negligence2: Negligence II
+	Reckless: Reckless I
+	Reckless2: Reckless II
+	Anxiety: Anxiety I
+	Anxiety2: Anxiety II
+	Lethargic: Lethargic I
+	Lethargic2: Lethargic II
+	Disgusting: Disgusting I
+	Disgusting2: Disgusting II
+	Artillerist: Artillerist I
+	Artillerist2: Artillerist II
+	JuryRigger: Jury-Rigger I
+	JuryRigger2: Jury-Rigger II
+	Wrecker: Wrecker I
+	Wrecker2: Wrecker II
+	Demolisher: Demolisher I
+	Demolisher2: Demolisher II
+	GunshipFocus: Gunship Focus I
+	ArtilleryFocus: Artillery Focus I
+	CarrierFocus: Carrier Focus I
+	GuidanceSystemFocus: Guidance System Focus I
+	GunshipFocus2: Gunship Focus II
+	ArtilleryFocus2: Artillery Focus II
+	CarrierFocus2: Carrier Focus II
+	GuidanceSystemFocus2: Guidance System Focus II
+	GuideInsight: Insight of Guide
+	DisgustingAngler: Disgusting
+	EvilCleaner: Evil Purger
+	TavernKeeperInsight: Insight of Tavern Keeper
+	SkeletronCurse: Curse of Skeletron (Formerly)
+	HellHeart: Hell's Heart
+	Cyborg: Cyborg
+	GreatPrincess: the Great Princess
+	Slimy: Slimy
+	Cute: Very Cute
+	MagicShield: Magic Shield
+	MushroomMind: Fungi Hive Mind
+}
+
+Desc: {
+	//全局
+	QuantumDestabilizer: Damage dealt by enemies -15%
+	ShieldDampener: Damage taken by enemies +10%
+	SubspaceSnare: Enemies movement speed -30%
+	InspiringPresence: All ships firing rate +15%
+	AncientTargetScrambler: All ships evasion +40%
+	NanobotCloud: All ships Hull Regen +2%/s
+	TargetingGrid: All ships crit +15%
+	ShroudASPDUp: Firing rate +25%
+	ShroudAtkUp: Weapon Damage +25%
+	ShroudEvasionUp: Evasion +30%
+	ShroudRegenUp: Hull Regen +3%/s
+	ShroudShieldUp: Shield +40%
+	ShroudSpeedUp: Speed +25%
+	//领袖
+	Aggressiveness: +10% Firing rate
+	Aggressiveness2:
+		'''
+		+10% Firing rate
+		+10% Weapon Damage
+		'''
+	Prudence: +20% Weapon Range
+	Prudence2:
+		'''
+		+40% Weapon Range
+		+10% Emergency Escape Chance
+		'''
+	Engineer: +1%/s Hull Regen
+	Engineer2: +2%/s Hull Regen
+	Trickster: -400 Aggro
+	Trickster2:
+		'''
+		-800 Aggro
+		+20% Emergency Escape Chance
+		'''
+	Unyielding:
+		'''
+		+20% Hull
+		-20% Emergency Escape Chance
+		'''
+	Unyielding2:
+		'''
+		+30% Hull
+		-40% Emergency Escape Chance
+		'''
+	GaleSpeed:
+		'''
+		+10% Speed
+		+5% Evasion
+		'''
+	GaleSpeed2:
+		'''
+		+20% Speed
+		+10% Evasion
+		'''
+	Negligence:
+		'''
+		-10% Hull
+		-10% Shield
+		'''
+	Negligence2:
+		'''
+		-20% Hull
+		-20% Shield
+		'''
+	Reckless: -30% Emergency Escape Chance
+	Reckless2: -60% Emergency Escape Chance
+	Anxiety: -10% Firing rate
+	Anxiety2: -20% Firing rate
+	Lethargic:
+		'''
+		-10% Speed
+		-5% Evasion
+		'''
+	Lethargic2:
+		'''
+		-20% Speed
+		-10% Evasion
+		'''
+	Disgusting: +400 Aggro
+	Disgusting2: +800 Aggro
+	Artillerist: +10% Weapon Damage
+	Artillerist2:
+		'''
+		+10% Weapon Damage
+		+10% Crit
+		'''
+	JuryRigger: Defeating an enemy restores 10% Hull
+	JuryRigger2: Defeating an enemy restores 20% Hull
+	Wrecker: +12% Weapon Damage
+	Wrecker2: +24% Weapon Damage
+	Demolisher: +20% Damage to Non-Boss enemies
+	Demolisher2: +40% Damage to Non-Boss enemies
+	GunshipFocus:
+		'''
+		+10% S,P Slot Weapon Damage
+		+10% S,P Slot Firing rate
+		+7.5% M Slot Weapon Damage
+		+7.5% M Slot Firing rate
+		'''
+	GunshipFocus2:
+		'''
+		+20% S,P Slot Weapon Damage
+		+20% S,P SlotFiring rate
+		+15% M Slot Weapon Damage
+		+15% M Slot Firing rate
+		'''
+	ArtilleryFocus: +20% L,X,T Slot Weapon Damage
+	ArtilleryFocus2: +35% L,X,T Slot Weapon Damage
+	CarrierFocus: +30% H Slot Weapon Damage
+	CarrierFocus2: +60% H Slot Weapon Damage
+	GuidanceSystemFocus:
+		'''
+		+15% G Slot Weapon Damage
+		+15% G Slot Firing rate
+		'''
+	GuidanceSystemFocus2:
+		'''
+		+30% G Slot Weapon Damage
+		+30% G Slot Firing rate
+		'''
+	GuideInsight: +1 Leader trait options
+	DisgustingAngler: +9999 Aggro
+	EvilCleaner:
+		'''
+		+15% Damage to Boss enemies
+		-1 Leader trait options
+		'''
+	TavernKeeperInsight: +20% Damage to the Old Ones enemies
+	SkeletronCurse: +5% Firing rate
+	HellHeart:
+		'''
+		+10% Speed
+		+5% Evasion
+		-5% Hull
+		'''
+	Cyborg: +5% Crit
+	GreatPrincess:
+		'''
+		+3 Leader trait options
+		No negative traits
+		'''
+	Slimy:
+		'''
+		+3%/s Hull Regen
+		-1 Leader trait options
+		'''
+	Cute: It's very cute, and that's enough.
+	MagicShield: +5% DR when Shield exists
+	MushroomMind: +10% Damage when in the Surface Glowshroom Biome
+}

@@ -42,7 +42,6 @@ namespace StellarisShips.Content.NPCs
                     }
                 }
                 //载入武器数据
-                List<float> weaponRanges = new();
                 foreach (SectionForSave section in shipNPC.ShipGraph.Parts)
                 {
                     for (int i = 0; i < section.WeaponSlot.Count; i++)
@@ -55,12 +54,10 @@ namespace StellarisShips.Content.NPCs
                             instance.ComponentName = section.WeaponSlot[i];
                             instance.DamageBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetDamageBonus(shipNPC.StaticBuff);
                             instance.AttackCDBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetAttackCDBonus(shipNPC.StaticBuff);
-                            instance.CritBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetCritCDBonus(shipNPC.StaticBuff);
+                            instance.CritBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetCritBonus(shipNPC.StaticBuff);
+                            instance.RangeBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetRangeBonus(shipNPC.StaticBuff);
+
                             EverythingLibrary.Components[section.WeaponSlot[i]].ModifyWeaponUnit(instance, npc);
-                            if (EverythingLibrary.Components[section.WeaponSlot[i]].EquipType != ComponentTypes.Weapon_H)  //不算H槽
-                            {
-                                weaponRanges.Add(instance.MaxRange);
-                            }
                             shipNPC.weapons.Add(instance);
                         }
                     }
@@ -68,24 +65,6 @@ namespace StellarisShips.Content.NPCs
 
                 //计算舰船本身加成
                 shipNPC.ResetShipStat();
-
-                //计算武器射程
-                if (weaponRanges.Count > 0)
-                {
-                    weaponRanges.Sort((a, b) => { return a.CompareTo(b); });  //从小到大排序
-                    if ((int)(weaponRanges.Count / 2f) * 2 == weaponRanges.Count)        //偶数
-                    {
-                        int mid1 = (int)(weaponRanges.Count / 2f);
-                        shipNPC.MidRange = (int)((weaponRanges[mid1 - 1] + weaponRanges[mid1]) / 2f);
-                    }
-                    else
-                    {
-                        int mid = (int)(weaponRanges.Count / 2f);
-                        shipNPC.MidRange = (int)weaponRanges[mid];
-                    }
-                    shipNPC.MinRange = (int)weaponRanges.Min();
-                    shipNPC.MaxRange = (int)weaponRanges.Max();
-                }
 
                 //参数重整
                 npc.width = npc.height = EverythingLibrary.Ships[graph.ShipType].Width;

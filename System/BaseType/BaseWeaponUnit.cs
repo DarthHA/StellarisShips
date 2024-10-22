@@ -60,11 +60,12 @@ namespace StellarisShips.System.BaseType
 
         public float MinRange => (EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).MinRange;
 
-        public float MaxRange => (EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).MaxRange;
+        public float MaxRange => (EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).MaxRange * RangeBonus;
 
         public float DamageBonus = 1;
         public float AttackCDBonus = 1;
         public float CritBonus = 0;
+        public float RangeBonus = 1;
 
         public int Level => EverythingLibrary.Components[ComponentName].Level;
 

@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace StellarisShips.Static
 {
     public static class ShipIDs
@@ -118,7 +120,6 @@ namespace StellarisShips.Static
         public const string WeaponRange_X = "WeaponRange_X";
         public const string WeaponRange_P = "WeaponRange_P";
         public const string WeaponRange_G = "WeaponRange_G";
-        public const string WeaponRange_H = "WeaponRange_H";
         public const string WeaponRange_T = "WeaponRange_T";
 
         //全部武器数据
@@ -129,6 +130,7 @@ namespace StellarisShips.Static
 
         //舰船数据
         public const string ExtraHull = "ExtraHull";
+        public const string HullMult = "HullMult";
         public const string Defense = "Defense";
         public const string Shield = "Shield";
         public const string ShieldMult = "ShieldMult";
@@ -145,6 +147,11 @@ namespace StellarisShips.Static
         public const string MaxImmuneTime = "MaxImmuneTime";
         public const string ExtraStriker = "ExtraStriker";
         public const string Aggro = "Aggro";
+        public const string DamageToNonBoss = "DamageToNonBoss";
+        public const string DamageToBoss = "DamageToBoss";
+        public const string VampireHeal = "VampireHeal";
+        public const string DamageToOldOnes = "DamageToOldOnes";
+        public const string DamageInMushroom = "DamageInMushroom";
 
         //这个取最大值
         public const string ShieldDRLevel = "ShieldDRLevel";
@@ -191,5 +198,69 @@ namespace StellarisShips.Static
         public const string ShroudRegenUp = "ShroudRegenUp";
         public const string ShroudShieldUp = "ShroudShieldUp";
         public const string ShroudSpeedUp = "ShroudSpeedUp";
+
+        //领袖特质
+        //正面
+        public const string Aggressiveness = "Aggressiveness";      //和Prudence冲突
+        public const string Aggressiveness2 = "Aggressiveness2";
+        public const string Prudence = "Prudence";            //和Aggressiveness冲突
+        public const string Prudence2 = "Prudence2";
+        public const string Engineer = "Engineer";
+        public const string Engineer2 = "Engineer2";
+        public const string Trickster = "Trickster";           //和Unyielding,Reckless冲突
+        public const string Trickster2 = "Trickster2";
+        public const string Unyielding = "Unyielding";          //和Trickster,Negligence,Anxiety冲突
+        public const string Unyielding2 = "Unyielding2";
+        public const string GaleSpeed = "GaleSpeed";       //和Lethargic冲突
+        public const string GaleSpeed2 = "GaleSpeed2";
+        //负面
+        public const string Negligence = "Negligence";          //和Unyielding冲突
+        public const string Negligence2 = "Negligence2";
+        public const string Reckless = "Reckless";           //和Trickster冲突
+        public const string Reckless2 = "Reckless2";
+        public const string Anxiety = "Anxiety";           //和Unyielding冲突
+        public const string Anxiety2 = "Anxiety2";
+        public const string Lethargic = "Lethargic";        //和GaleSpeed冲突
+        public const string Lethargic2 = "Lethargic2";
+        public const string Disgusting = "Disgusting";
+        public const string Disgusting2 = "Disgusting2";
+        //老练
+        public const string Artillerist = "Artillerist";
+        public const string Artillerist2 = "Artillerist2";
+        public const string JuryRigger = "JuryRigger";           //和JuryRigger冲突
+        public const string JuryRigger2 = "JuryRigger2";
+        public const string Wrecker = "Wrecker";                 //和Wrecker冲突
+        public const string Wrecker2 = "Wrecker2";
+        public const string Demolisher = "Demolisher";
+        public const string Demolisher2 = "Demolisher2";
+        //专精特质
+        public const string GunshipFocus = "GunshipFocus";
+        public const string GunshipFocus2 = "GunshipFocus2";
+        public const string ArtilleryFocus = "ArtilleryFocus";
+        public const string ArtilleryFocus2 = "ArtilleryFocus2";
+        public const string CarrierFocus = "CarrierFocus";
+        public const string CarrierFocus2 = "CarrierFocus2";
+        public const string GuidanceSystemFocus = "GuidanceSystemFocus";
+        public const string GuidanceSystemFocus2 = "GuidanceSystemFocus2";
+        //特殊特质(0级)
+        public const string GuideInsight = "GuideInsight";
+        public const string DisgustingAngler = "DisgustingAngler";
+        public const string EvilCleaner = "EvilCleaner";
+        public const string TavernKeeperInsight = "TavernKeeperInsight";
+        public const string SkeletronCurse = "SkeletronCurse";
+        public const string HellHeart = "HellHeart";
+        public const string Cyborg = "Cyborg";
+        public const string GreatPrincess = "GreatPrincess";
+        public const string Slimy = "Slimy";
+        public const string Cute = "Cute";
+        public const string MagicShield = "MagicShield";
+        public const string MushroomMind = "MushroomMind";
+
+        public readonly static List<string> Common = new() { Aggressiveness, Aggressiveness2, Prudence, Prudence2, Engineer, Engineer2, Trickster, Trickster2, Unyielding, Unyielding2 };
+        public readonly static List<string> Negative = new() { Negligence, Negligence2, Reckless, Reckless2, Anxiety, Anxiety2, Lethargic, Lethargic2, Disgusting, Disgusting2 };
+        public readonly static List<string> Veteran = new() 
+        { Artillerist, Artillerist2, JuryRigger, JuryRigger2, Wrecker, Wrecker2, Demolisher, Demolisher2, GaleSpeed, GaleSpeed2,
+            GunshipFocus, ArtilleryFocus, CarrierFocus, GuidanceSystemFocus, GunshipFocus2, ArtilleryFocus2, CarrierFocus2, GuidanceSystemFocus2 };
+        public readonly static List<string> Special = new() { GuideInsight, DisgustingAngler, EvilCleaner, TavernKeeperInsight, SkeletronCurse, HellHeart, Cyborg, GreatPrincess, Slimy, Cute, MagicShield, MushroomMind };
     }
 }
