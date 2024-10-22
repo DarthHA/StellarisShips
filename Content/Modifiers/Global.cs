@@ -4,22 +4,22 @@ using System.Collections.Generic;
 
 namespace StellarisShips.Content.Modifiers
 {
-    public class QuantumDestabilizer : BaseModifier
+    public class Modifier_QuantumDestabilizer : BaseModifier
     {
-        public override string ID =>  ModifierID.QuantumDestabilizer;
+        public override string ID => ModifierID.QuantumDestabilizer;
     }
 
-    public class ShieldDampener : BaseModifier
+    public class Modifier_ShieldDampener : BaseModifier
     {
         public override string ID => ModifierID.ShieldDampener;
     }
 
-    public class SubspaceSnare : BaseModifier
+    public class Modifier_SubspaceSnare : BaseModifier
     {
         public override string ID => ModifierID.SubspaceSnare;
     }
 
-    public class InspiringPresence : BaseModifier
+    public class Modifier_InspiringPresence : BaseModifier
     {
         public override string ID => ModifierID.InspiringPresence;
         public override void ApplyBonus(Dictionary<string, float> effects)
@@ -28,7 +28,7 @@ namespace StellarisShips.Content.Modifiers
         }
     }
 
-    public class AncientTargetScrambler : BaseModifier
+    public class Modifier_AncientTargetScrambler : BaseModifier
     {
         public override string ID => ModifierID.AncientTargetScrambler;
         public override void ApplyBonus(Dictionary<string, float> effects)
@@ -37,7 +37,7 @@ namespace StellarisShips.Content.Modifiers
         }
     }
 
-    public class NanobotCloud : BaseModifier
+    public class Modifier_NanobotCloud : BaseModifier
     {
         public override string ID => ModifierID.NanobotCloud;
         public override void ApplyBonus(Dictionary<string, float> effects)
@@ -46,7 +46,7 @@ namespace StellarisShips.Content.Modifiers
         }
     }
 
-    public class TargetingGrid : BaseModifier
+    public class Modifier_TargetingGrid : BaseModifier
     {
         public override string ID => ModifierID.TargetingGrid;
         public override void ApplyBonus(Dictionary<string, float> effects)
@@ -55,7 +55,7 @@ namespace StellarisShips.Content.Modifiers
         }
     }
 
-    public class ShroudASPDUp : BaseModifier
+    public class Modifier_ShroudASPDUp : BaseModifier
     {
         public override string ID => ModifierID.ShroudASPDUp;
         public override void ApplyBonus(Dictionary<string, float> effects)
@@ -64,7 +64,7 @@ namespace StellarisShips.Content.Modifiers
         }
     }
 
-    public class ShroudAtkUp : BaseModifier
+    public class Modifier_ShroudAtkUp : BaseModifier
     {
         public override string ID => ModifierID.ShroudAtkUp;
         public override void ApplyBonus(Dictionary<string, float> effects)
@@ -73,7 +73,7 @@ namespace StellarisShips.Content.Modifiers
         }
     }
 
-    public class ShroudRegenUp : BaseModifier
+    public class Modifier_ShroudRegenUp : BaseModifier
     {
         public override string ID => ModifierID.ShroudRegenUp;
         public override void ApplyBonus(Dictionary<string, float> effects)
@@ -82,7 +82,7 @@ namespace StellarisShips.Content.Modifiers
         }
     }
 
-    public class ShroudShieldUp : BaseModifier
+    public class Modifier_ShroudShieldUp : BaseModifier
     {
         public override string ID => ModifierID.ShroudShieldUp;
         public override void ApplyBonus(Dictionary<string, float> effects)
@@ -91,10 +91,21 @@ namespace StellarisShips.Content.Modifiers
         }
     }
 
-    public class ShroudSpeedUp : BaseModifier
+    public class Modifier_ShroudSpeedUp : BaseModifier
     {
         public override string ID => ModifierID.ShroudSpeedUp;
+        public override void ApplyBonus(Dictionary<string, float> effects)
+        {
+            effects.AddBonus(BonusID.SpeedMultFinal, 0.25f);
+        }
     }
 
-
+    public class Modifier_ShroudEvasionUp : BaseModifier
+    {
+        public override string ID => ModifierID.ShroudEvasionUp;
+        public override void ApplyBonus(Dictionary<string, float> effects)
+        {
+            effects.AddBonusEvasion(BonusID.Evasion, 30f);
+        }
+    }
 }

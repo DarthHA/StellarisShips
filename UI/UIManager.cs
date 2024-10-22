@@ -22,6 +22,10 @@ namespace StellarisShips.UI
         public static UserInterface _ShroudUIInterface;
         static ShroudUI _ShroudUI;
 
+        public static bool LeaderUIVisible = false;
+        public static UserInterface _LeaderUIInterface;
+        static LeaderUI _LeaderUI;
+
         public override void Load()
         {
             _ShipDesignUI = new ShipDesignUI();
@@ -38,6 +42,11 @@ namespace StellarisShips.UI
             _ShroudUI.Activate();
             _ShroudUIInterface = new UserInterface();
             _ShroudUIInterface.SetState(_ShroudUI);
+
+            _LeaderUI = new LeaderUI();
+            _LeaderUI.Activate();
+            _LeaderUIInterface = new UserInterface();
+            _LeaderUIInterface.SetState(_LeaderUI);
         }
 
         public override void Unload()
@@ -53,6 +62,10 @@ namespace StellarisShips.UI
             _ShroudUI?.Deactivate();
             _ShroudUI = null;
             _ShroudUIInterface = null;
+
+            _LeaderUI?.Deactivate();
+            _LeaderUI = null;
+            _LeaderUIInterface = null;
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
@@ -66,6 +79,7 @@ namespace StellarisShips.UI
                         _ShipDesignUIInterface.Draw(Main.spriteBatch, new GameTime());
                         _ShipBuildUIInterface.Draw(Main.spriteBatch, new GameTime());
                         _ShroudUIInterface.Draw(Main.spriteBatch, new GameTime());
+                        _LeaderUIInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)
@@ -108,7 +122,7 @@ namespace StellarisShips.UI
             }
             else
             {
-                ShipDesignVisible = false;
+                ShipDesignUI.Close();
             }
 
             if (!Main.gameMenu && !Main.LocalPlayer.IsDead() && ShipBuildVisible)
@@ -117,7 +131,7 @@ namespace StellarisShips.UI
             }
             else
             {
-                ShipBuildVisible = false;
+                ShipBuildUI.Close();
             }
 
             if (!Main.gameMenu && !Main.LocalPlayer.IsDead() && ShroudVisible)
@@ -126,7 +140,16 @@ namespace StellarisShips.UI
             }
             else
             {
-                ShroudVisible = false;
+                ShroudUI.Close();
+            }
+
+            if (!Main.gameMenu && !Main.LocalPlayer.IsDead() && LeaderUIVisible)
+            {
+                _LeaderUIInterface?.Update(gameTime);
+            }
+            else
+            {
+                LeaderUI.Close();
             }
         }
 
@@ -137,15 +160,10 @@ namespace StellarisShips.UI
 
         public override void PreSaveAndQuit()
         {
-            ShipDesignUI.AllClear(true);
-            ShipBuildUI.AllClear(true);
-            ShroudUI.AllClear(true);
-            ShipDesignUI.yesButton = null;
-            ShipDesignUI.clearButton = null;
-            ShipDesignUI.noButton = null;
-            ShipDesignVisible = false;
-            ShipBuildVisible = false;
-            ShroudVisible = false;
+            ShipDesignUI.Close();
+            ShipBuildUI.Close();
+            ShroudUI.Close();
+            LeaderUI.Close();
         }
 
         public static void ResetClick()
@@ -154,6 +172,12 @@ namespace StellarisShips.UI
             LastRightUnPressed = false;
             LeftClicked = false;
             RightClicked = false;
+        }
+
+
+        public static bool AnyUIVisible()
+        {
+            return ShipDesignVisible || ShipBuildVisible || ShroudVisible || LeaderUIVisible;
         }
     }
 

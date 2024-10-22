@@ -102,8 +102,7 @@ namespace StellarisShips.Content.Dialogs.ShipBuilder
                     ShipBuildUI.Start("NormalStart");
                     break;
                 case "Bye":
-                    ShipBuildUI.AllClear(true);
-                    UIManager.ShipBuildVisible = false;
+                    ShipBuildUI.Close();
                     break;
             }
 
@@ -120,6 +119,12 @@ namespace StellarisShips.Content.Dialogs.ShipBuilder
                     {
                         float scale = EverythingLibrary.Ships[ShipBuildUI.shipGraph.ShipType].Length / 70f;
                         int FTLCooldown = shipNPC.FTLCooldown;
+                        int LeaderVanillaType = shipNPC.LeaderVanillaType;
+                        string LeaderMod = shipNPC.LeaderMod;
+                        string LeaderModNPC = shipNPC.LeaderModNPC;
+                        string LeaderName = shipNPC.LeaderName;
+                        int LeaderWhoAmI = shipNPC.LeaderWhoAmI;
+
                         FTLLight2.Summon(ship.GetSource_FromAI(), ship.Center, scale);
                         foreach (Projectile striker in Main.ActiveProjectiles)
                         {
@@ -135,7 +140,15 @@ namespace StellarisShips.Content.Dialogs.ShipBuilder
                         string name = ship.GetShipNPC().ShipName;
                         ship.active = false;
                         int shiptmp = ShipNPC.BuildAShip(Main.LocalPlayer.GetSource_GiftOrReward(), GivePos, ShipBuildUI.shipGraph, name);
-                        if (shiptmp >= 0 && shiptmp < 200) Main.npc[shiptmp].GetShipNPC().FTLCooldown = FTLCooldown;
+                        if (shiptmp >= 0 && shiptmp < 200)
+                        {
+                            Main.npc[shiptmp].GetShipNPC().FTLCooldown = FTLCooldown;
+                            Main.npc[shiptmp].GetShipNPC().LeaderVanillaType = LeaderVanillaType;
+                            Main.npc[shiptmp].GetShipNPC().LeaderMod = LeaderMod;
+                            Main.npc[shiptmp].GetShipNPC().LeaderModNPC = LeaderModNPC;
+                            Main.npc[shiptmp].GetShipNPC().LeaderName = LeaderName;
+                            Main.npc[shiptmp].GetShipNPC().LeaderWhoAmI = LeaderWhoAmI;
+                        }
                         FTLLight.Summon(ship.GetSource_FromAI(), GivePos, scale);
                         SomeUtils.PlaySound(SoundPath.Other + "FTL", GivePos);
                     }

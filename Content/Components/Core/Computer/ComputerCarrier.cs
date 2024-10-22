@@ -18,7 +18,7 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override void ApplyEquip(NPC ship)
         {
             ship.GetShipNPC().ComputerType = TypeName;
-            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.ExtraStriker,ExtraStrikers);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.ExtraStriker, ExtraStrikers);
             ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponDamage_H, DamageH);
             ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Aggro, -Aggro);
         }

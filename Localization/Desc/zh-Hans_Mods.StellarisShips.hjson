@@ -640,4 +640,18 @@ Desc: {
 		全体舰船暴击率 +15%
 		该级舰船可配备力场生成器，用于投射并维持周围舰船的力场，对敌方或友军舰艇中产生各种效果。
 		'''
+	//修正
+	QuantumDestabilizer: 敌方造成的伤害 -15%
+	ShieldDampener: 敌方受到的伤害 +10%
+	SubspaceSnare: 敌方移动速度 -30%
+	InspiringPresence: 全体舰船开火速率 +15%
+	AncientTargetScrambler: 全体舰船闪避 +40%
+	NanobotCloud: 全体舰船船体修复 +2% 每秒
+	TargetingGrid: 全体舰船暴击率 +15%
+	ShroudASPDUp: 武器射速 +25%
+	ShroudAtkUp: 武器伤害 +25%
+	ShroudEvasionUp: 闪避率 +30%
+	ShroudRegenUp: 船体修复 +3% 每秒
+	ShroudShieldUp: 护盾承受值 +40%
+	ShroudSpeedUp: 航速 +25%
 }

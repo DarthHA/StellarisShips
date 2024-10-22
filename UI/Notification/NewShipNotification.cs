@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace StellarisShips.UI
+namespace StellarisShips.UI.Notification
 {
 
     // This is a custom implementation of IInGameNotification for usage with the InGameNotificationSystem class.

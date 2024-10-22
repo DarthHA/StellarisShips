@@ -74,7 +74,6 @@ namespace StellarisShips.UI
             {
                 DrawHoverDescs(spriteBatch);
             }
-
         }
 
         public override void Update(GameTime gameTime)
@@ -167,7 +166,7 @@ namespace StellarisShips.UI
             talkButtons.Clear();
         }
 
-        public static void Exit()
+        public static void Close()
         {
             AllClear(true);
             UIManager.ShroudVisible = false;

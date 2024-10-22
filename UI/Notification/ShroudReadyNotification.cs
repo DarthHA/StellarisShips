@@ -8,12 +8,12 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace StellarisShips.UI
+namespace StellarisShips.UI.Notification
 {
 
     // This is a custom implementation of IInGameNotification for usage with the InGameNotificationSystem class.
     // It displays a welcome message to the player when they join a world, controlled through ExampleInGameNotificationPlayer.
-    public class NewTechNotification : IInGameNotification
+    public class ShroudReadyNotification : IInGameNotification
     {
         // Remove this notification once the 5-second timer is up.
         public bool ShouldBeRemoved => timeLeft <= 0;
@@ -23,7 +23,7 @@ namespace StellarisShips.UI
 
         // The texture we'll use for our icon display.
         // Let's keep it simple and use use the ExampleItem's sprite.
-        private Asset<Texture2D> iconTexture = ModContent.Request<Texture2D>("StellarisShips/Images/UI/NotificationIcon", AssetRequestMode.ImmediateLoad);
+        private Asset<Texture2D> iconTexture = ModContent.Request<Texture2D>("StellarisShips/Images/UI/ShroudIcon", AssetRequestMode.ImmediateLoad);
 
         // The Scale and Opacity properties are used to control the scale and opacity of the UI popup,
         // and are directly taken from the vanilla achievement popup UI. This is done for consistency.
@@ -80,7 +80,7 @@ namespace StellarisShips.UI
                 return;
             }
 
-            string title = Language.GetTextValue("Mods.StellarisShips.UI.NewTechNotification");
+            string title = Language.GetTextValue("Mods.StellarisShips.UI.ShroudReadyNotification");
 
             // Below is draw-code directly from vanilla with some tweaks to suit our needs.
             // Changes are minimal; important things to note:

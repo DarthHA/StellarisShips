@@ -73,7 +73,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
                     ProgressHelper.PsychoPower = 0;
                     break;
                 case "Exit":
-                    ShroudUI.Exit();
+                    ShroudUI.Close();
                     break;
             }
 

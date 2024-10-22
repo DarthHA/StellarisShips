@@ -196,9 +196,9 @@ namespace StellarisShips.Static
             return true;
         }
 
-        public static string ShowCoins(long value)
+        public static string ShowCoins(long value, bool ShowFree = true)
         {
-            if (value == 0) return Language.GetTextValue("Mods.StellarisShips.ExtraDesc.Free");
+            if (value == 0 && ShowFree) return Language.GetTextValue("Mods.StellarisShips.ExtraDesc.Free");
             string result = "";
             if (MoneyHelpers.GetPlatinum(value) > 0) result += MoneyHelpers.GetPlatinum(value) + "[i:74]";
             if (MoneyHelpers.GetGold(value) > 0) result += MoneyHelpers.GetGold(value) + "[i:73]";

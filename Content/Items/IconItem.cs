@@ -22,11 +22,11 @@ namespace StellarisShips.Content.Items
     public class Slot_X : Slot_A { }
 
     public class MR_Icon : Slot_A { }
-    public class Aggro_Icon : Slot_A 
+    public class Aggro_Icon : Slot_A
     {
         public override void UpdateInventory(Player player)
         {
-            foreach(NPC npc in Main.ActiveNPCs)
+            foreach (NPC npc in Main.ActiveNPCs)
             {
                 if (npc.type == NPCID.TargetDummy)
                 {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using Steamworks;
 using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using System;
@@ -292,7 +291,7 @@ namespace StellarisShips.Static
             }
             foreach (string key in dic2.Keys)
             {
-                if(!result.TryAdd(key, dic2[key]))
+                if (!result.TryAdd(key, dic2[key]))
                 {
                     switch (key)
                     {

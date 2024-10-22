@@ -279,4 +279,18 @@ Name: {
 	Titan51: Titan Bow
 	Titan52: Titan Core
 	Titan53: Titan Stern
+	//修正
+	QuantumDestabilizer: Quantum Destabilizer
+	ShieldDampener: Shield Dampener
+	SubspaceSnare: Subspace Snare
+	InspiringPresence: Inspiring Presence
+	AncientTargetScrambler: Ancient Target Scrambler
+	NanobotCloud: Nanobot Cloud
+	TargetingGrid: Targeting Grid
+	ShroudASPDUp: Boon of the Shroud: Increased Firing Rate
+	ShroudAtkUp: Boon of the Shroud: Increased Weapon Strength
+	ShroudEvasionUp: Boon of the Shroud: Increased Evasion
+	ShroudRegenUp: Boon of the Shroud: Increased Hull Regen
+	ShroudShieldUp: Boon of the Shroud: Increased Shield Strength
+	ShroudSpeedUp: Boon of the Shroud: Increased Speed
 }

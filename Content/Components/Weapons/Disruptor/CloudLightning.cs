@@ -1,10 +1,6 @@
 ﻿using StellarisShips.Static;
 using StellarisShips.System.BaseType;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 
 namespace StellarisShips.Content.Components.Weapons.Disruptor

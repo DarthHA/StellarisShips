@@ -42,13 +42,13 @@ namespace StellarisShips.Content.Buffs
             if (Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs != "")
             {
                 string name = Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs;
-                buffName = Language.GetTextValue("Mods.StellarisShips.BuffExtraDesc." + name + "Name");
+                buffName = Language.GetTextValue("Mods.StellarisShips.Name." + name);
                 int time = 0;
                 if (Main.LocalPlayer.FindBuffIndex(Type) != -1)
                 {
                     time = Main.LocalPlayer.buffTime[Main.LocalPlayer.FindBuffIndex(Type)] / 60;
                 }
-                tip = string.Format(Language.GetTextValue("Mods.StellarisShips.BuffExtraDesc.ShroudBuffDesc"), Language.GetTextValue("Mods.StellarisShips.BuffExtraDesc." + name + "Desc"), time);
+                tip = string.Format(Language.GetTextValue("Mods.StellarisShips.BuffExtraDesc.ShroudBuffDesc"), Language.GetTextValue("Mods.StellarisShips.Desc." + name), time);
             }
         }
 

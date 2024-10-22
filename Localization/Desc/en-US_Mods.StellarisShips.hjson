@@ -607,7 +607,7 @@ Desc: {
 	NoAura_1: No field emitters equipped.
 	QuantumDestabilizer_1:
 		'''
-		Damage caused by enemies -15% 
+		Damage dealt by enemies -15% 
 		Ships of this class be equipped with field emitters that project and maintain localized fields that induce various effects in enemy or friendly vessels.
 		'''
 	ShieldDampener_1:
@@ -640,4 +640,18 @@ Desc: {
 		All ships crit +15%
 		Ships of this class be equipped with field emitters that project and maintain localized fields that induce various effects in enemy or friendly vessels.
 		'''
+	//修正
+	QuantumDestabilizer: Damage dealt by enemies -15%
+	ShieldDampener: Damage taken by enemies +10%
+	SubspaceSnare: Enemies movement speed -30%
+	InspiringPresence: All ships firing rate +15%
+	AncientTargetScrambler: All ships evasion +40%
+	NanobotCloud: All ships hull regen +2%/s
+	TargetingGrid: All ships crit +15%
+	ShroudASPDUp: Firing rate +25%
+	ShroudAtkUp: Weapon damage +25%
+	ShroudEvasionUp: Evasion +30%
+	ShroudRegenUp: Hull Regen +3%/s
+	ShroudShieldUp: Shield +40%
+	ShroudSpeedUp: Speed +25%
 }

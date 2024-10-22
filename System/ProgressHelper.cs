@@ -1,6 +1,6 @@
 ﻿using StellarisShips.Content.Items;
 using StellarisShips.Static;
-using StellarisShips.UI;
+using StellarisShips.UI.Notification;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -18,6 +18,7 @@ namespace StellarisShips.System
         public static int DiscoveredMR = 0;
         public static int PsychoPower = 0;
         public static List<string> UnlockTech = new();
+        public static bool PsiFull = false;
 
         public static int GetMaxCommandPoint()
         {
@@ -80,8 +81,25 @@ namespace StellarisShips.System
             }
 
             //威慑值
-            PsychoPower += 1;
-            if (PsychoPower > GetMaxPsychoPower()) PsychoPower = GetMaxPsychoPower();
+            if (!FirstContractShroud)
+            {
+                PsychoPower += 1;
+                if (PsychoPower > GetMaxPsychoPower()) PsychoPower = GetMaxPsychoPower();
+
+                if (PsychoPower >= GetMaxPsychoPower())
+                {
+                    if (!PsiFull)
+                    {
+                        PsiFull = true;
+                        SomeUtils.PlaySound(SoundPath.UI + "Notification2");
+                        InGameNotificationsTracker.AddNotification(new ShroudReadyNotification());
+                    }
+                }
+                else
+                {
+                    PsiFull = false;
+                }
+            }
         }
 
         public override void ClearWorld()

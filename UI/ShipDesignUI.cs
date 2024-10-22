@@ -841,8 +841,7 @@ namespace StellarisShips.UI
                 }
                 (Main.LocalPlayer.HeldItem.ModItem as GraphItem).graph = graph.Copy();
                 (Main.LocalPlayer.HeldItem.ModItem as GraphItem).DataDesc = CalcShipStat();
-                UIManager.ShipDesignVisible = false;
-                AllClear(true);
+                Close();
             }
         }
 
@@ -855,8 +854,7 @@ namespace StellarisShips.UI
             if (noButton.Clicked())
             {
                 SomeUtils.PlaySound(SoundPath.UI + "Close");
-                UIManager.ShipDesignVisible = false;
-                AllClear(true);
+                Close();
             }
         }
 
@@ -968,5 +966,14 @@ namespace StellarisShips.UI
             return result;
         }
 
+
+        public static void Close()
+        {
+            AllClear(true);
+            yesButton = null;
+            clearButton = null;
+            noButton = null;
+            UIManager.ShipDesignVisible = false;
+        }
     }
 }

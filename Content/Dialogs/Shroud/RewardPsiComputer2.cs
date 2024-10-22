@@ -34,7 +34,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
             {
                 case "Exit":
                     ProgressHelper.UnlockTech.Add("PsiComputer");
-                    ShroudUI.Exit();
+                    ShroudUI.Close();
                     break;
             }
 

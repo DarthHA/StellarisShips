@@ -3,7 +3,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StellarisShips.Content.Components.Weapons;
-using StellarisShips.Static;
 using System;
 using Terraria;
 

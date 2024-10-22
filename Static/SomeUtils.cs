@@ -149,6 +149,21 @@ namespace StellarisShips.Static
             }
         }
 
+        public static bool CountAsTownNPC(this NPC npc)
+        {
+            if (npc.active)
+            {
+                if (!(((npc.ModNPC != null) ? new bool?(npc.ModNPC.TownNPCStayingHomeless) : null) ?? false))
+                {
+                    int headIndexSafe = TownNPCProfiles.GetHeadIndexSafe(npc);
+                    if (headIndexSafe > 0 && !NPCHeadID.Sets.CannotBeDrawnInHousingUI[headIndexSafe])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 
 }

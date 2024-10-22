@@ -54,7 +54,11 @@ namespace StellarisShips.Content.Items
                 {
                     return false;
                 }
-                if (!UIManager.ShipDesignVisible && !UIManager.ShipBuildVisible && !UIManager.ShroudVisible)
+                if (UIManager.LeaderUIVisible)
+                {
+                    LeaderUI.Close();
+                }
+                if (!UIManager.AnyUIVisible())
                 {
                     SomeUtils.PlaySound(SoundPath.UI + "Click");
                     UIManager.ShipDesignVisible = true;

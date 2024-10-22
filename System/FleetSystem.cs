@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.WorldBuilding;
 
 namespace StellarisShips.System
 {
@@ -61,6 +60,14 @@ namespace StellarisShips.System
 
         public override void PreUpdateEntities()
         {
+            foreach (NPC ship in Main.ActiveNPCs)
+            {
+                if (ship.ShipActive(true))
+                {
+                    ship.GetShipNPC().CheckLeader();
+                }
+            }
+
             GlobalEffects.Clear();
 
             if (Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs != "")
@@ -143,7 +150,7 @@ namespace StellarisShips.System
             float CurrentLength = 0;
 
             List<int> CPs = shipCount.Keys.ToList();
-            for(int i = 0; i < CPs.Count; i++)
+            for (int i = 0; i < CPs.Count; i++)
             {
                 int CP = CPs[i];
                 CurrentLength += ShipSize[CP].X * 0.5f;

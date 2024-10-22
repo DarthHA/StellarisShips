@@ -43,7 +43,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
             {
                 case "Exit":
                     ProgressHelper.UnlockTech.Add(ShroudUI.ExtraInfo);
-                    ShroudUI.Exit();
+                    ShroudUI.Close();
                     break;
             }
 

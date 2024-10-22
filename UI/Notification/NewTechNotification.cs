@@ -8,12 +8,12 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace StellarisShips.UI
+namespace StellarisShips.UI.Notification
 {
 
     // This is a custom implementation of IInGameNotification for usage with the InGameNotificationSystem class.
     // It displays a welcome message to the player when they join a world, controlled through ExampleInGameNotificationPlayer.
-    public class CPExpandNotification : IInGameNotification
+    public class NewTechNotification : IInGameNotification
     {
         // Remove this notification once the 5-second timer is up.
         public bool ShouldBeRemoved => timeLeft <= 0;
@@ -80,7 +80,7 @@ namespace StellarisShips.UI
                 return;
             }
 
-            string title = Language.GetTextValue("Mods.StellarisShips.UI.CPExpandNotification");
+            string title = Language.GetTextValue("Mods.StellarisShips.UI.NewTechNotification");
 
             // Below is draw-code directly from vanilla with some tweaks to suit our needs.
             // Changes are minimal; important things to note:

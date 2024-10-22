@@ -569,10 +569,6 @@ namespace StellarisShips.Content.NPCs
         private float GetFinalSpeed(float speed)
         {
             float modifier = 1f;
-            if (FleetSystem.GlobalEffects.Contains(ModifierID.ShroudSpeedUp))
-            {
-                modifier += 0.25f;
-            }
             return speed * modifier;
         }
     }

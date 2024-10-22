@@ -279,4 +279,18 @@ Name: {
 	Titan51: 泰坦舰艏
 	Titan52: 泰坦核心
 	Titan53: 泰坦舰艉
+	//修正
+	QuantumDestabilizer: 量子去稳器
+	ShieldDampener: 护盾挡板
+	SubspaceSnare: 亚空间陷阱
+	InspiringPresence: 振奋人心
+	AncientTargetScrambler: 远古索敌扰频器
+	NanobotCloud: 纳米机器云
+	TargetingGrid: 目标网格
+	ShroudASPDUp: 虚境的恩赐：武器射速提升
+	ShroudAtkUp: 虚境的恩赐：武器伤害提升
+	ShroudEvasionUp: 虚境的恩赐：闪避率提升
+	ShroudRegenUp: 虚境的恩赐：船体修复提升
+	ShroudShieldUp: 虚境的恩赐：护盾强度提升
+	ShroudSpeedUp: 虚境的恩赐：航速提升
 }

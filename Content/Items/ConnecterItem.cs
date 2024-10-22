@@ -40,7 +40,11 @@ namespace StellarisShips.Content.Items
                 Main.NewText(Language.GetTextValue("Mods.StellarisShips.UI.NoSignal"), Color.Orange);
                 return false;
             }
-            if (!UIManager.ShipDesignVisible && !UIManager.ShipBuildVisible && !UIManager.ShroudVisible)
+            if (UIManager.LeaderUIVisible)
+            {
+                LeaderUI.Close();
+            }
+            if (!UIManager.AnyUIVisible())
             {
                 UIManager.ShipBuildVisible = true;
                 UIManager.ResetClick();

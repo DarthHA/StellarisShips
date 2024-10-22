@@ -100,8 +100,7 @@ namespace StellarisShips.UI
             if (SomeUtils.AnyBosses())
             {
                 Main.NewText(Language.GetTextValue("Mods.StellarisShips.UI.NoSignal"), Color.Orange);
-                UIManager.ShipBuildVisible = false;
-                AllClear(true);
+                Close();
                 return;
             }
             Rectangle rectangle = new Rectangle((int)StartPos.X, (int)StartPos.Y, PanelWidth, PanelHeight);
@@ -203,7 +202,13 @@ namespace StellarisShips.UI
             long num3 = Utils.CoinsCount(out _, player.bank2.item);
             long num4 = Utils.CoinsCount(out _, player.bank3.item);
             long num5 = Utils.CoinsCount(out _, player.bank4.item);
-            return MoneyHelpers.ShowCoins(Utils.CoinsCombineStacks(out _, num, num2, num3, num4, num5));
+            return MoneyHelpers.ShowCoins(Utils.CoinsCombineStacks(out _, num, num2, num3, num4, num5), false);
+        }
+
+        public static void Close()
+        {
+            UIManager.ShipBuildVisible = false;
+            AllClear(true);
         }
     }
 }

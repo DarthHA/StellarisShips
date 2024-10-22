@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using StellarisShips.Content.Projectiles;
-using System.Security.Cryptography.X509Certificates;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

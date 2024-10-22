@@ -46,6 +46,14 @@ UI: {
 	ShipStat12: Cost determines the cost required to build a ship. The Cost of a Ship is equal to the sum of the cost of the Ship and the cost of all the Components it equips.
 	Shroud: The Shroud
 	PsiPower: Psionics[i:StellarisShips/Influence_Icon]: {0}%
+	ShroudReadyNotification: Ready to enter the Shroud
+	LeaderList: Leader List
+	LeaderBusy: Commanding {0}.
+	LeaderSpare: Available.
+	LeaderMissing: MIA, expected to return in {0}.
+	LeaderNeeded: Left click to assign a leader for this ship.
+	LeaderCanAssign: Left click to assign this leader.
+	LeaderCanResign: Right click to resign this leader.
 }
 
 WoCao: What the hell is that?
@@ -217,6 +225,8 @@ BuffExtraDesc: {
 	ShroudRegenUpDesc: Hull Regen +3%/s
 	ShroudShieldUpDesc: Shield +40%
 	ShroudSpeedUpDesc: Speed +25%
+	LeaderEditorDesc1: Right click to activate Leader Editor, you can assign leaders to your ship.
+	LeaderEditorDesc2: Leader Editor active, right click to close.
 }
 
 ComputerType: {

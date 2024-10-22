@@ -25,6 +25,12 @@ namespace StellarisShips.System
                     Main.npc[npctmp].rotation = data.shipRotation;
                     Main.npc[npctmp].GetShipNPC().CurrentShield = data.shipShield;
                     Main.npc[npctmp].life = data.shipHull + data.shipShield;
+
+                    Main.npc[npctmp].GetShipNPC().LeaderMod = data.leaderMod;
+                    Main.npc[npctmp].GetShipNPC().LeaderModNPC = data.leaderModNPC;
+                    Main.npc[npctmp].GetShipNPC().LeaderName = data.leaderName;
+                    Main.npc[npctmp].GetShipNPC().LeaderVanillaType = data.leaderVanillaType;
+                    Main.npc[npctmp].GetShipNPC().FindToAssign();
                 }
             }
 
@@ -65,6 +71,12 @@ namespace StellarisShips.System
                         {
                             data.shipPos = npc.Center;
                         }
+
+                        data.leaderMod = npc.GetShipNPC().LeaderMod;
+                        data.leaderModNPC = npc.GetShipNPC().LeaderModNPC;
+                        data.leaderName = npc.GetShipNPC().LeaderName;
+                        data.leaderVanillaType = npc.GetShipNPC().LeaderVanillaType;
+
                         shipData.Add(JsonConvert.SerializeObject(data));
                     }
                 }
@@ -94,5 +106,10 @@ namespace StellarisShips.System
         public int shipHull = 0;
         public int shipShield = 0;
         public string shipName = "";
+
+        public string leaderName = "";
+        public int leaderVanillaType = -1;
+        public string leaderMod = "";
+        public string leaderModNPC = "";
     }
 }

@@ -1,6 +1,7 @@
 ﻿using StellarisShips.Content.Buffs;
 using StellarisShips.Content.NPCs;
 using StellarisShips.Static;
+using StellarisShips.UI;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -21,6 +22,11 @@ namespace StellarisShips.System
             {
                 Player.AddBuff(ModContent.BuffType<FollowBuff>(), 2);
                 Player.AddBuff(ModContent.BuffType<PassiveBuff>(), 2);
+                Player.AddBuff(ModContent.BuffType<CommanderEditorBuff>(), 2);
+            }
+            else
+            {
+                LeaderUI.Close();
             }
             int TimerMax = 0;
             foreach (NPC npc in Main.ActiveNPCs)

@@ -107,8 +107,7 @@ MoneyHelpers.ShowCoins(ShipBuildUI.Value, ShipBuildUI.MRValue));
                     ShipBuildUI.Start("NormalStart");
                     break;
                 case "Bye":
-                    ShipBuildUI.AllClear(true);
-                    UIManager.ShipBuildVisible = false;
+                    ShipBuildUI.Close();
                     break;
             }
 

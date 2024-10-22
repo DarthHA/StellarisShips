@@ -1,4 +1,3 @@
-using StellarisShips.Content.Items;
 using StellarisShips.Static;
 using StellarisShips.System.BaseType;
 using Terraria;

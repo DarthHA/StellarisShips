@@ -32,7 +32,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
             switch (internalStr)
             {
                 case "Exit":
-                    ShroudUI.Exit();
+                    ShroudUI.Close();
                     break;
             }
 

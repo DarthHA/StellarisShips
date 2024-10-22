@@ -59,8 +59,7 @@ namespace StellarisShips.Content.Dialogs.ShipBuilder
                     ShipBuildUI.Start("SelectShipSell");
                     break;
                 case "Bye":
-                    ShipBuildUI.AllClear(true);
-                    UIManager.ShipBuildVisible = false;
+                    ShipBuildUI.Close();
                     break;
             }
 

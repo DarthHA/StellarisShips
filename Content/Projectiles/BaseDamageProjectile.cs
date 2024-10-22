@@ -35,9 +35,11 @@ namespace StellarisShips.Content.Projectiles
             }
 
             //威慑值
-            ProgressHelper.PsychoPower += Math.Min(damageDone, target.lifeMax);
-            if (ProgressHelper.PsychoPower > ProgressHelper.GetMaxPsychoPower()) ProgressHelper.PsychoPower = ProgressHelper.GetMaxPsychoPower();
-
+            if (!ProgressHelper.FirstContractShroud)
+            {
+                ProgressHelper.PsychoPower += Math.Min(damageDone, target.lifeMax);
+                if (ProgressHelper.PsychoPower > ProgressHelper.GetMaxPsychoPower()) ProgressHelper.PsychoPower = ProgressHelper.GetMaxPsychoPower();
+            }
             SafeOnHitNPC(target, hit, damageDone);
         }
 

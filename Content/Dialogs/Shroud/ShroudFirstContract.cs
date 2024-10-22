@@ -38,7 +38,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
                     ShroudUI.Start("ShroudNormal");
                     break;
                 case "Exit":
-                    ShroudUI.Exit();
+                    ShroudUI.Close();
                     break;
             }
 

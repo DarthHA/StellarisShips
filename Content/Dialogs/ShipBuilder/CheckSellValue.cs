@@ -91,8 +91,7 @@ namespace StellarisShips.Content.Dialogs.ShipBuilder
                     ShipBuildUI.Start("NormalStart");
                     break;
                 case "Bye":
-                    ShipBuildUI.AllClear(true);
-                    UIManager.ShipBuildVisible = false;
+                    ShipBuildUI.Close();
                     break;
             }
 

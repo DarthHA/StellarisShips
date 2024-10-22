@@ -137,6 +137,7 @@ namespace StellarisShips.Static
         public const string ShieldRegenPercent = "ShieldRegenPercent";
         public const string BaseSpeed = "BaseSpeed";
         public const string SpeedMult = "SpeedMult";
+        public const string SpeedMultFinal = "SpeedMultFinal";
         public const string BaseEvasion = "BaseEvasion";
         public const string EscapeChance = "EscapeChance";
         public const string FTLMaxCooldown = "FTLMaxCooldown";

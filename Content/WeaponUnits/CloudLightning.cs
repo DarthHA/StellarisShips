@@ -5,7 +5,6 @@ using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
 using StellarisShips.System;
 using StellarisShips.System.BaseType;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 

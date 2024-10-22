@@ -46,6 +46,14 @@ UI: {
 	ShipStat12: 造价决定建造舰船所需的费用，一艘舰船的造价等于船体造价及所搭载的所有零件造价之和。
 	Shroud: 虚境
 	PsiPower: 灵能[i:StellarisShips/Influence_Icon]: {0}%
+	ShroudReadyNotification: 可以进入虚境了
+	LeaderList: 领袖列表
+	LeaderBusy: 正在指挥 {0}
+	LeaderSpare: 空闲中
+	LeaderMissing: 失踪中，预计 {0} 后回归
+	LeaderNeeded: 左键为该舰船指派一名领袖
+	LeaderCanAssign: 左键指派该领袖
+	LeaderCanResign: 右键取消该领袖
 }
 
 WoCao: 卧槽这TM是什么鬼
@@ -217,6 +225,8 @@ BuffExtraDesc: {
 	ShroudRegenUpDesc: 船体修复 +3% 每秒
 	ShroudShieldUpDesc: 护盾承受值 +40%
 	ShroudSpeedUpDesc: 航速 +25%
+	LeaderEditorDesc1: 右键开启领袖编辑器，可以为舰船指定领袖
+	LeaderEditorDesc2: 领袖编辑器开启中，右键以关闭
 }
 
 ComputerType: {

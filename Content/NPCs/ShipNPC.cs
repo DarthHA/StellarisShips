@@ -1,8 +1,5 @@
-﻿
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
 using StellarisShips.Content.Components.Weapons;
 using StellarisShips.Content.Projectiles;
@@ -17,7 +14,6 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static System.Collections.Specialized.BitVector32;
 
 namespace StellarisShips.Content.NPCs
 {
@@ -568,6 +564,12 @@ namespace StellarisShips.Content.NPCs
                     BattleStatSystem.LoseShip[name] += 1;
                 }
             }
+
+            if (GetLeader() != -1)
+            {
+                Main.npc[GetLeader()].Center = NPC.Center;
+                Main.npc[GetLeader()].StrikeInstantKill();
+            }
         }
 
         public override bool CheckDead()
@@ -607,7 +609,7 @@ namespace StellarisShips.Content.NPCs
             NPC.defDefense = NPC.defense = GetShip().BaseDefense + (int)BonusBuff.GetBonus(BonusID.Defense);
             HullRegen = (NPC.lifeMax - MaxShield) * BonusBuff.GetBonus(BonusID.HullRegenPercent);
             ShieldRegen = BonusBuff.GetBonus(BonusID.ShieldRegen) + MaxShield * BonusBuff.GetBonus(BonusID.ShieldRegenPercent);
-            MaxSpeed = (GetShip().BaseSpeed + BonusBuff.GetBonus(BonusID.BaseSpeed)) * BonusBuff.GetBonus(BonusID.SpeedMult, true);
+            MaxSpeed = (GetShip().BaseSpeed + BonusBuff.GetBonus(BonusID.BaseSpeed)) * BonusBuff.GetBonus(BonusID.SpeedMult, true) * BonusBuff.GetBonus(BonusID.SpeedMultFinal, true);
             //闪避计算
             float evasion1 = GetShip().BaseEvasion + BonusBuff.GetBonus(BonusID.BaseEvasion);
             float evasion2 = BonusBuff.GetBonus(BonusID.Evasion);

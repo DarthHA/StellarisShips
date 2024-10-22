@@ -132,7 +132,7 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
-        public static void Summon(NPC ship, Vector2 relaPos,Vector2 offsetPos, Vector2 targetPos, Color color,float scale=1f)
+        public static void Summon(NPC ship, Vector2 relaPos, Vector2 offsetPos, Vector2 targetPos, Color color, float scale = 1f)
         {
             ShipNPC shipNPC = ship.GetShipNPC();
             int protmp = Projectile.NewProjectile(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(relaPos), Vector2.Zero, ModContent.ProjectileType<ArcProj>(), 0, 0, Main.myPlayer);

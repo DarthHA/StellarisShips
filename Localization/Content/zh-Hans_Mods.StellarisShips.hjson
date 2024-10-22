@@ -231,4 +231,9 @@ Buffs: {
 		DisplayName: 虚境的恩赐
 		Description: 对的
 	}
+
+	CommanderEditorBuff: {
+		DisplayName: 领袖编辑器
+		Description: 不对
+	}
 }
