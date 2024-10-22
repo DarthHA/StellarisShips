@@ -1,3 +1,5 @@
+using StellarisShips.System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -34,5 +36,11 @@ namespace StellarisShips.Content.Items
     public class ShieldRegen_Icon : Slot_A { }
     public class Special_Icon : Slot_A { }
     public class Speed_Icon : Slot_A { }
-    public class Influence_Icon : Slot_A { }
+    public class Influence_Icon : Slot_A 
+    {
+        public override void UpdateInventory(Player player)
+        {
+            ProgressHelper.PsychoPower = ProgressHelper.GetMaxPsychoPower();
+        }
+    }
 }

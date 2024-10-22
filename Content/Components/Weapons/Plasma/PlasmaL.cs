@@ -14,8 +14,8 @@ namespace StellarisShips.Content.Components.Weapons.Plasma
 
         public override int AttackCD => 154;            //30ртио
         public override float Crit => 10;
-        public override int MaxDamage => 363;
-        public override int MinDamage => 52;
+        public override int MaxDamage => 580;
+        public override int MinDamage => 120;
         public override float MaxRange => 400;
         public override float MinRange => 225;
 
@@ -34,8 +34,8 @@ namespace StellarisShips.Content.Components.Weapons.Plasma
     public class PlasmaL2 : PlasmaL1          //DPS:200
     {
         public override int Level => 2;
-        public override int MaxDamage => 907;
-        public override int MinDamage => 130;
+        public override int MaxDamage => 1120;
+        public override int MinDamage => 260;
         public override long Value => 68 * 500;
         public override int Progress => 5;
     }
@@ -43,8 +43,8 @@ namespace StellarisShips.Content.Components.Weapons.Plasma
     public class PlasmaL3 : PlasmaL1          //DPS:280
     {
         public override int Level => 3;
-        public override int MaxDamage => 1783;
-        public override int MinDamage => 240;
+        public override int MaxDamage => 2100;
+        public override int MinDamage => 380;
         public override long Value => 88 * 800;
         public override int Progress => 7;
     }

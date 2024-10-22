@@ -42,6 +42,7 @@ namespace StellarisShips.System
             {
                 Player.ClearBuff(ModContent.BuffType<MissingBuff>());
             }
+
         }
     }
 

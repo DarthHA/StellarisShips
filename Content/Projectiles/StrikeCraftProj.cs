@@ -26,7 +26,7 @@ namespace StellarisShips.Content.Projectiles
 
         public int MaxDmg = 10;
         public int MinDmg = 1;
-        public float Crit = 50;
+        public new float Crit = 50;
         public float MaxSpeed = 20;
         public int AttackCooldown = 10;
         public float AttackRange = 300;
@@ -100,7 +100,7 @@ namespace StellarisShips.Content.Projectiles
             {
                 if (AttackCooldown > 0) AttackCooldown--;
                 int targetID = TargetSelectHelper.GetClosestTargetWithWidthForStriker(owner);
-                if (Level == 5) targetID = shipNPC.CurrentTarget;               //钻孔无人机优先攻击主目标
+                if (Level == 5 || Level == 6) targetID = shipNPC.CurrentTarget;               //钻孔无人机和虫群舰载机优先攻击主目标
                 if (targetID != -1)
                 {
                     NPC target = Main.npc[targetID];
@@ -145,6 +145,9 @@ namespace StellarisShips.Content.Projectiles
                                 break;
                             case 3:
                                 LaserColor = Color.LightGreen;
+                                break;
+                            case 4:
+                                LaserColor = Color.Orange;
                                 break;
                             case 5:
                                 LaserColor = Color.LightGreen;
@@ -215,7 +218,7 @@ namespace StellarisShips.Content.Projectiles
             if (shipNPC.CurrentTarget != -1)
             {
                 int targetID = TargetSelectHelper.GetClosestTargetWithWidthForStriker(shipNPC.NPC);
-                if (Level == 5) targetID = shipNPC.CurrentTarget;               //钻孔无人机优先攻击主目标
+                if (Level == 5 || Level == 6) targetID = shipNPC.CurrentTarget;              //钻孔无人机和虫群舰载机优先攻击主目标
 
                 if (targetID != -1)
                 {
@@ -234,6 +237,9 @@ namespace StellarisShips.Content.Projectiles
                                 break;
                             case 3:
                                 LaserColor = Color.LightGreen;
+                                break;
+                            case 4:
+                                LaserColor = Color.Orange;
                                 break;
                             case 5:
                                 LaserColor = Color.LightGreen;

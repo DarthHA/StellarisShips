@@ -53,4 +53,14 @@ namespace StellarisShips.Content.Components.Weapons.StrikeCraft
         public override long Value => 88 * 800;
         public override int Progress => 8;
     }
+
+    public class StrikeCraft4 : StrikeCraft1          //DPS:320
+    {
+        public override int Level => 4;
+        public override int MaxDamage => 225;
+        public override int MinDamage => 161;
+        public override long Value => 93 * 1000;
+        public override int Progress => 9;
+        public override string SpecialUnLock => "SkrandStrikeCraft";
+    }
 }

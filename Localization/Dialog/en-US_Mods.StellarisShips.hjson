@@ -26,6 +26,7 @@ DialogOption: {
 	RewardPsiComputer: Meditate here for a moment
 	RewardPsiJump: Linger for a while
 	RewardPsiShield: Attempt to penetrate the shield
+	RewardTech: Enter their mind to find the secret
 	PlaceHolder: PlaceHolder
 }
 
@@ -286,4 +287,38 @@ DialogText: {
 		We do not know what we saw on the other side of the shield, as it immediately knocked us unconscious. But the operation was not in vain, and this shield taught us how to generate a similar position. With improved technology, we may be able to generate a shield large enough to surround the ship...
 		Acquired Technology: Psionic Shields.
 		'''
+	RewardTech1:
+		'''
+		We were looking down at our system from afar. Without warning, a stream of Psionic transported us to a region of space belonging to a Fallen Empire at incredible speed.
+		The stream of Psionic brought us to a planetary spire, and finally we came to a room of some kind of conference room.
+		Two alien creatures were in the room, sitting in comfortable zero-gravity chairs, communicating with each other.
+		They did not notice our presence.
+		'''
+	RewardTech21:
+		'''
+		These two aliens are obviously some kind of prominent figures, and they are discussing national affairs. Slowly but steadily, the picture invades them while the alien language they speak is gradually translated into words we understand.
+		Acquired Technology: {0}
+		'''
+	RewardTech22:
+		'''
+		The thoughts of the two aliens are disintegrating. Like a flower in full bloom, their minds are opening up. It's easy for us to invade.
+		Acquired Technology: {0}
+		'''
+	RewardTech23:
+		'''
+		There, technological secrets are ripped from their minds as easily as copying a file from an unencrypted computer.
+		Acquired Technology: {0}
+		'''
+}
+
+UnlockTech: {
+	PsiShield: Psionic Shield
+	PsiComputer: Precognition Interface
+	PsiJump: Psi Jump Drive
+	NanoAutoCannon: Nanite Autocannon
+	NanoFlak: Nanite Flak Battery
+	SkrandStrikeCraft: Skravird Strike Craft
+	CetanaNanoRepair: Cetana's Nanite Repair System
+	DragonArmor: Dragonscale Armor
+	NullVoid: Null Void Beam
 }

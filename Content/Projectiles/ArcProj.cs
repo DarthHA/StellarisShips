@@ -71,11 +71,11 @@ namespace StellarisShips.Content.Projectiles
                 float X = 0;
                 do
                 {
-                    X += Main.rand.NextFloat() * 10 + 1;
+                    X += Main.rand.NextFloat() * 20 + 1;
                     float Y = Main.rand.NextFloat() * 30 - 15;
                     SegPoints.Add(new Vector2(X, Y));
                 } while (X <= Len);
-                SegPoints.Add(Projectile.Center + UnitX * Len);
+                SegPoints.Add(Projectile.Center + new Vector2(Len, 0));
             }
 
             Projectile.ai[0]++;

@@ -2,6 +2,7 @@
 using StellarisShips.Content.NPCs;
 using StellarisShips.Static;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -61,6 +62,7 @@ namespace StellarisShips.System
                             str1 += string.Format("{0}:  {1}/{2}\n", name, ShipInBattle[name] - value, ShipInBattle[name]);
                         }
                     }
+                    WeaponDamage = WeaponDamage.OrderByDescending(p => p.Value).ToDictionary(p => p.Key, o => o.Value);
                     foreach (string name in WeaponDamage.Keys)
                     {
                         str2 += string.Format("{0}:  {1}\n", name, WeaponDamage[name]);

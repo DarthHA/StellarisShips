@@ -1,17 +1,17 @@
-﻿using StellarisShips.Content.Buffs;
-using StellarisShips.Static;
+﻿using StellarisShips.Static;
 using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
+using Terraria.Localization;
+using Terraria.Utilities;
 
 namespace StellarisShips.Content.Dialogs.Shroud
 {
-    public class RewardAtkUp : BaseDialog
+    public class RewardTech2 : BaseDialog
     {
-        public override string InternalName => "RewardAtkUp";
+        public override string InternalName => "RewardTech2";
 
         public override List<string> ButtonNames => new()
         {
@@ -25,7 +25,13 @@ namespace StellarisShips.Content.Dialogs.Shroud
 
         public override void SetUp()
         {
-            ShroudUI.TalkText = GetDialogLocalize("RewardAtkUp");
+            List<string> targetList = LibraryHelpers.GetLockedTech();
+            targetList.Remove("PsiShield");
+            targetList.Remove("PsiJump");
+            targetList.Remove("PsiComputer");
+            ShroudUI.ExtraInfo = targetList[Main.rand.Next(targetList.Count)];
+            int num = Main.rand.Next(3) + 1;
+            ShroudUI.TalkText = string.Format(GetDialogLocalize("RewardTech2" + num.ToString()), Language.GetTextValue("Mods.StellarisShips.UnlockTech." + ShroudUI.ExtraInfo));
         }
 
         public override void Update()
@@ -37,8 +43,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
             switch (internalStr)
             {
                 case "Exit":
-                    Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs = AuraID.ShroudAtkUp;
-                    Main.LocalPlayer.AddBuff(ModContent.BuffType<ShroudBuff>(), 60 * 60 * 10);
+                    ProgressHelper.UnlockTech.Add(ShroudUI.ExtraInfo);
                     ShroudUI.Exit();
                     break;
             }

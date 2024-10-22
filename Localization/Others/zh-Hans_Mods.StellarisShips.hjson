@@ -98,6 +98,7 @@ ExtraDesc: {
 	TissueRepair: 船体修复 +{0}% 每秒
 	EEncoder: 闪避 +{0}%
 	Cloak: 仇恨值 -{0}
+	Taunt: 仇恨值 +{0}
 	Value: 造价: {0}
 	FTL:
 		'''

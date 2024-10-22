@@ -199,5 +199,43 @@ namespace StellarisShips.Static
             }
             return false;
         }
+
+        public static List<string> GetLockedTech()
+        {
+            List<string> result = new();
+            foreach (string tech in EverythingLibrary.LockedTech)
+            {
+                if (!ProgressHelper.UnlockTech.Contains(tech))
+                {
+                    if (!result.Contains(tech))
+                    {
+                        result.Add(tech);
+                    }
+                }
+            }
+            return result;
+        }
+
+        //给武器根据槽位一个防御力效果修正，用于某些武器（比如机关炮）
+        public static float GetDefModifier(string slot)
+        {
+            switch (slot)
+            {
+                case ComponentTypes.Weapon_S:
+                case ComponentTypes.Weapon_P:
+                    return 1f;
+                case ComponentTypes.Weapon_M:
+                case ComponentTypes.Weapon_G:
+                    return 2f;
+                case ComponentTypes.Weapon_L:
+                case ComponentTypes.Weapon_H:
+                    return 4f;
+                case ComponentTypes.Weapon_X:
+                    return 8f;
+                default:
+                    return 1f;
+
+            }
+        }
     }
 }

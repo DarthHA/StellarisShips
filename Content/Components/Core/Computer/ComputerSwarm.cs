@@ -63,7 +63,7 @@ namespace StellarisShips.Content.Components.Core.Computer
     public class ComputerSwarm5 : ComputerSwarm1
     {
         public override int Level => 5;
-        public override float AttackSpeed => 0.3f;
+        public override float AttackSpeed => 0.35f;
         public override float Evasion => 30f;
         public override float Speed => 0.3f;
         public override long Value => 40 * 200;

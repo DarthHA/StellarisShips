@@ -12,6 +12,8 @@ namespace StellarisShips.Content.Projectiles
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
+        public float DefenseEffectness = 1f;
+
         public float ModifiedScale = 1f;
         public Color color = Color.White;
 
@@ -126,7 +128,7 @@ namespace StellarisShips.Content.Projectiles
         }
 
 
-        public static int Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float scale, bool crit = false, float kb = 0)
+        public static int Summon(IEntitySource entitySource, Vector2 Pos, Vector2 velocity, int dmg, Color color, float scale, bool crit = false, float kb = 0, float defEffect = 1f)
         {
             int protmp = Projectile.NewProjectile(entitySource, Pos, velocity, ModContent.ProjectileType<PlasmaBullet>(), dmg, kb, Main.myPlayer);
             if (protmp >= 0 && protmp < 1000)
@@ -135,13 +137,14 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as PlasmaBullet).color = color;
                 (Main.projectile[protmp].ModProjectile as PlasmaBullet).ModifiedScale = scale;
                 (Main.projectile[protmp].ModProjectile as PlasmaBullet).Crit = crit;
+                (Main.projectile[protmp].ModProjectile as PlasmaBullet).DefenseEffectness = defEffect;
             }
             return protmp;
         }
 
         public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.DefenseEffectiveness *= 4;
+            modifiers.DefenseEffectiveness *= 4 * DefenseEffectness;
         }
 
     }

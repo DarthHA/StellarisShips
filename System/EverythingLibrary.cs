@@ -1,6 +1,7 @@
 ﻿using StellarisShips.System.BaseType;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -13,6 +14,7 @@ namespace StellarisShips.System
         public static Dictionary<string, BaseShip> Ships = new();
         public static Dictionary<string, BaseWeaponUnit> WeaponUnits = new();
         public static Dictionary<string, BaseDialog> Dialogs = new();
+        public static List<string> LockedTech = new();
         public override void Load()
         {
             Components = new();
@@ -27,6 +29,13 @@ namespace StellarisShips.System
                     BaseComponent instance = (BaseComponent)Activator.CreateInstance(type);
                     instance.GetIcon();
                     Components.Add(instance.InternalName, instance);
+                    if (instance.SpecialUnLock != "")
+                    {
+                        if (!LockedTech.Contains(instance.SpecialUnLock))
+                        {
+                            LockedTech.Add(instance.SpecialUnLock);
+                        }
+                    }
                 }
                 if (type.IsClass && !type.IsAbstract && typeof(BaseSection).IsAssignableFrom(type))
                 {
@@ -40,6 +49,7 @@ namespace StellarisShips.System
                     instance.GetIcon();
                     Ships.Add(instance.InternalName, instance);
                 }
+                Ships = Ships.OrderBy(p => p.Value.CP).ToDictionary(p => p.Key, o => o.Value);
                 if (type.IsClass && !type.IsAbstract && typeof(BaseWeaponUnit).IsAssignableFrom(type))
                 {
                     BaseWeaponUnit instance = (BaseWeaponUnit)Activator.CreateInstance(type);
@@ -60,6 +70,7 @@ namespace StellarisShips.System
             Ships.Clear();
             WeaponUnits.Clear();
             Dialogs.Clear();
+            LockedTech.Clear();
         }
     }
 }

@@ -12,7 +12,6 @@ namespace StellarisShips.Content.Projectiles
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
 
-
         public float ModifiedScale = 1f;
         public Color color = Color.White;
 

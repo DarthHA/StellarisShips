@@ -46,6 +46,9 @@ namespace StellarisShips.Content.WeaponUnits
                         case 3:
                             Speed = 25f;
                             break;
+                        case 4:
+                            Speed = 28f;
+                            break;
                     }
                     List<long> NewUUIDs = new();
                     foreach (Projectile strikers in Main.ActiveProjectiles)

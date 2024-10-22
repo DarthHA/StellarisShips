@@ -90,6 +90,13 @@ Desc: {
 		Prioritize attacking secondary targets.
 		Ignores enemy defenses.
 		'''
+	StrikeCraft_4:
+		'''
+		Learning from the design expertise of Skrand and his people, these superior strike craft are capable of prolonged engagement and highly adaptive tactics.
+		Release four strike crafts.
+		Prioritize attacking secondary targets.
+		Ignores enemy defenses.
+		'''
 	ArchStrikeCraft_1:
 		'''
 		These high velocity drones have been equipped with antique mining lasers that virtually ignore any plating protecting their target. A tech too good to be wasted on astro mining.
@@ -287,25 +294,21 @@ Desc: {
 	AutoCannon_1:
 		'''
 		Large-caliber ballistic weapons that fire cased explosive shells. The main advantage of these cannons is their high rate of fire.
-		Less affected by enemy defense effects.
 		The closer the attack distance, the higher the damage.
 		'''
 	AutoCannon_2:
 		'''
 		These upgraded rotary autocannons feature improved tracking and fire control systems. This allows them to maintain an even higher rate of fire.
-		Less affected by enemy defense effects.
 		The closer the attack distance, the higher the damage.
 		'''
 	AutoCannon_3:
 		'''
 		Advanced rotary autocannons capable of spewing a cloud of high-explosive shells at a target.
-		Less affected by enemy defense effects.
 		The closer the attack distance, the higher the damage.
 		'''
 	AutoCannon_4:
 		'''
 		Extremely advanced autocannon that fires rounds that detonate into a cloud of nanite units upon approaching the target, overloading the target's shields and consuming its body.
-		Less affected by enemy defense effects.
 		The closer the attack distance, the higher the damage.
 		'''
 	KCannon_1:
@@ -362,6 +365,11 @@ Desc: {
 		Tremendous medium range firepower will enable our titans to break through enemy lines. These ancient cannons were once the foundation upon which a galactic empire was built.
 		Can penetrate a line of enemies.
 		'''
+	NullVoid_1:
+		'''
+		By harnessing the entropic nature of the Null Void, this beam can actually destroy energy.
+		Reverses enemy defense effects.
+		'''
 	//通用配件
 	Shield_1: Energy deflector screens can stop a limited amount of incoming enemy fire before overloading.
 	Shield_2: These updated deflector screens are capable of soaking up even more punishment before they overload.
@@ -387,6 +395,7 @@ Desc: {
 	FireControl_1: By installing an auxiliary fire-control system our ships can afford to make more advanced calculations, increasing accuracy.
 	NaniteRepair_1: These bacteria are imprinted with the ship's structural design and will attempt to restore hull integrity should it be compromised.
 	NaniteRepair_2: A highly effective hull auto-repair system comprised of billions of microscopic nanomachines was found among the smoking remains of the Scavenger, and has been repurposed for our uses.
+	NaniteRepair_3: Cetana's advanced nanite systems will tirelessly repair and refresh our ships at a rate far beyond our current capabilities.
 	ReactorBooster_1: Additional power generation systems increase the ship's reactor output.
 	ReactorBooster_2: The discovery of fusion power allows for better reactor boosters to be fitted onto our ships.
 	ReactorBooster_3: The discovery of antimatter power allows for highly advanced reactor boosters that can greatly enhance ship reactors.
@@ -400,6 +409,7 @@ Desc: {
 	Cloak_3: In the past, typical cloaking technology would cause serious damage to the relatively delicate instruments on the ship, but the emergence of elite cloaking fields makes such concerns obsolete.
 	Cloak_4: The device uses dark matter to warp space-time around the ship, making it extremely difficult to detect.
 	Cloak_5: Psi-Phase Field Generators focus the psionic potential to partially phase the vessel into the Shroud. This allows the ship to remain undetected by all but the best sensor arrays.
+	Taunt_1: This system allows the ship to perform more exaggerated maneuvers, making it easier for the enemy to notice it.
 	//核心配件
 	FTLDrive_1: No means of fast long-distance travel.
 	FTLDrive_2: We can use the other dimensions of hyperspace, like the threads in a spider's web, to move quickly over long distances.

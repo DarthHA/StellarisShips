@@ -39,8 +39,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
                 case "Exit":
                     Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs = AuraID.ShroudEvasionUp;
                     Main.LocalPlayer.AddBuff(ModContent.BuffType<ShroudBuff>(), 60 * 60 * 10);
-                    ShroudUI.AllClear(true);
-                    UIManager.ShroudVisible = false;
+                    ShroudUI.Exit();
                     break;
             }
 

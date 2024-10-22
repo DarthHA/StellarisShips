@@ -42,18 +42,19 @@ namespace StellarisShips.Content.Components.Weapons.AutoCannon
     public class AutoCannonM3 : AutoCannonM1          //DPS:140
     {
         public override int Level => 3;
-        public override int MaxDamage => 101;
-        public override int MinDamage => 94;
+        public override int MaxDamage => 120;
+        public override int MinDamage => 113;
         public override long Value => 44 * 800;
         public override int Progress => 7;
     }
     public class AutoCannonM4 : AutoCannonM1          //DPS:180
     {
         public override int Level => 4;
-        public override int MaxDamage => 123;
-        public override int MinDamage => 112;
+        public override int MaxDamage => 148;
+        public override int MinDamage => 135;
         public override long Value => 58 * 1000;
         public override int Progress => 9;
+        public override string SpecialUnLock => "NanoAutoCannon";
     }
 
 }

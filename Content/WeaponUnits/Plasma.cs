@@ -74,7 +74,7 @@ namespace StellarisShips.Content.WeaponUnits
                         int damage = RandomDamage;
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
                         Vector2 ShootVel = Rotation.ToRotationVector2() * 30f;
-                        int protmp = PlasmaBullet.Summon(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(RelativePos), ShootVel, damage, color, scaleSlot, crit);
+                        int protmp = PlasmaBullet.Summon(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(RelativePos), ShootVel, damage, color, scaleSlot, crit, 0, LibraryHelpers.GetDefModifier(EquipType));
                         if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "Plasma", 4, shipNPC.GetPosOnShip(RelativePos));
                     }

@@ -29,6 +29,8 @@ namespace StellarisShips.UI
 
         public static bool ShowInfo = true;
 
+        public static string ExtraInfo = "";
+
         public override void OnActivate()
         {
             AllClear();
@@ -161,8 +163,14 @@ namespace StellarisShips.UI
             ShowInfo = true;
             Currentdialog = "";
             TalkText = "";
+            ExtraInfo = "";
             talkButtons.Clear();
         }
 
+        public static void Exit()
+        {
+            AllClear(true);
+            UIManager.ShroudVisible = false;
+        }
     }
 }

@@ -98,6 +98,7 @@ ExtraDesc: {
 	TissueRepair: Hull Regen +{0}%/s
 	EEncoder: Evasion +{0}%
 	Cloak: Aggro -{0}
+	Taunt: Aggro +{0}
 	Value: Cost: {0}
 	FTL:
 		'''

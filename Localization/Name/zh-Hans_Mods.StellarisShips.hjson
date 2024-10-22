@@ -89,6 +89,7 @@ Name: {
 	H_StrikeCraft_1: 基础舰载机
 	H_StrikeCraft_2: 改良型舰载机
 	H_StrikeCraft_3: 先进型舰载机
+	H_StrikeCraft_4: 斯卡拉维德舰载机
 	H_ArchStrikeCraft_1: 远古钻孔机无人机
 	X_Arc_1: 电弧发射器
 	X_Arc_2: 聚能电弧发射器
@@ -99,6 +100,9 @@ Name: {
 	X_ArchMega_1: 远古饱和剂发射炮
 	T_TitanBeam_1: 炼狱射线
 	T_ArchTitanBeam_1: 远古湮灭眩光
+	S_NullVoid_1: 小型太虚光束
+	M_NullVoid_1: 中型太虚光束
+	L_NullVoid_1: 大型太虚光束
 	//通用配件
 	B_Armor_1: 小型纳米装甲
 	B_Armor_2: 小型金瓷装甲
@@ -159,6 +163,7 @@ Name: {
 	A_ShieldRecharger_1: 护盾电容
 	A_NaniteRepair_1: 再生舰体组织
 	A_NaniteRepair_2: 纳米修复系统
+	A_NaniteRepair_3: 塞塔娜纳米修复系统
 	A_FireControl_1: 辅助火控
 	A_EEncoder_1: 神秘编码器
 	A_EDecoder_1: 神秘解码器
@@ -171,6 +176,7 @@ Name: {
 	A_Cloak_3: 精英隐形场发生器
 	A_Cloak_4: 暗物质隐形场发生器
 	A_Cloak_5: 灵能相位场发生器
+	A_Taunt_1: 挑衅组件拓展
 	//核心配件
 	E_Reactor_1: 裂变反应堆
 	E_Reactor_2: 聚变反应堆

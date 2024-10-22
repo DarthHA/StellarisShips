@@ -4,26 +4,23 @@ using System.Collections.Generic;
 
 namespace StellarisShips.Content.Dialogs.Shroud
 {
-    public class ShroudFirstContract : BaseDialog
+    public class RewardTech1 : BaseDialog
     {
-        public override string InternalName => "ShroudFirstContract";
+        public override string InternalName => "RewardTech1";
 
         public override List<string> ButtonNames => new()
         {
-            "EnterShroud",
-            "ExitShroud"
+            "RewardTech"
         };
 
         public override List<string> ButtonInternalStrs => new()
         {
-            "Enter",
-            "Exit"
+            "Reward"
         };
 
         public override void SetUp()
         {
-            ShroudUI.ShowInfo = false;
-            ShroudUI.TalkText = GetDialogLocalize("ShroudFirstContract");
+            ShroudUI.TalkText = GetDialogLocalize("RewardTech1");
         }
 
         public override void Update()
@@ -34,11 +31,8 @@ namespace StellarisShips.Content.Dialogs.Shroud
         {
             switch (internalStr)
             {
-                case "Enter":
-                    ShroudUI.Start("ShroudNormal");
-                    break;
-                case "Exit":
-                    ShroudUI.Exit();
+                case "Reward":
+                    ShroudUI.Start("RewardTech2");
                     break;
             }
 

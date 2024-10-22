@@ -47,7 +47,7 @@ namespace StellarisShips.Content.WeaponUnits
                         if (distanceFactor < 1f) distanceFactor = 1;
                         damage = (int)(damage * distanceFactor);
                         bool crit = Main.rand.NextFloat() < Crit / 100f;
-                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0.5f);
+                        int protmp = DamageProj.Summon(ship.GetSource_FromAI(), TargetPos.Value, damage, crit, 0.75f * LibraryHelpers.GetDefModifier(EquipType));
                         if (protmp >= 0 && protmp < 1000) (Main.projectile[protmp].ModProjectile as BaseDamageProjectile).SourceName = EverythingLibrary.Components[ComponentName].GetLocalizedName();
                         CurrentCooldown = AttackCD * (0.8f + 0.4f * Main.rand.NextFloat());
                         SomeUtils.PlaySoundRandom(SoundPath.Fire + "AutoCannon", 3, shipNPC.GetPosOnShip(RelativePos));

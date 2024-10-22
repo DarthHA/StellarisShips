@@ -1,4 +1,5 @@
-﻿using StellarisShips.System;
+﻿using StellarisShips.Static;
+using StellarisShips.System;
 using StellarisShips.System.BaseType;
 using StellarisShips.UI;
 using System.Collections.Generic;
@@ -41,17 +42,24 @@ namespace StellarisShips.Content.Dialogs.Shroud
                     if (AnyTechUnlock() && Main.rand.NextBool(5))           //20%几率出科技
                     {
                         WeightedRandom<string> weightedRandom = new();
-                        if (!ProgressHelper.UnlockTech.Contains("PsiShield"))
+                        List<string> targetList = LibraryHelpers.GetLockedTech();
+                        foreach(string tech in targetList)
                         {
-                            weightedRandom.Add("RewardPsiShield1", 1);
-                        }
-                        if (!ProgressHelper.UnlockTech.Contains("PsiJump"))
-                        {
-                            weightedRandom.Add("RewardPsiJump1", 1);
-                        }
-                        if (!ProgressHelper.UnlockTech.Contains("PsiComputer"))
-                        {
-                            weightedRandom.Add("RewardPsiComputer1", 1);
+                            switch (tech)
+                            {
+                                case "PsiShield":
+                                    weightedRandom.Add("RewardPsiShield1", 1);
+                                    break;
+                                case "PsiJump":
+                                    weightedRandom.Add("RewardPsiJump1", 1);
+                                    break;
+                                case "PsiComputer":
+                                    weightedRandom.Add("RewardPsiComputer1", 1);
+                                    break;
+                                default:
+                                    weightedRandom.Add("RewardTech1", 1);
+                                    break;
+                            }
                         }
                         ShroudUI.Start(weightedRandom.Get());
                     }
@@ -65,12 +73,11 @@ namespace StellarisShips.Content.Dialogs.Shroud
                     ProgressHelper.PsychoPower = 0;
                     break;
                 case "Exit":
-                    ShroudUI.AllClear(true);
-                    UIManager.ShroudVisible = false;
+                    ShroudUI.Exit();
                     break;
             }
 
         }
-        internal bool AnyTechUnlock() => !ProgressHelper.UnlockTech.Contains("PsiShield") || !ProgressHelper.UnlockTech.Contains("PsiJump") || !ProgressHelper.UnlockTech.Contains("PsiComputer");
+        internal static bool AnyTechUnlock() => ProgressHelper.UnlockTech.Count < EverythingLibrary.LockedTech.Count;
     }
 }

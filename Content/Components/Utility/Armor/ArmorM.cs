@@ -47,15 +47,16 @@ namespace StellarisShips.Content.Components.Utility.Armor
     public class ArmorM5 : ArmorM1
     {
         public override int Level => 5;
-        public override int Defense => 50;
+        public override int Defense => 55;
         public override long Value => 33 * 450;
         public override int Progress => 8;
     }
     public class ArmorM6 : ArmorM1
     {
         public override int Level => 6;
-        public override int Defense => 60;
+        public override int Defense => 70;
         public override long Value => (int)(43.5f * 600);
         public override int Progress => 9;
+        public override string SpecialUnLock => "DragonArmor";
     }
 }

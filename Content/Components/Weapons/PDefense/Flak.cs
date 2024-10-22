@@ -40,8 +40,8 @@ namespace StellarisShips.Content.Components.Weapons.PDefense
     public class Flak3 : Flak1          //DPS:80
     {
         public override int Level => 3;
-        public override int MaxDamage => 18;
-        public override int MinDamage => 10;
+        public override int MaxDamage => 21;
+        public override int MinDamage => 12;
         public override long Value => 13 * 800;
         public override int Progress => 7;
     }
@@ -49,9 +49,10 @@ namespace StellarisShips.Content.Components.Weapons.PDefense
     public class Flak4 : Flak1          //DPS:90
     {
         public override int Level => 4;
-        public override int MaxDamage => 24;
-        public override int MinDamage => 22;
+        public override int MaxDamage => 28;
+        public override int MinDamage => 26;
         public override long Value => 15 * 1000;
         public override int Progress => 9;
+        public override string SpecialUnLock => "NanoFlak";
     }
 }

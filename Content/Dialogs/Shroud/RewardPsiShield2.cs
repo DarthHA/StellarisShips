@@ -34,8 +34,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
             {
                 case "Exit":
                     ProgressHelper.UnlockTech.Add("PsiShield");
-                    ShroudUI.AllClear(true);
-                    UIManager.ShroudVisible = false;
+                    ShroudUI.Exit();
                     break;
             }
 

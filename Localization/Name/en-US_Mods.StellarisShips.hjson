@@ -89,6 +89,7 @@ Name: {
 	H_StrikeCraft_1: Basic Strike Craft
 	H_StrikeCraft_2: Improved Strike Craft
 	H_StrikeCraft_3: Advanced Strike Craft
+	H_StrikeCraft_4: Skravird Strike Craft
 	H_ArchStrikeCraft_1: Ancient Driller Drones
 	X_Arc_1: Arc Emitter
 	X_Arc_2: Focused Arc Emitter
@@ -99,6 +100,9 @@ Name: {
 	X_ArchMega_1: Ancient Saturator Artillery
 	T_TitanBeam_1: Perdition Beam
 	T_ArchTitanBeam_1: Ancient Ruination Glare
+	S_NullVoid_1: Small Null Void Beam
+	M_NullVoid_1: Medium Null Void Beam
+	L_NullVoid_1: Large Null Void Beam
 	//通用配件
 	B_Armor_1: Small Nanocomposite Armor
 	B_Armor_2: Small Ceramo-Metal Armor
@@ -159,6 +163,7 @@ Name: {
 	A_ShieldRecharger_1: Shield Capacitor
 	A_NaniteRepair_1: Regenerative Hull Tissue
 	A_NaniteRepair_2: Nanite Repair System
+	A_NaniteRepair_3: Cetana's Nanite Repair System
 	A_FireControl_1: Auxiliary Fire-Control
 	A_EEncoder_1: Enigmatic Encoder
 	A_EDecoder_1: Enigmatic Decoder
@@ -171,6 +176,7 @@ Name: {
 	A_Cloak_3: Elite Cloaking Field Generator
 	A_Cloak_4: Dark Matter Cloaking Field Generator
 	A_Cloak_5: Psi-Phase Field Generator
+	A_Taunt_1: Taunt Component Extension
 	//核心配件
 	E_Reactor_1: Fission Reactor
 	E_Reactor_2: Fusion Reactor

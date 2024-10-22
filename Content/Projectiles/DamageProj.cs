@@ -63,7 +63,17 @@ namespace StellarisShips.Content.Projectiles
 
         public override void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.DefenseEffectiveness *= DefenseEffectiveness;
+            if (DefenseEffectiveness >= 0)
+            {
+                modifiers.DefenseEffectiveness *= DefenseEffectiveness;
+            }
+            else
+            {
+                if (modifiers.DefenseEffectiveness.Value > 0)
+                {
+                    modifiers.DefenseEffectiveness *= DefenseEffectiveness;
+                }
+            }
         }
 
         public override void SafeOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
