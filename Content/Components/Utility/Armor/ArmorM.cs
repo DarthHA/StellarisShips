@@ -15,7 +15,7 @@ namespace StellarisShips.Content.Components.Utility.Armor
         public override long Value => 15 * 150;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.defense += Defense;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Defense, Defense);
         }
         public override void ModifyDesc(ref string desc)
         {

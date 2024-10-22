@@ -17,7 +17,7 @@ namespace StellarisShips.Content.Components.Utility.Others
         public virtual float HullRegen => 0.0075f;
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.HullRegen, HullRegen);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.HullRegenPercent, HullRegen);
         }
 
         public override void ModifyDesc(ref string desc)

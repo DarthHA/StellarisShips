@@ -25,7 +25,7 @@ namespace StellarisShips.Content.Projectiles
             ProjectileID.Sets.CanDistortWater[Projectile.type] = true;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Projectile.width = 1;
             Projectile.height = 1;

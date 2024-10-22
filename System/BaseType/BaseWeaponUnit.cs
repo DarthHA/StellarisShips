@@ -40,8 +40,7 @@ namespace StellarisShips.System.BaseType
             get
             {
                 BaseWeaponComponent component = EverythingLibrary.Components[ComponentName] as BaseWeaponComponent;
-                float AuraBonus = FleetSystem.GlobalEffects.ContainsKey(AuraID.ShroudAtkUp) ? 0.25f : 0f;         //虚境伤害加成
-                return (int)(component.MinDamage + Main.rand.Next(component.MaxDamage - component.MinDamage + 1) * (DamageBonus + AuraBonus));
+                return (int)(component.MinDamage + Main.rand.Next(component.MaxDamage - component.MinDamage + 1) * DamageBonus);
             }
         }
 
@@ -49,20 +48,14 @@ namespace StellarisShips.System.BaseType
         {
             get
             {
-                float AuraBonus = FleetSystem.GlobalEffects.ContainsKey(AuraID.InspiringPresence) ? 0.1f : 0f;   //振奋人心
-                AuraBonus += FleetSystem.GlobalEffects.ContainsKey(AuraID.ShroudASPDUp) ? 0.25f : 0f;         //虚境攻速加成
-                if (EverythingLibrary.Components[ComponentName].EquipType == ComponentTypes.Weapon_H || EverythingLibrary.Components[ComponentName].EquipType == ComponentTypes.Weapon_P)
-                    AuraBonus = 0f;  //P槽和H槽不吃攻速
-                float FinalBonus = AttackCDBonus + AuraBonus;
-                return (int)((EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).AttackCD / FinalBonus);
+                return (int)((EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).AttackCD / AttackCDBonus);
             }
         }
         public float Crit
         {
             get
             {
-                float AuraBonus = FleetSystem.GlobalEffects.ContainsKey(AuraID.TargetingGrid) ? 10f : 0f;      //目标网格
-                return (EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).Crit + CritBonus + AuraBonus;
+                return (EverythingLibrary.Components[ComponentName] as BaseWeaponComponent).Crit + CritBonus;
             }
         }
 

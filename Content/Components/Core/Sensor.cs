@@ -14,9 +14,9 @@ namespace StellarisShips.Content.Components.Core
         public virtual bool CanSeeThroughTiles => false;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.AllWeaponCrit, Crit);
-            ship.GetShipNPC().DetectRange += DetectRange;
-            ship.GetShipNPC().CanSeeThroughTiles = CanSeeThroughTiles;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.AllWeaponCrit, Crit);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.DetectRange, DetectRange);
+            ship.GetShipNPC().CanSeeThroughTiles = ship.GetShipNPC().CanSeeThroughTiles || CanSeeThroughTiles;
         }
 
         public override void ModifyDesc(ref string desc)

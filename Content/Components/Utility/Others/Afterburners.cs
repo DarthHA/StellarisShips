@@ -15,8 +15,8 @@ namespace StellarisShips.Content.Components.Utility.Others
         public virtual float Speed => 0;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().Evasion = (1 - (1 - ship.GetShipNPC().Evasion / 100f) * (1 - Evasion / 100f)) * 100f;
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.Speed, Speed);
+            ship.GetShipNPC().StaticBuff.AddBonusEvasion(BonusID.Evasion, Evasion);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.SpeedMult, Speed);
         }
 
         public override void ModifyDesc(ref string desc)

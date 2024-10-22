@@ -166,6 +166,15 @@ Items: {
 		DisplayName: Proj Test
 		Tooltip: ""
 	}
+
+	ShipEmblem: {
+		DisplayName: Ship Emblem
+		Tooltip:
+			'''
+			When in inventory, the damage dealt by Ship will inherit the bonus of Summon Damage.
+			Fun.
+			'''
+	}
 }
 
 NPCs: {

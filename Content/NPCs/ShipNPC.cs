@@ -2,11 +2,14 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
+using StellarisShips.Content.Components.Weapons;
 using StellarisShips.Content.Projectiles;
 using StellarisShips.Static;
 using StellarisShips.System;
 using StellarisShips.System.BaseType;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -14,6 +17,7 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using static System.Collections.Specialized.BitVector32;
 
 namespace StellarisShips.Content.NPCs
 {
@@ -83,7 +87,7 @@ namespace StellarisShips.Content.NPCs
         public int CurrentTarget = -1;
 
         /// <summary>
-        /// 索敌范围,基础200
+        /// 索敌范围,基础400
         /// </summary>
         public int DetectRange = 400;
 
@@ -182,14 +186,19 @@ namespace StellarisShips.Content.NPCs
 
 
         /// <summary>
-        /// 用于储存和计算增益，为整体乘算局部加算
+        /// 存储静态增益
         /// </summary>
-        public Dictionary<string, float> BonusBuff = new();
+        public Dictionary<string, float> StaticBuff = new();
 
         /// <summary>
-        /// 可以随时修改的增益，为整体乘算局部加算
+        /// 存储动态增益
         /// </summary>
         public Dictionary<string, float> SpecialBuff = new();
+
+        /// <summary>
+        /// 这是处理后的所有增益
+        /// </summary>
+        public Dictionary<string, float> BonusBuff = new();
 
         /// <summary>
         /// 携带光环种类
@@ -338,9 +347,7 @@ namespace StellarisShips.Content.NPCs
                     ShieldRegenProgress = 0;
                 }
 
-                float AuraBonus = FleetSystem.GlobalEffects.ContainsKey(AuraID.NanobotCloud) ? (NPC.lifeMax - MaxShield) * 0.015f : 0;       //纳米云
-                AuraBonus += FleetSystem.GlobalEffects.ContainsKey(AuraID.ShroudRegenUp) ? (NPC.lifeMax - MaxShield) * 0.03f : 0;            //虚境回血
-                HullRegenProgress += HullRegen + AuraBonus;
+                HullRegenProgress += HullRegen;
                 if (HullRegenProgress >= 1)
                 {
                     int HullRegenAmount = (int)HullRegenProgress;
@@ -579,6 +586,56 @@ namespace StellarisShips.Content.NPCs
                 return false;
             }
             return true;
+        }
+
+        //更新修正对属性的影响
+        public void ResetShipStat(bool NoChangeHullAndShield = false)
+        {
+            BonusBuff = StaticBuff.Merge(SpecialBuff);
+            //复杂的船体与护盾增幅计算
+            float hullPercent = Math.Max(0, (float)(NPC.life - CurrentShield) / (NPC.lifeMax - MaxShield));
+            float shieldPercent = MaxShield == 0 ? 0 : (float)CurrentShield / MaxShield;
+            int maxHull = GetShip().BaseHull + (int)BonusBuff.GetBonus(BonusID.ExtraHull);
+            MaxShield = (int)((GetShip().BaseShield + BonusBuff.GetBonus(BonusID.Shield)) * BonusBuff.GetBonus(BonusID.ShieldMult, true));
+            NPC.lifeMax = maxHull + MaxShield;
+            if (!NoChangeHullAndShield)
+            {
+                CurrentShield = (int)(shieldPercent * MaxShield);
+                NPC.life = CurrentShield + (int)(hullPercent * maxHull);
+            }
+
+            NPC.defDefense = NPC.defense = GetShip().BaseDefense + (int)BonusBuff.GetBonus(BonusID.Defense);
+            HullRegen = (NPC.lifeMax - MaxShield) * BonusBuff.GetBonus(BonusID.HullRegenPercent);
+            ShieldRegen = BonusBuff.GetBonus(BonusID.ShieldRegen) + MaxShield * BonusBuff.GetBonus(BonusID.ShieldRegenPercent);
+            MaxSpeed = (GetShip().BaseSpeed + BonusBuff.GetBonus(BonusID.BaseSpeed)) * BonusBuff.GetBonus(BonusID.SpeedMult, true);
+            //闪避计算
+            float evasion1 = GetShip().BaseEvasion + BonusBuff.GetBonus(BonusID.BaseEvasion);
+            float evasion2 = BonusBuff.GetBonus(BonusID.Evasion);
+            Evasion = (1 - (1 - evasion1 / 100f) * (1 - evasion2 / 100f)) * 100f;
+
+            EscapeChance = BonusBuff.GetBonus(BonusID.EscapeChance);
+            FTLMaxCooldown = (int)BonusBuff.GetBonus(BonusID.FTLMaxCooldown);
+            FTLLevel = (int)BonusBuff.GetBonus(BonusID.FTLLevel);
+            DetectRange = 400 + (int)BonusBuff.GetBonus(BonusID.DetectRange);
+            MaxImmuneTime = (int)BonusBuff.GetBonus(BonusID.MaxImmuneTime);
+            Aggro = (int)BonusBuff.GetBonus(BonusID.Aggro);
+            ExtraStriker = (int)BonusBuff.GetBonus(BonusID.ExtraStriker);
+            ShieldDR = BonusBuff.GetBonus(BonusID.ShieldDR);
+            ShieldDRLevel = BonusBuff.GetBonus(BonusID.ShieldDRLevel);
+
+            //武器加成计算
+            foreach (BaseWeaponUnit weapon in weapons)
+            {
+                weapon.DamageBonus = (EverythingLibrary.Components[weapon.ComponentName] as BaseWeaponComponent).GetDamageBonus(BonusBuff);
+                weapon.AttackCDBonus = (EverythingLibrary.Components[weapon.ComponentName] as BaseWeaponComponent).GetAttackCDBonus(BonusBuff);
+                weapon.CritBonus = (EverythingLibrary.Components[weapon.ComponentName] as BaseWeaponComponent).GetCritCDBonus(BonusBuff);
+            }
+        }
+
+
+        internal BaseShip GetShip()
+        {
+            return EverythingLibrary.Ships[ShipGraph.ShipType];
         }
     }
 }

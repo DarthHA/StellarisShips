@@ -904,17 +904,12 @@ namespace StellarisShips.UI
             if (shipType == "") return "";
             NPC dummyShip = new();
             dummyShip.SetDefaults(ModContent.NPCType<ShipNPC>());
-            dummyShip.lifeMax = EverythingLibrary.Ships[shipType].BaseHull;
-            dummyShip.GetShipNPC().Evasion = EverythingLibrary.Ships[shipType].BaseEvasion;
-            dummyShip.GetShipNPC().MaxSpeed = EverythingLibrary.Ships[shipType].BaseSpeed;
-            dummyShip.GetShipNPC().MaxShield += EverythingLibrary.Ships[shipType].BaseShield;
-            dummyShip.defense += EverythingLibrary.Ships[shipType].BaseDefense;
             dummyShip.GetShipNPC().ShipGraph = new();
             dummyShip.GetShipNPC().ShipGraph.ShipType = shipType;
             float TotalDPS = 0;
             long Value = EverythingLibrary.Ships[shipType].Value;
             int ValueMR = 0;
-            foreach (ItemSlotButton button in coreComponentButtons)           //计算核心部件舰船加成
+            foreach (ItemSlotButton button in coreComponentButtons)           //计算核心部件舰船加成与费用
             {
                 if (button.ItemType != "")
                 {
@@ -923,7 +918,7 @@ namespace StellarisShips.UI
                     ValueMR += EverythingLibrary.Components[button.ItemType].MRValue;
                 }
             }
-            foreach (List<ItemSlotButton> itemSlotButtons in componentButtons)    //计算常规部件舰船加成
+            foreach (List<ItemSlotButton> itemSlotButtons in componentButtons)    //计算常规部件舰船加成与费用
             {
                 foreach (ItemSlotButton button in itemSlotButtons)
                 {
@@ -935,6 +930,10 @@ namespace StellarisShips.UI
                     }
                 }
             }
+
+            //添加修正
+            dummyShip.GetShipNPC().ResetShipStat(true);
+
             foreach (List<ItemSlotButton> itemSlotButtons in componentButtons)       //计算DPS
             {
                 foreach (ItemSlotButton button in itemSlotButtons)
@@ -943,22 +942,18 @@ namespace StellarisShips.UI
                     {
                         if (button.EquipType == ComponentTypes.Weapon_H)
                         {
-                            TotalDPS += (EverythingLibrary.Components[button.ItemType] as BaseWeaponComponent).DPS(dummyShip.GetShipNPC().BonusBuff) * (1 + dummyShip.GetShipNPC().ExtraStriker / 4f);
+                            TotalDPS += (EverythingLibrary.Components[button.ItemType] as BaseWeaponComponent).DPS(dummyShip.GetShipNPC().StaticBuff) * (1 + dummyShip.GetShipNPC().ExtraStriker / 4f);
                         }
                         else
                         {
-                            TotalDPS += (EverythingLibrary.Components[button.ItemType] as BaseWeaponComponent).DPS(dummyShip.GetShipNPC().BonusBuff);
+                            TotalDPS += (EverythingLibrary.Components[button.ItemType] as BaseWeaponComponent).DPS(dummyShip.GetShipNPC().StaticBuff);
                         }
                     }
                 }
             }
 
-            dummyShip.GetShipNPC().HullRegen = dummyShip.lifeMax * dummyShip.GetShipNPC().BonusBuff.ApplyBonus(BonusID.HullRegen, false);
-            dummyShip.GetShipNPC().MaxShield = (int)(dummyShip.GetShipNPC().MaxShield * dummyShip.GetShipNPC().BonusBuff.ApplyBonus(BonusID.ShieldBonus));
-            dummyShip.GetShipNPC().MaxSpeed *= dummyShip.GetShipNPC().BonusBuff.ApplyBonus(BonusID.Speed);
-
             int CP = EverythingLibrary.Ships[shipType].CP;
-            int Hull = dummyShip.lifeMax;
+            int Hull = dummyShip.lifeMax - dummyShip.GetShipNPC().MaxShield;
             int Defense = dummyShip.defense;
             int Shield = dummyShip.GetShipNPC().MaxShield;
             float ShieldRegen = (float)Math.Round(dummyShip.GetShipNPC().ShieldRegen);

@@ -22,12 +22,12 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override void ApplyEquip(NPC ship)
         {
             ship.GetShipNPC().ComputerType = TypeName;
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponAttackCD_T, ShootSpeedT);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponAttackCD_X, ShootSpeedX);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponAttackCD_L, ShootSpeedL);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponCrit_T, CritT);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponCrit_X, CritX);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponCrit_L, CritL);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponAttackCD_T, ShootSpeedT);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponAttackCD_X, ShootSpeedX);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponAttackCD_L, ShootSpeedL);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponCrit_T, CritT);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponCrit_X, CritX);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponCrit_L, CritL);
         }
 
         public override void ModifyDesc(ref string desc)

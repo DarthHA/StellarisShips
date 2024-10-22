@@ -215,7 +215,7 @@ BuffExtraDesc: {
 	ShroudAtkUpDesc: Weapon damage +25%
 	ShroudEvasionUpDesc: Evasion +30%
 	ShroudRegenUpDesc: Hull Regen +3%/s
-	ShroudShieldUpDesc: DR when Shield exists +25%
+	ShroudShieldUpDesc: Shield +40%
 	ShroudSpeedUpDesc: Speed +25%
 }
 

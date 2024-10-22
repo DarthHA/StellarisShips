@@ -33,8 +33,8 @@ namespace StellarisShips.Content.Components.Core
                     break;
             }
             if (RealEvasion < 1) RealEvasion = 1;
-            ship.GetShipNPC().Evasion += RealEvasion;
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.Speed, Speed);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.BaseEvasion, RealEvasion);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.SpeedMult, Speed);
         }
 
         public override void ModifyDesc(ref string desc)

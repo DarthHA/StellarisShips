@@ -20,8 +20,8 @@ namespace StellarisShips.Content.Components.Utility.Others
 
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.AllWeaponDamage, Damage);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.Speed, Speed);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.AllWeaponDamage, Damage);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.SpeedMult, Speed);
         }
 
         public override void ModifyDesc(ref string desc)

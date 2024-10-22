@@ -21,10 +21,10 @@ namespace StellarisShips.Content.Components.Core.Computer
         public override void ApplyEquip(NPC ship)
         {
             ship.GetShipNPC().ComputerType = TypeName;
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponDamage_S, DamageS);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponDamage_G, DamageG);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponCrit_S, CritS);
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.WeaponCrit_G, CritG);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponDamage_S, DamageS);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponDamage_G, DamageG);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponCrit_S, CritS);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.WeaponCrit_G, CritG);
         }
 
         public override void ModifyDesc(ref string desc)

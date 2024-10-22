@@ -42,7 +42,7 @@ namespace StellarisShips.Content.Projectiles
         /// </summary>
         public int RedirectChance = 3;
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Projectile.width = 10;
             Projectile.height = 10;

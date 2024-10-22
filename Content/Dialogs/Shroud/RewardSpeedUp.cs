@@ -37,7 +37,7 @@ namespace StellarisShips.Content.Dialogs.Shroud
             switch (internalStr)
             {
                 case "Exit":
-                    Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs = AuraID.ShroudSpeedUp;
+                    Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs = ModifierID.ShroudSpeedUp;
                     Main.LocalPlayer.AddBuff(ModContent.BuffType<ShroudBuff>(), 60 * 60 * 10);
                     ShroudUI.Exit();
                     break;

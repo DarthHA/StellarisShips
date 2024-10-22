@@ -50,15 +50,17 @@ namespace StellarisShips.Content.NPCs
                 NPC.active = false;
                 return;
             }
-
             AddLight();
 
             if (HurtTimer > 0) HurtTimer--;
             if (ImmuneTime > 0 && NPC.immune[Main.myPlayer] == 0 && NPC.immune[255] == 0) ImmuneTime--;
             if (shipAI != ShipAI.FTLMove && shipAI != ShipAI.Missing) if (FTLCooldown > 0) FTLCooldown--;
 
+            ResetShipStat();
             UpdateHullAndShieldRegen();
             ModifyScaleForShield();
+
+
             SelectTarget();
             if (shipAI == ShipAI.Default)
             {
@@ -233,7 +235,6 @@ namespace StellarisShips.Content.NPCs
                     HurtTimer = 180;
                 }
             }
-
             foreach (BaseWeaponUnit weapon in weapons)
             {
                 weapon.Update(NPC);
@@ -568,7 +569,7 @@ namespace StellarisShips.Content.NPCs
         private float GetFinalSpeed(float speed)
         {
             float modifier = 1f;
-            if (FleetSystem.GlobalEffects.ContainsKey(AuraID.ShroudSpeedUp))
+            if (FleetSystem.GlobalEffects.Contains(ModifierID.ShroudSpeedUp))
             {
                 modifier += 0.25f;
             }

@@ -15,6 +15,7 @@ namespace StellarisShips.System
         public static Dictionary<string, BaseWeaponUnit> WeaponUnits = new();
         public static Dictionary<string, BaseDialog> Dialogs = new();
         public static List<string> LockedTech = new();
+        public static Dictionary<string, BaseModifier> Modifiers = new();
         public override void Load()
         {
             Components = new();
@@ -22,6 +23,7 @@ namespace StellarisShips.System
             Ships = new();
             WeaponUnits = new();
             Dialogs = new();
+            Modifiers = new();
             foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())
             {
                 if (type.IsClass && !type.IsAbstract && typeof(BaseComponent).IsAssignableFrom(type))
@@ -61,6 +63,11 @@ namespace StellarisShips.System
                     BaseDialog instance = (BaseDialog)Activator.CreateInstance(type);
                     Dialogs.Add(instance.InternalName, instance);
                 }
+                if (type.IsClass && !type.IsAbstract && typeof(BaseModifier).IsAssignableFrom(type))
+                {
+                    BaseModifier instance = (BaseModifier)Activator.CreateInstance(type);
+                    Modifiers.Add(instance.ID, instance);
+                }
             }
         }
 
@@ -72,6 +79,7 @@ namespace StellarisShips.System
             WeaponUnits.Clear();
             Dialogs.Clear();
             LockedTech.Clear();
+            Modifiers.Clear();
         }
     }
 }

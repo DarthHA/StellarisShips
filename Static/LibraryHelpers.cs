@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using Steamworks;
 using StellarisShips.System;
 using StellarisShips.System.BaseType;
+using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
@@ -9,6 +11,14 @@ namespace StellarisShips.Static
 {
     internal static class LibraryHelpers
     {
+        public static void SetBonus(this Dictionary<string, float> bonusBuff, string item, float value)
+        {
+            if (!bonusBuff.TryAdd(item, value))
+            {
+                bonusBuff[item] = value;
+            }
+        }
+
 
         public static void AddBonus(this Dictionary<string, float> bonusBuff, string item, float value)
         {
@@ -18,7 +28,41 @@ namespace StellarisShips.Static
             }
         }
 
-        public static float ApplyBonus(this Dictionary<string, float> bonusBuff, string item, bool AddOne = true)
+        public static void AddBonusEvasion(this Dictionary<string, float> bonusBuff, string item, float value)
+        {
+            float value1 = bonusBuff.GetBonus(item);
+            float value2 = value;
+            float result = (1 - (1 - value1 / 100f) * (1 - value2 / 100f)) * 100f;
+            if (!bonusBuff.TryAdd(item, result))
+            {
+                bonusBuff[item] = result;
+            }
+        }
+
+        public static void AddBonusShieldDR(this Dictionary<string, float> bonusBuff, string item, float value)
+        {
+            float value1 = bonusBuff.GetBonus(item);
+            float value2 = value;
+            float result = 1 - (1 - value1) * (1 - value2);
+            if (!bonusBuff.TryAdd(item, result))
+            {
+                bonusBuff[item] = result;
+            }
+        }
+
+        public static void AddBonusLevel(this Dictionary<string, float> bonusBuff, string item, float value)
+        {
+            float value1 = bonusBuff.GetBonus(item);
+            float value2 = value;
+            float result = Math.Max(value1, value2);
+            if (!bonusBuff.TryAdd(item, result))
+            {
+                bonusBuff[item] = result;
+            }
+        }
+
+
+        public static float GetBonus(this Dictionary<string, float> bonusBuff, string item, bool AddOne = false)
         {
             float One = AddOne ? 1 : 0;
             if (bonusBuff.TryGetValue(item, out float value))
@@ -27,6 +71,7 @@ namespace StellarisShips.Static
             }
             return One;
         }
+
 
         public static List<BaseComponent> FindMaxLevelComponent(bool removeByProgress = false)
         {
@@ -236,6 +281,38 @@ namespace StellarisShips.Static
                     return 1f;
 
             }
+        }
+
+        public static Dictionary<string, float> Merge(this Dictionary<string, float> dic1, Dictionary<string, float> dic2)
+        {
+            Dictionary<string, float> result = new();
+            foreach (string key in dic1.Keys)
+            {
+                result.Add(key, dic1[key]);
+            }
+            foreach (string key in dic2.Keys)
+            {
+                if(!result.TryAdd(key, dic2[key]))
+                {
+                    switch (key)
+                    {
+                        case BonusID.ShieldDRLevel:
+                        case BonusID.FTLLevel:
+                            result[key] = Math.Max(dic1[key], dic2[key]);
+                            break;
+                        case BonusID.Evasion:
+                            result[key] = (1 - (1 - dic1[key] / 100f) * (1 - dic2[key] / 100f)) * 100f;
+                            break;
+                        case BonusID.ShieldDR:
+                            result[key] = 1 - (1 - dic1[key]) * (1 - dic2[key]);
+                            break;
+                        default:
+                            result[key] += dic2[key];
+                            break;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

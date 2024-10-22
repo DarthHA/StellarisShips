@@ -23,12 +23,6 @@ namespace StellarisShips.Content.NPCs
                 shipNPC.ShipGraph = graph.Copy();
                 shipNPC.ShipName = Name;
                 npc.GivenName = Name;
-                npc.lifeMax = EverythingLibrary.Ships[graph.ShipType].BaseHull;
-                shipNPC.Evasion = EverythingLibrary.Ships[graph.ShipType].BaseEvasion;
-                shipNPC.MaxSpeed = EverythingLibrary.Ships[graph.ShipType].BaseSpeed;
-                shipNPC.BaseSpeed = EverythingLibrary.Ships[graph.ShipType].BaseSpeed;
-                shipNPC.MaxShield += EverythingLibrary.Ships[graph.ShipType].BaseShield;
-                npc.defense += EverythingLibrary.Ships[graph.ShipType].BaseDefense;
                 //计算核心部件和通用部件加成
                 foreach (string coreComponent in shipNPC.ShipGraph.CoreComponent)
                 {
@@ -59,9 +53,9 @@ namespace StellarisShips.Content.NPCs
                             BaseWeaponUnit instance = BaseWeaponUnit.NewWeaponUnit(EverythingLibrary.Components[section.WeaponSlot[i]].TypeName);
                             instance.RelativePos = EverythingLibrary.Sections[section.InternalName].WeaponPos[i];
                             instance.ComponentName = section.WeaponSlot[i];
-                            instance.DamageBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetDamageBonus(shipNPC.BonusBuff);
-                            instance.AttackCDBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetAttackCDBonus(shipNPC.BonusBuff);
-                            instance.CritBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetCritCDBonus(shipNPC.BonusBuff);
+                            instance.DamageBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetDamageBonus(shipNPC.StaticBuff);
+                            instance.AttackCDBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetAttackCDBonus(shipNPC.StaticBuff);
+                            instance.CritBonus = (EverythingLibrary.Components[section.WeaponSlot[i]] as BaseWeaponComponent).GetCritCDBonus(shipNPC.StaticBuff);
                             EverythingLibrary.Components[section.WeaponSlot[i]].ModifyWeaponUnit(instance, npc);
                             if (EverythingLibrary.Components[section.WeaponSlot[i]].EquipType != ComponentTypes.Weapon_H)  //不算H槽
                             {
@@ -73,9 +67,7 @@ namespace StellarisShips.Content.NPCs
                 }
 
                 //计算舰船本身加成
-                shipNPC.MaxSpeed *= shipNPC.BonusBuff.ApplyBonus(BonusID.Speed);
-                shipNPC.MaxShield = (int)(shipNPC.MaxShield * shipNPC.BonusBuff.ApplyBonus(BonusID.ShieldBonus));
-                shipNPC.HullRegen = npc.lifeMax * shipNPC.BonusBuff.ApplyBonus(BonusID.HullRegen, false);
+                shipNPC.ResetShipStat();
 
                 //计算武器射程
                 if (weaponRanges.Count > 0)
@@ -95,9 +87,8 @@ namespace StellarisShips.Content.NPCs
                     shipNPC.MaxRange = (int)weaponRanges.Max();
                 }
 
-                //部分参数录入
+                //参数重整
                 npc.width = npc.height = EverythingLibrary.Ships[graph.ShipType].Width;
-                npc.lifeMax += shipNPC.MaxShield;
                 npc.life = npc.lifeMax;
                 shipNPC.CurrentShield = shipNPC.MaxShield;
                 npc.Center = Pos;

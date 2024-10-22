@@ -13,7 +13,7 @@ namespace StellarisShips.Content.Components.Utility.Others
         public virtual int Aggro => 200;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().Aggro -= Aggro;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Aggro, -Aggro);
         }
 
         public override void ModifyDesc(ref string desc)

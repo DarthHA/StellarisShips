@@ -52,12 +52,12 @@ namespace StellarisShips.Static
             return npc.ModNPC as ShipNPC;
         }
 
-        public static bool ShipActive(this NPC npc)
+        public static bool ShipActive(this NPC npc, bool MissingIncluded = false)
         {
             if (npc.active && npc.type == ModContent.NPCType<ShipNPC>())
             {
                 ShipNPC shipNPC = npc.GetShipNPC();
-                if (shipNPC.ShipGraph.ShipType != "" && shipNPC.shipAI != ShipAI.Missing)
+                if (shipNPC.ShipGraph.ShipType != "" && (shipNPC.shipAI != ShipAI.Missing || MissingIncluded))
                 {
                     return true;
                 }

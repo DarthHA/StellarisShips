@@ -18,9 +18,9 @@ namespace StellarisShips.Content.Components.Utility.Armor
         public override int MRValue => 20;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.defense += Defense;
-            ship.GetShipNPC().MaxShield += Shield;
-            ship.GetShipNPC().ShieldRegen += ShieldRegen;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Defense, Defense);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Shield, Shield);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.ShieldRegen, ShieldRegen);
         }
 
         public override void ModifyDesc(ref string desc)
@@ -42,9 +42,9 @@ namespace StellarisShips.Content.Components.Utility.Armor
         public override int MRValue => 40;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.defense += Defense;
-            ship.GetShipNPC().MaxShield += Shield;
-            ship.GetShipNPC().ShieldRegen += ShieldRegen;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Defense, Defense);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Shield, Shield);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.ShieldRegen, ShieldRegen);
         }
 
         public override void ModifyDesc(ref string desc)
@@ -66,9 +66,9 @@ namespace StellarisShips.Content.Components.Utility.Armor
         public override int MRValue => 80;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.defense += Defense;
-            ship.GetShipNPC().MaxShield += Shield;
-            ship.GetShipNPC().ShieldRegen += ShieldRegen;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Defense, Defense);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Shield, Shield);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.ShieldRegen, ShieldRegen);
         }
 
         public override void ModifyDesc(ref string desc)

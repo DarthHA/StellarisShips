@@ -83,9 +83,6 @@ namespace StellarisShips.Static
 
     public static class BonusID
     {
-        //舰船航速
-        public const string Speed = "Speed";
-
         //槽位武器伤害
         public const string WeaponDamage_S = "WeaponDamage_S";
         public const string WeaponDamage_M = "WeaponDamage_M";
@@ -130,9 +127,30 @@ namespace StellarisShips.Static
         public const string AllWeaponCrit = "AllWeaponCrit";
         public const string AllWeaponRange = "AllWeaponRange";
 
-        public const string ShieldBonus = "ShieldBonus";
-        public const string HullRegen = "HullRegen";
+        //舰船数据
+        public const string ExtraHull = "ExtraHull";
+        public const string Defense = "Defense";
+        public const string Shield = "Shield";
+        public const string ShieldMult = "ShieldMult";
+        public const string HullRegenPercent = "HullRegenPercent";
         public const string ShieldRegen = "ShieldRegen";
+        public const string ShieldRegenPercent = "ShieldRegenPercent";
+        public const string BaseSpeed = "BaseSpeed";
+        public const string SpeedMult = "SpeedMult";
+        public const string BaseEvasion = "BaseEvasion";
+        public const string EscapeChance = "EscapeChance";
+        public const string FTLMaxCooldown = "FTLMaxCooldown";
+        public const string DetectRange = "DetectRange";
+        public const string MaxImmuneTime = "MaxImmuneTime";
+        public const string ExtraStriker = "ExtraStriker";
+        public const string Aggro = "Aggro";
+
+        //这个取最大值
+        public const string ShieldDRLevel = "ShieldDRLevel";
+        public const string FTLLevel = "FTLLevel";
+
+        //这个取反向乘算
+        public const string Evasion = "Evasion";
         public const string ShieldDR = "ShieldDR";
     }
 
@@ -156,7 +174,7 @@ namespace StellarisShips.Static
         public const string Other = "StellarisShips/Sounds/Other/";
     }
 
-    public static class AuraID
+    public static class ModifierID
     {
         public const string QuantumDestabilizer = "QuantumDestabilizer";
         public const string ShieldDampener = "ShieldDampener";

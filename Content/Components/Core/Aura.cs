@@ -15,7 +15,7 @@ namespace StellarisShips.Content.Components.Core
         public override string TypeName => "QuantumDestabilizer";
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().AuraType = AuraID.QuantumDestabilizer;
+            ship.GetShipNPC().AuraType = ModifierID.QuantumDestabilizer;
         }
     }
 
@@ -24,7 +24,7 @@ namespace StellarisShips.Content.Components.Core
         public override string TypeName => "ShieldDampener";
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().AuraType = AuraID.ShieldDampener;
+            ship.GetShipNPC().AuraType = ModifierID.ShieldDampener;
         }
     }
 
@@ -33,7 +33,7 @@ namespace StellarisShips.Content.Components.Core
         public override string TypeName => "SubspaceSnare";
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().AuraType = AuraID.SubspaceSnare;
+            ship.GetShipNPC().AuraType = ModifierID.SubspaceSnare;
         }
     }
 
@@ -42,7 +42,7 @@ namespace StellarisShips.Content.Components.Core
         public override string TypeName => "InspiringPresence";
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().AuraType = AuraID.InspiringPresence;
+            ship.GetShipNPC().AuraType = ModifierID.InspiringPresence;
         }
     }
 
@@ -52,7 +52,7 @@ namespace StellarisShips.Content.Components.Core
         public override int MRValue => 120;
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().AuraType = AuraID.AncientTargetScrambler;
+            ship.GetShipNPC().AuraType = ModifierID.AncientTargetScrambler;
         }
     }
 
@@ -61,7 +61,7 @@ namespace StellarisShips.Content.Components.Core
         public override string TypeName => "NanobotCloud";
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().AuraType = AuraID.NanobotCloud;
+            ship.GetShipNPC().AuraType = ModifierID.NanobotCloud;
         }
     }
 
@@ -70,7 +70,7 @@ namespace StellarisShips.Content.Components.Core
         public override string TypeName => "TargetingGrid";
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().AuraType = AuraID.TargetingGrid;
+            ship.GetShipNPC().AuraType = ModifierID.TargetingGrid;
         }
     }
 

@@ -16,7 +16,7 @@ namespace StellarisShips.Content.Components.Utility.Others
         public override int Progress => 9;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().Evasion = (1 - (1 - ship.GetShipNPC().Evasion / 100f) * (1 - Evasion / 100f)) * 100f;
+            ship.GetShipNPC().StaticBuff.AddBonusEvasion(BonusID.Evasion, Evasion);
         }
 
 

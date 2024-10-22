@@ -215,7 +215,7 @@ BuffExtraDesc: {
 	ShroudAtkUpDesc: 武器伤害 +25%
 	ShroudEvasionUpDesc: 闪避率 +30%
 	ShroudRegenUpDesc: 船体修复 +3% 每秒
-	ShroudShieldUpDesc: 护盾存在时减伤 +25%
+	ShroudShieldUpDesc: 护盾承受值 +40%
 	ShroudSpeedUpDesc: 航速 +25%
 }
 

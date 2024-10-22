@@ -16,7 +16,7 @@ namespace StellarisShips.Content.Components.Utility.Armor
         public override int Progress => 3;
         public sealed override void ApplyEquip(NPC ship)
         {
-            ship.lifeMax += Hull;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.ExtraHull, Hull);
         }
         public override void ModifyDesc(ref string desc)
         {

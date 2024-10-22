@@ -161,25 +161,13 @@ namespace StellarisShips.Content.NPCs
                 if (npc.GetShipNPC().CurrentShield > 0)
                 {
                     modifiers.FinalDamage *= 1 - npc.GetShipNPC().ShieldDR;
-                    if (FleetSystem.GlobalEffects.ContainsKey(AuraID.ShroudShieldUp))    //虚境强化护盾
-                    {
-                        modifiers.FinalDamage *= 1 - 0.25f;
-                    }
                 }
-                if (FleetSystem.GlobalEffects.ContainsKey(AuraID.QuantumDestabilizer))    //量子去稳器
+                if (FleetSystem.GlobalEffects.Contains(ModifierID.QuantumDestabilizer))    //量子去稳器
                 {
                     modifiers.FinalDamage *= 1f - 0.15f;
                 }
 
                 float evasionRate = npc.GetShipNPC().Evasion / 100f;
-                if (FleetSystem.GlobalEffects.ContainsKey(AuraID.AncientTargetScrambler))    //远古索敌扰频器
-                {
-                    evasionRate = 1 - (1 - evasionRate) * (1 - 0.3f);
-                }
-                if (FleetSystem.GlobalEffects.ContainsKey(AuraID.ShroudEvasionUp))    //虚境闪避
-                {
-                    evasionRate = 1 - (1 - evasionRate) * (1 - 0.3f);
-                }
                 modifiers.ModifyHitInfo += (ref NPC.HitInfo info) =>
                 {
                     if (Main.rand.NextFloat() < evasionRate)
@@ -194,7 +182,7 @@ namespace StellarisShips.Content.NPCs
             {
                 if (!npc.friendly)                //护盾挡板
                 {
-                    if (FleetSystem.GlobalEffects.ContainsKey(AuraID.ShieldDampener))
+                    if (FleetSystem.GlobalEffects.Contains(ModifierID.ShieldDampener))
                     {
                         modifiers.FinalDamage *= 1f + 0.1f;
                     }
@@ -207,7 +195,7 @@ namespace StellarisShips.Content.NPCs
         {
             if (npc.type != ModContent.NPCType<ShipNPC>() && npc.type != ModContent.NPCType<FallenShip>() && !npc.friendly)
             {
-                if (FleetSystem.GlobalEffects.ContainsKey(AuraID.SubspaceSnare))                //亚空间陷阱
+                if (FleetSystem.GlobalEffects.Contains(ModifierID.SubspaceSnare))                //亚空间陷阱
                 {
                     npc.position -= npc.velocity * 0.3f;
                 }

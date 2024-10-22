@@ -16,7 +16,7 @@ namespace StellarisShips.Content.Components.Utility.Others
         public override int Progress => 5;
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().MaxImmuneTime += MaxImmuneTime;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.MaxImmuneTime, MaxImmuneTime);
         }
 
         public override void ModifyDesc(ref string desc)

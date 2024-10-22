@@ -1,6 +1,8 @@
-﻿using StellarisShips.System;
+﻿using StellarisShips.Content.Items;
+using StellarisShips.System;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace StellarisShips.Content.Projectiles
@@ -10,13 +12,26 @@ namespace StellarisShips.Content.Projectiles
         public string SourceName = "";
         public bool Crit = false;
 
+        public sealed override void SetDefaults()
+        {
+            SafeSetDefaults();
+            if (Main.LocalPlayer.HasItem(ModContent.ItemType<ShipEmblem>()))
+            {
+                Projectile.npcProj = true;
+                Projectile.DamageType = DamageClass.Summon;
+            }
+        }
+
         public sealed override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             //用于伤害计数
-            if (!BattleStatSystem.WeaponDamage.TryAdd(SourceName, damageDone))
+            if (BattleStatSystem.BossBattleActive)
             {
-                BattleStatSystem.WeaponDamage[SourceName] += damageDone;
-                if (SourceName == "") Main.NewText("未知武器：" + Lang.GetProjectileName(Projectile.type));
+                if (!BattleStatSystem.WeaponDamage.TryAdd(SourceName, damageDone))
+                {
+                    BattleStatSystem.WeaponDamage[SourceName] += damageDone;
+                    if (SourceName == "") Main.NewText("未知武器：" + Lang.GetProjectileName(Projectile.type));
+                }
             }
 
             //威慑值
@@ -37,6 +52,13 @@ namespace StellarisShips.Content.Projectiles
                 modifiers.DisableCrit();
             }
             SafeModifyHitNPC(target, ref modifiers);
+            modifiers.ModifyHitInfo += (ref NPC.HitInfo info) =>
+            {
+                if (Main.LocalPlayer.HasItem(ModContent.ItemType<ShipEmblem>()))
+                {
+                    info.Damage = (int)Main.LocalPlayer.GetTotalDamage(DamageClass.Summon).ApplyTo(info.Damage);
+                }
+            };
         }
 
         public virtual void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -48,5 +70,12 @@ namespace StellarisShips.Content.Projectiles
         {
 
         }
+
+        public virtual void SafeSetDefaults()
+        {
+
+        }
+
+
     }
 }

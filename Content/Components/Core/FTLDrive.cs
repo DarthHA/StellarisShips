@@ -16,9 +16,9 @@ namespace StellarisShips.Content.Components.Core
         public override long Value => 0 * 400;
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().FTLLevel = Level;
-            ship.GetShipNPC().EscapeChance = EscapeChance;
-            ship.GetShipNPC().FTLMaxCooldown = FTLCooldown;
+            ship.GetShipNPC().StaticBuff.AddBonusLevel(BonusID.FTLLevel, Level);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.EscapeChance, EscapeChance);
+            ship.GetShipNPC().StaticBuff.SetBonus(BonusID.FTLMaxCooldown, FTLCooldown);
         }
 
         public override void ModifyDesc(ref string desc)

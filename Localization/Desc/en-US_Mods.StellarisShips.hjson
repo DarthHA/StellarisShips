@@ -622,22 +622,22 @@ Desc: {
 		'''
 	InspiringPresence_1:
 		'''
-		All ships firing rate +10%
+		All ships firing rate +15%
 		Ships of this class be equipped with field emitters that project and maintain localized fields that induce various effects in enemy or friendly vessels.
 		'''
 	AncientTargetScrambler_1:
 		'''
-		All ships evasion +30%
+		All ships evasion +40%
 		Ping repeaters and optic diffusers with the right wavelengths can produce destructive interference and effectively scramble hostile targeting systems.
 		'''
 	NanobotCloud_1:
 		'''
-		All ships hull regen +1.5%/s
+		All ships hull regen +2%/s
 		Ships of this class be equipped with field emitters that project and maintain localized fields that induce various effects in enemy or friendly vessels.
 		'''
 	TargetingGrid_1:
 		'''
-		All ships crit +10%
+		All ships crit +15%
 		Ships of this class be equipped with field emitters that project and maintain localized fields that induce various effects in enemy or friendly vessels.
 		'''
 }

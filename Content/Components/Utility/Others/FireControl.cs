@@ -15,7 +15,7 @@ namespace StellarisShips.Content.Components.Utility.Others
         public override int Progress => 4;
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().BonusBuff.AddBonus(BonusID.AllWeaponCrit, 5f);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.AllWeaponCrit, 5f);
         }
 
         public override void ModifyDesc(ref string desc)

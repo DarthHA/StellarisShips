@@ -28,7 +28,7 @@ namespace StellarisShips.Content.Projectiles
             ProjectileID.Sets.DrawScreenCheckFluff[Projectile.type] = 3000;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Projectile.width = 10;
             Projectile.height = 10;

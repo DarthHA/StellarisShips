@@ -16,8 +16,8 @@ namespace StellarisShips.Content.Components.Utility.Shield
         public override long Value => 10 * 100;
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().MaxShield += Shield;
-            ship.GetShipNPC().ShieldRegen += ShieldRegen;
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.Shield, Shield);
+            ship.GetShipNPC().StaticBuff.AddBonus(BonusID.ShieldRegen, ShieldRegen);
         }
         public override void ModifyDesc(ref string desc)
         {

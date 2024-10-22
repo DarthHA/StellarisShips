@@ -17,8 +17,8 @@ namespace StellarisShips.Content.Components.Utility.Others
         public override int Progress => 5;
         public override void ApplyEquip(NPC ship)
         {
-            ship.GetShipNPC().ShieldDR = 1 - (1 - ship.GetShipNPC().ShieldDR) * (1 - DR);
-            ship.GetShipNPC().ShieldDRLevel = Math.Max(ship.GetShipNPC().ShieldDRLevel, Level);
+            ship.GetShipNPC().StaticBuff.AddBonusShieldDR(BonusID.ShieldDR, DR);
+            ship.GetShipNPC().StaticBuff.AddBonusLevel(BonusID.ShieldDRLevel, Level);
         }
 
         public override void ModifyDesc(ref string desc)

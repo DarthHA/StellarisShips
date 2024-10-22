@@ -38,7 +38,7 @@ namespace StellarisShips.System
         /// <summary>
         /// 舰队光环效果
         /// </summary>
-        public static Dictionary<string, float> GlobalEffects = new();
+        public static List<string> GlobalEffects = new();
 
         //对应舰容一排舰船最多数
         public static Dictionary<int, int> ShipLineCount = new();
@@ -65,7 +65,7 @@ namespace StellarisShips.System
 
             if (Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs != "")
             {
-                GlobalEffects.Add(Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs, 1);
+                GlobalEffects.Add(Main.LocalPlayer.GetModPlayer<ShipControlPlayer>().CurrentShroudBuffs);
             }
 
             foreach (NPC ship in Main.ActiveNPCs)
@@ -74,20 +74,40 @@ namespace StellarisShips.System
                 {
                     if (ship.GetShipNPC().AuraType != "")
                     {
-                        if (ship.GetShipNPC().AuraType == AuraID.SubspaceSnare)        //亚空间陷阱只会在进战时生效
+                        if (ship.GetShipNPC().AuraType == ModifierID.SubspaceSnare)        //亚空间陷阱只会在进战时生效
                         {
                             if (ship.GetShipNPC().shipAI == ShipAI.Attack)
                             {
-                                GlobalEffects.Add(ship.GetShipNPC().AuraType, 1);
+                                GlobalEffects.Add(ship.GetShipNPC().AuraType);
                             }
                         }
                         else
                         {
-                            GlobalEffects.Add(ship.GetShipNPC().AuraType, 1);
+                            GlobalEffects.Add(ship.GetShipNPC().AuraType);
                         }
                     }
                 }
             }
+
+            foreach (NPC ship in Main.ActiveNPCs)
+            {
+                if (ship.ShipActive(true))
+                {
+                    ship.GetShipNPC().SpecialBuff.Clear();
+                }
+            }
+
+            foreach (NPC ship in Main.ActiveNPCs)
+            {
+                if (ship.ShipActive(true))
+                {
+                    foreach (string modifier in GlobalEffects)
+                    {
+                        EverythingLibrary.Modifiers[modifier].ApplyBonus(ship.GetShipNPC().SpecialBuff);
+                    }
+                }
+            }
+
         }
 
 
@@ -144,12 +164,12 @@ namespace StellarisShips.System
                 if (npc.ShipActive())
                 {
                     int CP = EverythingLibrary.Ships[npc.GetShipNPC().ShipGraph.ShipType].CP;
-                    if (shipTargetPos.ContainsKey(CP))
+                    if (shipTargetPos.TryGetValue(CP, out List<Vector2> value))
                     {
-                        if (shipTargetPos[CP].Count > 0)
+                        if (value.Count > 0)
                         {
-                            npc.GetShipNPC().ShapePos = shipTargetPos[CP][0];
-                            shipTargetPos[CP].RemoveAt(0);
+                            npc.GetShipNPC().ShapePos = value[0];
+                            value.RemoveAt(0);
                         }
                     }
                 }

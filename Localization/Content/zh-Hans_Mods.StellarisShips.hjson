@@ -166,6 +166,15 @@ Items: {
 		DisplayName: 射弹测试
 		Tooltip: ""
 	}
+
+	ShipEmblem: {
+		DisplayName: 舰船徽章
+		Tooltip:
+			'''
+			在背包时使舰船造成的伤害受到召唤伤害加成
+			好玩
+			'''
+	}
 }
 
 NPCs: {
