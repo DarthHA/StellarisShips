@@ -410,13 +410,25 @@ namespace StellarisShips.Content.NPCs
             float scale = 1f;
             if (Main.HealthBarDrawSettings == 1)
             {
-                DrawHullBar(NPC.Center.X, NPC.Center.Y + ShipWidth / 2f + 10 + NPC.gfxOffY, 1f, scale, false);
-                DrawShieldBar(NPC.Center.X, NPC.Center.Y + ShipWidth / 2f + 10 + NPC.gfxOffY, 1f, scale, false);
+                float DrawPosY = NPC.Center.Y + ShipWidth / 2f + 10 + NPC.gfxOffY;
+                if (Main.LocalPlayer.gravDir != 1)
+                {
+                    DrawPosY = NPC.Center.Y - ShipWidth / 2f - 10 + NPC.gfxOffY;
+                    DrawPosY = Main.screenHeight - (DrawPosY - Main.screenPosition.Y) + Main.screenPosition.Y;
+                }
+                DrawHullBar(NPC.Center.X, DrawPosY, 1f, scale, false);
+                DrawShieldBar(NPC.Center.X, DrawPosY, 1f, scale, false);
             }
             else if (Main.HealthBarDrawSettings == 2)
             {
-                DrawHullBar(NPC.Center.X, NPC.Center.Y - ShipWidth / 2f - 10 + NPC.gfxOffY, 1f, scale, false);
-                DrawShieldBar(NPC.Center.X, NPC.Center.Y - ShipWidth / 2f - 10 + NPC.gfxOffY, 1f, scale, false);
+                float DrawPosY = NPC.Center.Y - ShipWidth / 2f - 10 + NPC.gfxOffY;
+                if (Main.LocalPlayer.gravDir != 1)
+                {
+                    DrawPosY = NPC.Center.Y + ShipWidth / 2f + 10 + NPC.gfxOffY;
+                    DrawPosY = Main.screenHeight - (DrawPosY - Main.screenPosition.Y) + Main.screenPosition.Y;
+                }
+                DrawHullBar(NPC.Center.X, DrawPosY, 1f, scale, false);
+                DrawShieldBar(NPC.Center.X, DrawPosY, 1f, scale, false);
             }
         }
 

@@ -30,7 +30,14 @@ namespace StellarisShips.System.BaseType
         /// </summary>
         public virtual float ShipScale => 1f;
 
+        /// <summary>
+        /// 在舰船设计界面的Offset
+        /// </summary>
+        public virtual float ShipDesignViewOffSet => 0;
+
         public virtual int BaseHull => 100;
+        public virtual int BaseDefense => 0;
+        public virtual int BaseShield => 0;
         public virtual int BaseEvasion => 5;
         public virtual int BaseSpeed => 100;
 

@@ -38,6 +38,10 @@ namespace StellarisShips.Static
                 Matrix projection = Matrix.CreateOrthographicOffCenter(0f, screenSize.X, screenSize.Y, 0f, 0f, 1f);
                 Vector2 screenPos = vector - screenSize / 2f;
                 Matrix model = Matrix.CreateTranslation(new Vector3(-screenPos.X, -screenPos.Y, 0f));
+                if (Main.LocalPlayer.gravDir != 1)
+                {
+                    projection *= Matrix.CreateScale(1f, -1f, 1f);
+                }
                 StellarisShips.NormalTrailEffect.Parameters["uTransform"].SetValue(model * projection);
                 StellarisShips.NormalTrailEffect.Parameters["color"].SetValue(color.ToVector4());
                 Main.graphics.GraphicsDevice.Textures[0] = tex;
@@ -78,7 +82,10 @@ namespace StellarisShips.Static
             Vector2 screenPos = vector - screenSize / 2f;
             Matrix model = Matrix.CreateTranslation(new Vector3(-screenPos.X, -screenPos.Y, 0f));
 
-
+            if (Main.LocalPlayer.gravDir != 1)
+            {
+                projection *= Matrix.CreateScale(1f, -1f, 1f);
+            }
 
             // 把变换和所需信息丢给shader
             StellarisShips.SpherePerspective.Parameters["uTransform"].SetValue(model * projection);
@@ -121,6 +128,10 @@ namespace StellarisShips.Static
                 Matrix projection = Matrix.CreateOrthographicOffCenter(0f, screenSize.X, screenSize.Y, 0f, 0f, 1f);
                 Vector2 screenPos = vector - screenSize / 2f;
                 Matrix model = Matrix.CreateTranslation(new Vector3(-screenPos.X, -screenPos.Y, 0f));
+                if (Main.LocalPlayer.gravDir != 1)
+                {
+                    projection *= Matrix.CreateScale(1f, -1f, 1f);
+                }
                 StellarisShips.LoopTrailEffect.Parameters["progress"].SetValue(Progress);
                 StellarisShips.LoopTrailEffect.Parameters["laserLength"].SetValue(LaserLength);
                 StellarisShips.LoopTrailEffect.Parameters["imageLength"].SetValue(ImageLength);

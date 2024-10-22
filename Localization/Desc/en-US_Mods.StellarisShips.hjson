@@ -275,6 +275,12 @@ Desc: {
 		Ignores enemy defense.
 		Continuous attacks on the same enemy increase damage.
 		'''
+	CloudLightning_1:
+		'''
+		Utilizing our understanding of the fundamental forces involved in generating the Void Clouds' considerable internal charge to the fullest, the Cloud Lightning weapon system is a potent damage-dealer.
+		Ignores enemy defense.
+		Continuous attacks on the same enemy increase damage.
+		'''
 	Mega_1:
 		'''
 		An enormous variant of kinetic artillery, so large that it has to be placed in a fixed spinal mount.

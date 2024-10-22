@@ -27,6 +27,8 @@ namespace StellarisShips.Content.NPCs
                 shipNPC.Evasion = EverythingLibrary.Ships[graph.ShipType].BaseEvasion;
                 shipNPC.MaxSpeed = EverythingLibrary.Ships[graph.ShipType].BaseSpeed;
                 shipNPC.BaseSpeed = EverythingLibrary.Ships[graph.ShipType].BaseSpeed;
+                shipNPC.MaxShield += EverythingLibrary.Ships[graph.ShipType].BaseShield;
+                npc.defense += EverythingLibrary.Ships[graph.ShipType].BaseDefense;
                 //计算核心部件和通用部件加成
                 foreach (string coreComponent in shipNPC.ShipGraph.CoreComponent)
                 {

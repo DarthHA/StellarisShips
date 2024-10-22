@@ -624,8 +624,8 @@ namespace StellarisShips.UI
                 {
                     sectionList.Add(sectionSelectButton.InternalText);
                 }
-                int GlobalOffset = shipType == ShipIDs.Titan ? 40 : 0;            //给泰坦加一个修正
-                int TailOffset = EverythingLibrary.Sections[sectionSelectButtons[sectionSelectButtons.Count - 1].InternalText].TailDrawOffSet;
+                float GlobalOffset = EverythingLibrary.Ships[shipType].ShipDesignViewOffSet;
+                float TailOffset = EverythingLibrary.Sections[sectionSelectButtons[sectionSelectButtons.Count - 1].InternalText].TailDrawOffSet;
                 TailOffset += GlobalOffset - 100;
                 Texture2D shipTex = LibraryHelpers.GetShipTexture(sectionList);
                 EasyDraw.AnotherDraw(BlendState.NonPremultiplied);
@@ -902,12 +902,13 @@ namespace StellarisShips.UI
         private static string CalcShipStat()
         {
             if (shipType == "") return "";
-            string result = "";
             NPC dummyShip = new();
             dummyShip.SetDefaults(ModContent.NPCType<ShipNPC>());
             dummyShip.lifeMax = EverythingLibrary.Ships[shipType].BaseHull;
             dummyShip.GetShipNPC().Evasion = EverythingLibrary.Ships[shipType].BaseEvasion;
             dummyShip.GetShipNPC().MaxSpeed = EverythingLibrary.Ships[shipType].BaseSpeed;
+            dummyShip.GetShipNPC().MaxShield += EverythingLibrary.Ships[shipType].BaseShield;
+            dummyShip.defense += EverythingLibrary.Ships[shipType].BaseDefense;
             dummyShip.GetShipNPC().ShipGraph = new();
             dummyShip.GetShipNPC().ShipGraph.ShipType = shipType;
             float TotalDPS = 0;
@@ -968,7 +969,7 @@ namespace StellarisShips.UI
             float Aggro = dummyShip.GetShipNPC().Aggro;
             TotalDPS = (float)Math.Round(TotalDPS, 1);
             string profession = Language.GetTextValue("Mods.StellarisShips.ComputerType." + dummyShip.GetShipNPC().ComputerType);
-            result = string.Format(Language.GetTextValue("Mods.StellarisShips.UI.ShipStat"), CP, Hull, Defense, Shield, HullRegen, ShieldRegen, Evasion, MaxSpeed, DetectRange, Aggro, TotalDPS, profession, MoneyHelpers.ShowCoins(Value, ValueMR));
+            string result = string.Format(Language.GetTextValue("Mods.StellarisShips.UI.ShipStat"), CP, Hull, Defense, Shield, HullRegen, ShieldRegen, Evasion, MaxSpeed, DetectRange, Aggro, TotalDPS, profession, MoneyHelpers.ShowCoins(Value, ValueMR));
             return result;
         }
 

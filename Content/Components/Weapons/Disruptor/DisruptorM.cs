@@ -14,8 +14,8 @@ namespace StellarisShips.Content.Components.Weapons.Disruptor
 
         public override int AttackCD => 85;
         public override float Crit => 10;
-        public override int MaxDamage => 96;
-        public override int MinDamage => 34;
+        public override int MaxDamage => 130;
+        public override int MinDamage => 1;
         public override float MaxRange => 200;
 
         public override List<string> DamageTag => new() { BonusID.AllWeaponDamage, BonusID.WeaponDamage_M };
@@ -33,8 +33,8 @@ namespace StellarisShips.Content.Components.Weapons.Disruptor
     public class DisruptorM2 : DisruptorM1          //DPS:100
     {
         public override int Level => 2;
-        public override int MaxDamage => 213;
-        public override int MinDamage => 86;
+        public override int MaxDamage => 300;
+        public override int MinDamage => 1;
         public override long Value => 30 * 500;
         public override int Progress => 5;
     }
@@ -42,8 +42,8 @@ namespace StellarisShips.Content.Components.Weapons.Disruptor
     public class DisruptorM3 : DisruptorM1          //DPS:140
     {
         public override int Level => 3;
-        public override int MaxDamage => 338;
-        public override int MinDamage => 121;
+        public override int MaxDamage => 460;
+        public override int MinDamage => 1;
         public override long Value => 44 * 800;
         public override int Progress => 7;
     }

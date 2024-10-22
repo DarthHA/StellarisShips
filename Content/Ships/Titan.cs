@@ -27,6 +27,7 @@ namespace StellarisShips.Content.Ships
         public override int Width => 180;
         public override float WeaponScale => 0.3f;
         public override float ShipScale => 0.9f;
+        public override float ShipDesignViewOffSet => 40;
 
         public override int BaseHull => 54000;
         public override int BaseSpeed => 4;

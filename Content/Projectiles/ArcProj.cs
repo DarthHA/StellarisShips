@@ -13,10 +13,11 @@ namespace StellarisShips.Content.Projectiles
     public class ArcProj : ModProjectile
     {
         public override string Texture => "StellarisShips/Images/PlaceHolder";
-        public float ModifiedScale = 1f;
+        public Vector2 ModifiedScale = new Vector2(1, 1);
         public Color ArcColor = Color.LightSkyBlue;
 
         public Vector2 RelaPos = Vector2.Zero;
+        public Vector2 OffSetPos = Vector2.Zero;
         public Vector2 TargetPos = Vector2.Zero;
         public int ownerID = -1;
 
@@ -58,7 +59,7 @@ namespace StellarisShips.Content.Projectiles
                 return;
             }
 
-            Projectile.Center = shipNPC.GetPosOnShip(RelaPos);
+            Projectile.Center = shipNPC.GetPosOnShip(RelaPos) + OffSetPos;
 
             SomeUtils.AddLightLine(Projectile.Center, TargetPos, ArcColor, 5);
 
@@ -71,8 +72,8 @@ namespace StellarisShips.Content.Projectiles
                 float X = 0;
                 do
                 {
-                    X += Main.rand.NextFloat() * 20 + 1;
-                    float Y = Main.rand.NextFloat() * 30 - 15;
+                    X += (Main.rand.NextFloat() * 20 + 1) * ModifiedScale.X;
+                    float Y = (Main.rand.NextFloat() * 30 - 15) * ModifiedScale.Y;
                     SegPoints.Add(new Vector2(X, Y));
                 } while (X <= Len);
                 SegPoints.Add(Projectile.Center + new Vector2(Len, 0));
@@ -91,7 +92,7 @@ namespace StellarisShips.Content.Projectiles
                 void Draw(Color color, float scale)
                 {
                     List<CustomVertexInfo> vertexInfos = new();
-                    float width = scale * ModifiedScale;
+                    float width = scale * ModifiedScale.Y;
                     Vector2 UnitX = Vector2.Normalize(TargetPos - Projectile.Center);
                     Vector2 UnitY = ((TargetPos - Projectile.Center).ToRotation() + MathHelper.Pi / 2f).ToRotationVector2();
                     vertexInfos.Add(new CustomVertexInfo(Projectile.Center + UnitY * width, Color.White, new Vector3(0, 0f, 1)));
@@ -121,7 +122,7 @@ namespace StellarisShips.Content.Projectiles
             Vector2 OffSet = Tex1.Size() / 2f;
             for (float k = 0.5f; k <= 1.5f; k += 0.05f)
             {
-                float scale = 0.3f * k * ModifiedScale;
+                float scale = 0.3f * k * ModifiedScale.Y;
                 Main.spriteBatch.Draw(Tex1, TargetPos - Main.screenPosition, null, ArcColor * (1f - k) * t1, Projectile.rotation, OffSet, scale, SpriteEffects.FlipHorizontally, 0);
             }
 
@@ -131,7 +132,7 @@ namespace StellarisShips.Content.Projectiles
             return false;
         }
 
-        public static void Summon(NPC ship, Vector2 relaPos, Vector2 targetPos, Color color)
+        public static void Summon(NPC ship, Vector2 relaPos,Vector2 offsetPos, Vector2 targetPos, Color color,float scale=1f)
         {
             ShipNPC shipNPC = ship.GetShipNPC();
             int protmp = Projectile.NewProjectile(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(relaPos), Vector2.Zero, ModContent.ProjectileType<ArcProj>(), 0, 0, Main.myPlayer);
@@ -140,7 +141,24 @@ namespace StellarisShips.Content.Projectiles
                 (Main.projectile[protmp].ModProjectile as ArcProj).ownerID = ship.whoAmI;
                 (Main.projectile[protmp].ModProjectile as ArcProj).TargetPos = targetPos;
                 (Main.projectile[protmp].ModProjectile as ArcProj).RelaPos = relaPos;
+                (Main.projectile[protmp].ModProjectile as ArcProj).OffSetPos = offsetPos;
                 (Main.projectile[protmp].ModProjectile as ArcProj).ArcColor = color;
+                (Main.projectile[protmp].ModProjectile as ArcProj).ModifiedScale = new Vector2(scale, scale);
+            }
+        }
+
+        public static void Summon(NPC ship, Vector2 relaPos, Vector2 offsetPos, Vector2 targetPos, Color color, Vector2 scale)
+        {
+            ShipNPC shipNPC = ship.GetShipNPC();
+            int protmp = Projectile.NewProjectile(ship.GetSource_FromAI(), shipNPC.GetPosOnShip(relaPos), Vector2.Zero, ModContent.ProjectileType<ArcProj>(), 0, 0, Main.myPlayer);
+            if (protmp >= 0 && protmp < 1000)
+            {
+                (Main.projectile[protmp].ModProjectile as ArcProj).ownerID = ship.whoAmI;
+                (Main.projectile[protmp].ModProjectile as ArcProj).TargetPos = targetPos;
+                (Main.projectile[protmp].ModProjectile as ArcProj).RelaPos = relaPos;
+                (Main.projectile[protmp].ModProjectile as ArcProj).OffSetPos = offsetPos;
+                (Main.projectile[protmp].ModProjectile as ArcProj).ArcColor = color;
+                (Main.projectile[protmp].ModProjectile as ArcProj).ModifiedScale = scale;
             }
         }
 

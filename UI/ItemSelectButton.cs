@@ -57,7 +57,7 @@ namespace StellarisShips.UI
             }
 
             string IconText = AppendText;
-            int Offset = IconText.Length * 25;
+            int Offset = (int)(IconText.Length * 25 * 1.2f);
             IconText = IconText.Replace("S", "[i:" + ModContent.ItemType<Slot_S>().ToString() + "]");
             IconText = IconText.Replace("M", "[i:" + ModContent.ItemType<Slot_M>().ToString() + "]");
             IconText = IconText.Replace("L", "[i:" + ModContent.ItemType<Slot_L>().ToString() + "]");
@@ -82,7 +82,7 @@ namespace StellarisShips.UI
 
             Utils.DrawBorderString(spriteBatch, ShowText, new Vector2(Pos.X + 70, Pos.Y + Size.Y / 2), Color.White, scale, 0, 0.5f);
 
-            Utils.DrawBorderString(spriteBatch, IconText, new Vector2(Pos.X + 290 - Offset, Pos.Y + Size.Y / 2), Color.White, 1, 0, 0.5f);
+            Utils.DrawBorderString(spriteBatch, IconText, new Vector2(Pos.X + 290 - Offset, Pos.Y + Size.Y / 2), Color.White, 1.2f, 0, 0.5f);
         }
 
         public bool Hovered()
