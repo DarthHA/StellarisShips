@@ -231,6 +231,11 @@
 		DisplayName: Speed
 		Tooltip: Used only for icon
 	}
+
+	Influence_Icon: {
+		DisplayName: Psionics(Actually Influence)
+		Tooltip: Used only for icon
+	}
 }
 
 NPCs: {

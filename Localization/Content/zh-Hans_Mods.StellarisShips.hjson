@@ -231,6 +231,11 @@ Items: {
 		DisplayName: 航速
 		Tooltip: 仅用于图标显示，如果你拿到了那没用
 	}
+
+	Influence_Icon: {
+		DisplayName: 灵能（其实是影响力）
+		Tooltip: 仅用于图标显示，如果你拿到了那没用
+	}
 }
 
 NPCs: {
